@@ -10,9 +10,7 @@ export default React.createClass({
     render(){
         return (
             <div className="container-fluid">
-                <div className="col-md-8">
-                    {this.props.children}
-                </div>
+                sssss
             </div>
         );
     }
