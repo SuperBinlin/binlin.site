@@ -12,7 +12,6 @@ export default React.createClass({
             <div className="container-fluid">
                 <div className="col-md-8">
                     {this.props.children}
-                    SS
                 </div>
             </div>
         );
