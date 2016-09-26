@@ -27115,11 +27115,7 @@ webpackJsonp([0,1],[
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'container-fluid' },
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'col-md-8' },
-	                this.props.children
-	            )
+	            'sssss'
 	        );
 	    }
 	});
