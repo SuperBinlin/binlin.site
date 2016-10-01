@@ -20,6 +20,7 @@ var publics = {//存储全局变量
 	foodImg:"<img src='images/strawberry.png'>",
 	length:1,
 	moveRate:500,
+	flag:true//阻止键盘操作过快
 	//console.log(this.inheritDirection);
 }
 
@@ -75,17 +76,17 @@ function btnListen(){
 			}
 			break;
 			case "ido":
-				publics.moveRate = 500;
-				refreshGame();
-				main();
-				break;
-			case "comm":
 				publics.moveRate = 300;
 				refreshGame();
 				main();
 				break;
+			case "comm":
+				publics.moveRate = 150;
+				refreshGame();
+				main();
+				break;
 			case "boss":
-				publics.moveRate = 100;
+				publics.moveRate = 90;
 				refreshGame();
 				main();
 			break;
@@ -100,22 +101,26 @@ function main(){//结合各自子方法 相当于控制全局的作用
 		//console.log(event.keyCode)
 		switch(event.keyCode){//监听键盘执行相应操作
 			case(moveDirection.top):
-			if(publics.inheritDirection != moveDirection.bottom){//不允许往回走
+			if(publics.inheritDirection != moveDirection.bottom && publics.flag){//不允许往回走
+				publics.flag = false;
 				publics.inheritDirection = moveDirection.top;
 			}
 			break;
 			case(moveDirection.right):
-			if(publics.inheritDirection != moveDirection.left){
+			if(publics.inheritDirection != moveDirection.left && publics.flag){
+				publics.flag = false;
 				publics.inheritDirection = moveDirection.right;
 			}
 			break;
 			case(moveDirection.left):
-			if(publics.inheritDirection != moveDirection.right){
+			if(publics.inheritDirection != moveDirection.right && publics.flag){
+				publics.flag = false;
 				publics.inheritDirection = moveDirection.left;
 			}
 			break;
 			case(moveDirection.bottom):
-			if(publics.inheritDirection != moveDirection.top){
+			if(publics.inheritDirection != moveDirection.top && publics.flag){
+				publics.flag = false;
 				publics.inheritDirection = moveDirection.bottom;
 			}
 			break;
@@ -134,6 +139,7 @@ function snakeAction(){
 		//console.log(event.keyCode)
 		//console.log(moveDirection[0].top);
 		//snakeHead.addClass('snake');
+		publics.flag = true;
 		var autoMove = publics.inheritDirection;
 		switch(autoMove){
 			case moveDirection.top:
