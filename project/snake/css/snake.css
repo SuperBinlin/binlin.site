@@ -5,6 +5,7 @@ body{background: url(../images/starry-sky.jpg) center;overflow: hidden;backgroun
 #snake-zoo table td.snake { background: yellow;} 
 #snake-zoo table td.food img{height:100%;width:100%;position: absolute;top:0;} 
 .score{text-align: center;color:#fff;margin-top: 50px;}
+.score #score{font-size:30px;}
 a{cursor:pointer;height:64px;width:186px;display: inline-block;background: url(../images/btns.png) no-repeat;margin-top: 50px;color:#fff;text-align: center;line-height: 64px;transform:scale(0.9,0.9);transition:transform 0.5s;}
 a:hover{transform:scale(1,1);}
 .left-menu{float: left;width:200px;margin-top:30px;}
