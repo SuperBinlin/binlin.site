@@ -1,22 +1,25 @@
-/****author Binlin****/
-/****Y2015 M02 D26****/
-var moveDirection = [
-	{"top":38},
-	{"right":39},
-	{"left":37},
-	{"bottom":40}
-];
+/**
+ * author Binlin
+ * date 2015/2/26
+ */
+var moveDirection =
+	{
+		"top":38,
+		"right":39,
+		"left":37,
+		"bottom":40
+	}
 
-var publics = new function(){//存储全局变量
-	this.height = 20 ; //1占1格
-	this.width = 20 ; //1占1格
-	this.timeouts = "";//存储时间函数
-	this.inheritDirection = moveDirection[1].right;//默认向右
-	this.snakeBody = [];//蛇身
-	this.foodPosition = "";//食物位置
-	this.foodImg = "<img src='images/strawberry.png'>";
-	this.length = 1;
-	this.moveRate = 500;
+var publics = {//存储全局变量
+	height:20, //1占1格
+	width:20, //1占1格
+	timeouts:"",//存储时间函数
+	inheritDirection:moveDirection.right,//默认向右
+	snakeBody:[],//蛇身
+	foodPosition:"",//食物位置
+	foodImg:"<img src='images/strawberry.png'>",
+	length:1,
+	moveRate:500,
 	//console.log(this.inheritDirection);
 }
 
@@ -63,7 +66,6 @@ function btnListen(){
 			case "controls":
 			if(gameControl.begins == 0){//开场
 				main();
-				//var ss = publics.timeouts;
 				gameControl.begins = 1;//状态设置为已开始
 				beClicked.text("重新开始");
 			}else if(gameControl.begins == 1){//重新开始
@@ -73,23 +75,17 @@ function btnListen(){
 			}
 			break;
 			case "ido":
-			gameControl.begins = 1;
-			publics.moveRate = 500;
-			clearInterval(publics.timeouts);
+				publics.moveRate = 500;
 				refreshGame();
 				main();
 				break;
 			case "comm":
-			gameControl.begins = 1;
-			publics.moveRate = 300;
-			clearInterval(publics.timeouts);
+				publics.moveRate = 300;
 				refreshGame();
 				main();
 				break;
 			case "boss":
-			gameControl.begins = 1;
-			publics.moveRate = 100;
-			clearInterval(publics.timeouts);
+				publics.moveRate = 100;
 				refreshGame();
 				main();
 			break;
@@ -103,24 +99,24 @@ function main(){//结合各自子方法 相当于控制全局的作用
 	$(document).keydown(function(event){//监听键盘
 		//console.log(event.keyCode)
 		switch(event.keyCode){//监听键盘执行相应操作
-			case(moveDirection[0].top):
-			if(publics.inheritDirection != moveDirection[3].bottom){//不允许往回走
-				publics.inheritDirection = moveDirection[0].top;	
+			case(moveDirection.top):
+			if(publics.inheritDirection != moveDirection.bottom){//不允许往回走
+				publics.inheritDirection = moveDirection.top;
 			}
 			break;
-			case(moveDirection[1].right):
-			if(publics.inheritDirection != moveDirection[2].left){
-				publics.inheritDirection = moveDirection[1].right;
+			case(moveDirection.right):
+			if(publics.inheritDirection != moveDirection.left){
+				publics.inheritDirection = moveDirection.right;
 			}
 			break;
-			case(moveDirection[2].left):
-			if(publics.inheritDirection != moveDirection[1].right){
-				publics.inheritDirection = moveDirection[2].left;
+			case(moveDirection.left):
+			if(publics.inheritDirection != moveDirection.right){
+				publics.inheritDirection = moveDirection.left;
 			}
 			break;
-			case(moveDirection[3].bottom):
-			if(publics.inheritDirection != moveDirection[0].top){
-				publics.inheritDirection = moveDirection[3].bottom;
+			case(moveDirection.bottom):
+			if(publics.inheritDirection != moveDirection.top){
+				publics.inheritDirection = moveDirection.bottom;
 			}
 			break;
 		}
@@ -140,17 +136,17 @@ function snakeAction(){
 		//snakeHead.addClass('snake');
 		var autoMove = publics.inheritDirection;
 		switch(autoMove){
-			case moveDirection[0].top:
+			case moveDirection.top:
 			Xposition--;
 			//console.log(Yposition);
 			break;
-			case moveDirection[1].right:
+			case moveDirection.right:
 			Yposition++
 			break; 
-			case moveDirection[2].left:
+			case moveDirection.left:
 			Yposition--;
 			break; 
-			case moveDirection[3].bottom:
+			case moveDirection.bottom:
 			Xposition++;
 			break;
 		}
@@ -173,8 +169,7 @@ function snakeAction(){
 			snakebody.splice(0,(snakebody.length-snakeLength-1));
 			//console.log((snakebody.length-snakeLength-1));
 		}
-		console.log(snakebody[0]);
-		
+
 		if(checkArrayRepeat(snakebody)){//吃自己
 			gameOver();
 		};
@@ -206,13 +201,16 @@ function removeFood(){//用于重新开始时清除食物
 }
 
 function refreshGame(){
+	gameControl.begins = 1;
+	publics.snakeBody = [];
+
+	clearInterval(publics.timeouts);
 	var zoosnake = $("#snake-zoo");
 	zoosnake.find(".food").children("img").remove().removeClass("food");
-	console.log($('.snake').length);
 	if($('.snake').length > 0){
 		zoosnake.find(".snake").removeClass("snake");	
 	}
-	publics.inheritDirection = moveDirection[1].right;
+	publics.inheritDirection = moveDirection.right;
 }
 
 function createFood(){//生成食物，避免生成在蛇body上
@@ -229,7 +227,6 @@ function createFood(){//生成食物，避免生成在蛇body上
 		while(flag);
 		publics.foodPosition = [foodX,foodY];
 		foodPos.addClass('food').append(publics.foodImg);
-		console.log(publics.foodImg);
 	}
 
 
