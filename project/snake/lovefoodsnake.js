@@ -4,10 +4,10 @@
  */
 var moveDirection =
 	{
-		"top":38,
-		"right":39,
-		"left":37,
-		"bottom":40
+		top:38,
+		right:39,
+		left:37,
+		bottom:40
 	}
 
 var publics = {//存储全局变量
