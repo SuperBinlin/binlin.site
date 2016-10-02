@@ -50,7 +50,7 @@ max-width: 560px;
 .textarea-ul{list-style: none;cursor: pointer;}
 .txtareaWhite{background: #fff;height:30px;width:30px;float: left;margin-right: 10px;border:1px solid #e8e8e8;}
 .txtareaBlack{background: #f8f7f6;height:30px;width:30px;float: left;border:1px solid #e8e8e8;}
-.trhover{border:1px solid rgba(0,100,255,0.2);}
+.trhover{outline:1px solid rgba(0,100,255,0.2);}
 .bs-example{height:35px;position: absolute;top:-37px;left:970px;}
 .saveHtml{opacity: 0;position: absolute;top:-100px;}
 
