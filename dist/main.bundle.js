@@ -21419,6 +21419,10 @@ webpackJsonp([0,1],[
 
 	var _2 = _interopRequireDefault(_);
 
+	var _resume = __webpack_require__(238);
+
+	var _resume2 = _interopRequireDefault(_resume);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
@@ -21430,6 +21434,7 @@ webpackJsonp([0,1],[
 	            _react2.default.createElement(
 	                _reactRouter.Route,
 	                { path: '/', component: _app2.default },
+	                _react2.default.createElement(_reactRouter.Route, { path: 'resume', component: _resume2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: '*', component: _2.default })
 	            )
 	        );
@@ -27107,6 +27112,8 @@ webpackJsonp([0,1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(173);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
@@ -27115,7 +27122,17 @@ webpackJsonp([0,1],[
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'container-fluid' },
-	            'sssss'
+	            'app.jsx',
+	            this.props.children,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'list-group-item' },
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: 'resume' },
+	                    'ms-tree-list'
+	                )
+	            )
 	        );
 	    }
 	});
@@ -27141,6 +27158,32 @@ webpackJsonp([0,1],[
 	            'p',
 	            null,
 	            '404'
+	        );
+	    }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {/**
+	 * Created by Binlin
+	 * Date: 2016/10/02
+	 * Time: 20:36
+	 */
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = React.createClass({
+	    displayName: 'resume',
+	    render: function render() {
+	        return React.createElement(
+	            'p',
+	            null,
+	            'resume'
 	        );
 	    }
 	});

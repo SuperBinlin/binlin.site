@@ -10,6 +10,7 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import App from "../app.jsx";
 import Notfound from "../views/404.jsx";
+import Resume from "../views/resume.jsx"
 
 
 export default React.createClass({
@@ -17,6 +18,7 @@ export default React.createClass({
         return (
             <Router history={browserHistory}>
                 <Route path="/" component={App}>
+                    <Route path="resume" component={Resume}/>
                     <Route path="*" component={Notfound}/>
                 </Route>
             </Router>
