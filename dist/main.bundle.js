@@ -21430,7 +21430,7 @@ webpackJsonp([0,1],[
 	    render: function render() {
 	        return _react2.default.createElement(
 	            _reactRouter.Router,
-	            { history: _reactRouter.browserHistory },
+	            null,
 	            _react2.default.createElement(
 	                _reactRouter.Route,
 	                { path: '/', component: _app2.default },
@@ -27122,17 +27122,7 @@ webpackJsonp([0,1],[
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'container-fluid' },
-	            'app.jsx',
-	            this.props.children,
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'list-group-item' },
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: 'resume' },
-	                    'ms-tree-list'
-	                )
-	            )
+	            this.props.children
 	        );
 	    }
 	});
@@ -27169,25 +27159,702 @@ webpackJsonp([0,1],[
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
 	 * Created by Binlin
-	 * Date: 2016/10/02
-	 * Time: 20:36
+	 * Date: 2016/09/26
+	 * Time: 10:30
 	 */
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	__webpack_require__(239);
+
+	__webpack_require__(254);
+
 	exports.default = React.createClass({
 	    displayName: 'resume',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            baseInfo: [{ keys: 'Birthday', val: '1991/03/10' }, { keys: 'Phone', val: '15262517173' }, { keys: 'Email', val: 'skyxuanbin@qq.com' }, { keys: 'Address', val: 'SuZhou' }]
+	        };
+	    },
 	    render: function render() {
+	        var baseInfo = this.state.baseInfo;
+
 	        return React.createElement(
-	            'p',
+	            'div',
 	            null,
-	            'resume'
+	            React.createElement(
+	                'div',
+	                { className: 'header' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'header-profile' },
+	                        React.createElement('img', { src: '../images/zb.png', alt: '' })
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'header-top' },
+	                React.createElement(
+	                    'h2',
+	                    null,
+	                    '张斌'
+	                ),
+	                React.createElement(
+	                    'small',
+	                    null,
+	                    'web前端开发工程师'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'about' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'about-top' },
+	                        React.createElement(
+	                            'h3',
+	                            { className: 'top-title' },
+	                            'About Me'
+	                        ),
+	                        React.createElement('span', { className: 'line' }),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'about-p' },
+	                            '2013年大学毕业,专业软件工程,从实习开始接触前端,之后便对前端技术欲罢不能,三年的历练,正在成为大神的道路上不断努力。'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '专职前端,从最初的html+css+jquery到如今的html+css+MVVM+webpack,始终努力的跟着前端发展的节奏,做一个有追求的优秀前端,十分欣赏和愿意与有自己想法的产品经理合作。'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row about-row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-4 about-row-column' },
+	                                React.createElement(
+	                                    'ul',
+	                                    { className: 'about-details' },
+	                                    baseInfo.map(function (obj, index) {
+	                                        return React.createElement(
+	                                            'li',
+	                                            {
+	                                                key: index },
+	                                            React.createElement(
+	                                                'p',
+	                                                null,
+	                                                obj.keys,
+	                                                ':',
+	                                                React.createElement(
+	                                                    'span',
+	                                                    null,
+	                                                    obj.val
+	                                                )
+	                                            )
+	                                        );
+	                                    })
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-8 about-row-column' },
+	                                React.createElement(
+	                                    'h3',
+	                                    null,
+	                                    'HOBBIES & INTERESTS'
+	                                ),
+	                                React.createElement(
+	                                    'ul',
+	                                    { className: 'hoby' },
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'tv' })
+	                                    ),
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'car' })
+	                                    ),
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'music' })
+	                                    ),
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'shopping' })
+	                                    ),
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'reading' })
+	                                    ),
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'travel' })
+	                                    ),
+	                                    React.createElement(
+	                                        'li',
+	                                        null,
+	                                        React.createElement('i', { className: 'tea' })
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'a',
+	                                    { href: '', className: 'download' },
+	                                    React.createElement('span', null),
+	                                    'Download Resume'
+	                                )
+	                            ),
+	                            React.createElement('div', { className: 'clearfix' })
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'experience' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'exp-top' },
+	                        React.createElement(
+	                            'h3',
+	                            { className: 'top-title' },
+	                            'About'
+	                        ),
+	                        React.createElement('span', { className: 'line' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'exp-devide' },
+	                        React.createElement(
+	                            'h4',
+	                            null,
+	                            'Experience'
+	                        ),
+	                        React.createElement('span', { className: 'devide-line' }),
+	                        React.createElement('label', { className: 'bag' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'exp-devide-grid-right' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'SENIOR UI/UX DESIGNER'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                'Google - 2013 . Current'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'exp-devide-grid-left' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'JUNIOR UI DESIGNER'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                'Microsoft - 2010 . 2012'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'exp-devide-grid-rightb' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'UI/UX DESIGNER'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                'IBM - 2006 . 2010'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'exp-devide education' },
+	                        React.createElement(
+	                            'h4',
+	                            null,
+	                            'Education'
+	                        ),
+	                        React.createElement('span', { className: 'devide-line' }),
+	                        React.createElement('label', { className: 'book' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'exp-devide-grid-right' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'MASTERS DEGREE'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                'Modern Sciences & Arts University - 2014 . 2012'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'exp-devide-grid-left' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'BACHELORS DEGREE'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                'Modern Sciences & Arts University - 2012 . 2010'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'exp-devide-grid-rightb' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'GRADUATION'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                'Modern Sciences & Arts University - Faculty of Computer Science - 2006 . 2010'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                            )
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'skills' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'skills-top' },
+	                        React.createElement(
+	                            'h3',
+	                            { className: 'top-title' },
+	                            'Skills'
+	                        ),
+	                        React.createElement('span', { className: 'line' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row skill-grids text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 skill-column' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'skill-grid' },
+	                                    React.createElement('div', { className: 'circle', id: 'circles-1' }),
+	                                    React.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'PHOTOSHOP'
+	                                    ),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 skill-column' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'skill-grid' },
+	                                    React.createElement('div', { className: 'circle', id: 'circles-2' }),
+	                                    React.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'ILLUSTRATOR'
+	                                    ),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 skill-column' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'skill-grid' },
+	                                    React.createElement('div', { className: 'circle', id: 'circles-3' }),
+	                                    React.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'HTML/CSS'
+	                                    ),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 skill-column' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'skill-grid' },
+	                                    React.createElement('div', { className: 'circle', id: 'circles-4' }),
+	                                    React.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'JAVASCRIPT'
+	                                    ),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'clearfix' },
+	                                ' '
+	                            )
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'social-media' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'social-media-top' },
+	                        React.createElement(
+	                            'h3',
+	                            { className: 'top-title' },
+	                            'SOCIAL MEDIA CONNECTIONS'
+	                        ),
+	                        React.createElement('span', { className: 'line' }),
+	                        React.createElement(
+	                            'ul',
+	                            { className: 'social' },
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'fb' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'tw' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'li' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'yt' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'ca' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'ph' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                React.createElement('i', { className: 'gp' })
+	                            )
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'awards' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'awards-top' },
+	                        React.createElement(
+	                            'h3',
+	                            { className: 'top-title' },
+	                            'AWARDS & ACHIEVEMENTS'
+	                        ),
+	                        React.createElement('span', { className: 'line' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row award-row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 award-column' },
+	                                React.createElement('i', { className: 'award' }),
+	                                React.createElement(
+	                                    'h5',
+	                                    null,
+	                                    '50'
+	                                ),
+	                                React.createElement(
+	                                    'small',
+	                                    null,
+	                                    'Awards Won!'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 award-column' },
+	                                React.createElement('i', { className: 'project' }),
+	                                React.createElement(
+	                                    'h5',
+	                                    null,
+	                                    '570'
+	                                ),
+	                                React.createElement(
+	                                    'small',
+	                                    null,
+	                                    'PROJECTS DONE'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 award-column' },
+	                                React.createElement('i', { className: 'client' }),
+	                                React.createElement(
+	                                    'h5',
+	                                    null,
+	                                    '215'
+	                                ),
+	                                React.createElement(
+	                                    'small',
+	                                    null,
+	                                    'HAPPY CLIENTS'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 award-column' },
+	                                React.createElement('i', { className: 'cups' }),
+	                                React.createElement(
+	                                    'h5',
+	                                    null,
+	                                    '2145'
+	                                ),
+	                                React.createElement(
+	                                    'small',
+	                                    null,
+	                                    'CUPS OF COFFEE'
+	                                )
+	                            ),
+	                            React.createElement('div', { className: 'clearfix' })
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'twitter' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'twitter-top' },
+	                        React.createElement('i', { className: 'twit' }),
+	                        React.createElement('span', { className: 'line' }),
+	                        React.createElement(
+	                            'div',
+	                            { id: 'top', className: 'callbacks_container' },
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'rslides', id: 'slider4' },
+	                                React.createElement(
+	                                    'li',
+	                                    null,
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'slider-top' },
+	                                        React.createElement(
+	                                            'p',
+	                                            null,
+	                                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
+	                                            React.createElement('br', null),
+	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                                        )
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'li',
+	                                    null,
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'slider-top' },
+	                                        React.createElement(
+	                                            'p',
+	                                            null,
+	                                            'simply dummy text of the Lorem Ipsum is printing and typesetting industry. Lorem',
+	                                            React.createElement('br', null),
+	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                                        )
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'li',
+	                                    null,
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'slider-top' },
+	                                        React.createElement(
+	                                            'p',
+	                                            null,
+	                                            'printing and typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
+	                                            React.createElement('br', null),
+	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                                        )
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'li',
+	                                    null,
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'slider-top' },
+	                                        React.createElement(
+	                                            'p',
+	                                            null,
+	                                            'and typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
+	                                            React.createElement('br', null),
+	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                                        )
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'li',
+	                                    null,
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'slider-top' },
+	                                        React.createElement(
+	                                            'p',
+	                                            null,
+	                                            'typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
+	                                            React.createElement('br', null),
+	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'clearfix' },
+	                            ' '
+	                        )
+	                    )
+	                )
+	            )
 	        );
 	    }
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 239 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 ]);

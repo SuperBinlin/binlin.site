@@ -9,14 +9,14 @@ import { Router, Route, browserHistory } from 'react-router';
 
 
 import App from "../app.jsx";
-import Notfound from "../views/404.jsx";
-import Resume from "../views/resume.jsx"
+import Notfound from "../views/404.js";
+import Resume from "../views/resume.js"
 
 
 export default React.createClass({
     render(){
         return (
-            <Router history={browserHistory}>
+            <Router>
                 <Route path="/" component={App}>
                     <Route path="resume" component={Resume}/>
                     <Route path="*" component={Notfound}/>
