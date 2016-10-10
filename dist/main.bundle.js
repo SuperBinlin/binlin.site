@@ -27358,17 +27358,17 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                'SENIOR UI/UX DESIGNER'
+	                                '苏州卡说信息科技有限公司(2016/2~至今)'
 	                            ),
 	                            React.createElement(
 	                                'small',
 	                                null,
-	                                'Google - 2013 . Current'
+	                                'web前端开发工程师'
 	                            ),
 	                            React.createElement(
 	                                'p',
 	                                null,
-	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '
+	                                '前端路漫漫其修远兮,吾将上下而求索,构建前端框架,开发公司公用css框架,开发vue组件库'
 	                            )
 	                        ),
 	                        React.createElement(
@@ -27377,17 +27377,17 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                'JUNIOR UI DESIGNER'
+	                                '智慧芽信息科技有限公司(2014/10~2016/2)'
 	                            ),
 	                            React.createElement(
 	                                'small',
 	                                null,
-	                                'Microsoft - 2010 . 2012'
+	                                'web前端开发工程师'
 	                            ),
 	                            React.createElement(
 	                                'p',
 	                                null,
-	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                '前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,用来重构公司项目的代码,感觉自己终于跟上时代的步伐了'
 	                            )
 	                        ),
 	                        React.createElement(
@@ -27396,17 +27396,17 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                'UI/UX DESIGNER'
+	                                '江苏中科梦兰信息科技有限公司(2013/1~2014/9)'
 	                            ),
 	                            React.createElement(
 	                                'small',
 	                                null,
-	                                'IBM - 2006 . 2010'
+	                                'web前端开发工程师'
 	                            ),
 	                            React.createElement(
 	                                'p',
 	                                null,
-	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                '入门前端,对所见即所得的效果中毒不轻,手写兼容到IE6的代码,JQUERY操作DOM溜的不行'
 	                            )
 	                        )
 	                    ),

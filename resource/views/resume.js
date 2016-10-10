@@ -87,19 +87,19 @@ export default React.createClass({
                         </span>
                         <label className="bag"></label>
                         <div className="exp-devide-grid-right">
-                            <h5>SENIOR UI/UX DESIGNER</h5>
-                            <small>Google - 2013 . Current</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                            <h5>苏州卡说信息科技有限公司(2016/2~至今)</h5>
+                            <small>web前端开发工程师</small>
+                            <p>前端路漫漫其修远兮,吾将上下而求索,构建前端框架,开发公司公用css框架,开发vue组件库</p>
                         </div>
                         <div className="exp-devide-grid-left">
-                            <h5>JUNIOR UI DESIGNER</h5>
-                            <small>Microsoft - 2010 . 2012</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <h5>智慧芽信息科技有限公司(2014/10~2016/2)</h5>
+                            <small>web前端开发工程师</small>
+                            <p>前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,用来重构公司项目的代码,感觉自己终于跟上时代的步伐了</p>
                         </div>
                         <div className="exp-devide-grid-rightb">
-                            <h5>UI/UX DESIGNER</h5>
-                            <small>IBM - 2006 . 2010</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <h5>江苏中科梦兰信息科技有限公司(2013/1~2014/9)</h5>
+                            <small>web前端开发工程师</small>
+                            <p>入门前端,对所见即所得的效果中毒不轻,手写兼容到IE6的代码,JQUERY操作DOM溜的不行</p>
                         </div>
                     </div>
                     <div className="exp-devide education">

@@ -945,22 +945,7 @@ p.copyright a:hover{
 	}
 }
 @media (max-width:770px){
-	label.bag {
-		left: 21.5em;
-	}
-	label.book {
-		left: 21.5em;
-	}
-	.exp-devide-grid-right {
-		left: 28.9em;
-	}
-	.exp-devide-grid-left {
-		left: -3.9em;
-	}
-	.exp-devide-grid-rightb {
-		top: 16em;
-		left: 28.9em;
-	}
+
 }
 @media (max-width:640px){
 	.header-profile img {
