@@ -27195,7 +27195,7 @@ webpackJsonp([0,1],[
 	                    React.createElement(
 	                        'div',
 	                        { className: 'header-profile' },
-	                        React.createElement('img', { src: '../images/zb.png', alt: '' })
+	                        React.createElement('img', { src: './images/zb.png', alt: '' })
 	                    )
 	                )
 	            ),

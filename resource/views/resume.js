@@ -25,7 +25,7 @@ export default React.createClass({
             <div className="header">
                 <div className="container">
                     <div className="header-profile">
-                        <img src="../images/zb.png" alt=""/>
+                        <img src="./images/zb.png" alt=""/>
                     </div>
                 </div>
             </div>
