@@ -89,17 +89,17 @@ export default React.createClass({
                         <div className="exp-devide-grid-right">
                             <h5>SENIOR UI/UX DESIGNER</h5>
                             <small>Google - 2013 . Current</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
                         </div>
                         <div className="exp-devide-grid-left">
                             <h5>JUNIOR UI DESIGNER</h5>
                             <small>Microsoft - 2010 . 2012</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         </div>
                         <div className="exp-devide-grid-rightb">
                             <h5>UI/UX DESIGNER</h5>
                             <small>IBM - 2006 . 2010</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         </div>
                     </div>
                     <div className="exp-devide education">

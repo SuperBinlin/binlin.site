@@ -197,10 +197,10 @@ a.download span{
 	background:#d4d4d4;
 	padding:10px;
 	text-transform:uppercase;
-	font-size:20px;
+	font-size:18px;
 	display: block;
 	text-align:center;
-	width:15%;
+	width:25%;
 	font-weight:800;
 	border-radius:6px;
 	-webkit-border-radius:6px;
@@ -786,6 +786,24 @@ p.copyright a:hover{
 }
 /*--- Footer Ends Here ---*/
 /*--- Media Queries Starts Here ---*/
+@media (max-width:1200px){
+	label.bag {
+		left: 32.5em;
+	}
+	label.book {
+		left: 32.5em;
+	}
+	.exp-devide-grid-right {
+		left: 36.2em;
+	}
+	.exp-devide-grid-left {
+		left: 4.4em;
+	}
+	.exp-devide-grid-rightb {
+		top: 16em;
+		left: 36.2em;
+	}
+}
 @media (max-width:1024px){
 	.header {
 		min-height: 300px;
@@ -835,6 +853,24 @@ p.copyright a:hover{
 		left: 32.7em;
 	}
 }
+@media (max-width:992px){
+	label.bag {
+		left: 24.8em;
+	}
+	label.book {
+		left: 24.8em;
+	}
+	.exp-devide-grid-right {
+		left: 31.2em;
+	}
+	.exp-devide-grid-left {
+		left: -0.6em;
+	}
+	.exp-devide-grid-rightb {
+		top: 16em;
+		left: 31.2em;
+	}
+}
 @media (max-width:800px){
 	.header-profile {
 		top:10em
@@ -861,7 +897,8 @@ p.copyright a:hover{
 		margin: 2em 0 3em;
 	}
 	.exp-devide h4 {
-		width: 19%;
+		font-size:16px;
+		width: 20%;
 	}
 	label.bag {
 		left: 24.7em;
@@ -907,6 +944,24 @@ p.copyright a:hover{
 		padding: 3em 0 0;
 	}
 }
+@media (max-width:770px){
+	label.bag {
+		left: 21.5em;
+	}
+	label.book {
+		left: 21.5em;
+	}
+	.exp-devide-grid-right {
+		left: 28.9em;
+	}
+	.exp-devide-grid-left {
+		left: -3.9em;
+	}
+	.exp-devide-grid-rightb {
+		top: 16em;
+		left: 28.9em;
+	}
+}
 @media (max-width:640px){
 	.header-profile img {
 		width: 60%;
@@ -928,8 +983,9 @@ p.copyright a:hover{
 		display: none;
 	}
 	.exp-devide h4 {
-		width: 19%;
+		width: 25%;
 		margin: 0;
+		font-size: 13px
 	}
 	span.devide-line {
 		left: 10%;
@@ -943,9 +999,6 @@ p.copyright a:hover{
 	}
 	a.download {
 		font-size: 14px;
-	}
-	.exp-devide h4 {
-		font-size: 16px
 	}
 	label.bag,label.book {
 		left: 7.25%;
@@ -1053,8 +1106,8 @@ p.copyright a:hover{
 		font-size: 12px;
 	}
 	.exp-devide h4 {
-		font-size: 14px;
-		width: 23%;
+		font-size: 12px;
+		width: 35%;
 	}	
 	label.bag, label.book {
 		left: 7%;
@@ -1173,7 +1226,7 @@ p.copyright a:hover{
 	}
 	.exp-devide h4 {
 		font-size: 12px;
-		width: 60%;
+		width: 50%;
 	}
 	label.bag, label.book {
 		left: 5.5%;
