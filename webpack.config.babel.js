@@ -50,6 +50,9 @@ let config = {
     },
     plugins:[
         new Clean(['dist']),
+        new TransferWebpackPlugin([
+            {from: 'images', to: 'images'},
+        ], path.join(__dirname, 'resource')),
         new webpack.ProvidePlugin({
             _ : 'lodash',
             $ : 'jquery',
