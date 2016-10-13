@@ -133,22 +133,22 @@ export default React.createClass({
                         <div className="row skill-grids text-center">
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
+                                    <div className="circle" id="circles-3"></div>
+                                    <h3>HTML/CSS</h3>
+                                    <p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,常用库:bootstrap、pure</p>
+                                </div>
+                            </div>
+                            <div className="col-md-3 skill-column">
+                                <div className="skill-grid">
                                     <div className="circle" id="circles-1"></div>
-                                    <h3>PHOTOSHOP</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                    <h3>JAVASCRIPT</h3>
+                                    <p>原生js、jquery、zepto、lodash、underscoreJs、angularJs、reactJs、vueJs</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-2"></div>
                                     <h3>ILLUSTRATOR</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                </div>
-                            </div>
-                            <div className="col-md-3 skill-column">
-                                <div className="skill-grid">
-                                    <div className="circle" id="circles-3"></div>
-                                    <h3>HTML/CSS</h3>
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                                 </div>
                             </div>

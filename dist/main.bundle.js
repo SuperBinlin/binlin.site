@@ -27504,16 +27504,35 @@ webpackJsonp([0,1],[
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'skill-grid' },
-	                                    React.createElement('div', { className: 'circle', id: 'circles-1' }),
+	                                    React.createElement('div', { className: 'circle', id: 'circles-3' }),
 	                                    React.createElement(
 	                                        'h3',
 	                                        null,
-	                                        'PHOTOSHOP'
+	                                        'HTML/CSS'
 	                                    ),
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                        '能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,常用库:bootstrap、pure'
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3 skill-column' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'skill-grid' },
+	                                    React.createElement('div', { className: 'circle', id: 'circles-1' }),
+	                                    React.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'JAVASCRIPT'
+	                                    ),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        '原生js、jquery、zepto、lodash、underscoreJs、angularJs、reactJs、vueJs'
 	                                    )
 	                                )
 	                            ),
@@ -27528,25 +27547,6 @@ webpackJsonp([0,1],[
 	                                        'h3',
 	                                        null,
 	                                        'ILLUSTRATOR'
-	                                    ),
-	                                    React.createElement(
-	                                        'p',
-	                                        null,
-	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-	                                    )
-	                                )
-	                            ),
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-md-3 skill-column' },
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'skill-grid' },
-	                                    React.createElement('div', { className: 'circle', id: 'circles-3' }),
-	                                    React.createElement(
-	                                        'h3',
-	                                        null,
-	                                        'HTML/CSS'
 	                                    ),
 	                                    React.createElement(
 	                                        'p',
