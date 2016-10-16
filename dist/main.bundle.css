@@ -183,7 +183,7 @@ a.download span{
 /*--- Experience Starts Here ----*/
 .experience{
 	background:#f1f2f7;
-	min-height:1050px;
+	min-height:800px;
 }
 .exp-top{
 	padding:2em 0;
@@ -213,6 +213,14 @@ a.download span{
 span.devide-line{
 	width:3px;
 	height:450px;
+	position:absolute;
+	top:30px;
+	display:initial;
+	background:#d4d4d4;
+}
+span.devide-lineTwo{
+	width:3px;
+	height:150px;
 	position:absolute;
 	top:30px;
 	display:initial;
@@ -800,8 +808,11 @@ p.copyright a:hover{
 		left: 4.4em;
 	}
 	.exp-devide-grid-rightb {
-		top: 16em;
+		top: 20em;
 		left: 36.2em;
+	}
+	.education {
+		margin-top:40%;
 	}
 }
 @media (max-width:1024px){
@@ -837,11 +848,11 @@ p.copyright a:hover{
 		left: 4.4em;
 	}
 	.exp-devide-grid-rightb {
-		top: 16em;
+		top: 19em;
 		left: 36.2em;
 	}
 	.experience {
-		min-height: 970px;
+		min-height: 770px;
 	}
 	.education {
 		margin-top: 38%;
@@ -867,8 +878,11 @@ p.copyright a:hover{
 		left: -0.6em;
 	}
 	.exp-devide-grid-rightb {
-		top: 16em;
+		top: 22em;
 		left: 31.2em;
+	}
+	.education {
+		margin-top:55%;
 	}
 }
 @media (max-width:800px){
@@ -910,11 +924,11 @@ p.copyright a:hover{
 		left: 2.8em;
 	}
 	.exp-devide-grid-rightb {
-		top: 18em;
+		top: 23em;
 		left: 28.3em;
 	}
 	.education {
-		margin-top: 55%;
+		margin-top: 58%;
 	}
 	label.book {
 		left: 24.7em;
@@ -923,7 +937,7 @@ p.copyright a:hover{
 		margin-bottom: 2em;
 	}
 	.experience {
-		min-height: 1030px;
+		min-height: 830px;
 	}
 	span.devide-line {
 		height: 435px;
@@ -945,11 +959,6 @@ p.copyright a:hover{
 	}
 }
 @media (max-width:770px){
-	.exp-devide-grid-left {
-		left: 31.2em;
-	}
-}
-@media (max-width:640px){
 	.header-profile img {
 		width: 60%;
 	}
@@ -967,7 +976,7 @@ p.copyright a:hover{
 		text-align: left;
 	}
 	.exp-devide-grid-left {
-		left: 1.9em;
+		left: 15.8%;
 		width:84%;
 		text-align: left;
 	}
@@ -977,6 +986,9 @@ p.copyright a:hover{
 		font-size: 13px
 	}
 	span.devide-line {
+		left: 10%;
+	}
+	span.devide-lineTwo {
 		left: 10%;
 	}
 	.about-top p.about-p {
@@ -998,11 +1010,8 @@ p.copyright a:hover{
 		top: 6em;
 		width:84%;
 	}
-	.exp-devide-grid-left {
-			left: 1.9em;
-	}
 	.exp-devide-grid-rightb {
-		top: 16em;
+		top: 21.5em;
 		left: 15.8%;
 		width:84%;
 	}
@@ -1020,7 +1029,7 @@ p.copyright a:hover{
 		min-height: 906px;
 	}
 	span.devide-line {
-		height: 396px;
+		height: 440px;
 	}
 	.skills-top {
 		padding: 0em 0 0;
@@ -1039,6 +1048,12 @@ p.copyright a:hover{
 	.text input[type="text"],.text textarea {
 		width: 80%;
 	}
+	.education {
+		margin-top: 65%;
+	}
+}
+@media (max-width:590px){
+	.education{margin-top:68%;}
 }
 @media (max-width:480px){
 	ul.hoby li i {

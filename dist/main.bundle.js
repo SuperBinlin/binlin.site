@@ -27418,7 +27418,7 @@ webpackJsonp([0,1],[
 	                            null,
 	                            'Education'
 	                        ),
-	                        React.createElement('span', { className: 'devide-line' }),
+	                        React.createElement('span', { className: 'devide-lineTwo' }),
 	                        React.createElement('label', { className: 'book' }),
 	                        React.createElement(
 	                            'div',
@@ -27426,55 +27426,17 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                'MASTERS DEGREE'
+	                                '常熟理工学院'
 	                            ),
 	                            React.createElement(
 	                                'small',
 	                                null,
-	                                'Modern Sciences & Arts University - 2014 . 2012'
+	                                '2009/9~2013/6'
 	                            ),
 	                            React.createElement(
 	                                'p',
 	                                null,
-	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'exp-devide-grid-left' },
-	                            React.createElement(
-	                                'h5',
-	                                null,
-	                                'BACHELORS DEGREE'
-	                            ),
-	                            React.createElement(
-	                                'small',
-	                                null,
-	                                'Modern Sciences & Arts University - 2012 . 2010'
-	                            ),
-	                            React.createElement(
-	                                'p',
-	                                null,
-	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'exp-devide-grid-rightb' },
-	                            React.createElement(
-	                                'h5',
-	                                null,
-	                                'GRADUATION'
-	                            ),
-	                            React.createElement(
-	                                'small',
-	                                null,
-	                                'Modern Sciences & Arts University - Faculty of Computer Science - 2006 . 2010'
-	                            ),
-	                            React.createElement(
-	                                'p',
-	                                null,
-	                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+	                                '软件工程'
 	                            )
 	                        )
 	                    )

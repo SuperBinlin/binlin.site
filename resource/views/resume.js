@@ -104,23 +104,13 @@ export default React.createClass({
                     </div>
                     <div className="exp-devide education">
                         <h4>Education</h4>
-                        <span className="devide-line">
+                        <span className="devide-lineTwo">
                         </span>
                         <label className="book"></label>
                         <div className="exp-devide-grid-right">
-                            <h5>MASTERS DEGREE</h5>
-                            <small>Modern Sciences & Arts University - 2014 . 2012</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                        </div>
-                        <div className="exp-devide-grid-left">
-                            <h5>BACHELORS DEGREE</h5>
-                            <small>Modern Sciences & Arts University - 2012 . 2010</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                        </div>
-                        <div className="exp-devide-grid-rightb">
-                            <h5>GRADUATION</h5>
-                            <small>Modern Sciences & Arts University - Faculty of Computer Science - 2006 . 2010</small>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <h5>常熟理工学院</h5>
+                            <small>2009/9~2013/6</small>
+                            <p>软件工程</p>
                         </div>
                     </div>
                 </div>
