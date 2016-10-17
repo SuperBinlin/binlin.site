@@ -27494,7 +27494,7 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        '原生js、jquery、zepto、lodash、underscoreJs、angularJs、reactJs、vueJs'
+	                                        '原生js、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、angularJs、reactJs、reactNative、vueJs'
 	                                    )
 	                                )
 	                            ),
@@ -27508,12 +27508,12 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'h3',
 	                                        null,
-	                                        'ILLUSTRATOR'
+	                                        '构建工具'
 	                                    ),
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                        'webpack'
 	                                    )
 	                                )
 	                            ),
