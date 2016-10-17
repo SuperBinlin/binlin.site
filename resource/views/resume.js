@@ -132,14 +132,14 @@ export default React.createClass({
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-1"></div>
                                     <h3>JAVASCRIPT</h3>
-                                    <p>原生js、jquery、zepto、lodash、underscoreJs、angularJs、reactJs、vueJs</p>
+                                    <p>原生js、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、angularJs、reactJs、reactNative、vueJs</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-2"></div>
-                                    <h3>ILLUSTRATOR</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                    <h3>构建工具</h3>
+                                    <p>webpack</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">

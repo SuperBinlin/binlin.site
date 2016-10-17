@@ -975,10 +975,24 @@ p.copyright a:hover{
 		position: relative;
 		text-align: left;
 	}
+	.exp-devide-grid-right {
+		position: relative;
+		left: 15.8%;
+		top: 3em;
+		width:84%;
+	}
 	.exp-devide-grid-left {
+		top:4em;
+		position: relative;
 		left: 15.8%;
 		width:84%;
 		text-align: left;
+	}
+	.exp-devide-grid-rightb {
+		top:5em;
+		position: relative;
+		left: 15.8%;
+		width:84%;
 	}
 	.exp-devide h4 {
 		width: 25%;
@@ -1005,16 +1019,6 @@ p.copyright a:hover{
 		left: 7.25%;
 		top: 4em;
 	}
-	.exp-devide-grid-right {
-		left: 15.8%;
-		top: 6em;
-		width:84%;
-	}
-	.exp-devide-grid-rightb {
-		top: 21.5em;
-		left: 15.8%;
-		width:84%;
-	}
 	.exp-devide-grid-right h5, .exp-devide-grid-left h5, .exp-devide-grid-rightb h5 {
 		font-size: 16px;
 	}
@@ -1026,7 +1030,7 @@ p.copyright a:hover{
 		font-size:15px;
 	}
 	.experience {
-		min-height: 906px;
+		min-height: 780px;
 	}
 	span.devide-line {
 		height: 440px;
@@ -1049,11 +1053,11 @@ p.copyright a:hover{
 		width: 80%;
 	}
 	.education {
-		margin-top: 65%;
+		margin-top: 20%;
 	}
 }
 @media (max-width:590px){
-	.education{margin-top:68%;}
+	.education{margin-top:26%;}
 }
 @media (max-width:480px){
 	ul.hoby li i {
@@ -1132,13 +1136,13 @@ p.copyright a:hover{
 		left: 17.9%;
 	}
 	.education {
-		margin-top: 8em;
+		margin-top: 9em;
 	}
 	span.devide-line {
 		height: 550px;
 	}	
 	.experience {
-		min-height: 1270px;
+		min-height: 840px;
 	}
 	.skill-grid h3 {
 		font-size: 16px;
