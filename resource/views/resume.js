@@ -25,7 +25,7 @@ export default React.createClass({
             <div className="header">
                 <div className="container">
                     <div className="header-profile">
-                        <img src="./images/zb.png" alt=""/>
+                        <img src="./images/zb_bai.png" alt=""/>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@ export default React.createClass({
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                                 </div>
                             </div>
-                            <div className="clearfix"> </div>
+                            <div className="clearfix"></div>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@ export default React.createClass({
                     </div>
                 </div>
             </div>
-            <div className="awards">
+            <!--<div className="awards">
                 <div className="container">
                     <div className="awards-top">
                         <h3 className="top-title">AWARDS & ACHIEVEMENTS</h3>
@@ -201,7 +201,7 @@ export default React.createClass({
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div className="twitter">
                 <div className="container">
                     <div className="twitter-top">

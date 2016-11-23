@@ -147,11 +147,11 @@ function snakeAction(){
 			//console.log(Yposition);
 			break;
 			case moveDirection.right:
-			Yposition++
+			Yposition++;
 			break; 
 			case moveDirection.left:
 			Yposition--;
-			break; 
+			break;
 			case moveDirection.bottom:
 			Xposition++;
 			break;
