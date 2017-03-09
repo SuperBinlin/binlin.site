@@ -171,37 +171,7 @@ export default React.createClass({
                     </div>
                 </div>
             </div>
-            <!--<div className="awards">
-                <div className="container">
-                    <div className="awards-top">
-                        <h3 className="top-title">AWARDS & ACHIEVEMENTS</h3>
-                        <span className="line"></span>
-                        <div className="row award-row">
-                            <div className="col-md-3 award-column">
-                                <i className="award"></i>
-                                <h5>50</h5>
-                                <small>Awards Won!</small>
-                            </div>
-                            <div className="col-md-3 award-column">
-                                <i className="project"></i>
-                                <h5>570</h5>
-                                <small>PROJECTS DONE</small>
-                            </div>
-                            <div className="col-md-3 award-column">
-                                <i className="client"></i>
-                                <h5>215</h5>
-                                <small>HAPPY CLIENTS</small>
-                            </div>
-                            <div className="col-md-3 award-column">
-                                <i className="cups"></i>
-                                <h5>2145</h5>
-                                <small>CUPS OF COFFEE</small>
-                            </div>
-                            <div className="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+        
             <div className="twitter">
                 <div className="container">
                     <div className="twitter-top">
