@@ -191,6 +191,7 @@ a.download span{
 .exp-devide{
 	position:relative;
 	text-align:center;
+	padding-bottom:7rem;
 }
 .exp-devide h4{
 	color:#2b3b4b;
@@ -212,7 +213,7 @@ a.download span{
 }
 span.devide-line{
 	width:3px;
-	height:450px;
+	height:100%;
 	position:absolute;
 	top:30px;
 	display:initial;
@@ -233,7 +234,8 @@ label.bag{
 	display: initial;
 	position:absolute;
 	top:5em;
-	left:39.7em;
+	left:50%;
+	margin-left:-16px;
 }
 label.book{
 	width:32px;
@@ -242,22 +244,17 @@ label.book{
 	display: initial;
 	position:absolute;
 	top:5em;
-	left:39.7em;
+	left:50%;
+	margin-left:-16px;
 }
 .exp-devide-grid-right{
 	width:40%;
 	text-align:left;
-	position:absolute;
-	top: 7em;
-	left: 43.255em;
-}
-.exp-devide-grid-right:before{
-	content:url(094a3c844f6fd337234d4b1a1004b397.png)no-repeat 0px 0px;
 	position:relative;
-	left:-3em;
-	top:1.5em;
-	
+	top: 6em;
+	left: 55%;
 }
+
 .exp-devide-grid-right h5,.exp-devide-grid-left h5,.exp-devide-grid-rightb h5{
 	color:#2b3b4b;
 	text-transform:uppercase;
@@ -280,34 +277,11 @@ label.book{
 .exp-devide-grid-left{
 	width:40%;
 	text-align:right;
-	position:absolute;
-	top:12em;
-	left: 5.8em;
-}
-.exp-devide-grid-left:before{
-	content:url(094a3c844f6fd337234d4b1a1004b397.png)no-repeat 0px 0px;
 	position:relative;
-	left:3em;
-	top:1.5em;
-	
+	top:6em;
+	left: 6%;
 }
-.exp-devide-grid-rightb{
-	width:40%;
-	text-align:left;
-	position:absolute;
-	top: 20em;
-	left: 43.255em;
-}
-.exp-devide-grid-rightb:before{
-	content:url(094a3c844f6fd337234d4b1a1004b397.png)no-repeat 0px 0px;
-	position:relative;
-	left:-3em;
-	top:1.5em;
-	
-}
-.education{
-	margin-top:35%;
-}
+
 /*--- Experience Ends Here ----*/
 /*--- Skills Starts Here ----*/
 .skills{
@@ -792,29 +766,11 @@ p.copyright a:hover{
 .header-profile img{
     width: 80%;
 }
+.add-bottom{
+	padding-bottom:20px;
+}
 /*--- Footer Ends Here ---*/
 /*--- Media Queries Starts Here ---*/
-@media (max-width:1200px){
-	label.bag {
-		left: 32.5em;
-	}
-	label.book {
-		left: 32.5em;
-	}
-	.exp-devide-grid-right {
-		left: 36.2em;
-	}
-	.exp-devide-grid-left {
-		left: 4.4em;
-	}
-	.exp-devide-grid-rightb {
-		top: 20em;
-		left: 36.2em;
-	}
-	.education {
-		margin-top:40%;
-	}
-}
 @media (max-width:1024px){
 	.header {
 		min-height: 300px;
@@ -834,57 +790,16 @@ p.copyright a:hover{
 	.about {
 		margin: 2em 0;
 	}
-	label.bag {
-		left: 32.7em;
-	}
 	.slider-top p {
 		font-size: 16px;
 	}
 
-	.exp-devide-grid-right {
-		left: 36.2em;
-	}
-	.exp-devide-grid-left {
-		left: 4.4em;
-	}
-	.exp-devide-grid-rightb {
-		top: 19em;
-		left: 36.2em;
-	}
 	.experience {
 		min-height: 770px;
 	}
-	.education {
-		margin-top: 38%;
-	}
-	span.devide-line {
-		height: 409px;
-	}
-	label.book {
-		left: 32.7em;
-	}
+
 }
-@media (max-width:992px){
-	label.bag {
-		left: 24.8em;
-	}
-	label.book {
-		left: 24.8em;
-	}
-	.exp-devide-grid-right {
-		left: 31.2em;
-	}
-	.exp-devide-grid-left {
-		left: -0.6em;
-	}
-	.exp-devide-grid-rightb {
-		top: 22em;
-		left: 31.2em;
-	}
-	.education {
-		margin-top:55%;
-	}
-}
+
 @media (max-width:800px){
 	.header-profile {
 		top:10em
@@ -914,33 +829,11 @@ p.copyright a:hover{
 		font-size:16px;
 		width: 20%;
 	}
-	label.bag {
-		left: 24.7em;
-	}
-	.exp-devide-grid-right {
-		left: 28.3em;
-	}
-	.exp-devide-grid-left {
-		left: 2.8em;
-	}
-	.exp-devide-grid-rightb {
-		top: 23em;
-		left: 28.3em;
-	}
-	.education {
-		margin-top: 58%;
-	}
-	label.book {
-		left: 24.7em;
-	}
 	.skill-column {
 		margin-bottom: 2em;
 	}
 	.experience {
 		min-height: 830px;
-	}
-	span.devide-line {
-		height: 435px;
 	}
 	.award-column {
 		margin-bottom: 1.5em;
@@ -975,35 +868,11 @@ p.copyright a:hover{
 		position: relative;
 		text-align: left;
 	}
-	.exp-devide-grid-right {
-		position: relative;
-		left: 15.8%;
-		top: 3em;
-		width:84%;
-	}
-	.exp-devide-grid-left {
-		top:4em;
-		position: relative;
-		left: 15.8%;
-		width:84%;
-		text-align: left;
-	}
-	.exp-devide-grid-rightb {
-		top:5em;
-		position: relative;
-		left: 15.8%;
-		width:84%;
-	}
+	
 	.exp-devide h4 {
 		width: 25%;
 		margin: 0;
 		font-size: 13px
-	}
-	span.devide-line {
-		left: 10%;
-	}
-	span.devide-lineTwo {
-		left: 10%;
 	}
 	.about-top p.about-p {
 		font-size: 16px;
@@ -1014,10 +883,6 @@ p.copyright a:hover{
 	}
 	a.download {
 		font-size: 14px;
-	}
-	label.bag,label.book {
-		left: 7.25%;
-		top: 4em;
 	}
 	.exp-devide-grid-right h5, .exp-devide-grid-left h5, .exp-devide-grid-rightb h5 {
 		font-size: 16px;
@@ -1031,9 +896,6 @@ p.copyright a:hover{
 	}
 	.experience {
 		min-height: 780px;
-	}
-	span.devide-line {
-		height: 440px;
 	}
 	.skills-top {
 		padding: 0em 0 0;
@@ -1049,16 +911,19 @@ p.copyright a:hover{
 		width: 80px;
 		height: 80px
 	}
-	.text input[type="text"],.text textarea {
-		width: 80%;
+	
+	label.bag,label.book{
+		left:1%;
 	}
-	.education {
-		margin-top: 20%;
+
+	.exp-devide-grid-left,.exp-devide-grid-right{
+		width:80%;
+		text-align: left;
+		left:6%;
+		margin-bottom:1em;
 	}
 }
-@media (max-width:590px){
-	.education{margin-top:26%;}
-}
+
 @media (max-width:480px){
 	ul.hoby li i {
 		width: 50px;
@@ -1116,30 +981,6 @@ p.copyright a:hover{
 	.exp-devide h4 {
 		font-size: 12px;
 		width: 35%;
-	}	
-	label.bag, label.book {
-		left: 7%;
-	}
-	.exp-devide-grid-right {
-		top:2em;
-		position: relative;
-		left: 17.8%;
-	}
-	.exp-devide-grid-left {
-		top:5em;
-		position: relative;
-		left: 17.9%;
-	}
-	.exp-devide-grid-rightb {
-		top:7em;
-		position: relative;
-		left: 17.9%;
-	}
-	.education {
-		margin-top: 9em;
-	}
-	span.devide-line {
-		height: 550px;
 	}	
 	.experience {
 		min-height: 840px;
@@ -1240,28 +1081,8 @@ p.copyright a:hover{
 		font-size: 12px;
 		width: 50%;
 	}
-	label.bag, label.book {
-		left: 5.5%;
-	}
-	.exp-devide-grid-left {
-		left: -0.4em;
-	}
-	.exp-devide-grid-right {
-		left: 22.8%;
-		width:80%
-	}
-	.exp-devide-grid-rightb {
-		left: 22.8%;
-		width:80%;
-	}
-	.education {
-		margin-top: 156%;
-	}
 	ul.hoby li {
 		margin: 0em 0em;
-	}
-	span.devide-line {
-		height: 434px;
 	}
 	.callbacks_nav {
 		top: 65%;
