@@ -14,7 +14,7 @@ export default React.createClass({
                 {keys:'Birthday',val:'1991/03/10'},
                 {keys:'Phone',val:'15262517173'},
                 {keys:'Email',val:'skyxuanbin@qq.com'},
-                {keys:'Address',val:'SuZhou'}
+                {keys:'Address',val:'ShangHai,SuZhou,'}
             ]
         };
     },
@@ -39,10 +39,10 @@ export default React.createClass({
                         <h3 className="top-title">About Me</h3>
                         <span className="line"></span>
                         <p className="about-p">
-                            2013年大学毕业,专业软件工程,从实习开始接触前端,之后便对前端技术欲罢不能,三年的历练,正在成为大神的道路上不断努力。
+                            2013年大学毕业,专业软件工程,从实习开始接触前端,之后便对前端领域欲罢不能,正在成为大神的道路上不断努力。
                         </p>
                         <p>
-                            专职前端,从最初的html+css+jquery到如今的html+css+MVVM+webpack,始终努力的跟着前端发展的节奏,做一个有追求的优秀前端,十分欣赏和愿意与有自己想法的产品经理合作。
+                            专职前端,从最初的html+css+jquery到如今的html+css+MVVM+webpack,始终努力的跟着前端发展的节奏,精通主流MVVM框架,有完整的移动端混合模式app开发经验和webApp开发经验,带领过5人+的前端团队,引领团队技术走向帮助成员成长,始终以做一个有追求的优秀前端为目标,十分欣赏和愿意与有自己想法的产品经理合作。
                         </p>
                         <div className="row about-row">
                             <div className="col-md-4 about-row-column">
@@ -76,7 +76,7 @@ export default React.createClass({
                 </div>
             </div>
             <div className="experience">
-                <div className="container">
+                <div className="container add-bottom">
                     <div className="exp-top">
                         <h3 className="top-title">About</h3>
                         <span className="line"></span>
@@ -86,8 +86,13 @@ export default React.createClass({
                         <span className="devide-line">
                         </span>
                         <label className="bag"></label>
+                        <div className="exp-devide-grid-left">
+                            <h5>lodestone(2017/01~至今)</h5>
+                            <small>前端架构师</small>
+                            <p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,对公司的前端进行技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习。</p>
+                        </div>
                         <div className="exp-devide-grid-right">
-                            <h5>苏州卡说信息科技有限公司(2016/2~至今)</h5>
+                            <h5>苏州卡说信息科技有限公司(2016/2~2017/1)</h5>
                             <small>web前端开发工程师</small>
                             <p>前端路漫漫其修远兮,吾将上下而求索,构建前端框架,开发公司公用css框架,开发vue组件库</p>
                         </div>
@@ -96,7 +101,7 @@ export default React.createClass({
                             <small>web前端开发工程师</small>
                             <p>前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,用来重构公司项目的代码,感觉自己终于跟上时代的步伐了</p>
                         </div>
-                        <div className="exp-devide-grid-rightb">
+                        <div className="exp-devide-grid-right">
                             <h5>江苏中科梦兰信息科技有限公司(2013/1~2014/9)</h5>
                             <small>web前端开发工程师</small>
                             <p>入门前端,对所见即所得的效果中毒不轻,手写兼容到IE6的代码,JQUERY操作DOM溜的不行</p>
@@ -125,28 +130,28 @@ export default React.createClass({
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-3"></div>
                                     <h3>HTML/CSS</h3>
-                                    <p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,常用库:bootstrap、pure</p>
+                                    <p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,非常熟悉less、sass,常用库css库:bootstrap、pure</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-1"></div>
                                     <h3>JAVASCRIPT</h3>
-                                    <p>原生js、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、angularJs、reactJs、reactNative、vueJs</p>
+                                    <p>原生js、vue、react、angular、reactNative、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、reactNative</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-2"></div>
-                                    <h3>构建工具</h3>
-                                    <p>webpack</p>
+                                    <h3>前端工程</h3>
+                                    <p>webpack、npm、git</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-4"></div>
-                                    <h3>JAVASCRIPT</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                    <h3>移动端</h3>
+                                    <p>ionic2、cordova、react native、weex、weux</p>
                                 </div>
                             </div>
                             <div className="clearfix"></div>
