@@ -27245,7 +27245,7 @@ webpackJsonp([0,1],[
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            baseInfo: [{ keys: 'Birthday', val: '1991/03/10' }, { keys: 'Phone', val: '15262517173' }, { keys: 'Email', val: 'skyxuanbin@qq.com' }, { keys: 'Address', val: 'SuZhou' }]
+	            baseInfo: [{ keys: 'Birthday', val: '1991/03/10' }, { keys: 'Phone', val: '15262517173' }, { keys: 'Email', val: 'skyxuanbin@qq.com' }, { keys: 'Address', val: 'ShangHai,SuZhou,' }]
 	        };
 	    },
 	    render: function render() {
@@ -27299,12 +27299,12 @@ webpackJsonp([0,1],[
 	                        React.createElement(
 	                            'p',
 	                            { className: 'about-p' },
-	                            '2013\u5E74\u5927\u5B66\u6BD5\u4E1A,\u4E13\u4E1A\u8F6F\u4EF6\u5DE5\u7A0B,\u4ECE\u5B9E\u4E60\u5F00\u59CB\u63A5\u89E6\u524D\u7AEF,\u4E4B\u540E\u4FBF\u5BF9\u524D\u7AEF\u6280\u672F\u6B32\u7F62\u4E0D\u80FD,\u4E09\u5E74\u7684\u5386\u7EC3,\u6B63\u5728\u6210\u4E3A\u5927\u795E\u7684\u9053\u8DEF\u4E0A\u4E0D\u65AD\u52AA\u529B\u3002'
+	                            '2013\u5E74\u5927\u5B66\u6BD5\u4E1A,\u4E13\u4E1A\u8F6F\u4EF6\u5DE5\u7A0B,\u4ECE\u5B9E\u4E60\u5F00\u59CB\u63A5\u89E6\u524D\u7AEF,\u4E4B\u540E\u4FBF\u5BF9\u524D\u7AEF\u9886\u57DF\u6B32\u7F62\u4E0D\u80FD,\u6B63\u5728\u6210\u4E3A\u5927\u795E\u7684\u9053\u8DEF\u4E0A\u4E0D\u65AD\u52AA\u529B\u3002'
 	                        ),
 	                        React.createElement(
 	                            'p',
 	                            null,
-	                            '\u4E13\u804C\u524D\u7AEF,\u4ECE\u6700\u521D\u7684html+css+jquery\u5230\u5982\u4ECA\u7684html+css+MVVM+webpack,\u59CB\u7EC8\u52AA\u529B\u7684\u8DDF\u7740\u524D\u7AEF\u53D1\u5C55\u7684\u8282\u594F,\u505A\u4E00\u4E2A\u6709\u8FFD\u6C42\u7684\u4F18\u79C0\u524D\u7AEF,\u5341\u5206\u6B23\u8D4F\u548C\u613F\u610F\u4E0E\u6709\u81EA\u5DF1\u60F3\u6CD5\u7684\u4EA7\u54C1\u7ECF\u7406\u5408\u4F5C\u3002'
+	                            '\u4E13\u804C\u524D\u7AEF,\u4ECE\u6700\u521D\u7684html+css+jquery\u5230\u5982\u4ECA\u7684html+css+MVVM+webpack,\u59CB\u7EC8\u52AA\u529B\u7684\u8DDF\u7740\u524D\u7AEF\u53D1\u5C55\u7684\u8282\u594F,\u7CBE\u901A\u4E3B\u6D41MVVM\u6846\u67B6,\u6709\u5B8C\u6574\u7684\u79FB\u52A8\u7AEF\u6DF7\u5408\u6A21\u5F0Fapp\u5F00\u53D1\u7ECF\u9A8C\u548CwebApp\u5F00\u53D1\u7ECF\u9A8C,\u5E26\u9886\u8FC75\u4EBA+\u7684\u524D\u7AEF\u56E2\u961F,\u5F15\u9886\u56E2\u961F\u6280\u672F\u8D70\u5411\u5E2E\u52A9\u6210\u5458\u6210\u957F,\u59CB\u7EC8\u4EE5\u505A\u4E00\u4E2A\u6709\u8FFD\u6C42\u7684\u4F18\u79C0\u524D\u7AEF\u4E3A\u76EE\u6807,\u5341\u5206\u6B23\u8D4F\u548C\u613F\u610F\u4E0E\u6709\u81EA\u5DF1\u60F3\u6CD5\u7684\u4EA7\u54C1\u7ECF\u7406\u5408\u4F5C\u3002'
 	                        ),
 	                        React.createElement(
 	                            'div',
@@ -27399,7 +27399,7 @@ webpackJsonp([0,1],[
 	                { className: 'experience' },
 	                React.createElement(
 	                    'div',
-	                    { className: 'container' },
+	                    { className: 'container add-bottom' },
 	                    React.createElement(
 	                        'div',
 	                        { className: 'exp-top' },
@@ -27422,11 +27422,30 @@ webpackJsonp([0,1],[
 	                        React.createElement('label', { className: 'bag' }),
 	                        React.createElement(
 	                            'div',
+	                            { className: 'exp-devide-grid-left' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'lodestone(2017/01~\u81F3\u4ECA)'
+	                            ),
+	                            React.createElement(
+	                                'small',
+	                                null,
+	                                '\u524D\u7AEF\u67B6\u6784\u5E08'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                '\u4E3A\u4E86\u8FFD\u6C42\u66F4\u9AD8\u7684\u6280\u672F\u5883\u754C,\u6211\u9009\u62E9\u6765\u5230\u4E0A\u6D77,\u51FA\u4E8E\u5404\u79CD\u56E0\u7D20\u7684\u8003\u8651,\u8FDB\u5165\u8FD9\u5BB6\u745E\u58EB\u5916\u8D44\u7684\u516C\u53F8,\u6210\u4E3A\u4E86\u524D\u7AEFleader,\u5BF9\u516C\u53F8\u7684\u524D\u7AEF\u8FDB\u884C\u6280\u672F\u9009\u578B,\u642D\u5EFAPC\u7AEF\u4EE5\u53CA\u6DF7\u5408App\u7684\u524D\u7AEF\u6846\u67B6,\u5728\u5E2E\u52A9\u7EC4\u5458\u6210\u957F\u7684\u540C\u65F6,\u4E0D\u65AD\u81EA\u4E3B\u5B66\u4E60\u3002'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
 	                            { className: 'exp-devide-grid-right' },
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                '\u82CF\u5DDE\u5361\u8BF4\u4FE1\u606F\u79D1\u6280\u6709\u9650\u516C\u53F8(2016/2~\u81F3\u4ECA)'
+	                                '\u82CF\u5DDE\u5361\u8BF4\u4FE1\u606F\u79D1\u6280\u6709\u9650\u516C\u53F8(2016/2~2017/1)'
 	                            ),
 	                            React.createElement(
 	                                'small',
@@ -27460,7 +27479,7 @@ webpackJsonp([0,1],[
 	                        ),
 	                        React.createElement(
 	                            'div',
-	                            { className: 'exp-devide-grid-rightb' },
+	                            { className: 'exp-devide-grid-right' },
 	                            React.createElement(
 	                                'h5',
 	                                null,
@@ -27543,7 +27562,7 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        '\u80FD\u624B\u5199\u7B26\u5408w3c\u6807\u51C6\u7684\u4EE3\u7801,\u6709\u8F83\u591A\u79FB\u52A8\u7AEF\u7ECF\u9A8C,\u719F\u6089\u54CD\u5E94\u5F0F\u5E03\u5C40,css3,\u5E38\u7528\u5E93:bootstrap\u3001pure'
+	                                        '\u80FD\u624B\u5199\u7B26\u5408w3c\u6807\u51C6\u7684\u4EE3\u7801,\u6709\u8F83\u591A\u79FB\u52A8\u7AEF\u7ECF\u9A8C,\u719F\u6089\u54CD\u5E94\u5F0F\u5E03\u5C40,css3,\u975E\u5E38\u719F\u6089less\u3001sass,\u5E38\u7528\u5E93css\u5E93:bootstrap\u3001pure'
 	                                    )
 	                                )
 	                            ),
@@ -27562,7 +27581,7 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        '\u539F\u751Fjs\u3001jquery\u3001zepto\u3001lodash\u3001underscoreJs\u3001requireJs\u3001seaJs\u3001angularJs\u3001reactJs\u3001reactNative\u3001vueJs'
+	                                        '\u539F\u751Fjs\u3001vue\u3001react\u3001angular\u3001reactNative\u3001jquery\u3001zepto\u3001lodash\u3001underscoreJs\u3001requireJs\u3001seaJs\u3001reactNative'
 	                                    )
 	                                )
 	                            ),
@@ -27576,12 +27595,12 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'h3',
 	                                        null,
-	                                        '\u6784\u5EFA\u5DE5\u5177'
+	                                        '\u524D\u7AEF\u5DE5\u7A0B'
 	                                    ),
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        'webpack'
+	                                        'webpack\u3001npm\u3001git'
 	                                    )
 	                                )
 	                            ),
@@ -27595,12 +27614,12 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'h3',
 	                                        null,
-	                                        'JAVASCRIPT'
+	                                        '\u79FB\u52A8\u7AEF'
 	                                    ),
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+	                                        'ionic2\u3001cordova\u3001react native\u3001weex\u3001weux'
 	                                    )
 	                                )
 	                            ),
