@@ -27238,14 +27238,14 @@ webpackJsonp([0,1],[
 
 	__webpack_require__(245);
 
-	__webpack_require__(260);
+	__webpack_require__(259);
 
 	exports.default = React.createClass({
 	    displayName: 'resume',
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            baseInfo: [{ keys: 'Birthday', val: '1991/03/10' }, { keys: 'Phone', val: '15262517173' }, { keys: 'Email', val: 'skyxuanbin@qq.com' }, { keys: 'Address', val: 'ShangHai,SuZhou,' }]
+	            baseInfo: [{ keys: 'Birthday', val: '1991/03/10' }, { keys: 'Phone', val: '15262517173' }, { keys: 'Wechat', val: 'Binlin321' }, { keys: 'Email', val: 'skyxuanbin@qq.com' }, { keys: 'Address', val: 'ShangHai,SuZhou' }]
 	        };
 	    },
 	    render: function render() {
@@ -27436,7 +27436,7 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'p',
 	                                null,
-	                                '\u4E3A\u4E86\u8FFD\u6C42\u66F4\u9AD8\u7684\u6280\u672F\u5883\u754C,\u6211\u9009\u62E9\u6765\u5230\u4E0A\u6D77,\u51FA\u4E8E\u5404\u79CD\u56E0\u7D20\u7684\u8003\u8651,\u8FDB\u5165\u8FD9\u5BB6\u745E\u58EB\u5916\u8D44\u7684\u516C\u53F8,\u6210\u4E3A\u4E86\u524D\u7AEFleader,\u5BF9\u516C\u53F8\u7684\u524D\u7AEF\u8FDB\u884C\u6280\u672F\u9009\u578B,\u642D\u5EFAPC\u7AEF\u4EE5\u53CA\u6DF7\u5408App\u7684\u524D\u7AEF\u6846\u67B6,\u5728\u5E2E\u52A9\u7EC4\u5458\u6210\u957F\u7684\u540C\u65F6,\u4E0D\u65AD\u81EA\u4E3B\u5B66\u4E60\u3002'
+	                                '\u4E3A\u4E86\u8FFD\u6C42\u66F4\u9AD8\u7684\u6280\u672F\u5883\u754C,\u6211\u9009\u62E9\u6765\u5230\u4E0A\u6D77,\u51FA\u4E8E\u5404\u79CD\u56E0\u7D20\u7684\u8003\u8651,\u8FDB\u5165\u8FD9\u5BB6\u745E\u58EB\u5916\u8D44\u7684\u516C\u53F8,\u6210\u4E3A\u4E86\u524D\u7AEFleader,\u8D1F\u8D23\u524D\u7AEF\u6280\u672F\u9009\u578B,\u642D\u5EFAPC\u7AEF\u4EE5\u53CA\u6DF7\u5408App\u7684\u524D\u7AEF\u6846\u67B6,\u5728\u5E2E\u52A9\u7EC4\u5458\u6210\u957F\u7684\u540C\u65F6,\u4E0D\u65AD\u81EA\u4E3B\u5B66\u4E60\u3002'
 	                            )
 	                        ),
 	                        React.createElement(
@@ -27562,7 +27562,7 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        '\u80FD\u624B\u5199\u7B26\u5408w3c\u6807\u51C6\u7684\u4EE3\u7801,\u6709\u8F83\u591A\u79FB\u52A8\u7AEF\u7ECF\u9A8C,\u719F\u6089\u54CD\u5E94\u5F0F\u5E03\u5C40,css3,\u975E\u5E38\u719F\u6089less\u3001sass,\u5E38\u7528\u5E93css\u5E93:bootstrap\u3001pure'
+	                                        '\u80FD\u624B\u5199\u7B26\u5408w3c\u6807\u51C6\u7684\u4EE3\u7801,\u6709\u8F83\u591A\u79FB\u52A8\u7AEF\u7ECF\u9A8C,\u719F\u6089\u54CD\u5E94\u5F0F\u5E03\u5C40,css3,\u975E\u5E38\u719F\u6089less\u3001sass,\u5E38\u7528\u5E93css\u5E93:bootstrap\u3001pure\u3001mui'
 	                                    )
 	                                )
 	                            ),
@@ -27581,7 +27581,7 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        '\u539F\u751Fjs\u3001vue\u3001react\u3001angular\u3001reactNative\u3001jquery\u3001zepto\u3001lodash\u3001underscoreJs\u3001requireJs\u3001seaJs\u3001reactNative'
+	                                        'javascript\u3001typescript\u3001vue\u3001react\u3001angular\u3001jquery\u3001zepto\u3001lodash\u3001underscoreJs\u3001requireJs\u3001seaJs\u3001reactNative'
 	                                    )
 	                                )
 	                            ),
@@ -27600,7 +27600,7 @@ webpackJsonp([0,1],[
 	                                    React.createElement(
 	                                        'p',
 	                                        null,
-	                                        'webpack\u3001npm\u3001git'
+	                                        'webpack\u3001gulp\u3001npm\u3001git'
 	                                    )
 	                                )
 	                            ),
@@ -27640,149 +27640,74 @@ webpackJsonp([0,1],[
 	                        React.createElement(
 	                            'h3',
 	                            { className: 'top-title' },
-	                            'SOCIAL MEDIA CONNECTIONS'
+	                            'Projects'
 	                        ),
 	                        React.createElement('span', { className: 'line' }),
 	                        React.createElement(
-	                            'ul',
-	                            { className: 'social' },
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'fb' })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'tw' })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'li' })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'yt' })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'ca' })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'ph' })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement('i', { className: 'gp' })
-	                            )
-	                        )
-	                    )
-	                )
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'twitter' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'twitter-top' },
-	                        React.createElement('i', { className: 'twit' }),
-	                        React.createElement('span', { className: 'line' }),
-	                        React.createElement(
 	                            'div',
-	                            { id: 'top', className: 'callbacks_container' },
+	                            { className: 'container projects' },
 	                            React.createElement(
-	                                'ul',
-	                                { className: 'rslides', id: 'slider4' },
+	                                'div',
+	                                { className: 'row' },
 	                                React.createElement(
-	                                    'li',
-	                                    null,
+	                                    'div',
+	                                    { className: 'col-sm-4' },
 	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'slider-top' },
-	                                        React.createElement(
-	                                            'p',
-	                                            null,
-	                                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
-	                                            React.createElement('br', null),
-	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                                        )
+	                                        'a',
+	                                        { className: 'project-item', href: 'http://trademark.patsnap.cn/', target: '_blank' },
+	                                        React.createElement('img', { src: './images/logo/logo-cn.png' })
 	                                    )
 	                                ),
 	                                React.createElement(
-	                                    'li',
-	                                    null,
+	                                    'div',
+	                                    { className: 'col-sm-4' },
 	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'slider-top' },
-	                                        React.createElement(
-	                                            'p',
-	                                            null,
-	                                            'simply dummy text of the Lorem Ipsum is printing and typesetting industry. Lorem',
-	                                            React.createElement('br', null),
-	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                                        )
+	                                        'a',
+	                                        { className: 'project-item', href: 'http://x.patsnap.cn/', target: '_blank' },
+	                                        React.createElement('img', { src: './images/logo/course-logo.png' })
 	                                    )
 	                                ),
 	                                React.createElement(
-	                                    'li',
-	                                    null,
+	                                    'div',
+	                                    { className: 'col-sm-4' },
 	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'slider-top' },
-	                                        React.createElement(
-	                                            'p',
-	                                            null,
-	                                            'printing and typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
-	                                            React.createElement('br', null),
-	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                                        )
+	                                        'a',
+	                                        { className: 'project-item', href: 'http://analytics.patsnap.cn/', target: '_blank' },
+	                                        React.createElement('img', { src: './images/logo/database.png' })
+	                                    )
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-sm-4' },
+	                                    React.createElement(
+	                                        'a',
+	                                        { className: 'project-item', href: 'http://www.patsnap.com/', target: '_blank' },
+	                                        React.createElement('img', { src: './images/logo/logo_patsnap.png' })
 	                                    )
 	                                ),
 	                                React.createElement(
-	                                    'li',
-	                                    null,
+	                                    'div',
+	                                    { className: 'col-sm-4' },
 	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'slider-top' },
-	                                        React.createElement(
-	                                            'p',
-	                                            null,
-	                                            'and typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
-	                                            React.createElement('br', null),
-	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                                        )
+	                                        'a',
+	                                        { className: 'project-item', href: 'http://binlin.site:9000/blog/project/snake/snake.html', target: '_blank' },
+	                                        React.createElement('img', { src: './images/logo/timg.jpeg' })
 	                                    )
 	                                ),
 	                                React.createElement(
-	                                    'li',
-	                                    null,
+	                                    'div',
+	                                    { className: 'col-sm-4' },
 	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'slider-top' },
-	                                        React.createElement(
-	                                            'p',
-	                                            null,
-	                                            'typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem',
-	                                            React.createElement('br', null),
-	                                            'Ipsum has been the industry\'s standard dummy text ever since the 1500s'
-	                                        )
+	                                        'a',
+	                                        { className: 'project-item' },
+	                                        React.createElement('img', { src: './images/logo/database.png' })
 	                                    )
 	                                )
 	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'clearfix' },
-	                            ' '
 	                        )
 	                    )
 	                )
@@ -27812,8 +27737,7 @@ webpackJsonp([0,1],[
 /* 256 */,
 /* 257 */,
 /* 258 */,
-/* 259 */,
-/* 260 */
+/* 259 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
