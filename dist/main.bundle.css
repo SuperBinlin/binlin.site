@@ -579,6 +579,27 @@ ul.social li i.gp{
 .callbacks_tabs li{
 	display:inline-block;
 }
+
+.projects{
+	margin-top:30px;
+	padding-bottom: 50px;
+}
+
+.projects .project-item{
+	display: block;
+	height:120px;
+	line-height:120px;
+	background:#fff;
+	margin:10px 0;
+	opacity: 0.8;
+	cursor:pointer;
+}
+
+.projects .project-item img{
+	max-width:170px;
+	max-height:70px;
+}
+
 @media screen and (max-width: 600px) {
   .callbacks_nav {
     top: 47%;
@@ -1101,15 +1122,37 @@ p.copyright a:hover{
 	.contact-column i.phone {
 		background-position: -98px 0px;
 	}
-	.exp-devide-grid-right p,  .exp-devide-grid-left p,  .exp-devide-grid-rightb p {
+	.exp-devide-grid-right p,  .exp-devide-grid-left p {
 		font-size: 13px;
 		line-height:1.5em;
 	}
-	.exp-devide-grid-right small,.exp-devide-grid-left small,.exp-devide-grid-rightb small,{
+	.exp-devide-grid-right small,.exp-devide-grid-left small{
 		font-size:14px;
 	}
 }
-/*--- Media Queries Ends Here ---*//*!
+/*--- Media Queries Ends Here ---*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
