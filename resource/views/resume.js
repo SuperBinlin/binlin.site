@@ -4,8 +4,8 @@
  * Time: 10:30
  */
 'use strict';
-import '../css/style.css'
-import 'bootstrap/dist/css/bootstrap.css'
+import '../css/style.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default React.createClass({
     getInitialState: function() {
@@ -13,8 +13,9 @@ export default React.createClass({
             baseInfo:[
                 {keys:'Birthday',val:'1991/03/10'},
                 {keys:'Phone',val:'15262517173'},
+                {keys:'Wechat',val:'Binlin321'},
                 {keys:'Email',val:'skyxuanbin@qq.com'},
-                {keys:'Address',val:'ShangHai,SuZhou,'}
+                {keys:'Address',val:'ShangHai,SuZhou'}
             ]
         };
     },
@@ -89,7 +90,7 @@ export default React.createClass({
                         <div className="exp-devide-grid-left">
                             <h5>lodestone(2017/01~至今)</h5>
                             <small>前端架构师</small>
-                            <p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,对公司的前端进行技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习。</p>
+                            <p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,负责前端技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习。</p>
                         </div>
                         <div className="exp-devide-grid-right">
                             <h5>苏州卡说信息科技有限公司(2016/2~2017/1)</h5>
@@ -130,21 +131,21 @@ export default React.createClass({
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-3"></div>
                                     <h3>HTML/CSS</h3>
-                                    <p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,非常熟悉less、sass,常用库css库:bootstrap、pure</p>
+                                    <p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,非常熟悉less、sass,常用库css库:bootstrap、pure、mui</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-1"></div>
                                     <h3>JAVASCRIPT</h3>
-                                    <p>原生js、vue、react、angular、reactNative、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、reactNative</p>
+                                    <p>javascript、typescript、vue、react、angular、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、reactNative</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
                                 <div className="skill-grid">
                                     <div className="circle" id="circles-2"></div>
                                     <h3>前端工程</h3>
-                                    <p>webpack、npm、git</p>
+                                    <p>webpack、gulp、npm、git</p>
                                 </div>
                             </div>
                             <div className="col-md-3 skill-column">
@@ -162,56 +163,45 @@ export default React.createClass({
             <div className="social-media">
                 <div className="container">
                     <div className="social-media-top">
-                        <h3 className="top-title">SOCIAL MEDIA CONNECTIONS</h3>
+                        <h3 className="top-title">Projects</h3>
                         <span className="line"></span>
-                        <ul className="social">
-                            <li><i className="fb"></i></li>
-                            <li><i className="tw"></i></li>
-                            <li><i className="li"></i></li>
-                            <li><i className="yt"></i></li>
-                            <li><i className="ca"></i></li>
-                            <li><i className="ph"></i></li>
-                            <li><i className="gp"></i></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        
-            <div className="twitter">
-                <div className="container">
-                    <div className="twitter-top">
-                        <i className="twit"></i>
-                        <span className="line"></span>
-                        <div  id="top" className="callbacks_container">
-                            <ul className="rslides" id="slider4">
-                                <li>
-                                    <div className="slider-top">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem<br />Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="slider-top">
-                                        <p>simply dummy text of the Lorem Ipsum is printing and typesetting industry. Lorem<br />Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="slider-top">
-                                        <p>printing and typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem<br />Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="slider-top">
-                                        <p>and typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem<br />Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="slider-top">
-                                        <p>typesetting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem<br />Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div className="container projects">
+                            <div className="row">
+                                <div className="col-sm-4">
+                                    <a className="project-item" href="http://trademark.patsnap.cn/" target="_blank">
+                                        <img src="./images/logo/logo-cn.png" />
+                                    </a>
+                                </div>
+                                <div className="col-sm-4">
+                                    <a className="project-item" href="http://x.patsnap.cn/" target="_blank">
+                                        <img src="./images/logo/course-logo.png" />
+                                    </a>
+                                </div>
+                                <div className="col-sm-4">
+                                    <a className="project-item" href="http://analytics.patsnap.cn/" target="_blank">
+                                        <img src="./images/logo/database.png" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-sm-4">
+                                    <a className="project-item" href="http://www.patsnap.com/" target="_blank">
+                                        <img src="./images/logo/logo_patsnap.png" />
+                                    </a>
+                                </div>
+                                <div className="col-sm-4">
+                                    <a className="project-item" href="http://binlin.site:9000/blog/project/snake/snake.html" target="_blank">
+                                        <img src="./images/logo/timg.jpeg" />
+                                    </a>
+                                </div>
+                                <div className="col-sm-4">
+                                    <a className="project-item">
+                                        <img src="./images/logo/database.png" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div className="clearfix"> </div>
                     </div>
                 </div>
             </div>
