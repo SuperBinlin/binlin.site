@@ -27493,7 +27493,7 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'p',
 	                                null,
-	                                '\u5165\u95E8\u524D\u7AEF,\u5BF9\u6240\u89C1\u5373\u6240\u5F97\u7684\u6548\u679C\u4E2D\u6BD2\u4E0D\u8F7B,\u624B\u5199\u517C\u5BB9\u5230IE6\u7684\u4EE3\u7801,JQUERY\u64CD\u4F5CDOM\u6E9C\u7684\u4E0D\u884C'
+	                                '\u5165\u95E8\u524D\u7AEF,\u4E3B\u8981\u5DE5\u4F5C\u662F\u4E00\u4E9B\u9759\u6001\u9875\u9762\u7684\u5F00\u53D1,\u548C\u4E00\u4E9B\u6BD4\u8F83\u70AB\u9177\u7684\u52A8\u6001\u6548\u679C\u7684\u5F00\u53D1,\u4E3B\u8981\u7528html+css+jquery'
 	                            )
 	                        )
 	                    ),
@@ -27703,8 +27703,8 @@ webpackJsonp([0,1],[
 	                                    { className: 'col-sm-4' },
 	                                    React.createElement(
 	                                        'a',
-	                                        { className: 'project-item' },
-	                                        React.createElement('img', { src: './images/logo/database.png' })
+	                                        { className: 'project-item', href: 'http://binlin.site:9000/blog/project/email-editor/app/email-editor.html', target: '_blank' },
+	                                        React.createElement('img', { src: './images/logo/mail.png' })
 	                                    )
 	                                )
 	                            )
