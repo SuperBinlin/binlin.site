@@ -105,7 +105,7 @@ export default React.createClass({
                         <div className="exp-devide-grid-right">
                             <h5>江苏中科梦兰信息科技有限公司(2013/1~2014/9)</h5>
                             <small>web前端开发工程师</small>
-                            <p>入门前端,对所见即所得的效果中毒不轻,手写兼容到IE6的代码,JQUERY操作DOM溜的不行</p>
+                            <p>入门前端,主要工作是一些静态页面的开发,和一些比较炫酷的动态效果的开发,主要用html+css+jquery</p>
                         </div>
                     </div>
                     <div className="exp-devide education">
@@ -196,8 +196,8 @@ export default React.createClass({
                                     </a>
                                 </div>
                                 <div className="col-sm-4">
-                                    <a className="project-item">
-                                        <img src="./images/logo/database.png" />
+                                    <a className="project-item" href="http://binlin.site:9000/blog/project/email-editor/app/email-editor.html" target="_blank">
+                                        <img src="./images/logo/mail.png" />
                                     </a>
                                 </div>
                             </div>
