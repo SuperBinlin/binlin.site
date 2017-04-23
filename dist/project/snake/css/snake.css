@@ -1,0 +1,13 @@
+body{background: url(../images/bg.jpg) center;overflow: hidden;background-size:cover;}
+#snake-zoo{height:410px;width:400px;margin:40px 45px 0;float: left;}
+#snake-zoo table{height:100%;width:100%;border-collapse: collapse;}
+#snake-zoo table td { border: 1px solid #fff; padding:0;margin:0;position: relative;} 
+#snake-zoo table td.snake { background: yellow;} 
+#snake-zoo table td.food img{height:100%;width:100%;position: absolute;top:0;} 
+.score{text-align: center;color:#fff;margin-top: 50px;}
+.score #score{font-size:30px;}
+a{cursor:pointer;height:64px;width:186px;display: inline-block;background: url(../images/btns.png) no-repeat;margin-top: 50px;color:#fff;text-align: center;line-height: 64px;transform:scale(0.9,0.9);transition:transform 0.5s;}
+a:hover{transform:scale(1,1);}
+.left-menu{float: left;width:200px;margin-top:30px;}
+.right-menu{float: right;width:200px;margin-top:30px;}
+.main-part{width: 900px;margin: 0px auto 0;}
