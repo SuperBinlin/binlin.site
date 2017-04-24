@@ -183,7 +183,6 @@ export default React.createClass({
                                     </a>
                                 </div>
                             </div>
-
                             <div className="row">
                                 <div className="col-sm-4">
                                     <a className="project-item" href="http://www.patsnap.com/" target="_blank">
@@ -195,6 +194,13 @@ export default React.createClass({
                                         <img src="./images/logo/timg.jpeg" />
                                     </a>
                                 </div>
+                                <div className="col-sm-4">
+                                    <a className="project-item" href="http://ranking.patsnap.com/" target="_blank">
+                                        <img src="./images/logo/ranking.png" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="row">
                                 <div className="col-sm-4">
                                     <a className="project-item" href="http://binlin.site:9000/blog/project/email-editor/app/email-editor.html" target="_blank">
                                         <img src="./images/logo/mail.png" />
