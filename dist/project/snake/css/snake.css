@@ -1,4 +1,4 @@
-body{background: url(../images/bg.jpg) center;overflow: hidden;background-size:cover;}
+body{background: url(../images/starry-skys.jpg) center;overflow: hidden;background-size:cover;}
 #snake-zoo{height:410px;width:400px;margin:40px 45px 0;float: left;}
 #snake-zoo table{height:100%;width:100%;border-collapse: collapse;}
 #snake-zoo table td { border: 1px solid #fff; padding:0;margin:0;position: relative;} 
