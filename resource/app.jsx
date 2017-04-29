@@ -4,10 +4,10 @@
  * Time: 21:38
  */
 'use strict';
-import React from 'react';
-import { Link } from 'react-router';
+import React,{ Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
-export default React.createClass({
+class App extends Component{
     render(){
         return (
             <div className="container-fluid">
@@ -15,4 +15,6 @@ export default React.createClass({
             </div>
         );
     }
-});
+};
+
+export default App;
