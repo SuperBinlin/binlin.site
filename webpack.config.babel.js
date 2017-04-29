@@ -6,11 +6,11 @@
 'use strict';
 import path from 'path';
 import webpack from 'webpack';
-import colors from 'colors';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TransferWebpackPlugin from 'transfer-webpack-plugin';
 import Clean from 'clean-webpack-plugin';
+import 'whatwg-fetch';
 
 let config = {
     entry:{
@@ -58,7 +58,7 @@ let config = {
             _ : 'lodash',
             $ : 'jquery',
             jQuery : 'jquery',
-            React : 'react'
+            React:'react'
         }),
         new ExtractTextPlugin('[name].bundle.css'),
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),

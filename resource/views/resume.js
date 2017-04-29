@@ -4,12 +4,13 @@
  * Time: 10:30
  */
 'use strict';
-import '../css/style.css';
-import 'bootstrap/dist/css/bootstrap.css';
 
-export default React.createClass({
-    getInitialState: function() {
-        return {
+import '../css/resume.css';
+
+class Resume extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
             baseInfo:[
                 {keys:'Birthday',val:'1991/03/10'},
                 {keys:'Phone',val:'15262517173'},
@@ -17,8 +18,9 @@ export default React.createClass({
                 {keys:'Email',val:'skyxuanbin@qq.com'},
                 {keys:'Address',val:'ShangHai,SuZhou'}
             ]
-        };
-    },
+        }
+    }
+
     render(){
         let {baseInfo} = this.state;
         return (
@@ -214,4 +216,6 @@ export default React.createClass({
         </div>
     );
     }
-});
+};
+
+export default Resume;
