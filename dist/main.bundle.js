@@ -21515,7 +21515,7 @@ webpackJsonp([0,1],[
 
 	var _upload2 = _interopRequireDefault(_upload);
 
-	var _album = __webpack_require__(358);
+	var _album = __webpack_require__(360);
 
 	var _album2 = _interopRequireDefault(_album);
 
@@ -29407,7 +29407,7 @@ webpackJsonp([0,1],[
 /* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React, _) {/**
+	/* WEBPACK VAR INJECTION */(function(React, _, classNames) {/**
 	 * Created by zhangbin
 	 * Date 2017/4/24.
 	 * E-mail skyxuanbin@qq.com
@@ -29440,7 +29440,7 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(355);
+	__webpack_require__(356);
 
 	var _utils = __webpack_require__(359);
 
@@ -29457,7 +29457,12 @@ webpackJsonp([0,1],[
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (Upload.__proto__ || (0, _getPrototypeOf2.default)(Upload)).call(this, props));
 
 	    _this.state = {
-	      filesArr: []
+	      filesArr: [], // file对象存储 最终传到后台
+	      fileInfo: { // 存储file信息
+	        number: 0, // 照片数
+	        size: 0 // 照片总大小
+	      },
+	      imgBase: [] // img base64存储 用于预览
 	    };
 	    return _this;
 	  }
@@ -29465,19 +29470,18 @@ webpackJsonp([0,1],[
 	  (0, _createClass3.default)(Upload, [{
 	    key: 'chooseImg',
 	    value: function chooseImg(e) {
-	      var _this2 = this;
-
+	      // 上传图片
 	      var et = e.target.files;
-	      this.setState({ filesArr: et }, function () {
-	        _.map(et, function (file) {
-	          _this2.file2canvas(file);
-	        });
-	      });
+	      this.resetState(et);
 	    }
 	  }, {
 	    key: 'addImg',
 	    value: function addImg(e) {
-	      var storeFiles = _.union(this.state.filesArr, e.target.files);
+	      // 继续添加
+	      var et = e.target.files;
+	      this.resetState(et);
+
+	      var storeFiles = _.union(this.state.filesArr, et); // 合并state与新添加的file对象
 	      console.log(storeFiles);
 	      this.setState({ filesArr: storeFiles });
 	    }
@@ -29503,16 +29507,61 @@ webpackJsonp([0,1],[
 	      });
 	    }
 	  }, {
+	    key: 'resetState',
+	    value: function resetState(et) {
+	      var _this2 = this;
+
+	      // 重写filesArr
+	      var fileInfo = {
+	        number: 0,
+	        size: this.state.fileInfo.size
+	      };
+
+	      this.setState({ filesArr: et }, function () {
+	        // 添加预览
+	        fileInfo.number = _this2.state.filesArr.length;
+	        _.map(et, function (file) {
+	          fileInfo.size = fileInfo.size + file.size / 1000000; // 转出单位为M
+	          _this2.file2canvas(file);
+	        });
+	        _this2.setState({ fileInfo: fileInfo });
+	      });
+	    }
+	  }, {
 	    key: 'file2canvas',
 	    value: function file2canvas(files) {
+	      var _this3 = this;
+
 	      _utils2.default.readBlobAsDataURL(files, function (dataurl) {
-	        console.log(dataurl);
+	        var storeImg = _this3.state.imgBase; // 获取图片暂存
+	        storeImg.push(dataurl); // push 新图片
+	        _this3.setState({ imgBase: storeImg }); // 重写入states中
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this3 = this;
+	      var _this4 = this;
+
+	      var _state = this.state,
+	          imgBase = _state.imgBase,
+	          fileInfo = _state.fileInfo;
+
+	      /**
+	       * 引入classnames库 帮助控制多个className
+	       * @type {[type]}
+	       */
+
+	      var uploadWp = classNames({
+	        queueList: true,
+	        'placeholder-hide': this.state.filesArr.length != 0 // 无图片时展示上传图片按钮
+	      });
+
+	      var showWp = classNames({
+	        queueList: true,
+	        filled: true,
+	        'placeholder-hide': this.state.filesArr.length == 0 // 有图片时 展示图片预览
+	      });
 
 	      return React.createElement(
 	        'div',
@@ -29522,7 +29571,7 @@ webpackJsonp([0,1],[
 	          { className: 'wu-example', id: 'uploader' },
 	          React.createElement(
 	            'div',
-	            { className: 'queueList' },
+	            { className: uploadWp },
 	            React.createElement(
 	              'div',
 	              { className: 'placeholder' },
@@ -29541,7 +29590,7 @@ webpackJsonp([0,1],[
 	                    'label',
 	                    { className: 'file-label' },
 	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png', onChange: function onChange(e) {
-	                        return _this3.chooseImg(e);
+	                        return _this4.chooseImg(e);
 	                      } })
 	                  )
 	                )
@@ -29551,11 +29600,35 @@ webpackJsonp([0,1],[
 	          ),
 	          React.createElement(
 	            'div',
+	            { className: showWp },
+	            React.createElement(
+	              'ul',
+	              { className: 'filelist' },
+	              imgBase.map(function (obj, index) {
+	                return React.createElement(
+	                  'li',
+	                  {
+	                    key: index },
+	                  React.createElement(
+	                    'p',
+	                    { className: 'imgWrap' },
+	                    React.createElement('img', { src: obj })
+	                  )
+	                );
+	              })
+	            )
+	          ),
+	          React.createElement(
+	            'div',
 	            { className: 'statusBar' },
 	            React.createElement(
 	              'div',
 	              { className: 'info' },
-	              '\u9009\u4E2D\u4E00\u5F20\u56FE\u7247,\u5171676.26k'
+	              '\u9009\u4E2D',
+	              fileInfo.number,
+	              '\u5F20\u56FE\u7247,\u5171',
+	              fileInfo.size.toFixed(2),
+	              'M'
 	            ),
 	            React.createElement(
 	              'div',
@@ -29575,14 +29648,14 @@ webpackJsonp([0,1],[
 	                    'label',
 	                    { className: 'file-labels' },
 	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png', onChange: function onChange(e) {
-	                        return _this3.addImg(e);
+	                        return _this4.addImg(e);
 	                      } })
 	                  )
 	                ),
 	                React.createElement(
 	                  'div',
 	                  { className: 'uploadBtn state-ready fl', onClick: function onClick(e) {
-	                      return _this3.uploadImg();
+	                      return _this4.uploadImg();
 	                    } },
 	                  '\u5F00\u59CB\u4E0A\u4F20'
 	                )
@@ -29599,7 +29672,7 @@ webpackJsonp([0,1],[
 	;
 
 	exports.default = Upload;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(353)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(353), __webpack_require__(355)))
 
 /***/ },
 /* 353 */
@@ -46710,14 +46783,111 @@ webpackJsonp([0,1],[
 
 /***/ },
 /* 355 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 356 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 356 */,
 /* 357 */,
-/* 358 */
+/* 358 */,
+/* 359 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * @date: 2017/05/01
+	 * @author: zhangbin
+	 * @e-mail: superbinlin@163.com
+	 * @see: http://binlin.site:8889/#/resume
+	 */
+
+	exports.default = {
+	  readBlobAsDataURL: function readBlobAsDataURL(blob, callback) {
+	    //file对象转换成canvas
+	    var fileType = blob.type;
+	    var fileReader = new FileReader();
+	    fileReader.readAsDataURL(blob);
+	    fileReader.onload = function (e) {
+	      var result = e.target.result; //返回的没压缩过的base64
+	      var image = new Image();
+	      image.src = result;
+
+	      image.onload = function () {
+	        var cvs = document.createElement('canvas');
+	        var scale = this.width / this.height; //计算宽高比
+	        cvs.width = 200;
+	        cvs.height = cvs.width / scale;
+
+	        var ctx = cvs.getContext('2d');
+	        ctx.drawImage(this, 0, 0, cvs.width, cvs.height);
+	        var newImageData = cvs.toDataURL(fileType, 0.8); //重新生成图片
+	        // var imgBase = newImageData.replace("data:"+fileType+";base64,",'');
+	        callback(newImageData);
+	      };
+	    };
+	  }
+	};
+
+/***/ },
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
@@ -46760,7 +46930,7 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(355);
+	__webpack_require__(356);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46789,33 +46959,6 @@ webpackJsonp([0,1],[
 
 	exports.default = Album;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ },
-/* 359 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * @date: 2017/05/01
-	 * @author: zhangbin
-	 * @e-mail: superbinlin@163.com
-	 * @see: http://binlin.site:8889/#/resume
-	 */
-
-	exports.default = {
-	  readBlobAsDataURL: function readBlobAsDataURL(blob, callback) {
-	    //file对象转换成canvas
-	    var a = new FileReader();
-	    a.onload = function (e) {
-	      callback(e.target.result);
-	    };
-	    a.readAsDataURL(blob);
-	  }
-	};
 
 /***/ }
 ]);

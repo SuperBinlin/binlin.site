@@ -14,27 +14,31 @@ class Upload extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      filesArr: []
+      filesArr: [],                     // file对象存储 最终传到后台
+      fileInfo:{                        // 存储file信息
+        number:0,                       // 照片数
+        size:0                          // 照片总大小
+      },
+      imgBase:[]                        // img base64存储 用于预览
     }
   }
 
-  chooseImg(e){
+  chooseImg(e){                        // 上传图片
     let et = e.target.files;
-    this.setState({filesArr: et},()=>{
-      _.map(et, (file) => {
-        this.file2canvas(file);
-      })
-    });
+    this.resetState(et);
   }
 
-  addImg(e){
-    let storeFiles = _.union(this.state.filesArr,e.target.files);
+  addImg(e){                           // 继续添加
+    let et = e.target.files;
+    this.resetState(et);
+
+    let storeFiles = _.union(this.state.filesArr,et);  // 合并state与新添加的file对象
     console.log(storeFiles);
     this.setState({filesArr: storeFiles});
   }
 
   uploadImg(){
-    var uploadFileFormData = new FormData();
+    let uploadFileFormData = new FormData();
     _.map(this.state.filesArr, (file)=>{                          //上传多文件时 
         console.info(file)
         uploadFileFormData.append('file',file)
@@ -52,17 +56,52 @@ class Upload extends React.Component{
       })
   }
 
+  resetState(et){                                           // 重写filesArr
+    let fileInfo = {
+      number:0,                       
+      size:this.state.fileInfo.size
+    }
+
+    this.setState({filesArr: et},()=>{                      // 添加预览
+      fileInfo.number = this.state.filesArr.length;
+      _.map(et, (file) => {
+        fileInfo.size = fileInfo.size+ file.size/1000000;  // 转出单位为M
+        this.file2canvas(file);
+      })
+      this.setState({fileInfo:fileInfo})
+    });
+  }
+
   file2canvas(files){
     util.readBlobAsDataURL(files, (dataurl)=>{
-      console.log(dataurl)
+      let storeImg = this.state.imgBase;                    // 获取图片暂存
+      storeImg.push(dataurl);                               // push 新图片
+      this.setState({imgBase:storeImg})                     // 重写入states中
     })
   }
 
   render(){
+    let {imgBase, fileInfo} = this.state;
+
+    /**
+     * 引入classnames库 帮助控制多个className
+     * @type {[type]}
+     */
+    var uploadWp = classNames({
+      queueList: true,
+      'placeholder-hide': this.state.filesArr.length != 0             // 无图片时展示上传图片按钮
+    });
+
+    var showWp = classNames({
+      queueList: true,
+      filled: true,
+      'placeholder-hide': this.state.filesArr.length == 0             // 有图片时 展示图片预览
+    });
+    
     return (
       <div>
         <div className="wu-example" id="uploader">
-          <div className="queueList">
+          <div className={uploadWp}>
             <div className="placeholder">
               <div className="webuploader-container">
                 <div className="webuploader-pick">
@@ -78,10 +117,26 @@ class Upload extends React.Component{
 
               </div>
             </div>
+
+          </div>
+
+          <div className={showWp}>
+            <ul className="filelist">
+              {
+                imgBase.map(function(obj, index){
+                  return <li
+                    key={index}>
+                    <p className="imgWrap">
+                      <img src={obj} />
+                    </p>
+                  </li>
+                })
+              }
+            </ul>
           </div>
 
           <div className="statusBar">
-            <div className="info">选中一张图片,共676.26k</div>
+            <div className="info">选中{fileInfo.number}张图片,共{fileInfo.size.toFixed(2)}M</div>
             <div className="btns">
               <div className="webuploader-container">
                 <div className="webuploader-pick fl">继续添加</div>
