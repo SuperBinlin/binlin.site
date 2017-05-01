@@ -58,7 +58,8 @@ let config = {
             _ : 'lodash',
             $ : 'jquery',
             jQuery : 'jquery',
-            React:'react'
+            React:'react',
+            classNames:'classnames'
         }),
         new ExtractTextPlugin('[name].bundle.css'),
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
