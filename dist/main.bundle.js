@@ -29442,6 +29442,10 @@ webpackJsonp([0,1],[
 
 	__webpack_require__(355);
 
+	var _utils = __webpack_require__(359);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Upload = function (_React$Component) {
@@ -29459,29 +29463,56 @@ webpackJsonp([0,1],[
 	  }
 
 	  (0, _createClass3.default)(Upload, [{
-	    key: 'uploadImg',
-	    value: function uploadImg(e) {
-	      var uploadFileFormData = new FormData();
-	      this.setState({ filesArr: e.target.files }, function () {
-	        _.map(this.state.filesArr, function (file) {
-	          console.info(file);
-	          uploadFileFormData.append('file', file);
-	        });
+	    key: 'chooseImg',
+	    value: function chooseImg(e) {
+	      var _this2 = this;
 
-	        // fetch('/api/upload', {
-	        //   method: 'POST',
-	        //   body: uploadFileFormData
-	        // }).then((data)=>{
-	        //   console.log(data)
-	        // }).catch((err)=>{
-	        //   console.warn(err)
-	        // })
+	      var et = e.target.files;
+	      this.setState({ filesArr: et }, function () {
+	        _.map(et, function (file) {
+	          _this2.file2canvas(file);
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'addImg',
+	    value: function addImg(e) {
+	      var storeFiles = _.union(this.state.filesArr, e.target.files);
+	      console.log(storeFiles);
+	      this.setState({ filesArr: storeFiles });
+	    }
+	  }, {
+	    key: 'uploadImg',
+	    value: function uploadImg() {
+	      var uploadFileFormData = new FormData();
+	      _.map(this.state.filesArr, function (file) {
+	        //上传多文件时 
+	        console.info(file);
+	        uploadFileFormData.append('file', file);
+	      });
+
+	      //uploadFileFormData.append('username','test123321')
+
+	      fetch('/api/upload', {
+	        method: 'POST',
+	        body: uploadFileFormData
+	      }).then(function (data) {
+	        console.log(data);
+	      }).catch(function (err) {
+	        console.warn(err);
+	      });
+	    }
+	  }, {
+	    key: 'file2canvas',
+	    value: function file2canvas(files) {
+	      _utils2.default.readBlobAsDataURL(files, function (dataurl) {
+	        console.log(dataurl);
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      return React.createElement(
 	        'div',
@@ -29510,7 +29541,7 @@ webpackJsonp([0,1],[
 	                    'label',
 	                    { className: 'file-label' },
 	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png', onChange: function onChange(e) {
-	                        return _this2.uploadImg(e);
+	                        return _this3.chooseImg(e);
 	                      } })
 	                  )
 	                )
@@ -29543,12 +29574,16 @@ webpackJsonp([0,1],[
 	                  React.createElement(
 	                    'label',
 	                    { className: 'file-labels' },
-	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png' })
+	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png', onChange: function onChange(e) {
+	                        return _this3.addImg(e);
+	                      } })
 	                  )
 	                ),
 	                React.createElement(
 	                  'div',
-	                  { className: 'uploadBtn state-ready fl' },
+	                  { className: 'uploadBtn state-ready fl', onClick: function onClick(e) {
+	                      return _this3.uploadImg();
+	                    } },
 	                  '\u5F00\u59CB\u4E0A\u4F20'
 	                )
 	              )
@@ -46754,6 +46789,33 @@ webpackJsonp([0,1],[
 
 	exports.default = Album;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 359 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * @date: 2017/05/01
+	 * @author: zhangbin
+	 * @e-mail: superbinlin@163.com
+	 * @see: http://binlin.site:8889/#/resume
+	 */
+
+	exports.default = {
+	  readBlobAsDataURL: function readBlobAsDataURL(blob, callback) {
+	    //file对象转换成canvas
+	    var a = new FileReader();
+	    a.onload = function (e) {
+	      callback(e.target.result);
+	    };
+	    a.readAsDataURL(blob);
+	  }
+	};
 
 /***/ }
 ]);
