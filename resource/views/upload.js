@@ -7,6 +7,7 @@
 
 'use strict';
 import '../css/upload.css';
+import util from '../utils/utils.js';
 
 class Upload extends React.Component{
 
@@ -17,24 +18,44 @@ class Upload extends React.Component{
     }
   }
 
-  uploadImg(e){
+  chooseImg(e){
+    let et = e.target.files;
+    this.setState({filesArr: et},()=>{
+      _.map(et, (file) => {
+        this.file2canvas(file);
+      })
+    });
+  }
+
+  addImg(e){
+    let storeFiles = _.union(this.state.filesArr,e.target.files);
+    console.log(storeFiles);
+    this.setState({filesArr: storeFiles});
+  }
+
+  uploadImg(){
     var uploadFileFormData = new FormData();
-    this.setState({filesArr: e.target.files}, function () {
-      _.map(this.state.filesArr, (file)=>{
+    _.map(this.state.filesArr, (file)=>{                          //上传多文件时 
         console.info(file)
         uploadFileFormData.append('file',file)
       })
 
-      // fetch('/api/upload', {
-      //   method: 'POST',
-      //   body: uploadFileFormData
-      // }).then((data)=>{
-      //   console.log(data)
-      // }).catch((err)=>{
-      //   console.warn(err)
-      // })
-    });
+      //uploadFileFormData.append('username','test123321')
 
+      fetch('/api/upload', {
+        method: 'POST',
+        body: uploadFileFormData
+      }).then((data)=>{
+        console.log(data)
+      }).catch((err)=>{
+        console.warn(err)
+      })
+  }
+
+  file2canvas(files){
+    util.readBlobAsDataURL(files, (dataurl)=>{
+      console.log(dataurl)
+    })
   }
 
   render(){
@@ -49,7 +70,7 @@ class Upload extends React.Component{
                 </div>
                   <div className="file-wp">
                     <label className="file-label">
-                      <input type="file" className="webuploader-element-invisible" multiple="multiple" accept="image/jpg,image/jpeg,image/png" onChange={ (e)=>this.uploadImg(e) } />
+                      <input type="file" className="webuploader-element-invisible" multiple="multiple" accept="image/jpg,image/jpeg,image/png" onChange={ (e)=>this.chooseImg(e) } />
                     </label>
                   </div>
               </div>
@@ -66,10 +87,10 @@ class Upload extends React.Component{
                 <div className="webuploader-pick fl">继续添加</div>
                 <div className="file-wp-status">
                   <label className="file-labels">
-                    <input type="file" className="webuploader-element-invisible" multiple="multiple" accept="image/jpg,image/jpeg,image/png" />
+                    <input type="file" className="webuploader-element-invisible" multiple="multiple" accept="image/jpg,image/jpeg,image/png" onChange={ (e)=>this.addImg(e) }/>
                   </label>
                 </div>
-                <div className="uploadBtn state-ready fl">开始上传</div>
+                <div className="uploadBtn state-ready fl" onClick={ (e)=>this.uploadImg() }>开始上传</div>
               </div>
             </div>
           </div>
