@@ -8,6 +8,7 @@
 'use strict';
 import '../css/upload.css';
 import util from '../utils/utils.js';
+import Photo from '../components/photo.js'
 
 class Upload extends React.Component{
 
@@ -124,12 +125,7 @@ class Upload extends React.Component{
             <ul className="filelist">
               {
                 imgBase.map(function(obj, index){
-                  return <li
-                    key={index}>
-                    <p className="imgWrap">
-                      <img src={obj} />
-                    </p>
-                  </li>
+                  return <Photo key={index} src={obj}></Photo>
                 })
               }
             </ul>
