@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="keywords" content="patent search,patent analysis" />
+    <title>emil-editor</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="header">
+  <form>
+		<select class="form-control selectModel">
+			<option>请选择模板</option>
+			<option id="styleOne">专利学院推广</option>
+			<option id="styleTwo">新功能上线</option>
+			<option id="styleThree">活动宣传推广</option>
+		</select>
+	</form>
+	<ul class="choose-color">
+		<li class="colorOne"></li>
+		<li class="colorTwo"></li>
+		<li class="colorThree"></li>
+		<li class="colorFour"></li>
+		<li class="colorFive"></li>
+		<li class="colorSix"></li>
+		<li class="colorSeven"></li>
+		<li class="colorEight"></li>
+		<li><input type="hidden" id="saveColor" value="#71b05d"></li>
+	</ul>
+	<div class="bs-example">
+		<button type="button" class="btn btn-success">导出html</button>
+		<input type="text" id="saveHtml" class="saveHtml">
+	</div>
+</div>
+<div class="wrap-all">
+	<div class="row-zero add-black-border">
+		<div class="fix-menu">
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation" class="active"><a>通栏图</a></li>
+				<li role="presentation" class="active"><a>图片</a></li>
+				<li role="presentation" class="active"><a>标题</a></li>
+				<li role="presentation" class="active"><a>副标题</a></li>
+				<li role="presentation" class="active"><a>正文</a></li>
+				<li role="presentation" class="active"><a>正文图片</a></li>
+				<!-- <li role="presentation" class="active"><a>列表</a></li> -->
+				<li role="presentation" class="active"><a>按钮</a></li>
+				<li role="presentation" class="active"><a>联系方式</a></li>
+				<li role="presentation" class="active"><a>空隙</a></li>
+				<!-- <li role="presentation" class="active"><a>高亮</a></li> -->
+				<li role="presentation" class="active"><a>html</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row-main row-one" id="row-one"></div>
+	<div class="row-main row-two" id="row-two">
+		<div style="background:#e5e5e5;font-family:'微软雅黑';color:#626161">
+			<table style="background: #fff;width: 648px;margin:0 auto;padding: 0;border-collapse:collapse;">
+				<tbody style="margin:0px;padding:0px" id="main-tbody"></tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<script src="../sea-modules/sea/sea.js"></script>
+
+<script>
+// Set configuration
+
+seajs.config({
+	base: "../sea-modules/",
+	preload: ['jquery'],
+	alias: {
+    	"jquery": "jquery/jquery/1.10.1/jquery.js",
+    	"knockout":"knockout/knockout.js",
+    	"jquery-live":"jquery/jquery/1.10.1/jquery.livequery.js",
+    	"knockout-mul":"knockout/knockout.multimodels-0.1.min.js",
+    	"jquery-ui":"jquery-ui/jquery-ui.min.js",
+    	"jquery-highlight":"jquery-highlight/jquery.highlighter-1.0.0.min.js"
+	}
+});
+
+seajs.use("../libs/email-editor/main");
+
+</script>
+
+</body>
+</html>
