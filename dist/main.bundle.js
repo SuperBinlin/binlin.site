@@ -21515,7 +21515,7 @@ webpackJsonp([0,1],[
 
 	var _upload2 = _interopRequireDefault(_upload);
 
-	var _album = __webpack_require__(360);
+	var _album = __webpack_require__(361);
 
 	var _album2 = _interopRequireDefault(_album);
 
@@ -29446,6 +29446,10 @@ webpackJsonp([0,1],[
 
 	var _utils2 = _interopRequireDefault(_utils);
 
+	var _photo = __webpack_require__(360);
+
+	var _photo2 = _interopRequireDefault(_photo);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Upload = function (_React$Component) {
@@ -29605,16 +29609,7 @@ webpackJsonp([0,1],[
 	              'ul',
 	              { className: 'filelist' },
 	              imgBase.map(function (obj, index) {
-	                return React.createElement(
-	                  'li',
-	                  {
-	                    key: index },
-	                  React.createElement(
-	                    'p',
-	                    { className: 'imgWrap' },
-	                    React.createElement('img', { src: obj })
-	                  )
-	                );
+	                return React.createElement(_photo2.default, { key: index, src: obj });
 	              })
 	            )
 	          ),
@@ -46888,6 +46883,77 @@ webpackJsonp([0,1],[
 
 /***/ },
 /* 360 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {/**
+	 * @date: 2017/05/03
+	 * @author: zhangbin
+	 * @e-mail: superbinlin@163.com
+	 * @see: http://binlin.site:8889/#/resume
+	 */
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(179);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(205);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(206);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(210);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(257);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Photo = function (_React$Component) {
+	  (0, _inherits3.default)(Photo, _React$Component);
+
+	  function Photo(props) {
+	    (0, _classCallCheck3.default)(this, Photo);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Photo.__proto__ || (0, _getPrototypeOf2.default)(Photo)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Photo, [{
+	    key: "render",
+	    value: function render() {
+	      return React.createElement(
+	        "li",
+	        null,
+	        React.createElement(
+	          "p",
+	          { className: "imgWrap" },
+	          React.createElement("img", { src: this.props.src })
+	        )
+	      );
+	    }
+	  }]);
+	  return Photo;
+	}(React.Component);
+
+	exports.default = Photo;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
