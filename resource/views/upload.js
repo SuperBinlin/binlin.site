@@ -32,7 +32,6 @@ class Upload extends React.Component{
   addImg(e){                           // 继续添加
     let et = e.target.files;
     this.resetState(et);
-
     let storeFiles = _.union(this.state.filesArr,et);  // 合并state与新添加的file对象
     console.log(storeFiles);
     this.setState({filesArr: storeFiles});
