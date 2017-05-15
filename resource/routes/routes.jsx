@@ -9,7 +9,7 @@ import { Router, Route, browserHistory } from 'react-router';
 
 
 import App from "../app.jsx";
-import Notfound from "../views/404.js";
+import NotFound from "../views/404.js";
 import Resume from "../views/resume.js";
 import Upload from "../views/upload.js";
 import Album from "../views/album.js";
@@ -17,16 +17,16 @@ import Album from "../views/album.js";
 
 class Routes extends Component{
     render(){
-        return (
-            <Router>
-                <Route path="/" component={App}>
-                    <Route path="resume" component={Resume}/>
-                    <Route path="upload" component={Upload}/>
-                    <Route path="album" component={Album}/>
-                    <Route path="*" component={Notfound}/>
-                </Route>
-            </Router>
-        );
+      return (
+        <Router>
+          <Route path="/" component={App}>
+            <Route path="resume" component={Resume}/>
+            <Route path="upload" component={Upload}/>
+            <Route path="album" component={Album}/>
+            <Route path="*" component={NotFound}/>
+          </Route>
+        </Router>
+      );
     }
 };
 

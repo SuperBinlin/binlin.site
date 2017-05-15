@@ -1,0 +1,100 @@
+.example-case {
+    padding-top: 13px;
+}
+.ivu-tag, .ivu-tag a, .ivu-tag a:hover {
+    color: #657180;
+}
+.ivu-tag {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin: 2px 4px 2px 0;
+    padding: 0 8px;
+    border: 1px solid #e3e8ee;
+    border-radius: 3px;
+    background: #f7f7f7;
+    font-size: 12px;
+    vertical-align: middle;
+    opacity: 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+:root .ivu-tag .ivu-icon-ios-close-empty {
+    font-size: 14px;
+}
+.ivu-tag .ivu-icon-ios-close-empty {
+    display: inline-block;
+    font-size: 14px;
+    transform: scale(1.42857143) rotate(0);
+    cursor: pointer;
+    margin-left: 8px;
+    color: #666;
+    opacity: .66;
+    position: relative;
+    top: 1px;
+}
+.ivu-icon {
+    display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.ivu-btn-dashed {
+    color: #657180;
+    background-color: transparent;
+    border-color: #d7dde4;
+    border-style: dashed;
+}
+.ivu-btn-small {
+    padding: 2px 7px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.ivu-btn, .ivu-btn:active, .ivu-btn:focus {
+    outline: 0;
+}
+.ivu-btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px dashed transparent;
+    white-space: nowrap;
+    line-height: 1.5;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 4px;
+    transform: translateZ(0);
+    transition: color .2s linear,background-color .2s linear,border .2s linear;
+    color: #657180;
+    background-color: #f7f7f7;
+    border-color: #d7dde4;
+}
+.ivu-btn>.ivu-icon {
+    line-height: 1;
+}
+.ivu-btn>.ivu-icon+span, .ivu-btn>span+.ivu-icon {
+    margin-left: 4px;
+}
+
+
+
+
+
+
+
+
