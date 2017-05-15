@@ -6,6 +6,7 @@
 'use strict';
 import React,{ Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import './css/ionicons.min.css';
 
 class App extends Component{
     render(){
