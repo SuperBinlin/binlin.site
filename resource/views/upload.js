@@ -8,7 +8,8 @@
 'use strict';
 import '../css/upload.css';
 import util from '../utils/utils.js';
-import Photo from '../components/photo.js'
+import Photo from '../components/photo.js';
+import Label from '../components/label.js';
 
 class Upload extends React.Component{
 
@@ -100,6 +101,7 @@ class Upload extends React.Component{
     
     return (
       <div>
+        <Label></Label>
         <div className="wu-example" id="uploader">
           <div className={uploadWp}>
             <div className="placeholder">
