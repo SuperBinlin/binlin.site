@@ -5,13 +5,6 @@
  * Link https://superbinlin.github.io/blog/dist/#/resume
  */
 
-/**
- * Created by zhangbin
- * Date 2017/4/24.
- * E-mail skyxuanbin@qq.com
- * Link https://superbinlin.github.io/blog/dist/#/resume
- */
-
 'use strict';
 import '../css/upload.css';
 
