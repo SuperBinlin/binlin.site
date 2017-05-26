@@ -3998,6 +3998,20 @@ webpackJsonp([0,1],[
 	      return emptyFunction.thatReturnsNull;
 	    }
 
+	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+	      var checker = arrayOfTypeCheckers[i];
+	      if (typeof checker !== 'function') {
+	        warning(
+	          false,
+	          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
+	          'received %s at index %s.',
+	          getPostfixForTypeWarning(checker),
+	          i
+	        );
+	        return emptyFunction.thatReturnsNull;
+	      }
+	    }
+
 	    function validate(props, propName, componentName, location, propFullName) {
 	      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
 	        var checker = arrayOfTypeCheckers[i];
@@ -4130,6 +4144,9 @@ webpackJsonp([0,1],[
 	  // This handles more types than `getPropType`. Only used for error messages.
 	  // See `createPrimitiveTypeChecker`.
 	  function getPreciseType(propValue) {
+	    if (typeof propValue === 'undefined' || propValue === null) {
+	      return '' + propValue;
+	    }
 	    var propType = getPropType(propValue);
 	    if (propType === 'object') {
 	      if (propValue instanceof Date) {
@@ -4139,6 +4156,23 @@ webpackJsonp([0,1],[
 	      }
 	    }
 	    return propType;
+	  }
+
+	  // Returns a string that is postfixed to a warning about an invalid type.
+	  // For example, "undefined" or "of type array"
+	  function getPostfixForTypeWarning(value) {
+	    var type = getPreciseType(value);
+	    switch (type) {
+	      case 'array':
+	      case 'object':
+	        return 'an ' + type;
+	      case 'boolean':
+	      case 'date':
+	      case 'regexp':
+	        return 'a ' + type;
+	      default:
+	        return type;
+	    }
 	  }
 
 	  // Returns class name of the object, if any.
@@ -21799,19 +21833,19 @@ webpackJsonp([0,1],[
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _ = __webpack_require__(342);
+	var _ = __webpack_require__(348);
 
 	var _2 = _interopRequireDefault(_);
 
-	var _resume = __webpack_require__(343);
+	var _resume = __webpack_require__(349);
 
 	var _resume2 = _interopRequireDefault(_resume);
 
-	var _upload = __webpack_require__(356);
+	var _upload = __webpack_require__(362);
 
 	var _upload2 = _interopRequireDefault(_upload);
 
-	var _album = __webpack_require__(368);
+	var _album = __webpack_require__(374);
 
 	var _album2 = _interopRequireDefault(_album);
 
@@ -29072,7 +29106,7 @@ webpackJsonp([0,1],[
 
 	__webpack_require__(333);
 
-	__webpack_require__(369);
+	__webpack_require__(342);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29117,6 +29151,17 @@ webpackJsonp([0,1],[
 /* 340 */,
 /* 341 */,
 /* 342 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
@@ -29179,7 +29224,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 343 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
@@ -29213,7 +29258,7 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(344);
+	__webpack_require__(350);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29722,24 +29767,24 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 344 */
+/* 350 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 345 */,
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
 /* 351 */,
 /* 352 */,
 /* 353 */,
 /* 354 */,
 /* 355 */,
-/* 356 */
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React, _, classNames) {/**
@@ -29775,17 +29820,17 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(360);
+	__webpack_require__(366);
 
-	var _utils = __webpack_require__(363);
+	var _utils = __webpack_require__(369);
 
 	var _utils2 = _interopRequireDefault(_utils);
 
-	var _photo = __webpack_require__(364);
+	var _photo = __webpack_require__(370);
 
 	var _photo2 = _interopRequireDefault(_photo);
 
-	var _label = __webpack_require__(365);
+	var _label = __webpack_require__(371);
 
 	var _label2 = _interopRequireDefault(_label);
 
@@ -29797,20 +29842,40 @@ webpackJsonp([0,1],[
 	  function Upload(props) {
 	    (0, _classCallCheck3.default)(this, Upload);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Upload.__proto__ || (0, _getPrototypeOf2.default)(Upload)).call(this, props));
+	    var _this2 = (0, _possibleConstructorReturn3.default)(this, (Upload.__proto__ || (0, _getPrototypeOf2.default)(Upload)).call(this, props));
 
-	    _this.state = {
+	    _this2.state = {
 	      filesArr: [], // file对象存储 最终传到后台
 	      fileInfo: { // 存储file信息
 	        number: 0, // 照片数
 	        size: 0 // 照片总大小
 	      },
-	      imgBase: [] // img base64存储 用于预览
+	      imgBase: [], // img base64存储 用于预览
+	      labeList: []
 	    };
-	    return _this;
+	    return _this2;
 	  }
 
 	  (0, _createClass3.default)(Upload, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this = this;
+	      fetch('/api/getlocation', {
+	        method: 'GET'
+	      }).then(function (res) {
+	        if (res.ok) {
+	          res.json().then(function (arr) {
+	            console.log(arr[0].city);
+	            _this.setState({ labeList: arr[0].city });
+	          });
+	        } else {
+	          console.log('error');
+	        }
+	      }).catch(function (err) {
+	        console.warn(err);
+	      });
+	    }
+	  }, {
 	    key: 'chooseImg',
 	    value: function chooseImg(e) {
 	      // 上传图片
@@ -29851,7 +29916,7 @@ webpackJsonp([0,1],[
 	  }, {
 	    key: 'resetState',
 	    value: function resetState(et) {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      // 重写filesArr
 	      var fileInfo = {
@@ -29861,33 +29926,34 @@ webpackJsonp([0,1],[
 
 	      this.setState({ filesArr: et }, function () {
 	        // 添加预览
-	        fileInfo.number = _this2.state.filesArr.length;
+	        fileInfo.number = _this3.state.filesArr.length;
 	        _.map(et, function (file) {
 	          fileInfo.size = fileInfo.size + file.size / 1000000; // 转出单位为M
-	          _this2.file2canvas(file);
+	          _this3.file2canvas(file);
 	        });
-	        _this2.setState({ fileInfo: fileInfo });
+	        _this3.setState({ fileInfo: fileInfo });
 	      });
 	    }
 	  }, {
 	    key: 'file2canvas',
 	    value: function file2canvas(files) {
-	      var _this3 = this;
+	      var _this4 = this;
 
 	      _utils2.default.readBlobAsDataURL(files, function (dataurl) {
-	        var storeImg = _this3.state.imgBase; // 获取图片暂存
+	        var storeImg = _this4.state.imgBase; // 获取图片暂存
 	        storeImg.push(dataurl); // push 新图片
-	        _this3.setState({ imgBase: storeImg }); // 重写入states中
+	        _this4.setState({ imgBase: storeImg }); // 重写入states中
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      var _state = this.state,
 	          imgBase = _state.imgBase,
-	          fileInfo = _state.fileInfo;
+	          fileInfo = _state.fileInfo,
+	          labeList = _state.labeList;
 
 	      /**
 	       * 引入classnames库 帮助控制多个className
@@ -29895,20 +29961,20 @@ webpackJsonp([0,1],[
 	       */
 
 	      var uploadWp = classNames({
-	        queueList: true,
+	        'queueList': true,
 	        'placeholder-hide': this.state.filesArr.length != 0 // 无图片时展示上传图片按钮
 	      });
 
 	      var showWp = classNames({
-	        queueList: true,
-	        filled: true,
+	        'queueList': true,
+	        'filled': true,
 	        'placeholder-hide': this.state.filesArr.length == 0 // 有图片时 展示图片预览
 	      });
 
 	      return React.createElement(
 	        'div',
 	        null,
-	        React.createElement(_label2.default, null),
+	        React.createElement(_label2.default, { labelList: labeList }),
 	        React.createElement(
 	          'div',
 	          { className: 'wu-example', id: 'uploader' },
@@ -29933,7 +29999,7 @@ webpackJsonp([0,1],[
 	                    'label',
 	                    { className: 'file-label' },
 	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png', onChange: function onChange(e) {
-	                        return _this4.chooseImg(e);
+	                        return _this5.chooseImg(e);
 	                      } })
 	                  )
 	                )
@@ -29982,14 +30048,14 @@ webpackJsonp([0,1],[
 	                    'label',
 	                    { className: 'file-labels' },
 	                    React.createElement('input', { type: 'file', className: 'webuploader-element-invisible', multiple: 'multiple', accept: 'image/jpg,image/jpeg,image/png', onChange: function onChange(e) {
-	                        return _this4.addImg(e);
+	                        return _this5.addImg(e);
 	                      } })
 	                  )
 	                ),
 	                React.createElement(
 	                  'div',
 	                  { className: 'uploadBtn state-ready fl', onClick: function onClick(e) {
-	                      return _this4.uploadImg();
+	                      return _this5.uploadImg();
 	                    } },
 	                  '\u5F00\u59CB\u4E0A\u4F20'
 	                )
@@ -30006,10 +30072,10 @@ webpackJsonp([0,1],[
 	;
 
 	exports.default = Upload;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(357), __webpack_require__(359)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(363), __webpack_require__(365)))
 
 /***/ }),
-/* 357 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module, _) {/**
@@ -47097,10 +47163,10 @@ webpackJsonp([0,1],[
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(358)(module), __webpack_require__(357)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(364)(module), __webpack_require__(363)))
 
 /***/ }),
-/* 358 */
+/* 364 */
 /***/ (function(module, exports) {
 
 	module.exports = function(module) {
@@ -47116,7 +47182,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 359 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -47170,15 +47236,15 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 360 */
+/* 366 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 361 */,
-/* 362 */,
-/* 363 */
+/* 367 */,
+/* 368 */,
+/* 369 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -47221,7 +47287,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ }),
-/* 364 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
@@ -47292,7 +47358,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 365 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
@@ -47328,7 +47394,7 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(366);
+	__webpack_require__(372);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47347,21 +47413,24 @@ webpackJsonp([0,1],[
 	  (0, _createClass3.default)(Label, [{
 	    key: 'render',
 	    value: function render() {
+	      var labellist = this.props.labelList;
 	      return React.createElement(
 	        'div',
 	        { className: 'example-case' },
 	        React.createElement(
 	          'div',
 	          null,
-	          React.createElement(
-	            'div',
-	            { className: 'ivu-tag ivu-tag-closable' },
-	            React.createElement(
-	              'span',
-	              { className: 'ivu-tag-text' },
-	              '\u6807\u7B7E2 '
-	            )
-	          ),
+	          labellist.map(function (city, index) {
+	            return React.createElement(
+	              'div',
+	              { className: 'ivu-tag ivu-tag-closable', key: index },
+	              React.createElement(
+	                'span',
+	                { className: 'ivu-tag-text' },
+	                city
+	              )
+	            );
+	          }),
 	          React.createElement(
 	            'button',
 	            { type: 'button', className: 'ivu-btn ivu-btn-dashed ivu-btn-small' },
@@ -47383,28 +47452,24 @@ webpackJsonp([0,1],[
 	  return Label;
 	}(React.Component);
 
+	Label.defaultProps = {
+	  labelList: []
+	};
 	exports.default = Label;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 366 */
+/* 372 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 367 */,
-/* 368 */
+/* 373 */,
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
-	 * Created by zhangbin
-	 * Date 2017/4/24.
-	 * E-mail skyxuanbin@qq.com
-	 * Link https://superbinlin.github.io/blog/dist/#/resume
-	 */
-
-	/**
 	 * Created by zhangbin
 	 * Date 2017/4/24.
 	 * E-mail skyxuanbin@qq.com
@@ -47437,7 +47502,7 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(360);
+	__webpack_require__(366);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47466,12 +47531,6 @@ webpackJsonp([0,1],[
 
 	exports.default = Album;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 369 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ })
 ]);

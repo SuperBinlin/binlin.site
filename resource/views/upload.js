@@ -21,8 +21,27 @@ class Upload extends React.Component{
         number:0,                       // 照片数
         size:0                          // 照片总大小
       },
-      imgBase:[]                        // img base64存储 用于预览
+      imgBase:[],                       // img base64存储 用于预览
+      labeList:[]
     }
+  }
+
+  componentWillMount(){
+    let _this = this;
+    fetch('/api/getlocation', {
+      method: 'GET'
+    }).then((res)=>{
+      if (res.ok){
+        res.json().then(function(arr){
+          console.log(arr[0].city);
+          _this.setState({labeList: arr[0].city})
+        })
+      }else{
+        console.log('error')
+      }
+    }).catch((err)=>{
+      console.warn(err)
+    });
   }
 
   chooseImg(e){                        // 上传图片
@@ -82,26 +101,26 @@ class Upload extends React.Component{
   }
 
   render(){
-    let {imgBase, fileInfo} = this.state;
+    let {imgBase, fileInfo, labeList} = this.state;
 
     /**
      * 引入classnames库 帮助控制多个className
      * @type {[type]}
      */
     var uploadWp = classNames({
-      queueList: true,
+      'queueList': true,
       'placeholder-hide': this.state.filesArr.length != 0             // 无图片时展示上传图片按钮
     });
 
     var showWp = classNames({
-      queueList: true,
-      filled: true,
+      'queueList': true,
+      'filled': true,
       'placeholder-hide': this.state.filesArr.length == 0             // 有图片时 展示图片预览
     });
     
     return (
       <div>
-        <Label></Label>
+        <Label labelList={labeList}></Label>
         <div className="wu-example" id="uploader">
           <div className={uploadWp}>
             <div className="placeholder">

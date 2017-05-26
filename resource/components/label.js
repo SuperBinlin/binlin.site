@@ -9,23 +9,32 @@
 import '../css/label.css';
 
 class Label extends React.Component{
+  static defaultProps = {
+    labelList: []
+  }
+
 	constructor(props) {
     super(props);
     this.state = {
       
     }
-  }
+  } 
 
   render(){
+    let labellist = this.props.labelList;
   	return(
   		<div className="example-case">
   			<div>
-  				<div className="ivu-tag ivu-tag-closable">
-  					<span className="ivu-tag-text">标签2 </span>
-  				</div>
+          {
+            labellist.map(function(city, index) {
+              return  <div className="ivu-tag ivu-tag-closable" key={index}>
+                        <span className="ivu-tag-text">{city}</span>
+                      </div>
+            })
+          }
   				<button type="button" className="ivu-btn ivu-btn-dashed ivu-btn-small">
   					<i className="fz ion-ios-plus-empty"> </i>
-  						<span>添加标签</span>
+  					<span>添加标签</span>
   				</button>
   			</div>
   		</div>
