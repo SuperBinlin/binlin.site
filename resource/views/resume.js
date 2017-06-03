@@ -34,7 +34,7 @@ class Resume extends React.Component{
             </div>
             <div className="header-top">
                 <h2>张斌</h2>
-                <small>web前端开发工程师s</small>
+                <small>web前端开发工程师</small>
             </div>
             <div className="about">
                 <div className="container">

@@ -29308,7 +29308,7 @@ webpackJsonp([0,1],[
 	                    React.createElement(
 	                        'small',
 	                        null,
-	                        'web\u524D\u7AEF\u5F00\u53D1\u5DE5\u7A0B\u5E08s'
+	                        'web\u524D\u7AEF\u5F00\u53D1\u5DE5\u7A0B\u5E08'
 	                    )
 	                ),
 	                React.createElement(
