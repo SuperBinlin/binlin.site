@@ -34,7 +34,7 @@ class Resume extends React.Component{
             </div>
             <div className="header-top">
                 <h2>张斌</h2>
-                <small>web前端开发工程师</small>
+                <small>web前端开发工程师s</small>
             </div>
             <div className="about">
                 <div className="container">
@@ -192,7 +192,7 @@ class Resume extends React.Component{
                                     </a>
                                 </div>
                                 <div className="col-sm-4">
-                                    <a className="project-item" href="http://binlin.site:9000/blog/project/snake/snake.html" target="_blank">
+                                    <a className="project-item" href="http://binlin.site:9000/binlin.site/project/snake/snake.html" target="_blank">
                                         <img src="./images/logo/timg.jpeg" />
                                     </a>
                                 </div>
@@ -204,7 +204,7 @@ class Resume extends React.Component{
                             </div>
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <a className="project-item" href="http://binlin.site:9000/blog/project/email-editor/app/email-editor.html" target="_blank">
+                                    <a className="project-item" href="http://binlin.site:9000/binlin.site/project/email-editor/app/email-editor.html" target="_blank">
                                         <img src="./images/logo/mail.png" />
                                     </a>
                                 </div>

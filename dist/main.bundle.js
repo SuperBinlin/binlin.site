@@ -29308,7 +29308,7 @@ webpackJsonp([0,1],[
 	                    React.createElement(
 	                        'small',
 	                        null,
-	                        'web\u524D\u7AEF\u5F00\u53D1\u5DE5\u7A0B\u5E08'
+	                        'web\u524D\u7AEF\u5F00\u53D1\u5DE5\u7A0B\u5E08s'
 	                    )
 	                ),
 	                React.createElement(
@@ -29724,7 +29724,7 @@ webpackJsonp([0,1],[
 	                                        { className: 'col-sm-4' },
 	                                        React.createElement(
 	                                            'a',
-	                                            { className: 'project-item', href: 'http://binlin.site:9000/blog/project/snake/snake.html', target: '_blank' },
+	                                            { className: 'project-item', href: 'http://binlin.site:9000/binlin.site/project/snake/snake.html', target: '_blank' },
 	                                            React.createElement('img', { src: './images/logo/timg.jpeg' })
 	                                        )
 	                                    ),
@@ -29746,7 +29746,7 @@ webpackJsonp([0,1],[
 	                                        { className: 'col-sm-4' },
 	                                        React.createElement(
 	                                            'a',
-	                                            { className: 'project-item', href: 'http://binlin.site:9000/blog/project/email-editor/app/email-editor.html', target: '_blank' },
+	                                            { className: 'project-item', href: 'http://binlin.site:9000/binlin.site/project/email-editor/app/email-editor.html', target: '_blank' },
 	                                            React.createElement('img', { src: './images/logo/mail.png' })
 	                                        )
 	                                    )
