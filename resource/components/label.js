@@ -16,19 +16,29 @@ class Label extends React.Component{
 	constructor(props) {
     super(props);
     this.state = {
-      
+      labellist:props.labelList
     }
-  } 
+
+  }
+
+  componentWillReceiveProps(nextProps) {                      //props改变时触发
+    this.setState({labellist: nextProps.labelList});
+  }
 
   render(){
-    let labellist = this.props.labelList;
+    let labellist = this.state.labellist;
+    console.log(labellist,'$#@!')
   	return(
   		<div className="example-case">
   			<div>
           {
-            labellist.map(function(city, index) {
-              return  <div className="ivu-tag ivu-tag-closable" key={index}>
-                        <span className="ivu-tag-text">{city}</span>
+            labellist.map((obj, index) => {
+              console.log('run')
+              let label = classNames('ivu-tag','ivu-tag-closable',{
+                'label-actived':obj.actived
+              })
+              return  <div className={label} key={index} onClick={()=>{this.props.selectCity(index)}}>
+                        <span className="ivu-tag-text">{obj.city}</span>
                       </div>
             })
           }

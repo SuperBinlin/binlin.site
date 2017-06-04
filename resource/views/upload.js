@@ -24,6 +24,8 @@ class Upload extends React.Component{
       imgBase:[],                       // img base64存储 用于预览
       labeList:[]
     }
+
+    this._selectCity = this._selectCity.bind(this)
   }
 
   componentWillMount(){
@@ -34,7 +36,7 @@ class Upload extends React.Component{
       if (res.ok){
         res.json().then(function(arr){
           console.log(arr[0].city);
-          _this.setState({labeList: arr[0].city})
+          _this.setState({labeList: arr[0].location})
         })
       }else{
         console.log('error')
@@ -76,6 +78,13 @@ class Upload extends React.Component{
       })
   }
 
+
+/**
+ * [resetState description]
+ * @param  {[type]} et [上传的文件]
+ * @return {[type]}    [description]
+ * 将上传文件暂存进filesArr,等待调用uploadImg上传至服务器
+ */
   resetState(et){                                           // 重写filesArr
     let fileInfo = {
       number:0,                       
@@ -100,6 +109,24 @@ class Upload extends React.Component{
     })
   }
 
+  /**
+   * [_selectCity description]
+   * @param  {[type]} i [城市索引]
+   * @return {[type]}   [description]
+   */
+  _selectCity(i){
+    let labeList = this.state.labeList;
+    _.map(labeList, (list, index)=>{
+      if(i == index) {
+        list.actived = true;
+      } else {
+        list.actived = false;
+      }
+    });
+
+    this.setState({labeList:labeList})                     // setState触发render渲染
+  }
+
   render(){
     let {imgBase, fileInfo, labeList} = this.state;
 
@@ -107,12 +134,12 @@ class Upload extends React.Component{
      * 引入classnames库 帮助控制多个className
      * @type {[type]}
      */
-    var uploadWp = classNames({
+    let uploadWp = classNames({
       'queueList': true,
       'placeholder-hide': this.state.filesArr.length != 0             // 无图片时展示上传图片按钮
     });
 
-    var showWp = classNames({
+    let showWp = classNames({
       'queueList': true,
       'filled': true,
       'placeholder-hide': this.state.filesArr.length == 0             // 有图片时 展示图片预览
@@ -120,7 +147,7 @@ class Upload extends React.Component{
     
     return (
       <div>
-        <Label labelList={labeList}></Label>
+        <Label labelList={labeList} selectCity={this._selectCity}></Label>
         <div className="wu-example" id="uploader">
           <div className={uploadWp}>
             <div className="placeholder">

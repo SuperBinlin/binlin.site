@@ -8340,8 +8340,9 @@ p.copyright a:hover{
 .ivu-btn>.ivu-icon+span, .ivu-btn>span+.ivu-icon {
     margin-left: 4px;
 }
-
-
+.label-actived{
+    border:#ccc 1px solid;
+}
 
 
 

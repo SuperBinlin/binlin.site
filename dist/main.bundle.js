@@ -29853,6 +29853,8 @@ webpackJsonp([0,1],[
 	      imgBase: [], // img base64存储 用于预览
 	      labeList: []
 	    };
+
+	    _this2._selectCity = _this2._selectCity.bind(_this2);
 	    return _this2;
 	  }
 
@@ -29866,7 +29868,7 @@ webpackJsonp([0,1],[
 	        if (res.ok) {
 	          res.json().then(function (arr) {
 	            console.log(arr[0].city);
-	            _this.setState({ labeList: arr[0].city });
+	            _this.setState({ labeList: arr[0].location });
 	          });
 	        } else {
 	          console.log('error');
@@ -29913,6 +29915,14 @@ webpackJsonp([0,1],[
 	        console.warn(err);
 	      });
 	    }
+
+	    /**
+	     * [resetState description]
+	     * @param  {[type]} et [上传的文件]
+	     * @return {[type]}    [description]
+	     * 将上传文件暂存进filesArr,等待调用uploadImg上传至服务器
+	     */
+
 	  }, {
 	    key: 'resetState',
 	    value: function resetState(et) {
@@ -29945,6 +29955,27 @@ webpackJsonp([0,1],[
 	        _this4.setState({ imgBase: storeImg }); // 重写入states中
 	      });
 	    }
+
+	    /**
+	     * [_selectCity description]
+	     * @param  {[type]} i [城市索引]
+	     * @return {[type]}   [description]
+	     */
+
+	  }, {
+	    key: '_selectCity',
+	    value: function _selectCity(i) {
+	      var labeList = this.state.labeList;
+	      _.map(labeList, function (list, index) {
+	        if (i == index) {
+	          list.actived = true;
+	        } else {
+	          list.actived = false;
+	        }
+	      });
+
+	      this.setState({ labeList: labeList }); // setState触发render渲染
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -29974,7 +30005,7 @@ webpackJsonp([0,1],[
 	      return React.createElement(
 	        'div',
 	        null,
-	        React.createElement(_label2.default, { labelList: labeList }),
+	        React.createElement(_label2.default, { labelList: labeList, selectCity: this._selectCity }),
 	        React.createElement(
 	          'div',
 	          { className: 'wu-example', id: 'uploader' },
@@ -47361,7 +47392,7 @@ webpackJsonp([0,1],[
 /* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {/**
+	/* WEBPACK VAR INJECTION */(function(React, classNames) {/**
 	 * @date: 2017/05/04
 	 * @author: zhangbin
 	 * @e-mail: superbinlin@163.com
@@ -47406,28 +47437,46 @@ webpackJsonp([0,1],[
 
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (Label.__proto__ || (0, _getPrototypeOf2.default)(Label)).call(this, props));
 
-	    _this.state = {};
+	    _this.state = {
+	      labellist: props.labelList
+	    };
+
 	    return _this;
 	  }
 
 	  (0, _createClass3.default)(Label, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      //props改变时触发
+	      this.setState({ labellist: nextProps.labelList });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var labellist = this.props.labelList;
+	      var _this2 = this;
+
+	      var labellist = this.state.labellist;
+	      console.log(labellist, '$#@!');
 	      return React.createElement(
 	        'div',
 	        { className: 'example-case' },
 	        React.createElement(
 	          'div',
 	          null,
-	          labellist.map(function (city, index) {
+	          labellist.map(function (obj, index) {
+	            console.log('run');
+	            var label = classNames('ivu-tag', 'ivu-tag-closable', {
+	              'label-actived': obj.actived
+	            });
 	            return React.createElement(
 	              'div',
-	              { className: 'ivu-tag ivu-tag-closable', key: index },
+	              { className: label, key: index, onClick: function onClick() {
+	                  _this2.props.selectCity(index);
+	                } },
 	              React.createElement(
 	                'span',
 	                { className: 'ivu-tag-text' },
-	                city
+	                obj.city
 	              )
 	            );
 	          }),
@@ -47456,7 +47505,7 @@ webpackJsonp([0,1],[
 	  labelList: []
 	};
 	exports.default = Label;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(365)))
 
 /***/ }),
 /* 372 */
