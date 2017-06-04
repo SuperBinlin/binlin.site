@@ -16,33 +16,52 @@ class Label extends React.Component{
 	constructor(props) {
     super(props);
     this.state = {
-      labellist:props.labelList
+      labellist:props.labelList,                              //将label数据给state，state改变时，将重新render↓
+      fillcity:false                                          //false 不显示
     }
 
   }
 
-  componentWillReceiveProps(nextProps) {                      //props改变时触发
+  componentWillReceiveProps(nextProps) {                      //props改变时触发，当props改变时，给state重新赋值↑
     this.setState({labellist: nextProps.labelList});
   }
 
-  render(){
-    let labellist = this.state.labellist;
-    console.log(labellist,'$#@!')
+  addLabel = ()=>{
+    this.setState({'fillcity':true});
+  }
+
+  /**
+   * 添加城市，成功后关闭添加框
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
+  _addCity = (e) => {
+    this.props._addCity(e);
+    this.setState({'fillcity':false});
+  }
+
+  render() {
+    let {labellist, fillcity} = this.state;
+    let iscityshow = classNames('ivu-tag','ivu-tag-closable',{
+      'fillcity':!fillcity
+    })
   	return(
   		<div className="example-case">
   			<div>
           {
             labellist.map((obj, index) => {
-              console.log('run')
-              let label = classNames('ivu-tag','ivu-tag-closable',{
+              let label = classNames('ivu-tag','ivu-tag-closable',{     //因为是遍历，所以在render时设置classNames
                 'label-actived':obj.actived
               })
-              return  <div className={label} key={index} onClick={()=>{this.props.selectCity(index)}}>
+              return  <div className={label} key={index} onClick={()=>{this.props._selectCity(index)}}>
                         <span className="ivu-tag-text">{obj.city}</span>
                       </div>
             })
           }
-  				<button type="button" className="ivu-btn ivu-btn-dashed ivu-btn-small">
+          <div className={iscityshow}>
+            <input className="fill-city" type="text" onBlur={this._addCity}/>
+          </div>
+  				<button type="button" className="ivu-btn ivu-btn-dashed ivu-btn-small" onClick={this.addLabel}>
   					<i className="fz ion-ios-plus-empty"> </i>
   					<span>添加标签</span>
   				</button>

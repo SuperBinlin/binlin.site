@@ -25,7 +25,7 @@ class Upload extends React.Component{
       labeList:[]
     }
 
-    this._selectCity = this._selectCity.bind(this)
+    //this._selectCity = this._selectCity.bind(this)
   }
 
   componentWillMount(){
@@ -114,7 +114,7 @@ class Upload extends React.Component{
    * @param  {[type]} i [城市索引]
    * @return {[type]}   [description]
    */
-  _selectCity(i){
+  _selectCity = (i) => {
     let labeList = this.state.labeList;
     _.map(labeList, (list, index)=>{
       if(i == index) {
@@ -124,7 +124,22 @@ class Upload extends React.Component{
       }
     });
 
-    this.setState({labeList:labeList})                     // setState触发render渲染
+    this.setState({
+      labeList:labeList
+    })                     // setState触发render渲染
+  }
+
+  /**
+   * 添加标签，获取添加的城市，将添加的城市更行只state.labeList中
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
+  _addCity = (e) => {
+    let labeList = this.state.labeList; 
+    labeList.push({'city':e.target.value})
+    this.setState({
+      labeList:labeList
+    })
   }
 
   render(){
@@ -147,7 +162,7 @@ class Upload extends React.Component{
     
     return (
       <div>
-        <Label labelList={labeList} selectCity={this._selectCity}></Label>
+        <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
         <div className="wu-example" id="uploader">
           <div className={uploadWp}>
             <div className="placeholder">

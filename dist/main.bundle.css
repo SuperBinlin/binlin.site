@@ -8344,8 +8344,16 @@ p.copyright a:hover{
     border:#ccc 1px solid;
 }
 
+.fill-city{
+    background: #f7f7f7;
+    width:80px;
+    border:none;
+    border:0;
+    outline:none;
+}
 
-
-
+.fillcity{
+    display:none;
+}
 
 

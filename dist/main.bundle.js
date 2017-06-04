@@ -29844,6 +29844,29 @@ webpackJsonp([0,1],[
 
 	    var _this2 = (0, _possibleConstructorReturn3.default)(this, (Upload.__proto__ || (0, _getPrototypeOf2.default)(Upload)).call(this, props));
 
+	    _this2._selectCity = function (i) {
+	      var labeList = _this2.state.labeList;
+	      _.map(labeList, function (list, index) {
+	        if (i == index) {
+	          list.actived = true;
+	        } else {
+	          list.actived = false;
+	        }
+	      });
+
+	      _this2.setState({
+	        labeList: labeList
+	      }); // setState触发render渲染
+	    };
+
+	    _this2._addCity = function (e) {
+	      var labeList = _this2.state.labeList;
+	      labeList.push({ 'city': e.target.value });
+	      _this2.setState({
+	        labeList: labeList
+	      });
+	    };
+
 	    _this2.state = {
 	      filesArr: [], // file对象存储 最终传到后台
 	      fileInfo: { // 存储file信息
@@ -29854,7 +29877,7 @@ webpackJsonp([0,1],[
 	      labeList: []
 	    };
 
-	    _this2._selectCity = _this2._selectCity.bind(_this2);
+	    //this._selectCity = this._selectCity.bind(this)
 	    return _this2;
 	  }
 
@@ -29962,20 +29985,13 @@ webpackJsonp([0,1],[
 	     * @return {[type]}   [description]
 	     */
 
-	  }, {
-	    key: '_selectCity',
-	    value: function _selectCity(i) {
-	      var labeList = this.state.labeList;
-	      _.map(labeList, function (list, index) {
-	        if (i == index) {
-	          list.actived = true;
-	        } else {
-	          list.actived = false;
-	        }
-	      });
 
-	      this.setState({ labeList: labeList }); // setState触发render渲染
-	    }
+	    /**
+	     * 添加标签，获取添加的城市，将添加的城市更行只state.labeList中
+	     * @param  {[type]} e [description]
+	     * @return {[type]}   [description]
+	     */
+
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -30005,7 +30021,7 @@ webpackJsonp([0,1],[
 	      return React.createElement(
 	        'div',
 	        null,
-	        React.createElement(_label2.default, { labelList: labeList, selectCity: this._selectCity }),
+	        React.createElement(_label2.default, { labelList: labeList, _selectCity: this._selectCity, _addCity: this._addCity }),
 	        React.createElement(
 	          'div',
 	          { className: 'wu-example', id: 'uploader' },
@@ -47437,8 +47453,18 @@ webpackJsonp([0,1],[
 
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (Label.__proto__ || (0, _getPrototypeOf2.default)(Label)).call(this, props));
 
+	    _this.addLabel = function () {
+	      _this.setState({ 'fillcity': true });
+	    };
+
+	    _this._addCity = function (e) {
+	      _this.props._addCity(e);
+	      _this.setState({ 'fillcity': false });
+	    };
+
 	    _this.state = {
-	      labellist: props.labelList
+	      labellist: props.labelList, //将label数据给state，state改变时，将重新render↓
+	      fillcity: false //false 不显示
 	    };
 
 	    return _this;
@@ -47447,16 +47473,28 @@ webpackJsonp([0,1],[
 	  (0, _createClass3.default)(Label, [{
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
-	      //props改变时触发
+	      //props改变时触发，当props改变时，给state重新赋值↑
 	      this.setState({ labellist: nextProps.labelList });
 	    }
+
+	    /**
+	     * 添加城市，成功后关闭添加框
+	     * @param  {[type]} e [description]
+	     * @return {[type]}   [description]
+	     */
+
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
-	      var labellist = this.state.labellist;
-	      console.log(labellist, '$#@!');
+	      var _state = this.state,
+	          labellist = _state.labellist,
+	          fillcity = _state.fillcity;
+
+	      var iscityshow = classNames('ivu-tag', 'ivu-tag-closable', {
+	        'fillcity': !fillcity
+	      });
 	      return React.createElement(
 	        'div',
 	        { className: 'example-case' },
@@ -47464,14 +47502,13 @@ webpackJsonp([0,1],[
 	          'div',
 	          null,
 	          labellist.map(function (obj, index) {
-	            console.log('run');
-	            var label = classNames('ivu-tag', 'ivu-tag-closable', {
+	            var label = classNames('ivu-tag', 'ivu-tag-closable', { //因为是遍历，所以在render时设置classNames
 	              'label-actived': obj.actived
 	            });
 	            return React.createElement(
 	              'div',
 	              { className: label, key: index, onClick: function onClick() {
-	                  _this2.props.selectCity(index);
+	                  _this2.props._selectCity(index);
 	                } },
 	              React.createElement(
 	                'span',
@@ -47481,8 +47518,13 @@ webpackJsonp([0,1],[
 	            );
 	          }),
 	          React.createElement(
+	            'div',
+	            { className: iscityshow },
+	            React.createElement('input', { className: 'fill-city', type: 'text', onBlur: this._addCity })
+	          ),
+	          React.createElement(
 	            'button',
-	            { type: 'button', className: 'ivu-btn ivu-btn-dashed ivu-btn-small' },
+	            { type: 'button', className: 'ivu-btn ivu-btn-dashed ivu-btn-small', onClick: this.addLabel },
 	            React.createElement(
 	              'i',
 	              { className: 'fz ion-ios-plus-empty' },
