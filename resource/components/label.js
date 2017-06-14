@@ -34,12 +34,13 @@ class Label extends React.Component{
   }
 
   /**
-   * 添加城市，成功后关闭添加框
+   * 添加城市，成功后关闭添加框，调用父组件方法后，将e.target.value置为空以便下次使用
    * @param  {[type]} e [description]
    * @return {[type]}   [description]
    */
   _addCity = (e) => {
     this.props._addCity(e);
+    e.target.value = '';
     this.setState({'fillcity':false});
   }
 

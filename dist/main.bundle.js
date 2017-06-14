@@ -29928,7 +29928,7 @@ webpackJsonp([0,1],[
 	        uploadFileFormData.append('file', file);
 	      });
 
-	      //uploadFileFormData.append('username','test123321')
+	      uploadFileFormData.append('username', 'test123321');
 
 	      fetch('/api/upload', {
 	        method: 'POST',
@@ -47463,6 +47463,7 @@ webpackJsonp([0,1],[
 
 	    _this._addCity = function (e) {
 	      _this.props._addCity(e);
+	      e.target.value = '';
 	      _this.setState({ 'fillcity': false });
 	    };
 
@@ -47482,7 +47483,7 @@ webpackJsonp([0,1],[
 	    }
 
 	    /**
-	     * 添加城市，成功后关闭添加框
+	     * 添加城市，成功后关闭添加框，调用父组件方法后，将e.target.value置为空以便下次使用
 	     * @param  {[type]} e [description]
 	     * @return {[type]}   [description]
 	     */

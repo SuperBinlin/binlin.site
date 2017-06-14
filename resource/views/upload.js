@@ -66,7 +66,7 @@ class Upload extends React.Component{
         uploadFileFormData.append('file',file)
       })
 
-      //uploadFileFormData.append('username','test123321')
+      uploadFileFormData.append('username','test123321')
 
       fetch('/api/upload', {
         method: 'POST',
