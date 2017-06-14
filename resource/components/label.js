@@ -28,6 +28,9 @@ class Label extends React.Component{
 
   addLabel = ()=>{
     this.setState({'fillcity':true});
+    setTimeout(()=>{
+       this.refs.getcity.focus();
+     },100)
   }
 
   /**
@@ -59,7 +62,7 @@ class Label extends React.Component{
             })
           }
           <div className={iscityshow}>
-            <input className="fill-city" type="text" onBlur={this._addCity}/>
+            <input ref="getcity" className="fill-city" type="text" onBlur={this._addCity}/>
           </div>
   				<button type="button" className="ivu-btn ivu-btn-dashed ivu-btn-small" onClick={this.addLabel}>
   					<i className="fz ion-ios-plus-empty"> </i>

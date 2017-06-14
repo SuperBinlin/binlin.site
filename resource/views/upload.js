@@ -136,6 +136,8 @@ class Upload extends React.Component{
    */
   _addCity = (e) => {
     let labeList = this.state.labeList; 
+    let label = e.target.value;
+    label == "" ? '' :
     labeList.push({'city':e.target.value})
     this.setState({
       labeList:labeList

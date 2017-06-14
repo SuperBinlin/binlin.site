@@ -29861,7 +29861,8 @@ webpackJsonp([0,1],[
 
 	    _this2._addCity = function (e) {
 	      var labeList = _this2.state.labeList;
-	      labeList.push({ 'city': e.target.value });
+	      var label = e.target.value;
+	      label == "" ? '' : labeList.push({ 'city': e.target.value });
 	      _this2.setState({
 	        labeList: labeList
 	      });
@@ -47455,6 +47456,9 @@ webpackJsonp([0,1],[
 
 	    _this.addLabel = function () {
 	      _this.setState({ 'fillcity': true });
+	      setTimeout(function () {
+	        _this.refs.getcity.focus();
+	      }, 100);
 	    };
 
 	    _this._addCity = function (e) {
@@ -47520,7 +47524,7 @@ webpackJsonp([0,1],[
 	          React.createElement(
 	            'div',
 	            { className: iscityshow },
-	            React.createElement('input', { className: 'fill-city', type: 'text', onBlur: this._addCity })
+	            React.createElement('input', { ref: 'getcity', className: 'fill-city', type: 'text', onBlur: this._addCity })
 	          ),
 	          React.createElement(
 	            'button',
