@@ -28,9 +28,15 @@ class Label extends React.Component{
 
   addLabel = ()=>{
     this.setState({'fillcity':true});
-    setTimeout(()=>{
-       this.refs.getcity.focus();
-     },100)
+    // setTimeout(()=>{
+    //    this.refs.getcity.focus();
+    //  },100)
+  }
+
+  addCityFocus(instance){
+    if(instance){
+      instance.focus();
+    }
   }
 
   /**
@@ -46,9 +52,9 @@ class Label extends React.Component{
 
   render() {
     let {labellist, fillcity} = this.state;
-    let iscityshow = classNames('ivu-tag','ivu-tag-closable',{
-      'fillcity':!fillcity
-    })
+    // let iscityshow = classNames('ivu-tag','ivu-tag-closable',{
+    //   'fillcity':!fillcity
+    // })
   	return(
   		<div className="example-case">
   			<div>
@@ -62,13 +68,20 @@ class Label extends React.Component{
                       </div>
             })
           }
-          <div className={iscityshow}>
-            <input ref="getcity" className="fill-city" type="text" onBlur={this._addCity}/>
-          </div>
-  				<button type="button" className="ivu-btn ivu-btn-dashed ivu-btn-small" onClick={this.addLabel}>
-  					<i className="fz ion-ios-plus-empty"> </i>
-  					<span>添加标签</span>
-  				</button>
+
+          {
+            fillcity ? 
+              <div className="ivu-tag ivu-tag-closable">
+                <input ref={this.addCityFocus} className="fill-city" type="text" onBlur={this._addCity}/>
+              </div>
+              : null
+          }
+
+          <button type="button" className="ivu-btn ivu-btn-dashed ivu-btn-small" onClick={this.addLabel}>
+            <i className="fz ion-ios-plus-empty"> </i>
+            <span>添加标签</span>
+          </button>
+          
   			</div>
   		</div>
   	)

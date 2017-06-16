@@ -47456,9 +47456,9 @@ webpackJsonp([0,1],[
 
 	    _this.addLabel = function () {
 	      _this.setState({ 'fillcity': true });
-	      setTimeout(function () {
-	        _this.refs.getcity.focus();
-	      }, 100);
+	      // setTimeout(()=>{
+	      //    this.refs.getcity.focus();
+	      //  },100)
 	    };
 
 	    _this._addCity = function (e) {
@@ -47481,6 +47481,13 @@ webpackJsonp([0,1],[
 	      //props改变时触发，当props改变时，给state重新赋值↑
 	      this.setState({ labellist: nextProps.labelList });
 	    }
+	  }, {
+	    key: 'addCityFocus',
+	    value: function addCityFocus(instance) {
+	      if (instance) {
+	        instance.focus();
+	      }
+	    }
 
 	    /**
 	     * 添加城市，成功后关闭添加框，调用父组件方法后，将e.target.value置为空以便下次使用
@@ -47496,10 +47503,10 @@ webpackJsonp([0,1],[
 	      var _state = this.state,
 	          labellist = _state.labellist,
 	          fillcity = _state.fillcity;
+	      // let iscityshow = classNames('ivu-tag','ivu-tag-closable',{
+	      //   'fillcity':!fillcity
+	      // })
 
-	      var iscityshow = classNames('ivu-tag', 'ivu-tag-closable', {
-	        'fillcity': !fillcity
-	      });
 	      return React.createElement(
 	        'div',
 	        { className: 'example-case' },
@@ -47522,11 +47529,11 @@ webpackJsonp([0,1],[
 	              )
 	            );
 	          }),
-	          React.createElement(
+	          fillcity ? React.createElement(
 	            'div',
-	            { className: iscityshow },
-	            React.createElement('input', { ref: 'getcity', className: 'fill-city', type: 'text', onBlur: this._addCity })
-	          ),
+	            { className: 'ivu-tag ivu-tag-closable' },
+	            React.createElement('input', { ref: this.addCityFocus, className: 'fill-city', type: 'text', onBlur: this._addCity })
+	          ) : null,
 	          React.createElement(
 	            'button',
 	            { type: 'button', className: 'ivu-btn ivu-btn-dashed ivu-btn-small', onClick: this.addLabel },
