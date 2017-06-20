@@ -21845,7 +21845,7 @@ webpackJsonp([0,1],[
 
 	var _upload2 = _interopRequireDefault(_upload);
 
-	var _album = __webpack_require__(374);
+	var _album = __webpack_require__(363);
 
 	var _album2 = _interopRequireDefault(_album);
 
@@ -29820,19 +29820,27 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(366);
+	__webpack_require__(364);
 
-	var _utils = __webpack_require__(369);
+	var _utils = __webpack_require__(370);
 
 	var _utils2 = _interopRequireDefault(_utils);
 
-	var _photo = __webpack_require__(370);
+	var _photo = __webpack_require__(371);
 
 	var _photo2 = _interopRequireDefault(_photo);
 
-	var _label = __webpack_require__(371);
+	var _label = __webpack_require__(372);
 
 	var _label2 = _interopRequireDefault(_label);
+
+	var _locationService = __webpack_require__(375);
+
+	var _locationService2 = _interopRequireDefault(_locationService);
+
+	var _uploadService = __webpack_require__(377);
+
+	var _uploadService2 = _interopRequireDefault(_uploadService);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29842,10 +29850,10 @@ webpackJsonp([0,1],[
 	  function Upload(props) {
 	    (0, _classCallCheck3.default)(this, Upload);
 
-	    var _this2 = (0, _possibleConstructorReturn3.default)(this, (Upload.__proto__ || (0, _getPrototypeOf2.default)(Upload)).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Upload.__proto__ || (0, _getPrototypeOf2.default)(Upload)).call(this, props));
 
-	    _this2._selectCity = function (i) {
-	      var labeList = _this2.state.labeList;
+	    _this._selectCity = function (i) {
+	      var labeList = _this.state.labeList;
 	      var beSelectCity = void 0;
 	      _.map(labeList, function (list, index) {
 	        if (i == index) {
@@ -29856,22 +29864,22 @@ webpackJsonp([0,1],[
 	        }
 	      });
 
-	      _this2.setState({
+	      _this.setState({
 	        labeList: labeList, // setState触发render渲染
 	        beSelectCity: beSelectCity
 	      });
 	    };
 
-	    _this2._addCity = function (e) {
-	      var labeList = _this2.state.labeList;
+	    _this._addCity = function (e) {
+	      var labeList = _this.state.labeList;
 	      var label = e.target.value;
 	      label == "" ? '' : labeList.push({ 'city': e.target.value });
-	      _this2.setState({
+	      _this.setState({
 	        labeList: labeList
 	      });
 	    };
 
-	    _this2.state = {
+	    _this.state = {
 	      filesArr: [], // file对象存储 最终传到后台
 	      fileInfo: { // 存储file信息
 	        number: 0, // 照片数
@@ -29879,30 +29887,33 @@ webpackJsonp([0,1],[
 	      },
 	      imgBase: [], // img base64存储 用于预览
 	      labeList: [], // 标签列表展示数据
-	      beSelectCity: '' // 被选中的标签 
+	      beSelectCity: '', // 被选中的标签 
+	      hiddenId: '' // label所对应的id
 	    };
 
 	    //this._selectCity = this._selectCity.bind(this)
-	    return _this2;
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(Upload, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      var _this = this;
-	      fetch('/api/getlocation', {
-	        method: 'GET'
-	      }).then(function (res) {
-	        if (res.ok) {
-	          res.json().then(function (arr) {
-	            console.log(arr[0].city);
-	            _this.setState({ labeList: arr[0].location });
-	          });
-	        } else {
-	          console.log('error');
+	      var _this2 = this;
+
+	      /**
+	       * 获取label标签
+	       * @param  {[type]} (err,res [description]
+	       * @return {[type]}          [description]
+	       */
+	      _locationService2.default.getLocation(function (err, res) {
+	        if (err) {
+	          console.info(err);
+	          return;
 	        }
-	      }).catch(function (err) {
-	        console.warn(err);
+	        if (res) {
+	          _this2.setState({ labeList: res.location });
+	          _this2.setState({ hiddenId: res._id });
+	        }
 	      });
 	    }
 	  }, {
@@ -29922,9 +29933,17 @@ webpackJsonp([0,1],[
 	      console.log(storeFiles);
 	      this.setState({ filesArr: storeFiles });
 	    }
+
+	    /**
+	     * 点击开始上传时 有2步与后台交互：1、见图片以及选中的label传给后台 2、将现有的label增加到后台
+	     * @return {[type]} [description]
+	     */
+
 	  }, {
 	    key: 'uploadImg',
 	    value: function uploadImg() {
+
+	      // STEP ONE
 	      var uploadFileFormData = new FormData();
 	      _.map(this.state.filesArr, function (file) {
 	        //上传多文件时 
@@ -29932,15 +29951,26 @@ webpackJsonp([0,1],[
 	        uploadFileFormData.append('file', file);
 	      });
 
-	      uploadFileFormData.append('city', 'test');
+	      uploadFileFormData.append('city', this.state.beSelectCity);
 
-	      fetch('/api/upload', {
-	        method: 'POST',
-	        body: uploadFileFormData
-	      }).then(function (data) {
-	        console.log(data);
-	      }).catch(function (err) {
-	        console.warn(err);
+	      _uploadService2.default.upload(uploadFileFormData, function (err, res) {
+	        if (err) {
+	          console.error(err);
+	          return;
+	        }
+	      });
+
+	      //STEP TWO
+	      var labelOpt = {};
+	      labelOpt.location = this.state.labeList;
+	      if (this.state.hiddenId !== '') {
+	        labelOpt.id = this.state.hiddenId;
+	      }
+
+	      console.log(labelOpt, '____________');
+
+	      _locationService2.default.setLocation(labelOpt, function (err, res) {
+	        console.log(res);
 	      });
 	    }
 
@@ -30006,7 +30036,8 @@ webpackJsonp([0,1],[
 	          imgBase = _state.imgBase,
 	          fileInfo = _state.fileInfo,
 	          labeList = _state.labeList,
-	          beSelectCity = _state.beSelectCity;
+	          beSelectCity = _state.beSelectCity,
+	          hiddenId = _state.hiddenId;
 
 	      /**
 	       * 引入classnames库 帮助控制多个className
@@ -30028,6 +30059,7 @@ webpackJsonp([0,1],[
 	        'div',
 	        null,
 	        React.createElement(_label2.default, { labelList: labeList, _selectCity: this._selectCity, _addCity: this._addCity }),
+	        React.createElement('input', { type: 'hidden', value: hiddenId }),
 	        React.createElement(
 	          'div',
 	          { className: 'wu-example', id: 'uploader' },
@@ -30125,10 +30157,85 @@ webpackJsonp([0,1],[
 	;
 
 	exports.default = Upload;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(363), __webpack_require__(365)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(367), __webpack_require__(369)))
 
 /***/ }),
 /* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {/**
+	 * Created by zhangbin
+	 * Date 2017/4/24.
+	 * E-mail skyxuanbin@qq.com
+	 * Link https://superbinlin.github.io/blog/dist/#/resume
+	 */
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(183);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(209);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(210);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(214);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(261);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	__webpack_require__(364);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Album = function (_React$Component) {
+	  (0, _inherits3.default)(Album, _React$Component);
+
+	  function Album(props) {
+	    (0, _classCallCheck3.default)(this, Album);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Album.__proto__ || (0, _getPrototypeOf2.default)(Album)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Album, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement('div', null);
+	    }
+	  }]);
+	  return Album;
+	}(React.Component);
+
+	;
+
+	exports.default = Album;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 364 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 365 */,
+/* 366 */,
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module, _) {/**
@@ -47216,10 +47323,10 @@ webpackJsonp([0,1],[
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(364)(module), __webpack_require__(363)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(368)(module), __webpack_require__(367)))
 
 /***/ }),
-/* 364 */
+/* 368 */
 /***/ (function(module, exports) {
 
 	module.exports = function(module) {
@@ -47235,7 +47342,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 365 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -47289,15 +47396,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 366 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 367 */,
-/* 368 */,
-/* 369 */
+/* 370 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -47340,7 +47439,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ }),
-/* 370 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React) {/**
@@ -47411,7 +47510,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React, classNames) {/**
@@ -47447,7 +47546,7 @@ webpackJsonp([0,1],[
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	__webpack_require__(372);
+	__webpack_require__(373);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47564,25 +47663,18 @@ webpackJsonp([0,1],[
 	  labelList: []
 	};
 	exports.default = Label;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(365)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(369)))
 
 /***/ }),
-/* 372 */
+/* 373 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 373 */,
-/* 374 */
+/* 374 */,
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {/**
-	 * Created by zhangbin
-	 * Date 2017/4/24.
-	 * E-mail skyxuanbin@qq.com
-	 * Link https://superbinlin.github.io/blog/dist/#/resume
-	 */
 
 	'use strict';
 
@@ -47590,55 +47682,139 @@ webpackJsonp([0,1],[
 	  value: true
 	});
 
-	var _getPrototypeOf = __webpack_require__(183);
+	var _stringify = __webpack_require__(378);
 
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	var _stringify2 = _interopRequireDefault(_stringify);
 
-	var _classCallCheck2 = __webpack_require__(209);
+	var _api = __webpack_require__(376);
 
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	var API = _interopRequireWildcard(_api);
 
-	var _createClass2 = __webpack_require__(210);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(214);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(261);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	__webpack_require__(366);
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Album = function (_React$Component) {
-	  (0, _inherits3.default)(Album, _React$Component);
-
-	  function Album(props) {
-	    (0, _classCallCheck3.default)(this, Album);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Album.__proto__ || (0, _getPrototypeOf2.default)(Album)).call(this, props));
-
-	    _this.state = {};
-	    return _this;
+	exports.default = {
+	  getLocation: function getLocation(callback) {
+	    fetch(API.GETLOCATION, {
+	      method: 'GET'
+	    }).then(function (res) {
+	      if (res.ok) {
+	        res.json().then(function (arr) {
+	          callback(null, arr[0]);
+	        });
+	      } else {
+	        callback({
+	          'msg': '返回错误'
+	        });
+	      }
+	    }).catch(function (err) {
+	      callback({
+	        'mes': err
+	      });
+	    });
+	  },
+	  setLocation: function setLocation(data, callback) {
+	    fetch(API.SETLOCATION, {
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      method: 'POST',
+	      body: (0, _stringify2.default)(data)
+	    }).then(function (res) {
+	      if (res.ok) {
+	        res.json().then(function (res) {
+	          callback(null, res);
+	        });
+	      } else {
+	        callback({
+	          'msg': '返回错误'
+	        });
+	      }
+	    }).catch(function (err) {
+	      callback({
+	        'mes': err
+	      });
+	    });
 	  }
+	}; /**
+	    * @date: 2017/06/20
+	    * @author: zhangbin
+	    * @e-mail: superbinlin@163.com
+	    * @see: http://binlin.site:8889/#/resume
+	    */
 
-	  (0, _createClass3.default)(Album, [{
-	    key: 'render',
-	    value: function render() {
-	      return React.createElement('div', null);
-	    }
-	  }]);
-	  return Album;
-	}(React.Component);
+/***/ }),
+/* 376 */
+/***/ (function(module, exports) {
 
-	;
+	'use strict';
 
-	exports.default = Album;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * @date: 2017/06/20
+	 * @author: zhangbin
+	 * @e-mail: superbinlin@163.com
+	 * @see: http://binlin.site:8889/#/resume
+	 */
+
+	var GETLOCATION = exports.GETLOCATION = '/api/getlocation';
+	var SETLOCATION = exports.SETLOCATION = '/api/setlocation';
+
+	var UPLOAD = exports.UPLOAD = '/api/upload';
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _api = __webpack_require__(376);
+
+	var API = _interopRequireWildcard(_api);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	exports.default = {
+	  upload: function upload(formdata, callback) {
+	    fetch('/api/upload', {
+	      method: 'POST',
+	      body: formdata
+	    }).then(function (data) {
+	      callback(null, data);
+	    }).catch(function (err) {
+	      callback(err);
+	    });
+	  }
+	}; /**
+	    * @date: 2017/06/20
+	    * @author: zhangbin
+	    * @e-mail: superbinlin@163.com
+	    * @see: http://binlin.site:8889/#/resume
+	    */
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(379), __esModule: true };
+
+/***/ }),
+/* 379 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(196)
+	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
 
 /***/ })
 ]);

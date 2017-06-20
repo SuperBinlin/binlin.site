@@ -10,6 +10,8 @@ import '../css/upload.css';
 import util from '../utils/utils.js';
 import Photo from '../components/photo.js';
 import Label from '../components/label.js';
+import API_Location from '../service/location.service.js';
+import API_Upload from '../service/upload.service.js';
 
 class Upload extends React.Component{
 
@@ -23,28 +25,29 @@ class Upload extends React.Component{
       },
       imgBase:[],                       // img base64存储 用于预览
       labeList:[],                      // 标签列表展示数据
-      beSelectCity:''                   // 被选中的标签 
+      beSelectCity:'',                  // 被选中的标签 
+      hiddenId:''                       // label所对应的id
     }
 
     //this._selectCity = this._selectCity.bind(this)
   }
 
   componentWillMount(){
-    let _this = this;
-    fetch('/api/getlocation', {
-      method: 'GET'
-    }).then((res)=>{
-      if (res.ok){
-        res.json().then(function(arr){
-          console.log(arr[0].city);
-          _this.setState({labeList: arr[0].location})
-        })
-      }else{
-        console.log('error')
+    /**
+     * 获取label标签
+     * @param  {[type]} (err,res [description]
+     * @return {[type]}          [description]
+     */
+    API_Location.getLocation((err,res) => {
+      if(err){
+        console.info(err);
+        return;
       }
-    }).catch((err)=>{
-      console.warn(err)
-    });
+      if(res){
+        this.setState({labeList: res.location})
+        this.setState({hiddenId: res._id})
+      }
+    })
   }
 
   chooseImg(e){                        // 上传图片
@@ -60,23 +63,40 @@ class Upload extends React.Component{
     this.setState({filesArr: storeFiles});
   }
 
+  /**
+   * 点击开始上传时 有2步与后台交互：1、见图片以及选中的label传给后台 2、将现有的label增加到后台
+   * @return {[type]} [description]
+   */
   uploadImg(){
+
+    // STEP ONE
     let uploadFileFormData = new FormData();
     _.map(this.state.filesArr, (file)=>{                          //上传多文件时 
-        console.info(file)
-        uploadFileFormData.append('file',file)
-      })
+      console.info(file)
+      uploadFileFormData.append('file',file)
+    })
 
-      uploadFileFormData.append('city','test')
+    uploadFileFormData.append('city',this.state.beSelectCity)
 
-      fetch('/api/upload', {
-        method: 'POST',
-        body: uploadFileFormData
-      }).then((data)=>{
-        console.log(data)
-      }).catch((err)=>{
-        console.warn(err)
-      })
+    API_Upload.upload(uploadFileFormData, (err, res)=>{
+      if(err){
+        console.error(err);
+        return;
+      }
+    });
+
+    //STEP TWO
+    let labelOpt = {};
+    labelOpt.location = this.state.labeList;
+    if(this.state.hiddenId !== '') {
+      labelOpt.id = this.state.hiddenId;
+    }
+
+    console.log(labelOpt,'____________')
+    
+    API_Location.setLocation (labelOpt, (err, res)=>{
+      console.log(res)
+    })  
   }
 
 
@@ -149,7 +169,7 @@ class Upload extends React.Component{
   }
 
   render(){
-    let {imgBase, fileInfo, labeList, beSelectCity} = this.state;
+    let {imgBase, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
 
     /**
      * 引入classnames库 帮助控制多个className
@@ -169,6 +189,7 @@ class Upload extends React.Component{
     return (
       <div>
         <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
+        <input type="hidden" value={hiddenId} />
         <div className="wu-example" id="uploader">
           <div className={uploadWp}>
             <div className="placeholder">
