@@ -22,7 +22,8 @@ class Upload extends React.Component{
         size:0                          // 照片总大小
       },
       imgBase:[],                       // img base64存储 用于预览
-      labeList:[]
+      labeList:[],                      // 标签列表展示数据
+      beSelectCity:''                   // 被选中的标签 
     }
 
     //this._selectCity = this._selectCity.bind(this)
@@ -66,7 +67,7 @@ class Upload extends React.Component{
         uploadFileFormData.append('file',file)
       })
 
-      uploadFileFormData.append('username','test123321')
+      uploadFileFormData.append('city','test')
 
       fetch('/api/upload', {
         method: 'POST',
@@ -94,7 +95,7 @@ class Upload extends React.Component{
     this.setState({filesArr: et},()=>{                      // 添加预览
       fileInfo.number = this.state.filesArr.length;
       _.map(et, (file) => {
-        fileInfo.size = fileInfo.size+ file.size/1000000;  // 转出单位为M
+        fileInfo.size = fileInfo.size+ file.size/1000000;   // 转出单位为M
         this.file2canvas(file);
       })
       this.setState({fileInfo:fileInfo})
@@ -116,17 +117,20 @@ class Upload extends React.Component{
    */
   _selectCity = (i) => {
     let labeList = this.state.labeList;
+    let beSelectCity;
     _.map(labeList, (list, index)=>{
       if(i == index) {
         list.actived = true;
+        beSelectCity = list.city;
       } else {
         list.actived = false;
       }
     });
 
     this.setState({
-      labeList:labeList
-    })                     // setState触发render渲染
+      labeList:labeList,                                    // setState触发render渲染
+      beSelectCity:beSelectCity
+    })                                   
   }
 
   /**
@@ -145,7 +149,7 @@ class Upload extends React.Component{
   }
 
   render(){
-    let {imgBase, fileInfo, labeList} = this.state;
+    let {imgBase, fileInfo, labeList, beSelectCity} = this.state;
 
     /**
      * 引入classnames库 帮助控制多个className

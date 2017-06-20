@@ -29846,17 +29846,20 @@ webpackJsonp([0,1],[
 
 	    _this2._selectCity = function (i) {
 	      var labeList = _this2.state.labeList;
+	      var beSelectCity = void 0;
 	      _.map(labeList, function (list, index) {
 	        if (i == index) {
 	          list.actived = true;
+	          beSelectCity = list.city;
 	        } else {
 	          list.actived = false;
 	        }
 	      });
 
 	      _this2.setState({
-	        labeList: labeList
-	      }); // setState触发render渲染
+	        labeList: labeList, // setState触发render渲染
+	        beSelectCity: beSelectCity
+	      });
 	    };
 
 	    _this2._addCity = function (e) {
@@ -29875,7 +29878,8 @@ webpackJsonp([0,1],[
 	        size: 0 // 照片总大小
 	      },
 	      imgBase: [], // img base64存储 用于预览
-	      labeList: []
+	      labeList: [], // 标签列表展示数据
+	      beSelectCity: '' // 被选中的标签 
 	    };
 
 	    //this._selectCity = this._selectCity.bind(this)
@@ -29928,7 +29932,7 @@ webpackJsonp([0,1],[
 	        uploadFileFormData.append('file', file);
 	      });
 
-	      uploadFileFormData.append('username', 'test123321');
+	      uploadFileFormData.append('city', 'test');
 
 	      fetch('/api/upload', {
 	        method: 'POST',
@@ -30001,7 +30005,8 @@ webpackJsonp([0,1],[
 	      var _state = this.state,
 	          imgBase = _state.imgBase,
 	          fileInfo = _state.fileInfo,
-	          labeList = _state.labeList;
+	          labeList = _state.labeList,
+	          beSelectCity = _state.beSelectCity;
 
 	      /**
 	       * 引入classnames库 帮助控制多个className
