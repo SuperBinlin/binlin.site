@@ -10,7 +10,7 @@ import '../css/album.css';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
 
-class Album extends React.Component{
+class Photoshow extends React.Component{
 
   constructor(props) {
     super(props);
@@ -41,15 +41,10 @@ class Album extends React.Component{
   render(){
     let {photoCollection, masonryOptions} = this.state;
     console.log(photoCollection)
-    var childElements = photoCollection.map(function(element, index){
+    var childElements = photoCollection[0].path.map(function(element, index){
      return (
-        <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
-            <img src={element.path[0]} />
-            <div className="shadow">
-              <p className="current-city">{element.city}</p>
-              <a className="view-more" href="">view more</a>
-            </div>
-            
+        <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+            <img src={element} />
         </div>
       );
     });
@@ -69,11 +64,19 @@ class Album extends React.Component{
             <span className="text">Photography</span>
           </div>
         </header>
-        {childElements}
+        <Masonry
+            className={'my-gallery-class row'} // default ''
+            elementType={'div'} // default 'div'
+            options={masonryOptions} // default {}
+            disableImagesLoaded={false} // default false
+            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        >
+            {childElements}
+        </Masonry>
       </div>
     );
   }
 };
 
-export default Album;
+export default Photoshow;
 

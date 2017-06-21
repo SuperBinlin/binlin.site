@@ -47856,28 +47856,59 @@ webpackJsonp([0,1],[
 	          masonryOptions = _state.masonryOptions;
 
 	      console.log(photoCollection);
-	      var childElements = photoCollection[1].path.map(function (element, index) {
+	      var childElements = photoCollection.map(function (element, index) {
 	        return React.createElement(
 	          'div',
-	          { className: 'image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12', key: index },
-	          React.createElement('img', { src: element })
+	          { className: 'image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12', key: index },
+	          React.createElement('img', { src: element.path[0] }),
+	          React.createElement(
+	            'div',
+	            { className: 'shadow' },
+	            React.createElement(
+	              'p',
+	              { className: 'current-city' },
+	              element.city
+	            ),
+	            React.createElement(
+	              'a',
+	              { className: 'view-more', href: '' },
+	              'view more'
+	            )
+	          )
 	        );
 	      });
 
 	      return React.createElement(
 	        'div',
 	        { className: 'container' },
+	        React.createElement('div', { className: 'bg-ooo' }),
 	        React.createElement(
-	          _reactMasonryComponent2.default,
-	          {
-	            className: 'my-gallery-class row' // default ''
-	            , elementType: 'div' // default 'div'
-	            , options: masonryOptions // default {}
-	            , disableImagesLoaded: false // default false
-	            , updateOnEachImageLoad: false // default false and works only if disableImagesLoaded is false
-	          },
-	          childElements
-	        )
+	          'header',
+	          null,
+	          React.createElement(
+	            'div',
+	            { className: 'title' },
+	            React.createElement(
+	              'a',
+	              { className: 'link-wp' },
+	              React.createElement('span', null),
+	              React.createElement('span', null),
+	              React.createElement('span', null),
+	              React.createElement('span', null)
+	            ),
+	            React.createElement(
+	              'span',
+	              { className: 'name' },
+	              'SuperBinlin'
+	            ),
+	            React.createElement(
+	              'span',
+	              { className: 'text' },
+	              'Photography'
+	            )
+	          )
+	        ),
+	        childElements
 	      );
 	    }
 	  }]);
