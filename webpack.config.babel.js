@@ -32,6 +32,7 @@ let config = {
         loaders:[
             {
                 test: /\.js[x]?$/,
+                //exclude: /(node_modules|lib)/,
                 exclude: /node_modules/,
                 loader: 'babel-loader' ,
                 query:{

@@ -6,19 +6,61 @@
  */
 
 'use strict';
-import '../css/upload.css';
+import '../css/album.css';
+import Masonry from 'react-masonry-component';
+import API_Upload from '../service/upload.service.js';
 
 class Album extends React.Component{
 
   constructor(props) {
     super(props);
     this.state = {
-
+      photoCollection: [
+        {path:[]},
+        {path:[]},
+        {path:[]},
+      ],
+      masonryOptions:{
+        transitionDuration: 500
+      }
     }
   }
+
+  componentWillMount(){
+    API_Upload.getimg( (err, res) => {
+      if(err) {
+        console.log(err)
+        return;
+      }
+
+      this.setState({photoCollection: res})
+      console.log(2)
+    })
+  }
+
   render(){
+    let {photoCollection, masonryOptions} = this.state;
+    console.log(photoCollection)
+    var childElements = photoCollection[1].path.map(function(element, index){
+     return (
+        <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+            <img src={element} />
+        </div>
+      );
+    });
+
     return (
-      <div></div>
+      <div className="container">
+        <Masonry
+            className={'my-gallery-class row'} // default ''
+            elementType={'div'} // default 'div'
+            options={masonryOptions} // default {}
+            disableImagesLoaded={false} // default false
+            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        >
+            {childElements}
+        </Masonry>
+      </div>
     );
   }
 };

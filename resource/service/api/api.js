@@ -9,3 +9,4 @@ export const GETLOCATION = '/api/getlocation';
 export const SETLOCATION = '/api/setlocation';
 
 export const UPLOAD = '/api/upload';
+export const GETIMG = '/api/getimg';

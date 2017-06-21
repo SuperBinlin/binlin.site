@@ -8354,3 +8354,15 @@ p.copyright a:hover{
 }
 
 
+
+.my-gallery-class{
+  
+}
+.image-element-class{
+  margin-bottom: 10px;
+}
+
+.image-element-class img{
+  max-width: 100%;
+  display: block;
+}

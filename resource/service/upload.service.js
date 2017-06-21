@@ -9,12 +9,30 @@ import * as API from './api/api'
 
 export default {
   upload (formdata,callback) {
-    fetch('/api/upload', {
+    fetch(API.UPLOAD, {
       method: 'POST',
       body: formdata
-    }).then((data)=>{
-      callback(null,data)
-    }).catch((err)=>{
+    }).then((res) => {
+      callback(null,res)
+    }).catch((err) => {
+      callback(err)
+    })
+  },
+
+  getimg (callback){
+    fetch(API.GETIMG, {
+      method: 'GET',
+    }).then((res) => {
+      if (res.ok){
+        res.json().then(function(arr){
+          callback(null, arr)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err) => {
       callback(err)
     })
   }
