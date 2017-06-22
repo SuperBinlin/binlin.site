@@ -7,12 +7,12 @@
 import React,{ Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
-
 import App from "../app.jsx";
 import NotFound from "../views/404.js";
 import Resume from "../views/resume.js";
 import Upload from "../views/upload.js";
 import Album from "../views/album.js";
+import Photoshow from "../views/photoshow.js";
 
 
 class Routes extends Component{
@@ -20,10 +20,11 @@ class Routes extends Component{
       return (
         <Router>
           <Route path="/" component={App}>
-            <Route path="resume" component={Resume}/>
-            <Route path="upload" component={Upload}/>
+            <Route path="resume" component={Resume} />
+            <Route path="upload" component={Upload} />
             <Route path="album" component={Album}/>
-            <Route path="*" component={NotFound}/>
+            <Route path="photo/:city" component={Photoshow} />
+            <Route path="*" component={NotFound} />
           </Route>
         </Router>
       );

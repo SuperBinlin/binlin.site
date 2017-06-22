@@ -19,9 +19,14 @@ export default {
     })
   },
 
-  getimg (callback){
+  getimg (conditions, callback){
     fetch(API.GETIMG, {
-      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(conditions)
     }).then((res) => {
       if (res.ok){
         res.json().then(function(arr){

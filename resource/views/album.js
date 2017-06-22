@@ -9,17 +9,14 @@
 import '../css/album.css';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
+import { Link } from 'react-router';
 
 class Album extends React.Component{
 
   constructor(props) {
     super(props);
     this.state = {
-      photoCollection: [
-        {path:[]},
-        {path:[]},
-        {path:[]},
-      ],
+      photoCollection: [],
       masonryOptions:{
         transitionDuration: 500
       }
@@ -27,31 +24,50 @@ class Album extends React.Component{
   }
 
   componentWillMount(){
-    API_Upload.getimg( (err, res) => {
+    API_Upload.getimg({}, (err, res) => {
       if(err) {
         console.log(err)
         return;
       }
 
       this.setState({photoCollection: res})
-      console.log(2)
     })
+  }
+
+  randomNum(Min, Max) {
+    let Range = Max - Min;
+    let Rand = Math.random();
+    let num = Min + Math.floor(Rand * Range); //舍去
+    return num;
   }
 
   render(){
     let {photoCollection, masonryOptions} = this.state;
     console.log(photoCollection)
-    var childElements = photoCollection.map(function(element, index){
-     return (
+    let childElements = photoCollection.map((element, index) => {
+      /**
+       * 随机展示当前相册的一张图片，需要知道当前相册的张数，然后获取随机数，展示随机照片
+       * @type {String}
+       */
+      let maxPhotoLength = element.path.length || 0;
+      let num = this.randomNum(0,maxPhotoLength);
+
+
+      /**
+       * 版本差异导致LINK带params的方式有所区别
+       * example: <Link to="/property/:propId" params={{ propId: "123"}} ></Link>
+       */
+      return (
         <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
-            <img src={element.path[0]} />
-            <div className="shadow">
-              <p className="current-city">{element.city}</p>
-              <a className="view-more" href="">view more</a>
-            </div>
-            
+          <img src={element.path[num]} />
+          <div className="shadow">
+            <p className="current-city">{element.city}</p>
+            <Link to={{pathname: '/photo/'+element.city}}>
+              <span className="view-more">view more</span>
+            </Link>
+          </div>
         </div>
-      );
+       );
     });
 
     return (
@@ -69,7 +85,15 @@ class Album extends React.Component{
             <span className="text">Photography</span>
           </div>
         </header>
-        {childElements}
+        <Masonry
+            className={'my-gallery-class row'} // default ''
+            elementType={'div'} // default 'div'
+            options={masonryOptions} // default {}
+            disableImagesLoaded={false} // default false
+            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        >
+            {childElements}
+        </Masonry>
       </div>
     );
   }
