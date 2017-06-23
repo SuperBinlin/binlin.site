@@ -9,6 +9,7 @@
 import '../css/album.css';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
+
 /**
  * https://github.com/minhtranite/react-photoswipe
  */
@@ -20,36 +21,15 @@ class Photoshow extends React.Component{
     super(props);
     this.state = {
       photoCollection: [
-        {path:[]}
+        {img:[]}
       ],
       masonryOptions:{
         transitionDuration: 500
       },
       isphotoSwipeOpen:false,
       photoSwipe: {
-        items:[
-           {
-        src: 'http://localhost:3001/uploadImage/0.7984753753156648.jpg',
-        w: 1200,
-        h: 900,
-        title: 'Image 1'
-      },
-      {
-        src: 'http://localhost:3001/uploadImage/0.16143636716795862.jpg',
-        w: 1200,
-        h: 900,
-        title: 'Image 2'
-      },
-      {
-        src: 'http://localhost:3001/uploadImage/0.5790153392843134.jpg',
-        w: 1200,
-        h: 900,
-        title: 'Image 3'
-      }
-        ],
-        options:{
-          index:1
-        }
+        items:[],
+        options:{}
       }
     }
   }
@@ -61,8 +41,13 @@ class Photoshow extends React.Component{
         console.log(err)
         return;
       }
-      this.setState({photoCollection: res})
-
+      this.setState({
+        photoCollection: res,
+        photoSwipe:{
+          items:res[0].img,
+          options:{}
+        }
+      })
     })
   }
 
@@ -70,21 +55,22 @@ class Photoshow extends React.Component{
     this.setState({isphotoSwipeOpen:false})
   }
 
-  showPhotoswipe = () => {
+  showPhotoswipe = (i) => {
+    console.log(i)
     this.setState({
-      isphotoSwipeOpen: true,
-      options: {
-        closeOnScroll: false
-      }
+      isphotoSwipeOpen: true
     });
+
+    this.setState({photoSwipe:Object.assign({}, this.state.photoSwipe,{options:{index:i}})})
   }
 
   render(){
     let {photoCollection, masonryOptions, photoSwipe, isphotoSwipeOpen} = this.state;
-    let childElements = photoCollection[0].path.map((element, index) => {
+    console.log(photoCollection)
+    let childElements = photoCollection[0].img.map((element, index) => {
      return (
-        <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index} onClick={this.showPhotoswipe}>
-            <img src={element} />
+        <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index} onClick={()=>{this.showPhotoswipe(index)}}>
+            <img src={element.src} />
         </div>
       );
     });
@@ -113,6 +99,7 @@ class Photoshow extends React.Component{
         >
             {childElements}
         </Masonry>
+
         <PhotoSwipe isOpen={isphotoSwipeOpen} items={photoSwipe.items} options={photoSwipe.options} onClose={this.closePhotoswipe}/>
       </div>
     );

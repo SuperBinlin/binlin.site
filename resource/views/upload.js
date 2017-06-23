@@ -52,6 +52,7 @@ class Upload extends React.Component{
 
   chooseImg(e){                        // 上传图片
     let et = e.target.files;
+    console.log(et)
     this.resetState(et);
   }
 

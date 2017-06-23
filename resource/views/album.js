@@ -49,7 +49,7 @@ class Album extends React.Component{
        * 随机展示当前相册的一张图片，需要知道当前相册的张数，然后获取随机数，展示随机照片
        * @type {String}
        */
-      let maxPhotoLength = element.path.length || 0;
+      let maxPhotoLength = element.img.length || 0;
       let num = this.randomNum(0,maxPhotoLength);
 
 
@@ -59,7 +59,7 @@ class Album extends React.Component{
        */
       return (
         <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
-          <img src={element.path[num]} />
+          <img src={element.img[num].src} />
           <div className="shadow">
             <p className="current-city">{element.city}</p>
             <Link to={{pathname: '/photo/'+element.city}}>

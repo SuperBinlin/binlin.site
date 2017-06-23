@@ -139,3 +139,15 @@ header{
   letter-spacing: 8.6px;
   opacity: .3;
 }
+
+@media (max-width: 768px) {
+  div.col-xs-12{
+    width:50%;
+  }
+}
+
+@media (max-width: 319px) {
+  div.col-xs-12{
+    width:100%;
+  }
+}

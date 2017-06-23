@@ -29938,6 +29938,7 @@ webpackJsonp([0,1],[
 	    value: function chooseImg(e) {
 	      // 上传图片
 	      var et = e.target.files;
+	      console.log(et);
 	      this.resetState(et);
 	    }
 	  }, {
@@ -47900,7 +47901,7 @@ webpackJsonp([0,1],[
 	         * 随机展示当前相册的一张图片，需要知道当前相册的张数，然后获取随机数，展示随机照片
 	         * @type {String}
 	         */
-	        var maxPhotoLength = element.path.length || 0;
+	        var maxPhotoLength = element.img.length || 0;
 	        var num = _this3.randomNum(0, maxPhotoLength);
 
 	        /**
@@ -47910,7 +47911,7 @@ webpackJsonp([0,1],[
 	        return React.createElement(
 	          'div',
 	          { className: 'image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12', key: index },
-	          React.createElement('img', { src: element.path[num] }),
+	          React.createElement('img', { src: element.img[num].src }),
 	          React.createElement(
 	            'div',
 	            { className: 'shadow' },
@@ -56317,6 +56318,10 @@ webpackJsonp([0,1],[
 	  value: true
 	});
 
+	var _assign = __webpack_require__(424);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
 	var _getPrototypeOf = __webpack_require__(183);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -56363,41 +56368,24 @@ webpackJsonp([0,1],[
 	      _this.setState({ isphotoSwipeOpen: false });
 	    };
 
-	    _this.showPhotoswipe = function () {
+	    _this.showPhotoswipe = function (i) {
+	      console.log(i);
 	      _this.setState({
-	        isphotoSwipeOpen: true,
-	        options: {
-	          closeOnScroll: false
-	        }
+	        isphotoSwipeOpen: true
 	      });
+
+	      _this.setState({ photoSwipe: (0, _assign2.default)({}, _this.state.photoSwipe, { options: { index: i } }) });
 	    };
 
 	    _this.state = {
-	      photoCollection: [{ path: [] }],
+	      photoCollection: [{ img: [] }],
 	      masonryOptions: {
 	        transitionDuration: 500
 	      },
 	      isphotoSwipeOpen: false,
 	      photoSwipe: {
-	        items: [{
-	          src: 'http://localhost:3001/uploadImage/0.7984753753156648.jpg',
-	          w: 1200,
-	          h: 900,
-	          title: 'Image 1'
-	        }, {
-	          src: 'http://localhost:3001/uploadImage/0.16143636716795862.jpg',
-	          w: 1200,
-	          h: 900,
-	          title: 'Image 2'
-	        }, {
-	          src: 'http://localhost:3001/uploadImage/0.5790153392843134.jpg',
-	          w: 1200,
-	          h: 900,
-	          title: 'Image 3'
-	        }],
-	        options: {
-	          index: 1
-	        }
+	        items: [],
+	        options: {}
 	      }
 	    };
 	    return _this;
@@ -56414,7 +56402,13 @@ webpackJsonp([0,1],[
 	          console.log(err);
 	          return;
 	        }
-	        _this2.setState({ photoCollection: res });
+	        _this2.setState({
+	          photoCollection: res,
+	          photoSwipe: {
+	            items: res[0].img,
+	            options: {}
+	          }
+	        });
 	      });
 	    }
 	  }, {
@@ -56428,11 +56422,14 @@ webpackJsonp([0,1],[
 	          photoSwipe = _state.photoSwipe,
 	          isphotoSwipeOpen = _state.isphotoSwipeOpen;
 
-	      var childElements = photoCollection[0].path.map(function (element, index) {
+	      console.log(photoCollection);
+	      var childElements = photoCollection[0].img.map(function (element, index) {
 	        return React.createElement(
 	          'div',
-	          { className: 'image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12', key: index, onClick: _this3.showPhotoswipe },
-	          React.createElement('img', { src: element })
+	          { className: 'image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12', key: index, onClick: function onClick() {
+	              _this3.showPhotoswipe(index);
+	            } },
+	          React.createElement('img', { src: element.src })
 	        );
 	      });
 
@@ -56483,6 +56480,7 @@ webpackJsonp([0,1],[
 	  }]);
 	  return Photoshow;
 	}(React.Component);
+
 	/**
 	 * https://github.com/minhtranite/react-photoswipe
 	 */
@@ -62091,6 +62089,66 @@ webpackJsonp([0,1],[
 	module.exports = pick;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 424 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(425), __esModule: true };
+
+/***/ }),
+/* 425 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	__webpack_require__(426);
+	module.exports = __webpack_require__(196).Object.assign;
+
+/***/ }),
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// 19.1.3.1 Object.assign(target, source)
+	var $export = __webpack_require__(195);
+
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(427)});
+
+/***/ }),
+/* 427 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	// 19.1.2.1 Object.assign(target, source, ...)
+	var getKeys  = __webpack_require__(228)
+	  , gOPS     = __webpack_require__(252)
+	  , pIE      = __webpack_require__(253)
+	  , toObject = __webpack_require__(186)
+	  , IObject  = __webpack_require__(231)
+	  , $assign  = Object.assign;
+
+	// should work with symbols and should have deterministic property order (V8 bug)
+	module.exports = !$assign || __webpack_require__(205)(function(){
+	  var A = {}
+	    , B = {}
+	    , S = Symbol()
+	    , K = 'abcdefghijklmnopqrst';
+	  A[S] = 7;
+	  K.split('').forEach(function(k){ B[k] = k; });
+	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+	}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+	  var T     = toObject(target)
+	    , aLen  = arguments.length
+	    , index = 1
+	    , getSymbols = gOPS.f
+	    , isEnum     = pIE.f;
+	  while(aLen > index){
+	    var S      = IObject(arguments[index++])
+	      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+	      , length = keys.length
+	      , j      = 0
+	      , key;
+	    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+	  } return T;
+	} : $assign;
 
 /***/ })
 ]);
