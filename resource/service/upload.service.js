@@ -13,7 +13,15 @@ export default {
       method: 'POST',
       body: formdata
     }).then((res) => {
-      callback(null,res)
+      if (res.ok){
+        res.json().then(function(arr){
+          callback(null,arr)
+        })
+      }else{
+        callback({
+          'msg':res.statusText
+        })
+      }
     }).catch((err) => {
       callback(err)
     })

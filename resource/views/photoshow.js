@@ -71,7 +71,9 @@ class Photoshow extends React.Component{
     let childElements = photoCollection[0].img.map((element, index) => {
      return (
         <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index} onClick={()=>{this.showPhotoswipe(index)}}>
+          <div className="img-wp">
             <img src={element.src} />
+          </div>
         </div>
       );
     });

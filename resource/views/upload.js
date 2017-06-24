@@ -12,6 +12,10 @@ import Photo from '../components/photo.js';
 import Label from '../components/label.js';
 import API_Location from '../service/location.service.js';
 import API_Upload from '../service/upload.service.js';
+/**
+ * https://github.com/igorprado/react-notification-system
+ */
+import NotificationSystem from 'react-notification-system';
 
 class Upload extends React.Component{
 
@@ -29,10 +33,12 @@ class Upload extends React.Component{
       hiddenId:''                       // label所对应的id
     }
 
+    this._notificationSystem = null;
     //this._selectCity = this._selectCity.bind(this)
   }
 
-  componentWillMount(){
+
+  componentWillMount() {
     /**
      * 获取label标签
      * @param  {[type]} (err,res [description]
@@ -48,6 +54,21 @@ class Upload extends React.Component{
         this.setState({hiddenId: res._id})
       }
     })
+  }
+
+  componentDidMount() {
+    this._notificationSystem = this.refs.notificationSystem;
+  }
+
+  /**
+   * {
+   *   title:'Notification title',
+   *   message: 'Notification message',
+   *   level: 'success'
+   * }
+   */
+  notify(obj){
+    this._notificationSystem.addNotification(obj);
   }
 
   chooseImg(e){                        // 上传图片
@@ -71,42 +92,94 @@ class Upload extends React.Component{
   uploadImg(){
 
     // STEP ONE
-    let uploadFileFormData = new FormData();
-    _.map(this.state.filesArr, (file)=>{                          //上传多文件时 
-      console.info(file)
-      uploadFileFormData.append('file',file)
-    })
+    let uploadFileFormData = new FormData(),
+        uploadPermission = true;
 
-    uploadFileFormData.append('city',this.state.beSelectCity)
 
-    API_Upload.upload(uploadFileFormData, (err, res)=>{
-      if(err){
-        console.error(err);
-        return;
+    /**
+     * label 非空判断
+     * @type {[type]}
+     */
+    this.state.beSelectCity == '' ? 
+    this.notify({
+      title:'Tip',
+      message:'请选择一个标签',
+      level:'error',
+      onAdd:()=>{
+        uploadPermission =false;
       }
-    });
+    })
+    : uploadFileFormData.append('city',this.state.beSelectCity);
 
-    //STEP TWO
-    let labelOpt = {};
-    labelOpt.location = this.state.labeList;
-    if(this.state.hiddenId !== '') {
-      labelOpt.id = this.state.hiddenId;
-    }
+    this.state.filesArr.length == 0 ? 
+    this.notify({
+      title:'Tip',
+      message:'请至少选择一张图片',
+      level:'error',
+      onAdd:()=>{
+        uploadPermission =false;
+      }
+    })
+    : _.map(this.state.filesArr, (file)=>{                          //上传多文件时 
+        uploadFileFormData.append('file',file)
+      });
 
-    console.log(labelOpt,'____________')
-    
-    API_Location.setLocation (labelOpt, (err, res)=>{
-      console.log(res)
-    })  
+    uploadPermission ?
+    //STEP ONE
+    (function(_this){
+      API_Upload.upload(uploadFileFormData, (err, res)=>{
+        if(err){
+          console.error(err);
+          _this.notify({
+            title:'Tip',
+            message:'上传失败 '+ err.msg,
+            level:'error'
+          })
+          return;
+        }
+        console.log(res)
+        _this.notify({
+          title:'Tip',
+          message:res.msg,
+          level:'info'
+        })
+      }) 
+      //STEP TWO
+      let labelOpt = {};
+      labelOpt.location = _this.state.labeList;
+      if(_this.state.hiddenId !== '') {
+        labelOpt.id = _this.state.hiddenId;
+      }
+      
+      API_Location.setLocation (labelOpt, (err, res)=>{
+        console.log(res)
+      })
+
+      _this.initData();  
+    }(this))
+    : '';
+
+  }
+
+  initData(){
+    this.setState({
+      imgBase:[],
+      beSelectCity:'',
+      filesArr: [],                    
+      fileInfo:{                       
+        number:0,                      
+        size:0                         
+      },
+    })
   }
 
 
-/**
- * [resetState description]
- * @param  {[type]} et [上传的文件]
- * @return {[type]}    [description]
- * 将上传文件暂存进filesArr,等待调用uploadImg上传至服务器
- */
+ /**
+  * [resetState description]
+  * @param  {[type]} et [上传的文件]
+  * @return {[type]}    [description]
+  * 将上传文件暂存进filesArr,等待调用uploadImg上传至服务器
+  */
   resetState(et){                                           // 重写filesArr
     let fileInfo = {
       number:0,                       
@@ -123,6 +196,9 @@ class Upload extends React.Component{
     });
   }
 
+  /**
+   * TODO 性能后期可优化
+   */
   file2canvas(files){
     util.readBlobAsDataURL(files, (dataurl)=>{
       let storeImg = this.state.imgBase;                    // 获取图片暂存
@@ -236,6 +312,7 @@ class Upload extends React.Component{
             </div>
           </div>
         </div>
+        <NotificationSystem ref="notificationSystem" />
       </div>
     );
   }
