@@ -56,13 +56,18 @@ class Album extends React.Component{
       /**
        * 版本差异导致LINK带params的方式有所区别
        * example: <Link to="/property/:propId" params={{ propId: "123"}} ></Link>
+       * <Link to={{pathname: '/photo/'+element.city}}>
+       *  <span className="view-more">view more</span>
+       * </Link>
+       * 获取params:this.props.params.city
+       * 获取query:this.props.location.query.city
        */
       return (
         <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
           <img src={element.img[num].src} />
           <div className="shadow">
             <p className="current-city">{element.city}</p>
-            <Link to={{pathname: '/photo/'+element.city}}>
+            <Link to='photo/' query={{city: element.city}}>
               <span className="view-more">view more</span>
             </Link>
           </div>

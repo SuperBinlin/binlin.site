@@ -21875,7 +21875,7 @@ webpackJsonp([0,1],[
 	          _react2.default.createElement(_reactRouter.Route, { path: 'resume', component: _resume2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'upload', component: _upload2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'album', component: _album2.default }),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'photo/:city', component: _photoshow2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'photo', component: _photoshow2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: '*', component: _2.default })
 	        )
 	      );
@@ -47907,6 +47907,11 @@ webpackJsonp([0,1],[
 	        /**
 	         * 版本差异导致LINK带params的方式有所区别
 	         * example: <Link to="/property/:propId" params={{ propId: "123"}} ></Link>
+	         * <Link to={{pathname: '/photo/'+element.city}}>
+	         *  <span className="view-more">view more</span>
+	         * </Link>
+	         * 获取params:this.props.params.city
+	         * 获取query:this.props.location.query.city
 	         */
 	        return React.createElement(
 	          'div',
@@ -47922,7 +47927,7 @@ webpackJsonp([0,1],[
 	            ),
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: { pathname: '/photo/' + element.city } },
+	              { to: 'photo/', query: { city: element.city } },
 	              React.createElement(
 	                'span',
 	                { className: 'view-more' },
@@ -56396,7 +56401,8 @@ webpackJsonp([0,1],[
 	    value: function componentWillMount() {
 	      var _this2 = this;
 
-	      var city = this.props.params.city;
+	      var city = this.props.location.query.city;
+	      console.log(city);
 	      _uploadService2.default.getimg({ 'city': city }, function (err, res) {
 	        if (err) {
 	          console.log(err);

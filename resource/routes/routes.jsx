@@ -23,7 +23,7 @@ class Routes extends Component{
             <Route path="resume" component={Resume} />
             <Route path="upload" component={Upload} />
             <Route path="album" component={Album}/>
-            <Route path="photo/:city" component={Photoshow} />
+            <Route path="photo" component={Photoshow} />
             <Route path="*" component={NotFound} />
           </Route>
         </Router>

@@ -35,7 +35,8 @@ class Photoshow extends React.Component{
   }
 
   componentWillMount(){
-    let city = this.props.params.city;
+    let city = this.props.location.query.city;
+    console.log(city)
     API_Upload.getimg({'city':city}, (err, res) => {
       if(err) {
         console.log(err)

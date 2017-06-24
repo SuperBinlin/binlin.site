@@ -9162,6 +9162,10 @@ header{
   div.col-xs-12{
     width:50%;
   }
+  .image-element-class-album{
+    height:140px;
+    line-height: 140px;
+  }
 }
 
 @media (max-width: 319px) {
