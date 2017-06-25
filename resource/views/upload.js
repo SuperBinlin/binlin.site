@@ -153,9 +153,9 @@ class Upload extends React.Component{
       
       API_Location.setLocation (labelOpt, (err, res)=>{
         console.log(res)
+        _this.initData();
       })
 
-      _this.initData();  
     }(this))
     : '';
 

@@ -30043,9 +30043,8 @@ webpackJsonp([0,1],[
 
 	        _locationService2.default.setLocation(labelOpt, function (err, res) {
 	          console.log(res);
+	          _this.initData();
 	        });
-
-	        _this.initData();
 	      }(this) : '';
 	    }
 	  }, {
