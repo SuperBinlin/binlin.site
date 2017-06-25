@@ -6,6 +6,7 @@
  */
 
 import * as API from './api/api'
+import 'whatwg-fetch';
 
 export default {
   upload (formdata,callback) {

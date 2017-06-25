@@ -5,7 +5,11 @@
  * @see: http://binlin.site:8889/#/resume
  */
 
-import * as API from './api/api'
+import * as API from './api/api';
+/**
+ * 在此不引用 移动端会报fetch 
+ */
+import 'whatwg-fetch';
 
 export default {
   getLocation (callback) {
