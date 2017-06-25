@@ -30014,9 +30014,18 @@ webpackJsonp([0,1],[
 	        uploadFileFormData.append('file', file);
 	      });
 
-	      uploadPermission ?
-	      //STEP ONE
-	      function (_this) {
+	      uploadPermission ? function (_this) {
+	        //STEP TWO
+	        var labelOpt = {};
+	        labelOpt.location = _this.state.labeList;
+	        if (_this.state.hiddenId !== '') {
+	          labelOpt.id = _this.state.hiddenId;
+	        }
+
+	        _locationService2.default.setLocation(labelOpt, function (err, res) {
+	          console.log(res);
+	        });
+	        //STEP ONE
 	        _uploadService2.default.upload(uploadFileFormData, function (err, res) {
 	          if (err) {
 	            console.error(err);
@@ -30033,16 +30042,6 @@ webpackJsonp([0,1],[
 	            message: res.msg,
 	            level: 'info'
 	          });
-	        });
-	        //STEP TWO
-	        var labelOpt = {};
-	        labelOpt.location = _this.state.labeList;
-	        if (_this.state.hiddenId !== '') {
-	          labelOpt.id = _this.state.hiddenId;
-	        }
-
-	        _locationService2.default.setLocation(labelOpt, function (err, res) {
-	          console.log(res);
 	          _this.initData();
 	        });
 	      }(this) : '';

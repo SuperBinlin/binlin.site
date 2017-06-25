@@ -125,8 +125,19 @@ class Upload extends React.Component{
       });
 
     uploadPermission ?
-    //STEP ONE
+    
     (function(_this){
+      //STEP TWO
+      let labelOpt = {};
+      labelOpt.location = _this.state.labeList;
+      if(_this.state.hiddenId !== '') {
+        labelOpt.id = _this.state.hiddenId;
+      }
+      
+      API_Location.setLocation (labelOpt, (err, res)=>{
+        console.log(res)
+      })
+      //STEP ONE
       API_Upload.upload(uploadFileFormData, (err, res)=>{
         if(err){
           console.error(err);
@@ -143,18 +154,8 @@ class Upload extends React.Component{
           message:res.msg,
           level:'info'
         })
-      }) 
-      //STEP TWO
-      let labelOpt = {};
-      labelOpt.location = _this.state.labeList;
-      if(_this.state.hiddenId !== '') {
-        labelOpt.id = _this.state.hiddenId;
-      }
-      
-      API_Location.setLocation (labelOpt, (err, res)=>{
-        console.log(res)
         _this.initData();
-      })
+      }) 
 
     }(this))
     : '';
