@@ -29109,7 +29109,7 @@ webpackJsonp([0,1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(435);
+	__webpack_require__(333);
 
 	__webpack_require__(342);
 
@@ -29143,7 +29143,12 @@ webpackJsonp([0,1],[
 	exports.default = App;
 
 /***/ }),
-/* 333 */,
+/* 333 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 334 */,
 /* 335 */,
 /* 336 */,
@@ -57958,8 +57963,16 @@ webpackJsonp([0,1],[
 	      _this.setState({
 	        isphotoSwipeOpen: true
 	      });
-
-	      _this.setState({ photoSwipe: (0, _assign2.default)({}, _this.state.photoSwipe, { options: { index: i } }) });
+	      _this.setState({ photoSwipe: (0, _assign2.default)({}, _this.state.photoSwipe, {
+	          options: {
+	            index: i,
+	            shareButtons: [{ id: 'download', label: 'Download image', url: '{{raw_image_url}}', download: true }],
+	            bgOpacity: 0.8,
+	            showHideOpacity: true,
+	            preload: [2, 2]
+	          }
+	        })
+	      });
 	    };
 
 	    _this.state = {
@@ -63739,12 +63752,6 @@ webpackJsonp([0,1],[
 	module.exports = pick;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ }),
-/* 435 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ })
 ]);

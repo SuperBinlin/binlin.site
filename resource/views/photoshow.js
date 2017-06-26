@@ -61,8 +61,18 @@ class Photoshow extends React.Component{
     this.setState({
       isphotoSwipeOpen: true
     });
-
-    this.setState({photoSwipe:Object.assign({}, this.state.photoSwipe,{options:{index:i}})})
+    this.setState({photoSwipe:Object.assign({}, this.state.photoSwipe,{
+      options:{
+          index:i,
+          shareButtons: [
+            {id:'download', label:'Download image', url:'{{raw_image_url}}', download:true}
+          ],
+          bgOpacity:0.8,
+          showHideOpacity:true,
+          preload:[2,2]
+        }
+      })
+    })
   }
 
   render(){
