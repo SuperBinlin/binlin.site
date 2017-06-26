@@ -58021,7 +58021,8 @@ webpackJsonp([0,1],[
 	          photoCollection = _state.photoCollection,
 	          masonryOptions = _state.masonryOptions,
 	          photoSwipe = _state.photoSwipe,
-	          isphotoSwipeOpen = _state.isphotoSwipeOpen;
+	          isphotoSwipeOpen = _state.isphotoSwipeOpen,
+	          currentCity = _state.currentCity;
 
 	      console.log(photoCollection);
 	      var childElements = photoCollection[0].img.map(function (element, index) {

@@ -78,7 +78,7 @@ class Photoshow extends React.Component{
   }
 
   render(){
-    let {photoCollection, masonryOptions, photoSwipe, isphotoSwipeOpen} = this.state;
+    let {photoCollection, masonryOptions, photoSwipe, isphotoSwipeOpen, currentCity} = this.state;
     console.log(photoCollection)
     let childElements = photoCollection[0].img.map((element, index) => {
      return (
