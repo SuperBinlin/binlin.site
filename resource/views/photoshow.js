@@ -30,12 +30,14 @@ class Photoshow extends React.Component{
       photoSwipe: {
         items:[],
         options:{}
-      }
+      },
+      currentCity:""
     }
   }
 
   componentWillMount(){
     let city = this.props.location.query.city;
+    this.setState({currentCity:city})
     console.log(city)
     API_Upload.getimg({'city':city}, (err, res) => {
       if(err) {
@@ -99,7 +101,7 @@ class Photoshow extends React.Component{
               <span></span>
               <span></span>
             </a>
-            <span className="name">SuperBinlin</span>
+            <span className="name">{{currentCity}}</span>
             <span className="text">Photography</span>
           </div>
         </header>

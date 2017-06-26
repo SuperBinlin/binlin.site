@@ -57984,7 +57984,8 @@ webpackJsonp([0,1],[
 	      photoSwipe: {
 	        items: [],
 	        options: {}
-	      }
+	      },
+	      currentCity: ""
 	    };
 	    return _this;
 	  }
@@ -57995,6 +57996,7 @@ webpackJsonp([0,1],[
 	      var _this2 = this;
 
 	      var city = this.props.location.query.city;
+	      this.setState({ currentCity: city });
 	      console.log(city);
 	      _uploadService2.default.getimg({ 'city': city }, function (err, res) {
 	        if (err) {
@@ -58057,7 +58059,7 @@ webpackJsonp([0,1],[
 	            React.createElement(
 	              'span',
 	              { className: 'name' },
-	              'SuperBinlin'
+	              { currentCity: currentCity }
 	            ),
 	            React.createElement(
 	              'span',
