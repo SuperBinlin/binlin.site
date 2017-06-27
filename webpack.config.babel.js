@@ -15,6 +15,7 @@ import 'whatwg-fetch';
 let config = {
     entry:{
         main  : './resource/index.jsx',
+        vendor:['react','jquery','lodash']
     },
     output:{
         path: './dist',

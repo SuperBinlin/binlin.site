@@ -165,7 +165,6 @@ class Upload extends React.Component{
   initData(){
     this.setState({
       imgBase:[],
-      beSelectCity:'',
       filesArr: [],                    
       fileInfo:{                       
         number:0,                      

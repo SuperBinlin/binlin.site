@@ -5,7 +5,7 @@
  */
 'use strict';
 import React,{ Component } from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 import App from "../app.jsx";
 import NotFound from "../views/404.js";
@@ -18,7 +18,7 @@ import Photoshow from "../views/photoshow.js";
 class Routes extends Component{
     render(){
       return (
-        <Router>
+        <Router history={hashHistory}>
           <Route path="/" component={App}>
             <Route path="resume" component={Resume} />
             <Route path="upload" component={Upload} />
