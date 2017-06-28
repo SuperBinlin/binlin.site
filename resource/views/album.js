@@ -99,16 +99,6 @@ class Album extends React.Component{
         >
             {childElements}
         </Masonry>
-
-<div className="jiathis_style_32x32">
-  <a className="jiathis_button_qzone"></a>
-  <a className="jiathis_button_tsina"></a>
-  <a className="jiathis_button_tqq"></a>
-  <a className="jiathis_button_weixin"></a>
-  <a className="jiathis_button_renren"></a>
-  <a href="http://www.jiathis.com/share" className="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-  <a className="jiathis_counter_style"></a>
-</div>
       </div>
     );
   }
