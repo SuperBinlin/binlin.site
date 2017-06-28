@@ -113,7 +113,7 @@ class Photoshow extends React.Component{
             elementType={'div'} // default 'div'
             options={masonryOptions} // default {}
             disableImagesLoaded={false} // default false
-            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+            updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
         >
             {childElements}
         </Masonry>

@@ -35415,7 +35415,7 @@ webpackJsonp([0],[
 	            , elementType: 'div' // default 'div'
 	            , options: masonryOptions // default {}
 	            , disableImagesLoaded: false // default false
-	            , updateOnEachImageLoad: false // default false and works only if disableImagesLoaded is false
+	            , updateOnEachImageLoad: true // default false and works only if disableImagesLoaded is false
 	          },
 	          childElements
 	        ),
