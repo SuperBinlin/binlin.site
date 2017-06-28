@@ -9072,7 +9072,6 @@ header{
 
 .img-wp{
   overflow: hidden;
-  height:auto;
 }
 
 .image-element-class-album.image-element-class img{
@@ -9084,6 +9083,7 @@ header{
 
 .image-element-class img{
   max-width: 100%;
+  height: auto;
   display: block;
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
