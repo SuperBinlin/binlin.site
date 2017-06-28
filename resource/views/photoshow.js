@@ -12,7 +12,7 @@ import API_Upload from '../service/upload.service.js';
 /**
  * https://github.com/hotoo/pinyin
  */
-import pinyin from "pinyin";
+//import pinyin from "pinyin";
 
 /**
  * https://github.com/minhtranite/react-photoswipe
@@ -28,29 +28,19 @@ class Photoshow extends React.Component{
         {img:[]}
       ],
       masonryOptions:{
-        transitionDuration: 200
+        transitionDuration: 500
       },
       isphotoSwipeOpen:false,
       photoSwipe: {
         items:[],
         options:{}
       },
-      currentCity:""
+      currentCity:"--"
     }
   }
 
   componentWillMount(){
-    let city = this.props.location.query.city,
-        pinyinCity = "";
-
-        /**
-         * pinyin返回二维数组 [[cheng],[du]]
-         */
-        _.map(pinyin(city),(pin)=>{
-          pinyinCity = pinyinCity + pin[0]+ ' '
-        });
-
-    this.setState({currentCity:pinyinCity})
+    let city = this.props.location.query.city;
 
     API_Upload.getimg({'city':city}, (err, res) => {
       if(err) {
@@ -62,7 +52,8 @@ class Photoshow extends React.Component{
         photoSwipe:{
           items:res[0].img,
           options:{}
-        }
+        },
+        currentCity:res[0].pinyin
       })
     })
   }
@@ -92,7 +83,6 @@ class Photoshow extends React.Component{
 
   render(){
     let {photoCollection, masonryOptions, photoSwipe, isphotoSwipeOpen, currentCity} = this.state;
-    console.log(currentCity,'>>>>>')
     let childElements = photoCollection[0].img.map((element, index) => {
      return (
         <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index} onClick={()=>{this.showPhotoswipe(index)}}>

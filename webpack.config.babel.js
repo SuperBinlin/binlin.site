@@ -12,10 +12,15 @@ import TransferWebpackPlugin from 'transfer-webpack-plugin';
 import Clean from 'clean-webpack-plugin';
 import 'whatwg-fetch';
 
+import args from "node-args";
+const development = 'DEVELOPMENT';
+const production = 'PRODUCTION';
+const ENV = args.env || development;
+
 let config = {
     entry:{
         main  : './resource/index.jsx',
-        vendor:['react','jquery','lodash']
+        vendor:['react','jquery','lodash','whatwg-fetch']
     },
     output:{
         path: './dist',
@@ -76,8 +81,38 @@ let config = {
                 useShortDoctype: true,
                 removeEmptyAttributes: true
             }
-        }),
-    ]
+        })
+    ],
+    devtool: ENV==production ? '' : '#source-map'
+}
+
+let collection = ((pluginItems)=>{
+  let {plugins} = config;
+  plugins = [...plugins,...pluginItems];
+  Object.assign(config,{plugins});
+});
+
+const productionPlugins = [
+  new webpack.optimize.UglifyJsPlugin({
+    compress:{
+      warnings:false
+    }
+  }),
+  new webpack.DefinePlugin({
+    "process.env": { 
+        NODE_ENV: JSON.stringify("production") 
+    }
+  })
+];
+
+switch (ENV){
+  case development:
+    break;
+  case production:
+    collection(productionPlugins);
+    break;
+  default:
+    break;
 }
 
 module.exports = config;
