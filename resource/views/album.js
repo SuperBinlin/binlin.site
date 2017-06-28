@@ -18,7 +18,7 @@ class Album extends React.Component{
     this.state = {
       photoCollection: [],
       masonryOptions:{
-        transitionDuration: 500
+        transitionDuration: 200
       }
     }
   }

@@ -28,7 +28,7 @@ class Photoshow extends React.Component{
         {img:[]}
       ],
       masonryOptions:{
-        transitionDuration: 500
+        transitionDuration: 200
       },
       isphotoSwipeOpen:false,
       photoSwipe: {

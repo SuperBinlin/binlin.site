@@ -28266,7 +28266,7 @@ webpackJsonp([0],[
 	    _this.state = {
 	      photoCollection: [],
 	      masonryOptions: {
-	        transitionDuration: 500
+	        transitionDuration: 200
 	      }
 	    };
 	    return _this;
@@ -35791,7 +35791,7 @@ webpackJsonp([0],[
 	    _this.state = {
 	      photoCollection: [{ img: [] }],
 	      masonryOptions: {
-	        transitionDuration: 500
+	        transitionDuration: 200
 	      },
 	      isphotoSwipeOpen: false,
 	      photoSwipe: {
