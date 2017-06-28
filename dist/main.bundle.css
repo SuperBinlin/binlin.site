@@ -9072,7 +9072,7 @@ header{
 
 .img-wp{
   overflow: hidden;
-  min-height:100px;
+  height:auto;
 }
 
 .image-element-class-album.image-element-class img{
