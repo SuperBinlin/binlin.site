@@ -73,7 +73,6 @@ class Upload extends React.Component{
 
   chooseImg(e){                        // 上传图片
     let et = e.target.files;
-    console.log(et)
     this.resetState(et);
   }
 
@@ -120,7 +119,7 @@ class Upload extends React.Component{
         uploadPermission =false;
       }
     })
-    : _.map(this.state.filesArr, (file)=>{                          //上传多文件时 
+    : _.map(this.state.filesArr, (file)=>{                     //上传多文件时 
         uploadFileFormData.append('file',file)
       });
 
@@ -138,7 +137,7 @@ class Upload extends React.Component{
         console.log(res)
       })
       //STEP ONE
-      API_Upload.upload(uploadFileFormData, (err, res)=>{
+      API_Upload.uploadtoqiniu(uploadFileFormData, (err, res)=>{
         if(err){
           console.error(err);
           _this.notify({

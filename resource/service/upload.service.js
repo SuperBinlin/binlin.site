@@ -28,6 +28,25 @@ export default {
     })
   },
 
+  uploadtoqiniu(formdata,callback) {
+    fetch(API.UPLOADTOQINIU, {
+      method: 'POST',
+      body: formdata
+    }).then((res) => {
+      if (res.ok){
+        res.json().then(function(arr){
+          callback(null,arr)
+        })
+      }else{
+        callback({
+          'msg':res.statusText
+        })
+      }
+    }).catch((err) => {
+      callback(err)
+    })
+  },
+
   getimg (conditions, callback){
     fetch(API.GETIMG, {
       headers: {

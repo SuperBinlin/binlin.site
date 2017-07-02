@@ -10,3 +10,5 @@ export const SETLOCATION = '/api/setlocation';
 
 export const UPLOAD = '/api/upload';
 export const GETIMG = '/api/getimg';
+
+export const UPLOADTOQINIU = '/api/uploadtoqiniu';
