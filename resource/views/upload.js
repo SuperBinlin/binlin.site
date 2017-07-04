@@ -46,7 +46,11 @@ class Upload extends React.Component{
      */
     API_Location.getLocation((err,res) => {
       if(err){
-        console.info(err);
+        this.notify({
+          title:'Tip',
+          message:err,
+          level:'error'
+        })
         return;
       }
       if(res){
