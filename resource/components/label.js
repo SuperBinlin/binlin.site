@@ -5,6 +5,11 @@
  * @see: http://binlin.site:8889/#/resume
  */
 
+/**
+ * 此组件主要注意下render的时机，由于数据是服务端异步返回，所以必然在render时，组件还没获取到数据。当服务端返回数据时，如何将数据主动render是关键，
+ * 这里引入componentWillReceiveProps，当props改变时触发，nextProps是this.props的包装，将本组件的state重新赋值，从而重新render视图。
+ */
+
 'use strict';
 import '../css/label.css';
 
