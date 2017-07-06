@@ -71,7 +71,7 @@ let config = {
         new ExtractTextPlugin('[name].bundle.css'),
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
         new HtmlWebpackPlugin({
-            title:'Blog',
+            title:'binlin.site',
             template: './resource/index.ejs',
             hash: true,
             minify: {

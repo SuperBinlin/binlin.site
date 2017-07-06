@@ -34,6 +34,7 @@
     "jquery": "^2.2.4",
     "node-args": "^2.1.8",
     "react": "^15.1.0",
+    "react-document-title": "^2.0.3",
     "react-dom": "^15.1.0",
     "react-masonry-component": "^5.0.7",
     "react-notification-system": "^0.2.14",

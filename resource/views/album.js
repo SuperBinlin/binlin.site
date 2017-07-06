@@ -7,6 +7,7 @@
 
 'use strict';
 import '../css/album.css';
+import DocumentTitle from'react-document-title';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
 import { Link } from 'react-router';
@@ -76,6 +77,7 @@ class Album extends React.Component{
     });
 
     return (
+      <DocumentTitle title='Album'>
       <div className="container">
         <div className="bg-ooo"></div>
         <header>
@@ -100,6 +102,7 @@ class Album extends React.Component{
             {childElements}
         </Masonry>
       </div>
+      </DocumentTitle>
     );
   }
 };

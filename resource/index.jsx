@@ -5,7 +5,6 @@
 'use strict';
 import React,{ Component } from 'react';
 import ReactDom from 'react-dom';
-
 import Routes from "./routes/routes.jsx";
 
 ReactDom.render(<Routes />,document.getElementById("app"));

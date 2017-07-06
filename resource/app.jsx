@@ -5,6 +5,7 @@
  */
 'use strict';
 import React,{ Component } from 'react';
+import DocumentTitle from'react-document-title';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-photoswipe/lib/photoswipe.css';
 import './css/ionicons.min.css';
@@ -12,9 +13,11 @@ import './css/ionicons.min.css';
 class App extends Component{
     render(){
         return (
+          <DocumentTitle title='binlin.site'>
             <div className="container-fluid">
                 {this.props.children}
             </div>
+          </DocumentTitle>
         );
     }
 };

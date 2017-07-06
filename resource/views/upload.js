@@ -7,6 +7,7 @@
 
 'use strict';
 import '../css/upload.css';
+import DocumentTitle from'react-document-title';
 import util from '../utils/utils.js';
 import Photo from '../components/photo.js';
 import Label from '../components/label.js';

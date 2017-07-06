@@ -7,6 +7,7 @@
 
 'use strict';
 import '../css/album.css';
+import DocumentTitle from'react-document-title';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
 /**
@@ -94,32 +95,34 @@ class Photoshow extends React.Component{
     });
 
     return (
-      <div className="container">
-        <div className="bg-ooo"></div>
-        <header>
-          <div className="title">
-            <a className="link-wp">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </a>
-            <span className="name">{currentCity}</span>
-            <span className="text">Photography</span>
-          </div>
-        </header>
-        <Masonry
-            className={'my-gallery-class row'} // default ''
-            elementType={'div'} // default 'div'
-            options={masonryOptions} // default {}
-            disableImagesLoaded={false} // default false
-            updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
-        >
-            {childElements}
-        </Masonry>
+      <DocumentTitle title={currentCity}>
+        <div className="container">
+          <div className="bg-ooo"></div>
+          <header>
+            <div className="title">
+              <a className="link-wp">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </a>
+              <span className="name">{currentCity}</span>
+              <span className="text">Photography</span>
+            </div>
+          </header>
+          <Masonry
+              className={'my-gallery-class row'} // default ''
+              elementType={'div'} // default 'div'
+              options={masonryOptions} // default {}
+              disableImagesLoaded={false} // default false
+              updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
+          >
+              {childElements}
+          </Masonry>
 
-        <PhotoSwipe isOpen={isphotoSwipeOpen} items={photoSwipe.items} options={photoSwipe.options} onClose={this.closePhotoswipe}/>
-      </div>
+          <PhotoSwipe isOpen={isphotoSwipeOpen} items={photoSwipe.items} options={photoSwipe.options} onClose={this.closePhotoswipe}/>
+        </div>
+      </DocumentTitle>
     );
   }
 };
