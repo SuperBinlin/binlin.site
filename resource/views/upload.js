@@ -268,7 +268,7 @@ class Upload extends React.Component{
     });
     
     return (
-      <div>
+      <div className="container-fluid">
         <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
         <input type="hidden" value={hiddenId} />
         <div className="wu-example" id="uploader">

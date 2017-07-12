@@ -24,7 +24,7 @@ class Resume extends React.Component{
     render(){
         let {baseInfo} = this.state;
         return (
-        <div>
+        <div className="container-fluid">
             <div className="header">
                 <div className="container">
                     <div className="header-profile">

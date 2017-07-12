@@ -7,6 +7,9 @@
 'use strict';
 
 import '../css/index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-photoswipe/lib/photoswipe.css';
+import '../css/ionicons.min.css';
 
 class Resume extends React.Component{
   constructor(props) {

@@ -7,7 +7,7 @@
 import React,{ Component } from 'react';
 import { Router, Route, hashHistory } from 'react-router';
 
-import App from "../app.jsx";
+//import App from "../app.jsx";
 import Index from "../views/index.js";
 import NotFound from "../views/404.js";
 import Resume from "../views/resume.js";
@@ -21,13 +21,11 @@ class Routes extends Component{
       return (
         <Router history={hashHistory}>
           <Route path="/" component={Index}></Route>
-          <Route path="/app" component={App}>
-            <Route path="resume" component={Resume} />
-            <Route path="upload" component={Upload} />
-            <Route path="album" component={Album}/>
-            <Route path="photo" component={Photoshow} />
-            <Route path="*" component={NotFound} />
-          </Route>
+          <Route path="resume" component={Resume} />
+          <Route path="upload" component={Upload} />
+          <Route path="album" component={Album}/>
+          <Route path="photo" component={Photoshow} />
+          <Route path="*" component={NotFound} />
         </Router>
       );
     }
