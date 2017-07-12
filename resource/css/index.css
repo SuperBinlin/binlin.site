@@ -1,0 +1,120 @@
+.cover-wp {
+  width:50%;
+  position: absolute;
+  top:0px;
+  bottom:0px;
+  background: url(../images/index/live.jpg) center no-repeat;
+  background-size: cover;
+}
+.index-wp {
+  position: absolute;
+  top:0px;
+  bottom:0px;
+}
+.wrap-wp {
+  position: absolute;
+  top:0px;
+  bottom:0px;
+  left: 50%;
+  width:50%;
+  float:right;
+}
+
+.nav-split {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  padding: 3rem 4rem 0;
+}
+
+.nav-links {
+  margin-bottom: 2.2rem;
+  text-align: center;
+}
+
+.nav{
+  text-align: center;
+}
+
+.nav .nav-link {
+  display: inline-block;
+  margin: 0 1rem;
+  padding-bottom: 0.1rem;
+  font-family: "AvenirNextLTW01-Regular", Arial;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  border-bottom: 1px solid transparent;
+  font-weight: normal;
+}
+
+.nav .nav-link.active{
+  border-bottom:1px solid #000;
+}
+
+.nav .nav-link:hover{
+  border-bottom:1px solid #000;
+}
+
+.binlin-site{
+  position: absolute;
+  top:40%;
+  width:100%;
+}
+
+.binlin-site h1{
+  max-width: 430px;
+  margin: 0 auto 1rem;
+  text-align: center;
+  font-size: 50px;
+  letter-spacing: 3px;
+  text-rendering: optimizeLegibility;
+  font-family: "Optima","Times New Roman",Times,serif;
+}
+
+.binlin-site h4 {
+  text-align: center;
+  font-family: "Optima";
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-rendering: optimizeLegibility;
+}
+
+footer.footer{
+  background: #fff;
+  position: fixed;
+  bottom:0px;
+  width:50%;
+  font-family: "Optima";
+  padding:10px 0;
+}
+
+@media only screen and (max-width: 900px){
+  .cover-wp{
+    display: none;
+  }
+  .wrap-wp,.nav-split,.binlin-site,footer.footer{
+    width:100%;
+  }
+  .wrap-wp{
+    left:0px;
+  }
+  .binlin-site{
+    left:0px;
+    right:0px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
