@@ -21,6 +21,24 @@ class Resume extends React.Component{
         }
     }
 
+    download () {
+        window.scroll(0,0);
+        html2canvas(document.body).then((canvas) => {
+            var imgData = canvas.toDataURL('image/jpeg');
+            this.saveFile(imgData, 'test')
+        });
+    }
+
+    saveFile (data, filename){
+        var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+        save_link.href = data;
+        save_link.download = filename;
+        
+        var event = document.createEvent('MouseEvents');
+        event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        save_link.dispatchEvent(event);
+    }
+
     render(){
         let {baseInfo} = this.state;
         return (
@@ -71,7 +89,7 @@ class Resume extends React.Component{
                                     <li><i className="travel"></i></li>
                                     <li><i className="tea"></i></li>
                                 </ul>
-                                <a href="" className="download"><span></span>Download Resume</a>
+                                <a className="download" onClick={(e)=>this.download()}><span></span>Download Resume</a>
                             </div>
                             <div className="clearfix"></div>
                         </div>

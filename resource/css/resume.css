@@ -160,6 +160,7 @@ a.download{
 	-moz-border-radius: 6px;
 	-ms-border-radius: 6px;
 	margin-left:0.5em;
+	cursor: pointer;
 }
 a.download:hover{
 	background:#6ab8ea;

@@ -11,6 +11,12 @@ import DocumentTitle from'react-document-title';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
 import { Link } from 'react-router';
+import Navicon from '../components/navicon.js';
+/**
+ * 可以在组建中控制html头部 cooool!
+ * https://github.com/nfl/react-helmet
+ */
+import {Helmet} from "react-helmet";
 
 class Album extends React.Component{
 
@@ -44,7 +50,15 @@ class Album extends React.Component{
 
   render(){
     let {photoCollection, masonryOptions} = this.state;
-    console.log(photoCollection)
+    /**
+     * navicon component style
+     * @type {Object}
+     */
+    const naviconStyle= {
+      position:'absolute',
+      top:'20px',
+      right:'20px'
+    }
     let childElements = photoCollection.map((element, index) => {
       /**
        * 随机展示当前相册的一张图片，需要知道当前相册的张数，然后获取随机数，展示随机照片
@@ -78,30 +92,38 @@ class Album extends React.Component{
 
     return (
       <DocumentTitle title='Album'>
-      <div className="container">
-        <div className="bg-ooo"></div>
-        <header>
-          <div className="title">
-            <a className="link-wp">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </a>
-            <span className="name">SuperBinlin</span>
-            <span className="text">Photography</span>
-          </div>
-        </header>
-        <Masonry
-            className={'my-gallery-class row'} // default ''
-            elementType={'div'} // default 'div'
-            options={masonryOptions} // default {}
-            disableImagesLoaded={false} // default false
-            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-        >
-            {childElements}
-        </Masonry>
-      </div>
+        <div>
+          <Navicon style={naviconStyle}>
+            <div className="container body-bg">
+              <Helmet>
+                  <html className="body-bg"></html>
+                  <body className="body-bg"></body>
+              </Helmet>
+              <header>
+                <div className="title">
+                  <a className="link-wp">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a>
+                  <span className="name">SuperBinlin</span>
+                  <span className="text">Photography</span>
+                </div>
+              </header>
+              <Masonry
+                  className={'my-gallery-class row'} // default ''
+                  elementType={'div'} // default 'div'
+                  options={masonryOptions} // default {}
+                  disableImagesLoaded={false} // default false
+                  updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+              >
+                  {childElements}
+              </Masonry>
+            </div>
+          </Navicon>
+          
+        </div>
       </DocumentTitle>
     );
   }

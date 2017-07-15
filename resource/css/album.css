@@ -83,6 +83,10 @@ header{
   transform:scale(1.05,1.05);
 }
 
+.body-bg{
+  background: #000
+}
+
 .bg-ooo{
   background: #000;
   position: fixed;
