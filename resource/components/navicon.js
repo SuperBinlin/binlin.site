@@ -23,7 +23,8 @@ class Nacicon extends React.Component{
     })
   }
 
-  hideMenu(){
+  hideMenu(e){
+    e.stopPropagation();
     this.setState({
       navIsopen:false
     })
@@ -45,10 +46,14 @@ class Nacicon extends React.Component{
       'show-menu':navIsopen
     })
 
+    let popupCtrl = classNames({
+      popup:navIsopen
+    })
+
     return (
       <div>
         <div className="navicon" style={this.props.style}>
-          <button className="nav-button__open js-nav-mobile-open" onClick={()=>this.showMenu()}>
+          <button className="nav-button__open js-nav-mobile-open" onClick={(e)=>this.showMenu(e)}>
             <span className="nav-button__line"></span>
             <span className="nav-button__line"></span>
             <span className="nav-button__line"></span>
@@ -71,7 +76,8 @@ class Nacicon extends React.Component{
             </ul>
           </nav>
         </div>
-        <div className={bodyCtrl} onClick={()=>this.hideMenu()}>
+        <div className={bodyCtrl} onClick={(e)=>this.hideMenu(e)}>
+          <div className={popupCtrl}></div>
           {this.props.children}
         </div>
       </div>

@@ -133,6 +133,17 @@ input,button,select,textarea{outline:none}
   font-size: 1.6rem;
 }
 
+.popup{
+  position: absolute;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  background: #000;
+  z-index:5;
+  opacity:.6;
+}
+
 
 
 
