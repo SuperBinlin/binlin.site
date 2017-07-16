@@ -70,7 +70,6 @@ input,button,select,textarea{outline:none}
   -ms-transform: translate3d(-256px, 0, 0);
   -o-transform: translate3d(-256px, 0, 0);
   transform: translate3d(-256px, 0, 0);
-  opacity: 0.5;
   overflow-y: hidden;
 }
 
