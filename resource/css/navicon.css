@@ -71,6 +71,7 @@ input,button,select,textarea{outline:none}
   -o-transform: translate3d(-256px, 0, 0);
   transform: translate3d(-256px, 0, 0);
   opacity: 0.5;
+  overflow-y: hidden;
 }
 
 .nav-mobile__logo {
@@ -100,7 +101,6 @@ input,button,select,textarea{outline:none}
 .nav-mobile__list {
   padding:0px;
   list-style: none;
-  height: 100%;
   margin-top: 48px;
 }
 

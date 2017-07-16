@@ -35,17 +35,24 @@ class Nacicon extends React.Component{
      * navIsopen 控制 是否展示隐藏menu
      */
     let {navIsopen} = this.state;
+
     let nav = classNames({
       'nav-mobile': true,
       'nav-mobile--right':!navIsopen,
-      'nav-mobile--open': navIsopen             // 无图片时展示上传图片按钮
+      'nav-mobile--open': navIsopen             
     });
 
+    /**
+     * 主体部分缩进控制
+     */
     let bodyCtrl = classNames({
       'menu-wrap':true,
       'show-menu':navIsopen
     })
 
+    /**
+     * 侧边栏show时 给左边主体部分添加遮罩
+     */
     let popupCtrl = classNames({
       popup:navIsopen
     })
