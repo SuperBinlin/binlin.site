@@ -59,7 +59,8 @@ let config = {
         new Clean(['dist']),
         new TransferWebpackPlugin([
             {from: 'images', to: 'images'},
-            {from: '../project', to: 'project'}
+            {from: '../project', to: 'project'},
+            {from: '../wx', to: 'wx'}
         ], path.join(__dirname, 'resource')),
         new webpack.ProvidePlugin({
             _ : 'lodash',

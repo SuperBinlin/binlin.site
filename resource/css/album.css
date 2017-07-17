@@ -99,7 +99,7 @@ header{
 .title{
   text-align: center;
   position: relative;
-  z-index: 9;
+  z-index: 4;
   color: white;
   cursor: default;
   -webkit-user-select: none;
