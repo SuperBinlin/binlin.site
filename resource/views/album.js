@@ -62,17 +62,6 @@ class Album extends React.Component{
           wx.config(arr);
           wx.ready(function(){
             console.log('调用成功');
-            wx.onMenuShareTimeline({
-              title: 'Binlin相册', // 分享标题
-              link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: 'http://www.warmwood.com/images/s1.jpg', // 分享图标
-              success: function () { 
-                  alert('成功')
-              },
-              cancel: function () { 
-                  alert('失败')
-              }
-            });
           })
           wx.error(function(res){
               console.log('error:'+JSON.stringify(res));
@@ -89,19 +78,31 @@ class Album extends React.Component{
   share2(){
     console.log('click share2')
     wx.onMenuShareAppMessage({
-      title: 'Binlin相册', // 分享标题
-      desc: '嘿嘿嘿', // 分享描述
-      link: location.href,
-      imgUrl: 'http://www.warmwood.com/images/s1.jpg', // 分享图标
-      type: 'link', // 分享类型,music、video或link，不填默认为link
-      success: function () {
-          // 用户确认分享后执行的回调函数
-          alert("分享");
-      },
-      cancel: function () {
-          // 用户取消分享后执行的回调函数
-          alert("取消分享");
-      }
+        title: 'SHARE', // 分享标题
+        desc: 'shareshareshareshareshareshare', // 分享描述
+        link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: 'http://album.binlin.site/0.5092865699259943.jpg', // 分享图标
+        type: 'link', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+           alert('............成功')
+        },
+        cancel: function () { 
+            alert('............失败')
+        }
+    });
+
+    wx.onMenuShareQQ({
+        title: 'qqqqqqqqqqqqq', // 分享标题
+        desc: 'qqqqqqqqqqqqqqqqqqqqqqqqqq', // 分享描述
+        link: location.href, // 分享链接
+        imgUrl: 'http://album.binlin.site/0.5092865699259943.jpg', // 分享图标
+        success: function () { 
+            alert('............成功qqqqq')
+        },
+        cancel: function () { 
+             alert('............成功qqqqq')
+        }
     });
   }
 
