@@ -50,6 +50,7 @@ class Album extends React.Component{
   }
 
   share () {
+    console.log(location.href)
     fetch('/api/getsign', {
       method: 'GET'
     }).then((res)=>{
@@ -63,7 +64,7 @@ class Album extends React.Component{
             wx.onMenuShareAppMessage({
               title: 'Binlin相册', // 分享标题
               desc: '嘿嘿嘿', // 分享描述
-              link: 'http://binlin.site/#/album', // 分享链接
+              link: location.href,
               imgUrl: 'http://www.warmwood.com/images/s1.jpg', // 分享图标
               type: '', // 分享类型,music、video或link，不填默认为link
               dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
