@@ -46,6 +46,7 @@
     "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
+    "wechat-jssdk": "^3.0.9",
     "whatwg-fetch": "^2.0.3"
   },
   "author": "Binlin",

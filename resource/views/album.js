@@ -12,6 +12,7 @@ import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
 import { Link } from 'react-router';
 import Navicon from '../components/navicon.js';
+
 /**
  * 可以在组建中控制html头部 cooool!
  * https://github.com/nfl/react-helmet
@@ -46,6 +47,29 @@ class Album extends React.Component{
     let Rand = Math.random();
     let num = Min + Math.floor(Rand * Range); //舍去
     return num;
+  }
+
+  share () {
+    fetch('/api/getsign', {
+      method: 'GET'
+    }).then((res)=>{
+      console.log(res)
+        res.json().then(function(arr){
+          arr.jsApiList = ['onMenuShareAppMessage'];
+          console.log(arr)
+          wx.config(arr);
+          wx.ready(function(){
+            console.log('调用成功');
+          })
+          wx.error(function(res){
+              console.log('error:'+JSON.stringify(res));
+          });
+        })
+    }).catch((err)=>{
+      callback({
+        'mes': err
+      })
+    });
   }
 
   render(){
@@ -120,6 +144,7 @@ class Album extends React.Component{
               >
                   {childElements}
               </Masonry>
+              <p style={{'color':'#fff'}} onClick={()=>this.share()}>分享</p>
             </div>
           </Navicon>
           
