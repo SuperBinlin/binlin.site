@@ -56,25 +56,20 @@ class Album extends React.Component{
     }).then((res)=>{
       console.log(res)
         res.json().then(function(arr){
-          arr.jsApiList = ['onMenuShareAppMessage'];
+          arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline'];
           console.log(arr)
           wx.config(arr);
           wx.ready(function(){
             console.log('调用成功');
-            wx.onMenuShareAppMessage({
+            wx.onMenuShareTimeline({
               title: 'Binlin相册', // 分享标题
-              desc: '嘿嘿嘿', // 分享描述
-              link: location.href,
+              link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
               imgUrl: 'http://www.warmwood.com/images/s1.jpg', // 分享图标
-              type: '', // 分享类型,music、video或link，不填默认为link
-              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-              success: function () {
-                  // 用户确认分享后执行的回调函数
-                  alert("分享");
+              success: function () { 
+                  alert('成功')
               },
-              cancel: function () {
-                  // 用户取消分享后执行的回调函数
-                  alert("取消分享");
+              cancel: function () { 
+                  alert('失败')
               }
             });
           })
@@ -87,6 +82,24 @@ class Album extends React.Component{
       callback({
         'mes': err
       })
+    });
+  }
+
+  share2(){
+    wx.onMenuShareAppMessage({
+      title: 'Binlin相册', // 分享标题
+      desc: '嘿嘿嘿', // 分享描述
+      link: location.href,
+      imgUrl: 'http://www.warmwood.com/images/s1.jpg', // 分享图标
+      type: 'link', // 分享类型,music、video或link，不填默认为link
+      success: function () {
+          // 用户确认分享后执行的回调函数
+          alert("分享");
+      },
+      cancel: function () {
+          // 用户取消分享后执行的回调函数
+          alert("取消分享");
+      }
     });
   }
 
@@ -162,7 +175,8 @@ class Album extends React.Component{
               >
                   {childElements}
               </Masonry>
-              <p style={{'color':'#fff'}} onClick={()=>this.share()}>分享</p>
+              <p style={{'color':'#fff'}} onClick={()=>this.share()}>分享1</p>
+              <p style={{'color':'red'}} onClick={()=>this.share2()}>分享2</p>
             </div>
           </Navicon>
           
@@ -173,4 +187,3 @@ class Album extends React.Component{
 };
 
 export default Album;
-
