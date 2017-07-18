@@ -60,7 +60,7 @@ let config = {
         new TransferWebpackPlugin([
             {from: 'images', to: 'images'},
             {from: '../project', to: 'project'},
-            {from: '../wx', to: 'wx'}
+            {from: '../wx'}
         ], path.join(__dirname, 'resource')),
         new webpack.ProvidePlugin({
             _ : 'lodash',
