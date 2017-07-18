@@ -87,6 +87,7 @@ class Album extends React.Component{
   }
 
   share2(){
+    console.log('click share2')
     wx.onMenuShareAppMessage({
       title: 'Binlin相册', // 分享标题
       desc: '嘿嘿嘿', // 分享描述
@@ -188,9 +189,9 @@ class Album extends React.Component{
               >
                   {childElements}
               </Masonry>
-              <p style={{'color':'#fff'}} onClick={()=>this.share()}>分享1</p>
-              <p style={{'color':'red'}} onClick={()=>this.share2()}>分享2</p>
-              <p style={{'color':'red'}} onClick={()=>this.upl()}>上传</p>
+              <p style={{'color':'#fff','height':'50px'}} onClick={()=>this.share()}>分享1</p>
+              <p style={{'color':'red','height':'50px'}} onClick={()=>this.share2()}>分享2</p>
+              <p style={{'color':'red','height':'50px'}} onClick={()=>this.upl()}>上传</p>
             </div>
           </Navicon>
           
