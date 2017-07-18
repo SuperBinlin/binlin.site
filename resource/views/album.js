@@ -104,6 +104,17 @@ class Album extends React.Component{
     });
   }
 
+  upl(){
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+          var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+      }
+    });
+  }
+
   render(){
     let {photoCollection, masonryOptions} = this.state;
     /**
@@ -178,6 +189,7 @@ class Album extends React.Component{
               </Masonry>
               <p style={{'color':'#fff'}} onClick={()=>this.share()}>分享1</p>
               <p style={{'color':'red'}} onClick={()=>this.share2()}>分享2</p>
+              <p style={{'color':'red'}} onClick={()=>this.upl()}>上传</p>
             </div>
           </Navicon>
           
