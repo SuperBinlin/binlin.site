@@ -57,6 +57,7 @@ class Album extends React.Component{
       console.log(res)
         res.json().then(function(arr){
           arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline'];
+          arr.debug = true;
           console.log(arr)
           wx.config(arr);
           wx.ready(function(){
