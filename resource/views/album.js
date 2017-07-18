@@ -56,7 +56,7 @@ class Album extends React.Component{
     }).then((res)=>{
       console.log(res)
         res.json().then(function(arr){
-          arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline'];
+          arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline','chooseImage'];
           arr.debug = true;
           console.log(arr)
           wx.config(arr);
@@ -175,6 +175,7 @@ class Album extends React.Component{
                     <span></span>
                   </a>
                   <span className="name">SuperBinlin</span>
+                  <span className="name">{location.href}</span>
                   <span className="text">Photography</span>
                 </div>
               </header>
