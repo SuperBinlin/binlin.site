@@ -49,60 +49,31 @@ class Album extends React.Component{
     return num;
   }
 
-  share () {
-    console.log(location.href)
-    fetch('/api/getsign', {
-      method: 'GET'
-    }).then((res)=>{
-      console.log(res)
-        res.json().then(function(arr){
-          arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline','chooseImage'];
-          arr.debug = true;
-          console.log(arr)
-          wx.config(arr);
-          wx.ready(function(){
-            console.log('调用成功');
-          })
-          wx.error(function(res){
-              console.log('error:'+JSON.stringify(res));
-          });
+  // share () {
+  //   console.log(location.href)
+  //   fetch('/api/getsign', {
+  //     method: 'GET'
+  //   }).then((res)=>{
+  //     console.log(res)
+  //       res.json().then(function(arr){
+  //         arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline','chooseImage'];
+  //         arr.debug = true;
+  //         console.log(arr)
+  //         wx.config(arr);
+  //         wx.ready(function(){
+  //           console.log('调用成功');
+  //         })
+  //         wx.error(function(res){
+  //             console.log('error:'+JSON.stringify(res));
+  //         });
 
-        })
-    }).catch((err)=>{
-      callback({
-        'mes': err
-      })
-    });
-  }
-
-  share2(){
-    console.log('click share2')
-    wx.onMenuShareAppMessage({
-        title: 'SHARE', // 分享标题
-        desc: 'shareshareshareshareshareshare', // 分享描述
-        link: 'http://binlin.site', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        type: 'link', // 分享类型,music、video或link，不填默认为link
-        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        success: function () { 
-           alert('............成功')
-        },
-        cancel: function () { 
-            alert('............失败')
-        }
-    });
-
-    wx.onMenuShareQQ({
-        title: 'qqqqqqqqqqqqq', // 分享标题
-        desc: 'qqqqqqqqqqqqqqqqqqqqqqqqqq', // 分享描述
-        link: 'http://binlin.site', // 分享链接
-        success: function () { 
-            alert('............成功qqqqq')
-        },
-        cancel: function () { 
-             alert('............成功qqqqq')
-        }
-    });
-  }
+  //       })
+  //   }).catch((err)=>{
+  //     callback({
+  //       'mes': err
+  //     })
+  //   });
+  // }
 
   upl(){
     wx.chooseImage({
@@ -175,7 +146,6 @@ class Album extends React.Component{
                     <span></span>
                   </a>
                   <span className="name">SuperBinlin</span>
-                  <span className="name">{location.href}</span>
                   <span className="text">Photography</span>
                 </div>
               </header>
@@ -188,9 +158,6 @@ class Album extends React.Component{
               >
                   {childElements}
               </Masonry>
-              <p style={{'color':'#fff','height':'50px'}} onClick={()=>this.share()}>分享1</p>
-              <p style={{'color':'red','height':'50px'}} onClick={()=>this.share2()}>分享2</p>
-              <p style={{'color':'red','height':'50px'}} onClick={()=>this.upl()}>上传</p>
             </div>
           </Navicon>
           
