@@ -373,7 +373,7 @@ ul.social li i.gp{
 .award-column i{
 	width:185px;
 	height:185px;
-	background:url(../images/award-icons.png)no-repeat;
+	background:url(../images/award-icons.png) no-repeat;
 	display:inline-block;
 }
 .award-column i.award{

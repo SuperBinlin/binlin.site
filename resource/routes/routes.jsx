@@ -11,6 +11,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import Index from "../views/index.js";
 import NotFound from "../views/404.js";
 import Resume from "../views/resume.js";
+import Login from "../views/albumLogin.js";
 import Upload from "../views/upload.js";
 import Album from "../views/album.js";
 import Photoshow from "../views/photoshow.js";
@@ -22,6 +23,7 @@ class Routes extends Component{
         <Router history={hashHistory}>
           <Route path="/" component={Index}></Route>
           <Route path="resume" component={Resume} />
+          <Route path="login" component={Login} />
           <Route path="upload" component={Upload} />
           <Route path="album" component={Album}/>
           <Route path="photo" component={Photoshow} />

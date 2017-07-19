@@ -7,6 +7,7 @@
 
 'use strict';
 import '../css/navicon.css';
+import { Link } from 'react-router';
 import {Helmet} from "react-helmet";
 
 class Nacicon extends React.Component{
@@ -71,9 +72,11 @@ class Nacicon extends React.Component{
             </span>
             <ul className="nav-mobile__list">
               <li className="nav-mobile__list-item hide-sm">
-                <a className="sign-button button-small">
-                  登 录
-                </a>
+                <Link to='login/'>
+                  <a className="sign-button button-small">
+                    登 录
+                  </a>
+                </Link>
               </li>
               <br/>
               <br/>

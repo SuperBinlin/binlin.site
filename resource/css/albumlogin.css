@@ -1,0 +1,99 @@
+@font-face { 
+  font-family: OstrichSansBold; /*这里是说明调用来的字体名字*/ 
+  src: url('../fonts/OstrichSans-Bold.otf'); /*这里是字体文件路径*/ 
+}
+@font-face { 
+  font-family: OstrichSansItalic; /*这里是说明调用来的字体名字*/ 
+  src: url('../fonts/OstrichSansInline-Regular.otf'); /*这里是字体文件路径*/ 
+}
+@font-face { 
+  font-family: OstrichSansLight; /*这里是说明调用来的字体名字*/ 
+  src: url('../fonts/OstrichSans-Light.otf'); /*这里是字体文件路径*/ 
+}
+@font-face { 
+  font-family: OstrichSansMedium; /*这里是说明调用来的字体名字*/ 
+  src: url('../fonts/OstrichSans-Medium.otf'); /*这里是字体文件路径*/ 
+}
+.login-wp{
+  background: url("../images/login/login-bg.jpg") no-repeat center;
+  background-size: cover;
+  position: absolute;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  text-align: center;
+}
+
+.login-title{
+  padding-left:15px;
+  width:27rem;
+  color:#000;
+  font-family: OstrichSansBold;
+  position: relative;
+  top:30px;
+  text-align: left;
+  margin-left:20px;
+  font-size: 6rem;
+  background: rgba(255,255,255,.2);
+  -webkit-transition:all 0.3s;
+  -moz-transition:all 0.3s;
+  -ms-transition:all 0.3s;
+  transition:all 0.3s;
+}
+
+.login-form{
+  padding:0px;
+  list-style: none;
+  height:200px;
+  width:320px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-top:-100px;
+  margin-left: -160px;
+}
+
+.login-form li{
+  border-bottom:1px solid #7f7f7f;
+  height:60px;
+  opacity: 0.9;
+  text-align: left;
+  position: relative;
+}
+
+.login-form li .icon-fz{
+  font-size: 25px;
+  color:#fff;
+  position: absolute;
+  top:15px;
+  left:10px;
+}
+.login-input-wp{
+  padding-left: 50px;
+  height:60px;
+}
+.login-input{
+  width:100%;
+  position: relative;
+  top:21px;
+  background: transparent;
+  border:none;
+  outline:none;
+  color:#fff;
+}
+
+@media (max-width:640px){
+  .login-title{
+    width:20rem;
+    font-size: 4rem;
+  }
+}
+
+
+
+
+
+
+
+
