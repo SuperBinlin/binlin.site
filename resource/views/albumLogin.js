@@ -36,6 +36,16 @@ class Login extends React.Component{
                   <input type="password" className="login-input" placeholder="Password"/>
                 </div>
               </li>
+              <li className="noline">
+                <p className="half-wp col-left"></p>
+                <p className="half-wp col-right fpw">Forget Password</p>
+              </li>
+              <li className="signin noline">
+                <a className="signin-btn">Sign In</a>
+              </li>
+              <li className="noline register">
+                <a>Don't have an account? <span>Sign Up</span></a>
+              </li>
             </ul>
           </div>
         </div>

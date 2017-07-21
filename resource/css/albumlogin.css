@@ -23,6 +23,7 @@
   left:0px;
   right:0px;
   text-align: center;
+  overflow: hidden;
 }
 
 .login-title{
@@ -62,6 +63,10 @@
   position: relative;
 }
 
+.login-form li.noline{
+  border-bottom:none;
+}
+
 .login-form li .icon-fz{
   font-size: 25px;
   color:#fff;
@@ -83,6 +88,53 @@
   color:#fff;
 }
 
+.half-wp{
+  width:50%;
+  float:left;
+  height:20px;
+  padding-top: 5px;
+  padding-right: 2px;
+}
+
+.col-right{
+  text-align:right;
+  color:#fff;
+  opacity:.4;
+}
+.fpw{
+  cursor: pointer;
+}
+.signin{
+  margin-top:10rem;
+  line-height: 50px;
+}
+.signin .signin-btn{
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  height:50px;
+  background: rgba(255,255,255,.4);
+  text-align: center;
+  color:#fff;
+}
+
+.signin .signin-btn:hover{
+  text-decoration: none;
+}
+
+li.register{
+  text-align: right;
+}
+
+.register a{
+  color:#7f7f7f;
+  cursor: pointer;
+}
+
+.register a span{
+  color:#fff;
+}
+
 @media (max-width:640px){
   .login-title{
     width:20rem;
@@ -90,6 +142,14 @@
   }
 }
 
+@media (max-height:567px){
+  .login-form{
+    top:50%;
+  }
+  .signin{
+    margin-top:5rem;
+  }
+}
 
 
 
