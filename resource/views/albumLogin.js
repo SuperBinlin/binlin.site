@@ -79,26 +79,32 @@ class Login extends React.Component{
               <li>
                 <i className="icon-fz ion-ios-person-outline"></i>
                 <div className="login-input-wp">
-                  <input type="text" className="login-input" placeholder="Full name"/>
+                  <input type="text" className="login-input" placeholder="请输入你的用户名"/>
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input type="text" className="login-input" placeholder="Your password"/>
+                  <input type="password" className="login-input" placeholder="请输入密码"/>
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input type="text" className="login-input" placeholder="Confire your password"/>
+                  <input type="password" className="login-input" placeholder="请确认密码"/>
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-iphone"></i>
                 <div className="login-input-wp">
-                  <input type="text" className="login-input phone-input" placeholder="Phone"/>
+                  <input type="number" className="login-input phone-input" placeholder="请输入手机号码"/>
                   <a className="confire-input">获取验证码</a>
+                </div>
+              </li>
+              <li>
+                <i className="icon-fz ion-chatbox-working"></i>
+                <div className="login-input-wp">
+                  <input type="text" className="login-input" placeholder="请输入验证码"/>
                 </div>
               </li>
               <li className="signin noline">

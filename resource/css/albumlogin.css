@@ -120,7 +120,7 @@
   cursor: pointer;
 }
 .signin{
-  margin-top:10rem;
+  margin-top:8rem;
   line-height: 50px;
 }
 .signin .signin-btn{
@@ -144,6 +144,10 @@ li.register{
 .register a{
   color:#7f7f7f;
   cursor: pointer;
+}
+
+.register a:hover{
+  text-decoration: none;
 }
 
 .register a span{
@@ -178,8 +182,13 @@ li.register{
     font-size: 4rem;
   }
 }
+@media (max-height:568px){
+  .register-form.active{
+    top:30%;
+  }
+}
 
-@media (max-height:567px){
+@media (max-height:480px){
   .login-form{
     top:50%;
   }
