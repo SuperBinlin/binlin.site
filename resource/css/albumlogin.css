@@ -43,19 +43,34 @@
   transition:all 0.3s;
 }
 
-.login-form{
+.login-form,.register-form{
   padding:0px;
   list-style: none;
   height:200px;
   width:320px;
   position: absolute;
   top:50%;
-  left:50%;
+  left:-200%;
   margin-top:-100px;
   margin-left: -160px;
+  transition:all .5s;
 }
 
-.login-form li{
+.register-form.initpos{
+  left:200%;
+  top:40%;
+}
+
+.register-form.active{
+  left:50%;
+}
+
+.login-form.active{
+  display: block;
+  left:50%;
+}
+
+.login-form li,.register-form li{
   border-bottom:1px solid #7f7f7f;
   height:60px;
   opacity: 0.9;
@@ -63,11 +78,11 @@
   position: relative;
 }
 
-.login-form li.noline{
+.login-form li.noline,.register-form li.noline{
   border-bottom:none;
 }
 
-.login-form li .icon-fz{
+.login-form li .icon-fz,.register-form li .icon-fz{
   font-size: 25px;
   color:#fff;
   position: absolute;
@@ -133,6 +148,28 @@ li.register{
 
 .register a span{
   color:#fff;
+}
+
+.phone-input{
+  width:70%;
+  float:left;
+}
+
+.confire-input{
+  display: inline-block;
+  width:30%;
+  height:30px;
+  line-height: 30px;
+  margin-top: 17px;
+  float:right;
+  background: rgba(255,255,255,.4);
+  color:#fff;
+  text-align: center;
+}
+
+.confire-input:hover,.confire-input:focus{
+  color:#fff;
+  text-decoration: none;
 }
 
 @media (max-width:640px){
