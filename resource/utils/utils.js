@@ -28,5 +28,14 @@ export default {
         callback(newImageData)
     	}
     };
-	}
+	},
+  checkMobile(s){  
+    var length = s.length;  
+    if(length == 11 && /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(14[0-9]{1})|)+\d{8})$/.test(s) )  
+    {  
+        return true;  
+    }else{  
+        return false;  
+    }  
+  }   
 }

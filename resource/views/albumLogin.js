@@ -12,6 +12,7 @@ import DocumentTitle from'react-document-title';
 import {Helmet} from "react-helmet";
 import API_Login from "../service/login.service.js"
 import NotificationSystem from 'react-notification-system';
+import util from '../utils/utils.js';
 
 class Login extends React.Component{
   constructor(props) {
@@ -25,7 +26,9 @@ class Login extends React.Component{
         password:'',
         confirmPassword:'',
         userPhone:''
-      }
+      },
+      isAllowSending:false,        // 记录是否允许发送
+      isSending:false              // 记录是否在发送过程中
     };
   }
 
@@ -61,10 +64,28 @@ class Login extends React.Component{
   }
 
   /**
-   * 获取登录
+   * 获取登录验证码
    * @return {[type]} [description]
    */
   getConfirmcode(time){
+    let {isAllowSending, isSending} = this.state;
+    if(!isAllowSending) {
+      this.notify({
+        message:'请输入正确的手机号',
+        level:'warning',
+        autoDismiss:'2'
+      })
+      return;
+    }
+
+    if(isSending){
+      this.notify({
+        message:'请耐心等待^.^',
+        level:'warning',
+        autoDismiss:'2'
+      })
+      return;
+    }
     let phoneObj = {};
     let runtimes = time;
     this.runtime(runtimes)
@@ -74,28 +95,35 @@ class Login extends React.Component{
     
     API_Login.getConfirm(phoneObj, (err, res) => {
       if(err){
-        console.log("验证码有误");
+        this.notify({
+          message: '验证码发送失败，请重试',
+          level: 'error'
+        })
         return;
       }
-      console.log(res)
+      this.setState({isSending:true})
+      this.notify({
+        message: '验证码发送成功，请查收',
+        level:'success'
+      })
     })
   }
 
   /**
-   * 计时器 递归函数 若计时结束则跳出
+   * 计时器 验证码下次可发计时 递归函数 若计时结束则跳出
    */
   runtime(time){
 
     if(time == 0){
-      this.setState({'confirm':'计时结束'})
+      this.setState({'confirm':'重新发送'})
       clearTimeout(confirmTimer);
+      this.setState({isSending:false})
       return;
     }
     
     let confirmTimer = setTimeout(() => {
-      console.log(time,'in time')
       time--;
-      this.setState({'confirm':time})
+      this.setState({'confirm':time+'秒后重新发送'})
       this.runtime(time)
     }, 1000)
     
@@ -113,16 +141,64 @@ class Login extends React.Component{
     })
   }
 
+  /**
+   * 验证两次密码是否一致   
+   * @return {[type]} [description]
+   */
+  confirmPassword(){
+    let firstPassword = this.refs.firstPassword.value;
+    let secondPassword = this.refs.secondPassword.value;
+
+    secondPassword == '' ? '' : (function(_this){
+      firstPassword == secondPassword ? '' : _this.notify({
+        message: '两次输入的密码不一致',
+        level: 'warning',
+        autoDismiss:'2'
+      })
+    }(this))
+  }
+  /**
+   * 检查手机号格式
+   * @return {[type]} [description]
+   */
+  checkMobile(){
+    let mobilePhone = this.refs.phone.value;
+    util.checkMobile(mobilePhone) ? '' : this.notify({
+      message: '请输入正确的手机号',
+      level: 'warning',
+      autoDismiss:'2'
+    })
+  }
+  /**
+   * 输入实时监控 若正确则立即 放开获取验证码
+   * @return {[type]} [description]
+   */
+  watchPhone(e){
+    let mobilePhone = e.target.value;
+    util.checkMobile(mobilePhone) ? this.setState({
+      isAllowSending:true
+    }) : this.setState({
+      isAllowSending:false
+    });
+  }
+
   render(){
-    let {isLoginAction, confirm} = this.state;
+    let {isLoginAction, confirm, isAllowSending} = this.state;
+
     let login = classNames({
       "login-form":true,
       "active":isLoginAction
     })
+
     let register = classNames({
       "register-form":true,
       "initpos":true,
       "active":!isLoginAction
+    })
+
+    let getConfirmCode = classNames({
+      "confirm-input":true,
+      "confirm-active":!isAllowSending
     })
 
     return (
@@ -164,20 +240,20 @@ class Login extends React.Component{
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input ref="password" type="password" className="login-input" placeholder="请输入密码"/>
+                  <input ref="firstPassword" type="password" className="login-input" placeholder="请输入密码"/>
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input ref="confirmpassword" type="password" className="login-input" placeholder="请确认密码" onBlur={()=>this.confirmPassword()}/>
+                  <input ref="secondPassword" type="password" className="login-input" placeholder="请确认密码" onBlur={()=>this.confirmPassword()}/>
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-iphone"></i>
                 <div className="login-input-wp">
-                  <input ref="phone" type="number" className="login-input phone-input" placeholder="请输入手机号码" />
-                  <a className="confire-input" onClick={()=>{this.getConfirmcode(5)}}>{confirm}</a>
+                  <input ref="phone" type="number" className="login-input phone-input" placeholder="请输入手机号码" onInput={(e)=>this.watchPhone(e)}  onBlur={()=>this.checkMobile()} />
+                  <a className={getConfirmCode} onClick={()=>{this.getConfirmcode(60)}}>{confirm}</a>
                 </div>
               </li>
               <li>
