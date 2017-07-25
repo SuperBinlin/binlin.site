@@ -1,0 +1,83 @@
+/**
+ * @date: 2017/07/25
+ * @author: zhangbin
+ * @e-mail: superbinlin@163.com
+ * @see: http://binlin.site:8889/#/resume
+ * this self define css is for react-notification-system component 
+ */
+
+/**
+ * html模板
+ * <div class="notifications-wrapper">
+ *  <div class="notifications-{position}"> <!-- '{position}' can be one of the positions available: ex: notifications-tr -->
+ *   <div class="notification notification-{level} notification-{state} {notification-not-dismissible}"> <!-- '{level}' can be: success | error | warning | info. '{state}' can be: visible | hidden. {notification-not-dismissible} is present if notification is not dismissible by user -->
+ *     <h4 class="notification-title">Default title</h4>
+ *     <div class="notification-message">Default message</div>
+ *     <span class="notification-dismiss">×</span>
+ *     <div class="notification-action-wrapper">
+ *       <button class="notification-action-button">Action button</button>
+ *     </div>
+ *   </div>
+ *  </div>
+ * </div>
+ */
+
+.notifications-wrapper{
+  position: fixed;
+  height:30px;
+  width:100%;
+}
+
+.notification{
+  text-align: center;
+  top:-30px;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  font-size: 13px;
+  display: block;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+  transform: translate3d(0px, 0px, 0px);
+  will-change: transform, opacity;
+  background-color: rgb(240, 245, 234);
+  color:#fff;
+}
+
+.notification-success{
+  background: rgba(0,0,0,.5);
+}
+
+.notification-warning{
+  background: rgba(254,225,92,.5);
+}
+
+.notification-error{
+  background: rgba(234,26,55,.5);
+}
+
+.notifications-wrapper .notification-visible.notification{
+  top:0px;
+  opacity: 1;
+}
+
+.notifications-wrapper .notification-hidden{
+  top:-30px;
+  opacity: 0;
+}
+
+.notification-title{
+  display: none;
+}
+
+.notification-message{
+  height:30px;
+  line-height: 30px;
+}
+
+.notification-dismiss{
+  position: absolute;
+  top:3px;
+  right:10px;
+}

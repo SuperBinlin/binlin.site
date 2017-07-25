@@ -110,17 +110,17 @@ class Resume extends React.Component{
 						<div className="exp-devide-grid-left">
 							<h5>lodestone(2016/12~至今)</h5>
 							<small>前端架构师</small>
-							<p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,负责前端技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习。</p>
+							<p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,负责前端技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习</p>
 						</div>
 						<div className="exp-devide-grid-right">
 							<h5>苏州卡说信息科技有限公司(2016/1~2016/12)</h5>
 							<small>web前端开发工程师</small>
-							<p>此公司项目主要是一些后台系统,主要工作是负责构建前端框架,开发常用vue组件,开发公用css框架。</p>
+							<p>此公司项目主要是一些后台系统,主要工作是负责构建前端框架,开发常用vue组件,开发公用css ui库。</p>
 						</div>
 						<div className="exp-devide-grid-left">
 							<h5>智慧芽信息科技有限公司(2014/10~2016/1)</h5>
 							<small>web前端开发工程师</small>
-							<p>前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,用来重构公司项目的代码,感觉自己终于跟上时代的步伐了</p>
+							<p>前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,开始重构公司项目的代码,不断成长的同时,也庆幸从很多良师益友身上,铸就了我至今扔不断学习的品质</p>
 						</div>
 						<div className="exp-devide-grid-right">
 							<h5>江苏中科梦兰信息科技有限公司(2013/1~2014/9)</h5>
@@ -158,7 +158,7 @@ class Resume extends React.Component{
 								<div className="skill-grid">
 									<div className="circle" id="circles-1"></div>
 									<h3>JAVASCRIPT</h3>
-									<p>javascript、typescript、vue、react、angular、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、reactNative、node</p>
+									<p>es5、es6、typescript、vue、react、angular、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、reactNative、node、express</p>
 								</div>
 							</div>
 							<div className="col-md-3 skill-column">
