@@ -14,3 +14,4 @@ export const GETIMG = '/api/getimg';
 export const UPLOADTOQINIU = '/api/uploadtoqiniu';
 
 export const GETCONFIRMCODE = '/api/getconfirm';
+export const REGISTER = '/api/register';

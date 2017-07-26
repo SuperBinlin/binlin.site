@@ -133,41 +133,109 @@ class Login extends React.Component{
    * @return {[type]} [description]
    */
   register(){
-    this.notify({
-      title:'test style',
-      message: 'Notification message',
-      level: 'error',
-      autoDismiss:'60'
+    let cpUsername = this.confirmUsername(),
+        cpPassword = this.confirmPassword(true),
+        cpMobilephone = this.checkMobile()
+
+    if(!cpUsername || !cpPassword || !cpMobilephone){
+      return;
+    }
+
+    let userInfo = {
+      username:this.refs.username.value,
+      password:this.refs.firstPassword.value,
+      phone:this.refs.phone.value,
+      code:this.refs.code.value,
+      registerDate:new Date()
+    }
+    console.log(userInfo)
+    API_Login.register(userInfo, (err, res)=>{
+      console.log(err,res)
+      if(err){
+        let msg = err.msg;
+        this.notify({
+          message:msg,
+          level:'error',
+          autoDismiss:'2'
+        })
+      }
+
+      this.notify({
+        message:res.msg,
+        level:'success',
+        autoDismiss:'2'
+      })
     })
   }
 
-  /**
-   * 验证两次密码是否一致   
-   * @return {[type]} [description]
-   */
-  confirmPassword(){
-    let firstPassword = this.refs.firstPassword.value;
-    let secondPassword = this.refs.secondPassword.value;
-
-    secondPassword == '' ? '' : (function(_this){
-      firstPassword == secondPassword ? '' : _this.notify({
-        message: '两次输入的密码不一致',
+  confirmUsername(){
+    let isConfirm;
+    this.refs.username.value == '' ? (function(_this){
+      _this.notify({
+        message: '用户名不能为空噢😆',
         level: 'warning',
         autoDismiss:'2'
       })
-    }(this))
+      isConfirm = false;
+    }(this)) : isConfirm = true;
+
+    return isConfirm;
+  }
+
+  /**
+   * 验证两次密码是否一致 第一次输入密码和第二次输入密码失去焦点时的公用方法
+   * @flag 区别事件来源
+   * @return {[type]} [description]
+   */
+  confirmPassword(flag){
+    /**
+     * isConfirm 注册时调用此方法 标注2次密码是否一致
+     */
+    let isConfirm,
+        firstPassword = this.refs.firstPassword.value,
+        secondPassword = this.refs.secondPassword.value;
+
+    if (firstPassword == '') {
+      this.notify({
+        message: '密码不能为空噢😳',
+        level: 'warning',
+        autoDismiss:'2'
+      });
+      isConfirm = false
+      return;
+    }
+    /**
+     * flag 标记不是首次输入密码时触发，即要输完确认密码和提交注册时，触发比对两次密码是否一致
+     * @param  {[type]} _this) {                 firstPassword [description]
+     * @return {[type]}        [description]
+     */
+    //TODO bug
+    flag ? (function(_this) {
+      console.log(firstPassword == secondPassword)
+      firstPassword == secondPassword ? isConfirm = true : function(){
+        _this.notify({
+          message: '两次输入的密码不一致😯',
+          level: 'warning',
+          autoDismiss:'2'
+        })
+        isConfirm = false;
+      }
+    }(this)) : isConfirm = true;
+    return isConfirm;
   }
   /**
    * 检查手机号格式
    * @return {[type]} [description]
    */
   checkMobile(){
-    let mobilePhone = this.refs.phone.value;
-    util.checkMobile(mobilePhone) ? '' : this.notify({
-      message: '请输入正确的手机号',
+    let isConfirm = false,
+        mobilePhone = this.refs.phone.value;
+    util.checkMobile(mobilePhone) ? isConfirm = true : this.notify({
+      message: '请输入正确的手机号😊',
       level: 'warning',
       autoDismiss:'2'
     })
+    return isConfirm;
   }
   /**
    * 输入实时监控 若正确则立即 放开获取验证码
@@ -234,19 +302,19 @@ class Login extends React.Component{
               <li>
                 <i className="icon-fz ion-ios-person-outline"></i>
                 <div className="login-input-wp">
-                  <input ref="username" type="text" className="login-input" placeholder="请输入你的用户名" />
+                  <input ref="username" type="text" className="login-input" placeholder="请输入你的用户名" onBlur={()=>this.confirmUsername()} />
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input ref="firstPassword" type="password" className="login-input" placeholder="请输入密码"/>
+                  <input ref="firstPassword" type="password" className="login-input" placeholder="请输入密码" onBlur={()=>this.confirmPassword()} />
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input ref="secondPassword" type="password" className="login-input" placeholder="请确认密码" onBlur={()=>this.confirmPassword()}/>
+                  <input ref="secondPassword" type="password" className="login-input" placeholder="请确认密码" onBlur={()=>this.confirmPassword(true)}/>
                 </div>
               </li>
               <li>
@@ -259,7 +327,7 @@ class Login extends React.Component{
               <li>
                 <i className="icon-fz ion-chatbox-working"></i>
                 <div className="login-input-wp">
-                  <input ref="confirm-code" type="text" className="login-input" placeholder="请输入验证码"/>
+                  <input ref="code" type="text" className="login-input" placeholder="请输入验证码"/>
                 </div>
               </li>
               <li className="signin noline">
@@ -271,7 +339,7 @@ class Login extends React.Component{
               </li>
             </ul>
           </div>
-          <NotificationSystem ref="notificationSystem" style={false}/>
+          <NotificationSystem ref="notificationSystem" style={false} />
         </div>
       </DocumentTitle>
     )

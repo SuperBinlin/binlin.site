@@ -35,5 +35,29 @@ export default {
         'mes': err
       })
     });
+  },
+  register (data, callback) {
+    fetch(API.REGISTER, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(data)
+    }).then((res)=>{
+      if (res.ok){
+        res.json().then(function(res){
+          callback(null, res)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err)=>{
+      callback({
+        'mes': err
+      })
+    });
   }
 }
