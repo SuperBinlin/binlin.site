@@ -120,7 +120,7 @@ class Album extends React.Component{
           <img src={element.img[num].src} />
           <div className="shadow">
             <p className="current-city">{element.city}</p>
-            <Link to='photo/' query={{city: element.city}}>
+            <Link to='photo' query={{city: element.city}}>
               <span className="view-more">view more</span>
             </Link>
           </div>

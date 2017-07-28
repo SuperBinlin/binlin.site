@@ -34,6 +34,18 @@ class Login extends React.Component{
 
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
+    let isreg = this.props.params.isreg == 'register';
+    isreg ? this.toRegister() : this.backLogin()
+  }
+
+  /**
+   * 注意：这里路由不同，但使用的是同一套模板，所以路由改变即组件的props改变时，会进入componentWillReceiveProps生命周期，nextProps获取改变后的props
+   * @param  {[type]} nextProps [description]
+   * @return {[type]}           [description]
+   */
+  componentWillReceiveProps(nextProps){
+    let isreg = nextProps.params.isreg == 'register';
+    isreg ? this.toRegister() : this.backLogin()
   }
 
   /**
@@ -169,17 +181,51 @@ class Login extends React.Component{
   }
 
   confirmUsername(){
-    let isConfirm;
-    this.refs.username.value == '' ? (function(_this){
-      _this.notify({
+    let isConfirm,
+        username = this.refs.username.value;
+    if(username == '') {
+      this.notify({
         message: '用户名不能为空噢😆',
         level: 'warning',
         autoDismiss:'2'
       })
       isConfirm = false;
-    }(this)) : isConfirm = true;
+    } else {
+      API_Login.confirmname({
+        "username":username
+      },(err, res) => {
+        if(err){
+          this.notify({
+            message: err.msg,
+            level: 'error',
+            autoDismiss:'2'
+          })
+          return
+        }
 
-    return isConfirm;
+        if(res.msg == 'valid') {
+          isConfirm = true;
+          this.notify({
+            message: '这个用户名可以用哦😄',
+            level: 'success',
+            autoDismiss:'2'
+          })
+        } else {
+
+          isConfirm = false;
+          this.notify({
+            message: '用户名已存在😞',
+            level: 'warning',
+            autoDismiss:'2'
+          })
+        }
+
+        console.log(isConfirm)
+        return isConfirm
+      })
+      
+    };
+    
   }
 
   /**
@@ -212,14 +258,14 @@ class Login extends React.Component{
     //TODO bug
     flag ? (function(_this) {
       console.log(firstPassword == secondPassword)
-      firstPassword == secondPassword ? isConfirm = true : function(){
+      firstPassword == secondPassword ? isConfirm = true : (function(){
         _this.notify({
           message: '两次输入的密码不一致😯',
           level: 'warning',
           autoDismiss:'2'
         })
         isConfirm = false;
-      }
+      })();
     }(this)) : isConfirm = true;
     return isConfirm;
   }

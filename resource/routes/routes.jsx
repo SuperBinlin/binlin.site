@@ -23,7 +23,7 @@ class Routes extends Component{
         <Router history={hashHistory}>
           <Route path="/" component={Index}></Route>
           <Route path="resume" component={Resume} />
-          <Route path="login" component={Login} />
+          <Route path="login(/:isreg)" component={Login} />
           <Route path="upload" component={Upload} />
           <Route path="album" component={Album}/>
           <Route path="photo" component={Photoshow} />

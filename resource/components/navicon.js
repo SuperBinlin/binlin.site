@@ -81,7 +81,9 @@ class Nacicon extends React.Component{
               <br/>
               <br/>
               <li className="nav-mobile__list-item hide-md">
-                <a className="nav-mobile__link-primary">注册</a>
+                <Link to='login/register'>
+                  <a className="nav-mobile__link-primary">注册</a>
+                </Link>
               </li>
             </ul>
           </nav>
