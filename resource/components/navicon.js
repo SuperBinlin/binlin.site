@@ -8,7 +8,6 @@
 'use strict';
 import '../css/navicon.css';
 import { Link } from 'react-router';
-import {Helmet} from "react-helmet";
 
 class Nacicon extends React.Component{
   constructor(props) {

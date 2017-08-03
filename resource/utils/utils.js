@@ -37,5 +37,16 @@ export default {
     }else{  
         return false;  
     }  
-  }   
+  },
+  /**
+   * 范围内取随机数
+   * @param {[type]} Min [description]
+   * @param {[type]} Max [description]
+   */
+  randomNumBoth(Min,Max){
+    var Range = Max - Min;
+    var Rand = Math.random();
+    var num = Min + Math.round(Rand * Range); //四舍五入
+    return num;
+  }  
 }

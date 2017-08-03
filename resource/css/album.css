@@ -164,6 +164,9 @@ header{
   letter-spacing: 8.6px;
   opacity: .3;
 }
+.about-us{
+  font-family: "华文黑体"
+}
 
 @media (max-width: 768px) {
   div.col-xs-12{
