@@ -13,23 +13,29 @@ import 'whatwg-fetch';
 
 export default {
   confirmname (data,callback) {
-    fetch(API.CONFIRMNAME, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body:JSON.stringify(data)
-    }).then((res) => {
-      if (res.ok){
-        res.json().then(function(res){
-          callback(null, res)
+    return new Promise((resolve,reject) => {
+      fetch(API.CONFIRMNAME, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body:JSON.stringify(data)
+      }).then((res) => {
+        if (res.ok){
+          res.json().then(function(res){
+            resolve(res.msg)
+          })
+        }else{
+          reject({
+            'msg':'请检查网络'
+          })
+        }
+      }).catch((err)=>{
+        reject({
+          'mes': err
         })
-      }else{
-        callback({
-          'msg':'请检查网络'
-        })
-      }
+      })
     })
   },
   getConfirm (data, callback) {

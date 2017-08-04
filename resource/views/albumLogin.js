@@ -145,42 +145,53 @@ class Login extends React.Component{
    * @return {[type]} [description]
    */
   register(){
-    let cpUsername = this.confirmUsername(),
-        cpPassword = this.confirmPassword(true),
-        cpMobilephone = this.checkMobile()
-
-    if(!cpUsername || !cpPassword || !cpMobilephone){
-      return;
-    }
-
-    let userInfo = {
-      username:this.refs.username.value,
-      password:this.refs.firstPassword.value,
-      phone:this.refs.phone.value,
-      code:this.refs.code.value,
-      registerDate:new Date()
-    }
-    console.log(userInfo)
-    API_Login.register(userInfo, (err, res)=>{
-      console.log(err,res)
-      if(err){
-        let msg = err.msg;
-        this.notify({
-          message:msg,
-          level:'error',
-          autoDismiss:'2'
-        })
+    let cpUsername,cpPassword,cpMobilephone;
+    /**
+     * 调取async函数时 返回值以promise形式获得
+     */
+    this.confirmUsername().then(val => {
+      cpUsername = val
+      cpPassword = this.confirmPassword(true),
+      cpMobilephone = this.checkMobile()
+      console.log(cpUsername)
+      if(!cpUsername || !cpPassword || !cpMobilephone){
+        return;
       }
 
-      this.notify({
-        message:res.msg,
-        level:'success',
-        autoDismiss:'2'
-      })
-    })
-  }
+      let userInfo = {
+        username:this.refs.username.value,
+        password:this.refs.firstPassword.value,
+        phone:this.refs.phone.value,
+        code:this.refs.code.value,
+        registerDate:new Date()
+      }
+      console.log(userInfo)
+      API_Login.register(userInfo, (err, res)=>{
+        console.log(err,res)
+        if(err){
+          let msg = err.msg;
+          this.notify({
+            message:msg,
+            level:'error',
+            autoDismiss:'2'
+          })
+        }
 
-  confirmUsername(){
+        this.notify({
+          message:res.msg,
+          level:'success',
+          autoDismiss:'2'
+        })
+      })
+    });
+  }
+  /**
+   * 区分事件来源
+   * @param  {[type]} flag [description]
+   * @return {[type]}      [description]
+   */
+  async confirmUsername(flag){
+    debugger
     let isConfirm,
         username = this.refs.username.value;
     if(username == '') {
@@ -191,46 +202,70 @@ class Login extends React.Component{
       })
       isConfirm = false;
     } else {
-      API_Login.confirmname({
-        "username":username
-      },(err, res) => {
-        if(err){
-          this.notify({
-            message: err.msg,
-            level: 'error',
-            autoDismiss:'2'
-          })
-          return
-        }
+      // API_Login.confirmname({
+      //   "username":username
+      // },(err, res) => {
+      //   if(err){
+      //     this.notify({
+      //       message: err.msg,
+      //       level: 'error',
+      //       autoDismiss:'2'
+      //     })
+      //     return
+      //   }
 
-        if(res.msg == 'valid') {
+      //   if(res.msg == 'valid' && flag) {
+      //     isConfirm = true;
+      //     this.notify({
+      //       message: '这个用户名可以用哦😄',
+      //       level: 'success',
+      //       autoDismiss:'2'
+      //     })
+      //   } else {
+
+      //     isConfirm = false;
+      //     this.notify({
+      //       message: '用户名已存在😞',
+      //       level: 'warning',
+      //       autoDismiss:'2'
+      //     })
+      //   }
+
+      //   console.log(isConfirm)
+      //   return isConfirm
+      // })
+      
+      try {
+        let msg = await API_Login.confirmname({"username":username});
+        if(msg == 'valid' && flag) {
           isConfirm = true;
           this.notify({
             message: '这个用户名可以用哦😄',
             level: 'success',
             autoDismiss:'2'
           })
-        } else {
-
+        } else if(msg == 'invalid'){
           isConfirm = false;
           this.notify({
             message: '用户名已存在😞',
             level: 'warning',
             autoDismiss:'2'
           })
+        } else if (msg == 'valid') {
+          isConfirm = true;
         }
-
-        console.log(isConfirm)
-        return isConfirm
-      })
-      
+      } catch(err) {
+        isConfirm = false;
+      }
+      console.log(isConfirm,'----')
+      return isConfirm;
     };
     
   }
 
   /**
    * 验证两次密码是否一致 第一次输入密码和第二次输入密码失去焦点时的公用方法
-   * @flag 区别事件来源
+   * @flag 区别事件来源 输入框blur触发or注册按钮触发
    * @return {[type]} [description]
    */
   confirmPassword(flag){
@@ -348,7 +383,7 @@ class Login extends React.Component{
               <li>
                 <i className="icon-fz ion-ios-person-outline"></i>
                 <div className="login-input-wp">
-                  <input ref="username" type="text" className="login-input" placeholder="请输入你的用户名" onBlur={()=>this.confirmUsername()} />
+                  <input ref="username" type="text" className="login-input" placeholder="请输入你的用户名" onBlur={()=>this.confirmUsername(true)} />
                 </div>
               </li>
               <li>
