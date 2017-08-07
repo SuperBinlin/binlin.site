@@ -28,7 +28,8 @@ class Login extends React.Component{
         userPhone:''
       },
       isAllowSending:false,        // 记录是否允许发送
-      isSending:false              // 记录是否在发送过程中
+      isSending:false,             // 记录是否在发送过程中
+      confirmTimer:undefined       
     };
   }
 
@@ -128,70 +129,25 @@ class Login extends React.Component{
 
     if(time == 0){
       this.setState({'confirm':'重新发送'})
-      clearTimeout(confirmTimer);
+      clearTimeout(this.confirmTimer);
       this.setState({isSending:false})
       return;
     }
     
-    let confirmTimer = setTimeout(() => {
+    this.confirmTimer = setTimeout(() => {
       time--;
       this.setState({'confirm':time+'秒后重新发送'})
       this.runtime(time)
     }, 1000)
     
   }
-  /**
-   * 注册
-   * @return {[type]} [description]
-   */
-  register(){
-    let cpUsername,cpPassword,cpMobilephone;
-    /**
-     * 调取async函数时 返回值以promise形式获得
-     */
-    this.confirmUsername().then(val => {
-      cpUsername = val
-      cpPassword = this.confirmPassword(true),
-      cpMobilephone = this.checkMobile()
-      console.log(cpUsername)
-      if(!cpUsername || !cpPassword || !cpMobilephone){
-        return;
-      }
 
-      let userInfo = {
-        username:this.refs.username.value,
-        password:this.refs.firstPassword.value,
-        phone:this.refs.phone.value,
-        code:this.refs.code.value,
-        registerDate:new Date()
-      }
-      console.log(userInfo)
-      API_Login.register(userInfo, (err, res)=>{
-        console.log(err,res)
-        if(err){
-          let msg = err.msg;
-          this.notify({
-            message:msg,
-            level:'error',
-            autoDismiss:'2'
-          })
-        }
-
-        this.notify({
-          message:res.msg,
-          level:'success',
-          autoDismiss:'2'
-        })
-      })
-    });
-  }
   /**
-   * 区分事件来源
+   * user验证区分事件来源
    * @param  {[type]} flag [description]
    * @return {[type]}      [description]
    */
   async confirmUsername(flag){
-    debugger
     let isConfirm,
         username = this.refs.username.value;
     if(username == '') {
@@ -329,6 +285,67 @@ class Login extends React.Component{
     }) : this.setState({
       isAllowSending:false
     });
+  }
+
+  /**
+   * 注册
+   * @return {[type]} [description]
+   */
+  register(){
+    let cpUsername,cpPassword,cpMobilephone;
+    /**
+     * 调取async函数时 返回值以promise形式获得
+     */
+    this.confirmUsername().then(val => {
+      cpUsername = val
+      cpPassword = this.confirmPassword(true),
+      cpMobilephone = this.checkMobile()
+      console.log(cpUsername)
+      if(!cpUsername || !cpPassword || !cpMobilephone){
+        return;
+      }
+
+      let userInfo = {
+        username:this.refs.username.value,
+        password:this.refs.firstPassword.value,
+        phone:this.refs.phone.value,
+        code:this.refs.code.value,
+        registerDate:new Date()
+      }
+      console.log(userInfo)
+      API_Login.register(userInfo, (err, res)=>{
+        console.log(err,res)
+        if(err){
+          let msg = err.msg;
+          this.notify({
+            message:msg,
+            level:'error',
+            autoDismiss:'2'
+          })
+        }
+
+        this.notify({
+          message:res.msg,
+          level:'success',
+          autoDismiss:'2'
+        })
+        this.initRegister();
+      })
+    });
+  }
+
+  /**
+   * 注册成功后初始化数据
+   */
+  initRegister(){
+    this.refs.username.value = '';
+    this.refs.firstPassword.value = '';
+    this.refs.secondPassword.value = '';
+    this.refs.phone.value = '';
+    this.refs.code.value = '';
+    this.setState({'confirm':'发送验证码'})
+    clearTimeout(this.confirmTimer);
+    this.setState({isSending:false})
   }
 
   render(){
