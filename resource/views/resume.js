@@ -212,7 +212,6 @@ class Resume extends React.Component{
 								<div className="col-sm-4">
 									<a className="project-item" href="http://binlin.site/#/album" target="_blank">
 										<img src="./images/logo/binlinsite.jpg" />
-										<p>photography</p>
 									</a>
 								</div>
 								<div className="col-sm-4">
