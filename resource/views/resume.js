@@ -107,15 +107,10 @@ class Resume extends React.Component{
 						<span className="devide-line">
 						</span>
 						<label className="bag"></label>
-						<div className="exp-devide-grid-left">
+						<div className="exp-devide-grid-right">
 							<h5>lodestone(2016/12~至今)</h5>
 							<small>前端架构师</small>
 							<p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,负责前端技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习</p>
-						</div>
-						<div className="exp-devide-grid-right">
-							<h5>苏州卡说信息科技有限公司(2016/1~2016/12)</h5>
-							<small>web前端开发工程师</small>
-							<p>此公司项目主要是一些后台系统,主要工作是负责构建前端框架,开发常用vue组件,开发公用css ui库。</p>
 						</div>
 						<div className="exp-devide-grid-left">
 							<h5>智慧芽信息科技有限公司(2014/10~2016/1)</h5>
