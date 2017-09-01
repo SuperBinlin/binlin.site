@@ -108,12 +108,12 @@ class Resume extends React.Component{
 						</span>
 						<label className="bag"></label>
 						<div className="exp-devide-grid-right">
-							<h5>lodestone(2016/12~至今)</h5>
+							<h5>lodestone(2016/9~至今)</h5>
 							<small>前端架构师</small>
 							<p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,负责前端技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习</p>
 						</div>
 						<div className="exp-devide-grid-left">
-							<h5>智慧芽信息科技有限公司(2014/10~2016/1)</h5>
+							<h5>智慧芽信息科技有限公司(2014/10~2016/8)</h5>
 							<small>web前端开发工程师</small>
 							<p>前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,开始重构公司项目的代码,不断成长的同时,也庆幸从很多良师益友身上,铸就了我至今扔不断学习的品质</p>
 						</div>
