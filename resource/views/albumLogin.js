@@ -288,6 +288,41 @@ class Login extends React.Component{
   }
 
   /**
+   * 登录
+   */
+  login(){
+    let logininfo = {
+      username:this.refs.usernameLogin.value,
+      password:this.refs.passwordLogin.value
+    }
+    API_Login.login(logininfo, (err, res)=>{
+      if(err) {
+        let msg = err.msg;
+        this.notify({
+          message:msg,
+          level:'error',
+          autoDismiss:'2'
+        })
+      }
+
+      if(res.status){
+        this.notify({
+          message:res.msg,
+          level:'success',
+          autoDismiss:'2'
+        }) 
+      } else {
+        this.notify({
+          message:res.msg,
+          level:'error',
+          autoDismiss:'2'
+        })
+      } 
+      
+    })
+  }
+
+  /**
    * 注册
    * @return {[type]} [description]
    */
@@ -376,13 +411,13 @@ class Login extends React.Component{
               <li>
                 <i className="icon-fz ion-ios-person-outline"></i>
                 <div className="login-input-wp">
-                  <input type="text" className="login-input" placeholder="请输入用户名"/>
+                  <input ref="usernameLogin" type="text" className="login-input" placeholder="请输入用户名"/>
                 </div>
               </li>
               <li>
                 <i className="icon-fz ion-ios-locked-outline"></i>
                 <div className="login-input-wp">
-                  <input type="password" className="login-input" placeholder="请输入密码"/>
+                  <input ref="passwordLogin" type="password" className="login-input" placeholder="请输入密码"/>
                 </div>
               </li>
               <li className="noline">
@@ -390,7 +425,7 @@ class Login extends React.Component{
                 <p className="half-wp col-right fpw">忘记密码</p>
               </li>
               <li className="signin noline">
-                <a className="signin-btn">登录</a>
+                <a className="signin-btn" onClick={()=>this.login()}>登录</a>
               </li>
               <li className="noline register" onClick={()=>{this.toRegister()}}>
                 <a>没有账号？ <span>立即注册</span></a>

@@ -62,6 +62,26 @@ export default {
       })
     });
   },
+  login (loginInfo, callback) {
+    fetch(API.LOGIN, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(loginInfo)
+    }).then((res) => {
+      if (res.ok){
+        res.json().then(function(res){
+          callback(null, res)
+        })
+      }else{
+        callback({
+          'msg':'请检查网络'
+        })
+      }
+    })
+  },
   register (data, callback) {
     fetch(API.REGISTER, {
       headers: {
