@@ -226,6 +226,11 @@ class Resume extends React.Component{
 										<img src="./images/logo/timg.jpeg" />
 									</a>
 								</div>
+								<div className="col-sm-4">
+									<a className="project-item" href="http://116.62.187.80:8088/" target="_blank">
+										<img src="./images/mp.jpg" />
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
