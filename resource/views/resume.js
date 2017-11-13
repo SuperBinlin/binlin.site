@@ -205,7 +205,7 @@ class Resume extends React.Component{
 									</a>
 								</div>
 								<div className="col-sm-4">
-									<a className="project-item" href="http://binlin.site/#/album" target="_blank">
+									<a className="project-item" href="/album" target="_blank">
 										<img src="./images/logo/binlinsite.jpg" />
 									</a>
 								</div>
@@ -217,17 +217,17 @@ class Resume extends React.Component{
 							</div>
 							<div className="row">
 								<div className="col-sm-4">
-									<a className="project-item" href="http://binlin.site/project/email-editor/app/email-editor.html" target="_blank">
+									<a className="project-item" href="/project/email-editor/app/email-editor.html" target="_blank">
 										<img src="./images/logo/mail.png" />
 									</a>
 								</div>
 								<div className="col-sm-4">
-									<a className="project-item" href="http://binlin.site/project/snake/snake.html" target="_blank">
+									<a className="project-item" href="/project/snake/snake.html" target="_blank">
 										<img src="./images/logo/timg.jpeg" />
 									</a>
 								</div>
 								<div className="col-sm-4">
-									<a className="project-item" href="http://116.62.187.80:8088/" target="_blank">
+									<a className="project-item" href="http://binlin.site:8088/" target="_blank">
 										<img src="./images/mp.jpg" />
 									</a>
 								</div>
