@@ -465,6 +465,7 @@ class Login extends React.Component{
               </li>
               <li className="signin noline">
                 <a className="signin-btn" onClick={()=>{this.register()}}>注册</a>
+                
               </li>
               <li className="noline">
                 <p className="half-wp col-left"></p>
