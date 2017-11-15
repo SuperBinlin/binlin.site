@@ -36,7 +36,8 @@ class Login extends React.Component{
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
     let isreg = this.props.params.isreg == 'register';
-    isreg ? this.toRegister() : this.backLogin()
+    isreg ? this.toRegister() : this.backLogin();
+    console.log(window.location.href)
   }
 
   /**
@@ -465,7 +466,6 @@ class Login extends React.Component{
               </li>
               <li className="signin noline">
                 <a className="signin-btn" onClick={()=>{this.register()}}>注册</a>
-                
               </li>
               <li className="noline">
                 <p className="half-wp col-left"></p>
