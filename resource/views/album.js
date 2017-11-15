@@ -10,6 +10,7 @@ import '../css/album.css';
 import DocumentTitle from'react-document-title';
 import Masonry from 'react-masonry-component';
 import API_Upload from '../service/upload.service.js';
+import WX from '../service/wx.service.js';
 import { Link } from 'react-router';
 import Navicon from '../components/navicon.js';
 
@@ -27,7 +28,8 @@ class Album extends React.Component{
       photoCollection: [],
       masonryOptions:{
         transitionDuration: 500
-      }
+      },
+      wechatCallbackCode:''
     }
   }
 
@@ -41,7 +43,40 @@ class Album extends React.Component{
       this.setState({photoCollection: res})
     })
 
-    console.log(window.location.href)
+
+    console.log(window.location.href);
+    console.log(this.props.location.query.code);
+    let wxUrl = window.location.href;
+    this.setState({wechatCallbackCode:this.props.location.query.code}, ()=>{
+      WX.wxSign(wxUrl, (err, res)=>{
+        if(err){
+          console.log(err);
+          return;
+        }
+
+        wx.config({
+          debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: res.appId, // 必填，公众号的唯一标识
+          timestamp: res.timestamp, // 必填，生成签名的时间戳
+          nonceStr: res.nonceStr, // 必填，生成签名的随机串
+          signature: res.signature,// 必填，签名，见附录1
+          jsApiList: ['chooseImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        })
+
+        console.log(res)
+      })
+    });
+    // wx.ready(() => {
+    //   wx.chooseImage({
+    //     count: 1, // 默认9
+    //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    //     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    //     success: function (res) {
+    //         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+    //         console.log(localIds)
+    //     }
+    //   });
+    // })
   }
 
   randomNum(Min, Max) {
@@ -140,7 +175,7 @@ class Album extends React.Component{
                   <body className="body-bg"></body>
               </Helmet>
               <header>
-                <div className="title">
+                <div className="title" onClick={() => this.upl()}>
                   <a className="link-wp">
                     <span></span>
                     <span></span>

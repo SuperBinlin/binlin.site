@@ -17,3 +17,5 @@ export const CONFIRMNAME = '/api/userconfirm';
 export const GETCONFIRMCODE = '/api/getconfirm';
 export const REGISTER = '/api/register';
 export const LOGIN = '/api/login';
+
+export const wxSign = '/api/getsign';
