@@ -111,6 +111,22 @@ class Album extends React.Component{
   //     })
   //   });
   // }
+  share(){
+    wx.onMenuShareAppMessage({
+        title: '冰梨相册', // 分享标题
+        desc: '第一次分享哦', // 分享描述
+        link: 'http://binlin.site/album', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: 'http://album.binlin.site/0.042686455814229696.jpg', // 分享图标
+        type: 'link', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+            console.log("分享成功")
+        },
+        cancel: function () { 
+            console.log("分享失败")
+        }
+    });
+  }
 
   upl(){
     wx.chooseImage({
@@ -175,7 +191,7 @@ class Album extends React.Component{
                   <body className="body-bg"></body>
               </Helmet>
               <header>
-                <div className="title" onClick={() => this.upl()}>
+                <div className="title" onClick={() => this.share()}>
                   <a className="link-wp">
                     <span></span>
                     <span></span>
