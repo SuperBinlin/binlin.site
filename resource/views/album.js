@@ -40,6 +40,8 @@ class Album extends React.Component{
 
       this.setState({photoCollection: res})
     })
+
+    console.log(window.location.href)
   }
 
   randomNum(Min, Max) {

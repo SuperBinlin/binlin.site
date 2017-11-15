@@ -37,7 +37,6 @@ class Login extends React.Component{
     this._notificationSystem = this.refs.notificationSystem;
     let isreg = this.props.params.isreg == 'register';
     isreg ? this.toRegister() : this.backLogin();
-    console.log(window.location.href)
   }
 
   /**
