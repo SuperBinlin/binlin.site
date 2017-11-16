@@ -67,17 +67,22 @@ class Album extends React.Component{
         console.log(res)
       })
     });
-    // wx.ready(() => {
-    //   wx.chooseImage({
-    //     count: 1, // 默认9
-    //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-    //     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-    //     success: function (res) {
-    //         var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-    //         console.log(localIds)
-    //     }
-    //   });
-    // })
+    wx.ready(() => {
+      wx.onMenuShareAppMessage({
+        title: '冰梨相册', // 分享标题
+        desc: '第一次分享哦', // 分享描述
+        link: 'http://binlin.site/album', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: 'http://album.binlin.site/0.042686455814229696.jpg', // 分享图标
+        type: 'link', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+            console.log("分享成功")
+        },
+        cancel: function () { 
+            console.log("分享失败")
+        }
+      });
+    })
   }
 
   randomNum(Min, Max) {
@@ -113,20 +118,15 @@ class Album extends React.Component{
   //   });
   // }
   share(){
-    wx.onMenuShareAppMessage({
-        title: '冰梨相册', // 分享标题
-        desc: '第一次分享哦', // 分享描述
-        link: 'http://binlin.site/album', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: 'http://album.binlin.site/0.042686455814229696.jpg', // 分享图标
-        type: 'link', // 分享类型,music、video或link，不填默认为link
-        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        success: function () { 
-            console.log("分享成功")
-        },
-        cancel: function () { 
-            console.log("分享失败")
+    wx.chooseImage({
+        count: 1, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+            var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+            console.log(localIds)
         }
-    });
+      });
   }
 
   upl(){
