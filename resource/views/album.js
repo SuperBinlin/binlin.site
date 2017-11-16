@@ -29,7 +29,8 @@ class Album extends React.Component{
       masonryOptions:{
         transitionDuration: 500
       },
-      wechatCallbackCode:''
+      wechatCallbackCode:'',
+      wxUrl:''
     }
   }
 
@@ -43,7 +44,7 @@ class Album extends React.Component{
       this.setState({photoCollection: res})
     })
 
-    alert(location.href.split('#')[0])
+    this.setState({'wxUrl':location.href.split('#')[0]});
     console.log(window.location.href);
     console.log(this.props.location.query.code);
     let wxUrl = location.href.split('#')[0];
@@ -140,7 +141,7 @@ class Album extends React.Component{
   }
 
   render(){
-    let {photoCollection, masonryOptions} = this.state;
+    let {photoCollection, masonryOptions, wxUrl} = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -200,6 +201,7 @@ class Album extends React.Component{
                   </a>
                   <span className="name">SuperBinlin</span>
                   <span className="text">Photography</span>
+                  <span>{wxUrl}</span>
                 </div>
               </header>
               <Masonry
