@@ -43,10 +43,10 @@ class Album extends React.Component{
       this.setState({photoCollection: res})
     })
 
-
+    alert(location.href.split('#')[0])
     console.log(window.location.href);
     console.log(this.props.location.query.code);
-    let wxUrl = window.location.href;
+    let wxUrl = location.href.split('#')[0];
     this.setState({wechatCallbackCode:this.props.location.query.code}, ()=>{
       WX.wxSign(wxUrl, (err, res)=>{
         if(err){
