@@ -202,7 +202,6 @@ class Album extends React.Component{
                   </a>
                   <span className="name">SuperBinlin</span>
                   <span className="text">Photography</span>
-                  <span>{wxUrl}</span>
                 </div>
               </header>
               <Masonry
