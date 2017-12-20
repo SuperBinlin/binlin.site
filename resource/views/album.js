@@ -94,10 +94,11 @@ class Album extends React.Component{
       if(err){
         return;
       }
-      let token = res.access_token;
-      let openId = res.openid;
+      let resParse = JSON.parse(res)
+      let token = resParse.access_token;
+      let openId = resParse.openid;
 
-      console.log(res, token, openId)
+      console.log(res, resParse, token, openId)
     })
   }
 
