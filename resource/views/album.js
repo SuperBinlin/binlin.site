@@ -90,12 +90,14 @@ class Album extends React.Component{
   }
 
   getOpenId(code){
-    debugger
-    WX.getOpenidByCode(code, (err, token) => {
+    WX.getOpenidByCode({'code':code}, (err, res) => {
       if(err){
         return;
       }
-      console.log(token, 'token')
+      let token = res.access_token;
+      let openId = res.openid;
+
+      console.log(res, token, openId)
     })
   }
 
@@ -124,7 +126,6 @@ class Album extends React.Component{
        */
       let maxPhotoLength = element.img.length || 0;
       let num = this.randomNum(0,maxPhotoLength);
-
 
       /**
        * 版本差异导致LINK带params的方式有所区别

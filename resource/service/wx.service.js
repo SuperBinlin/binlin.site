@@ -43,9 +43,9 @@ export default {
       body:JSON.stringify(code)
     }).then((res)=>{
       if (res.ok){
-        res.json().then(function(token){
-          console.log(token)
-          callback(null, token)
+        res.json().then(function(res){
+          console.log(res)
+          callback(null, res)
         })
       }else{
         callback({
