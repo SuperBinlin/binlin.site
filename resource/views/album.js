@@ -104,7 +104,7 @@ class Album extends React.Component{
   }
 
   getUserinfoByToken(token, openid) {
-    WX.getUserinfoByToken({'code':token, 'openid':token}, (err, res) => {
+    WX.getUserinfoByToken({'code':token, 'openid':openid}, (err, res) => {
       if(err){
         return;
       }
