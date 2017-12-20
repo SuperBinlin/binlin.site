@@ -19,3 +19,4 @@ export const REGISTER = '/api/register';
 export const LOGIN = '/api/login';
 
 export const wxSign = '/api/getsign';
+export const getOpenidByCode = '/api/getOpenidByCode';

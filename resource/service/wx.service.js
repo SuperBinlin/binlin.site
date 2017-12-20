@@ -31,5 +31,31 @@ export default {
         'mes': err
       })
     });
+  },
+
+  getOpenidByCode(code, callback){
+    fetch(API.getOpenidByCode, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(code)
+    }).then((res)=>{
+      if (res.ok){
+        res.json().then(function(token){
+          console.log(token)
+          callback(null, token)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err)=>{
+      callback({
+        'mes': err
+      })
+    });
   }
 }

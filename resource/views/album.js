@@ -45,10 +45,13 @@ class Album extends React.Component{
     })
 
     this.setState({'wxUrl':location.href.split('#')[0]});
-    console.log(window.location.href);
-    console.log(this.props.location.query.code);
+
+    let code = this.props.location.query.code;
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
-    this.setState({wechatCallbackCode:this.props.location.query.code}, ()=>{
+
+    this.setState({wechatCallbackCode:code}, ()=>{
+
+      this.getOpenId(code);
       WX.wxSign(wxUrl, (err, res)=>{
         if(err){
           console.log(err);
@@ -86,6 +89,16 @@ class Album extends React.Component{
     });
   }
 
+  getOpenId(code){
+    debugger
+    WX.getOpenidByCode(code, (err, token) => {
+      if(err){
+        return;
+      }
+      console.log(token, 'token')
+    })
+  }
+
   randomNum(Min, Max) {
     let Range = Max - Min;
     let Rand = Math.random();
@@ -93,56 +106,8 @@ class Album extends React.Component{
     return num;
   }
 
-  // share () {
-  //   console.log(location.href)
-  //   fetch('/api/getsign', {
-  //     method: 'GET'
-  //   }).then((res)=>{
-  //     console.log(res)
-  //       res.json().then(function(arr){
-  //         arr.jsApiList = ['onMenuShareAppMessage','onMenuShareTimeline','chooseImage'];
-  //         arr.debug = true;
-  //         console.log(arr)
-  //         wx.config(arr);
-  //         wx.ready(function(){
-  //           console.log('调用成功');
-  //         })
-  //         wx.error(function(res){
-  //             console.log('error:'+JSON.stringify(res));
-  //         });
-
-  //       })
-  //   }).catch((err)=>{
-  //     callback({
-  //       'mes': err
-  //     })
-  //   });
-  // }
-  share(){
-    wx.chooseImage({
-        count: 1, // 默认9
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
-            var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-            console.log(localIds)
-        }
-      });
-  }
-
-  upl(){
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-          var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-      }
-    });
-  }
-
   render(){
-    let {photoCollection, masonryOptions, wxUrl} = this.state;
+    let { photoCollection, masonryOptions, wxUrl } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -193,7 +158,7 @@ class Album extends React.Component{
                   <body className="body-bg"></body>
               </Helmet>
               <header>
-                <div className="title" onClick={() => this.share()}>
+                <div className="title">
                   <a className="link-wp">
                     <span></span>
                     <span></span>
