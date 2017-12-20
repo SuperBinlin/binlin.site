@@ -30,7 +30,8 @@ class Album extends React.Component{
         transitionDuration: 500
       },
       wechatCallbackCode:'',
-      wxUrl:''
+      wxUrl:'',
+      userInfo:{}
     }
   }
 
@@ -97,8 +98,20 @@ class Album extends React.Component{
       let resParse = JSON.parse(res)
       let token = resParse.access_token;
       let openId = resParse.openid;
-
+      this.getUserinfoByToken(token, openId)
       console.log(res, resParse, token, openId)
+    })
+  }
+
+  getUserinfoByToken(token, openid) {
+    WX.getUserinfoByToken({'code':token, 'openid':token}, (err, res) => {
+      if(err){
+        return;
+      }
+      let resParse = JSON.parse(res)
+      this.setState({userInfo: resParse})
+
+      console.log(this.userInfo)
     })
   }
 

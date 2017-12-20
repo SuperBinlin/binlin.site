@@ -20,3 +20,4 @@ export const LOGIN = '/api/login';
 
 export const wxSign = '/api/getsign';
 export const getOpenidByCode = '/api/getOpenidByCode';
+export const getUserinfoByToken = '/api/getUserinfoByToken';
