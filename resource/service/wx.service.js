@@ -58,4 +58,33 @@ export default {
       })
     });
   }
+
+  getUserinfoByToken(option, callback){
+    fetch(API.getUserinfoByToken, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(option)
+    }).then((res)=>{
+      if (res.ok){
+        res.json().then(function(res){
+          console.log(res)
+          callback(null, res)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err)=>{
+      callback({
+        'mes': err
+      })
+    });
+  }
+
+
+
 }
