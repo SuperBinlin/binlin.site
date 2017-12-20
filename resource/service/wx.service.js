@@ -57,7 +57,7 @@ export default {
         'mes': err
       })
     });
-  }
+  },
 
   getUserinfoByToken(option, callback){
     fetch(API.getUserinfoByToken, {
