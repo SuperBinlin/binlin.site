@@ -123,7 +123,7 @@ class Album extends React.Component{
   }
 
   render(){
-    let { photoCollection, masonryOptions, wxUrl } = this.state;
+    let { photoCollection, masonryOptions, wxUrl, userInfo } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -180,7 +180,7 @@ class Album extends React.Component{
                     <span></span>
                     <span></span>
                   </a>
-                  <span className="name">SuperBinlin</span>
+                  <span className="name">{userInfo.nickname}</span>
                   <span className="text">Photography</span>
                 </div>
               </header>

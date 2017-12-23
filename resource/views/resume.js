@@ -188,7 +188,7 @@ class Resume extends React.Component{
 									</a>
 								</div>
 								<div className="col-sm-4">
-									<a className="project-item" href="http://x.patsnap.cn/" target="_blank">
+									<a className="project-item" href="https://x.zhihuiya.com/" target="_blank">
 										<img src="./images/logo/course-logo.png" />
 									</a>
 								</div>
