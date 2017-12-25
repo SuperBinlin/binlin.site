@@ -51,8 +51,13 @@ class Album extends React.Component{
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
 
     this.setState({wechatCallbackCode:code}, ()=>{
-
+      debugger
+      let userinfoSession = this.getUserInfoSession();
+      if(userinfoSession){
+        this.userInfo = JSON.parse(userinfoSession)
+      }
       this.getOpenId(code);
+
       WX.wxSign(wxUrl, (err, res)=>{
         if(err){
           console.log(err);
@@ -90,7 +95,15 @@ class Album extends React.Component{
     });
   }
 
-  getOpenId(code){
+  getUserInfoSession() {
+    let userinfo = sessionStorage.getItem('userinfo.binlin.site');
+    return userinfo;
+  }
+
+  /**
+   * 通过code获取openId和token
+   */
+  getOpenId(code) {
     WX.getOpenidByCode({'code':code}, (err, res) => {
       if(err){
         return;
@@ -103,6 +116,9 @@ class Album extends React.Component{
     })
   }
 
+  /**
+   * 通过token 获取用户信息 
+   */
   getUserinfoByToken(token, openid) {
     WX.getUserinfoByToken({'access_token':token, 'openid':openid}, (err, res) => {
       if(err){
@@ -110,11 +126,14 @@ class Album extends React.Component{
       }
       let resParse = JSON.parse(res)
       this.setState({userInfo: resParse})
-
+      sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(resParse));
       console.log(this.userInfo)
     })
   }
 
+  /**
+   * 获取范围内随机数
+   */
   randomNum(Min, Max) {
     let Range = Max - Min;
     let Rand = Math.random();
