@@ -13,6 +13,7 @@ import API_Upload from '../service/upload.service.js';
 import WX from '../service/wx.service.js';
 import { Link } from 'react-router';
 import Navicon from '../components/navicon.js';
+import NotificationSystem from 'react-notification-system';
 
 /**
  * 可以在组建中控制html头部 cooool!
