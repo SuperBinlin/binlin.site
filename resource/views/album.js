@@ -56,7 +56,7 @@ class Album extends React.Component{
       let userinfoSession = this.getUserInfoSession();
       console.log(userinfoSession, '!!!!!!!!!!!!!!!!!!!!!');
       if(userinfoSession){
-        this.userInfo = JSON.parse(userinfoSession)
+        this.setState({userInfo: JSON.parse(userinfoSession)})
       }
       this.getOpenId(code);
 
