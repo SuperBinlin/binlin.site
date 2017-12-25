@@ -106,13 +106,17 @@ class Album extends React.Component{
   getOpenId(code) {
     WX.getOpenidByCode({'code':code}, (err, res) => {
       if(err){
+        this.notify({
+          message: err.msg,
+          level: 'warning',
+          autoDismiss:'2'
+        });
         return;
       }
-      let resParse = JSON.parse(res)
-      let token = resParse.access_token;
-      let openId = resParse.openid;
+      let token = res.access_token;
+      let openId = res.openid;
       this.getUserinfoByToken(token, openId)
-      console.log(res, resParse, token, openId)
+      console.log(res, res, token, openId)
     })
   }
 
@@ -124,9 +128,8 @@ class Album extends React.Component{
       if(err){
         return;
       }
-      let resParse = JSON.parse(res)
-      this.setState({userInfo: resParse})
-      sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(resParse));
+      this.setState({userInfo: res})
+      sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(res));
       console.log(sessionStorage.getItem('userinfo.binlin.site'), '##############################')
       console.log(this.userInfo)
     })

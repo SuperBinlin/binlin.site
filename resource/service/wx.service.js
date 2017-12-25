@@ -70,8 +70,14 @@ export default {
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(res){
-          console.log(res)
-          callback(null, res)
+          let resParse = JSON.parse(res)
+          if(resParse.errcode){
+            callback({
+              'msg': resParse.errmsg
+            })
+            return;
+          }
+          callback(null, resParse)
         })
       }else{
         callback({
