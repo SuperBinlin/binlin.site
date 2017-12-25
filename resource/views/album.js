@@ -125,8 +125,9 @@ class Album extends React.Component{
   getUserinfoByToken(token, openid) {
     WX.getUserinfoByToken({'access_token':token, 'openid':openid}, (err, res) => {
       if(err){
+        console.log(err.msg)
         this.notify({
-          message: err.msg,
+          message: 111,
           level: 'warning',
           autoDismiss:'2'
         });
