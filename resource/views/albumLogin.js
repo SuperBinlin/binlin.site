@@ -57,7 +57,6 @@ class Login extends React.Component{
    * }
    */
   notify(obj){
-    console.log(this._notificationSystem,',,,')
     this._notificationSystem.addNotification(obj);
   }
 

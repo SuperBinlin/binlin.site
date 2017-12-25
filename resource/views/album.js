@@ -58,7 +58,6 @@ class Album extends React.Component{
 
     this.setState({wechatCallbackCode:code}, ()=>{
       let userinfoSession = this.getUserInfoSession();
-      console.log(userinfoSession, '!!!!!!!!!!!!!!!!!!!!!');
       if(userinfoSession){
         this.setState({userInfo: JSON.parse(userinfoSession)})
       }
@@ -107,7 +106,6 @@ class Album extends React.Component{
   }
 
   notify(obj){
-    console.log(this._notificationSystem,'...')
     this._notificationSystem.addNotification(obj);
   }
 
@@ -120,7 +118,6 @@ class Album extends React.Component{
       let token = resParse.access_token;
       let openId = resParse.openid;
       this.getUserinfoByToken(token, openId)
-      console.log(res, resParse, token, openId)
     })
   }
 
@@ -130,17 +127,10 @@ class Album extends React.Component{
   getUserinfoByToken(token, openid) {
     WX.getUserinfoByToken({'access_token':token, 'openid':openid}, (err, res) => {
       if(err){
-        console.log(err.msg)
-        this.notify({
-          message: 111,
-          level: 'warning',
-          autoDismiss:'2'
-        });
         return;
       }
       this.setState({userInfo: res})
       sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(res));
-      console.log(sessionStorage.getItem('userinfo.binlin.site'), '##############################')
       console.log(this.userInfo)
     })
   }
