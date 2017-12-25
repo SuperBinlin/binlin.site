@@ -51,8 +51,8 @@ class Album extends React.Component{
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
 
     this.setState({wechatCallbackCode:code}, ()=>{
-      debugger
       let userinfoSession = this.getUserInfoSession();
+      console.log(userinfoSession, '!!!!!!!!!!!!!!!!!!!!!');
       if(userinfoSession){
         this.userInfo = JSON.parse(userinfoSession)
       }
@@ -127,6 +127,7 @@ class Album extends React.Component{
       let resParse = JSON.parse(res)
       this.setState({userInfo: resParse})
       sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(resParse));
+      console.log(sessionStorage.getItem('userinfo.binlin.site'), '##############################')
       console.log(this.userInfo)
     })
   }
