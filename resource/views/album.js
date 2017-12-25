@@ -36,6 +36,7 @@ class Album extends React.Component{
   }
 
   componentWillMount(){
+    this._notificationSystem = this.refs.notificationSystem;
     API_Upload.getimg({}, (err, res) => {
       if(err) {
         console.log(err)
@@ -100,23 +101,20 @@ class Album extends React.Component{
     return userinfo;
   }
 
+  notify(obj){
+    this._notificationSystem.addNotification(obj);
+  }
+
   /**
    * 通过code获取openId和token
    */
   getOpenId(code) {
     WX.getOpenidByCode({'code':code}, (err, res) => {
-      if(err){
-        this.notify({
-          message: err.msg,
-          level: 'warning',
-          autoDismiss:'2'
-        });
-        return;
-      }
-      let token = res.access_token;
-      let openId = res.openid;
+      let resParse = JSON.parse(res)
+      let token = resParse.access_token;
+      let openId = resParse.openid;
       this.getUserinfoByToken(token, openId)
-      console.log(res, res, token, openId)
+      console.log(res, resParse, token, openId)
     })
   }
 
@@ -126,6 +124,11 @@ class Album extends React.Component{
   getUserinfoByToken(token, openid) {
     WX.getUserinfoByToken({'access_token':token, 'openid':openid}, (err, res) => {
       if(err){
+        this.notify({
+          message: err.msg,
+          level: 'warning',
+          autoDismiss:'2'
+        });
         return;
       }
       this.setState({userInfo: res})
@@ -218,7 +221,7 @@ class Album extends React.Component{
               </Masonry>
             </div>
           </Navicon>
-          
+          <NotificationSystem ref="notificationSystem" style={false} />
         </div>
       </DocumentTitle>
     );
