@@ -187,7 +187,7 @@ class Album extends React.Component{
     });
 
     return (
-      <DocumentTitle title='Album'>
+      <DocumentTitle title='大冰梨相册'>
         <div>
           <Navicon style={naviconStyle}>
             <div className="container body-bg">
