@@ -36,8 +36,12 @@ class Album extends React.Component{
     }
   }
 
-  componentWillMount(){
+  componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
+  }
+
+  componentWillMount(){
+
     API_Upload.getimg({}, (err, res) => {
       if(err) {
         console.log(err)
