@@ -57,6 +57,27 @@ class Nacicon extends React.Component{
       popup:navIsopen
     })
 
+    /**
+     * 登录按钮显示与否
+     */
+    let loginBtnHide = classNames({
+      "login-hide": !!this.props.headimgurl,
+      "nav-mobile__list-item": true,
+      "hide-sm": true
+    })
+
+    /**
+     * 登录按钮显示与否
+     */
+    let loginBtnShow = classNames({
+      "login-hide": !this.props.headimgurl,
+      "nav-mobile__list-item": true,
+      "hide-sm": true
+    })
+
+    /**
+     * props style|headimgurl
+     */
     return (
       <div>
         <div className="navicon" style={this.props.style}>
@@ -70,7 +91,19 @@ class Nacicon extends React.Component{
               BINLIN ALBUM
             </span>
             <ul className="nav-mobile__list">
-              <li className="nav-mobile__list-item hide-sm">
+              <li>
+                <img className="headimgurl" src={this.props.headimgurl} />
+              </li>
+              <br/>
+              <br/>
+              <li className={loginBtnShow}>
+                <Link to='upload/'>
+                  <a className="sign-button button-small">
+                    上传照片
+                  </a>
+                </Link>
+              </li>
+              <li className={loginBtnHide}>
                 <Link to='login/'>
                   <a className="sign-button button-small">
                     登 录
@@ -79,7 +112,7 @@ class Nacicon extends React.Component{
               </li>
               <br/>
               <br/>
-              <li className="nav-mobile__list-item hide-md">
+              <li className={loginBtnHide}>
                 <Link to='login/register'>
                   <a className="nav-mobile__link-primary">注册</a>
                 </Link>

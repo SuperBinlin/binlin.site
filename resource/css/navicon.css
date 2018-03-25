@@ -143,6 +143,15 @@ input,button,select,textarea{outline:none}
   opacity:.6;
 }
 
+.headimgurl{
+  border-radius: 50%;
+  width:90px;
+}
+
+.login-hide{
+  display: none;
+}
+
 
 
 

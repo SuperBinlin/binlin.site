@@ -42,15 +42,6 @@ class Album extends React.Component{
 
   componentWillMount(){
 
-    API_Upload.getimg({}, (err, res) => {
-      if(err) {
-        console.log(err)
-        return;
-      }
-
-      this.setState({photoCollection: res})
-    })
-
     this.setState({'wxUrl':location.href.split('#')[0]});
 
     let code = this.props.location.query.code;
@@ -59,9 +50,16 @@ class Album extends React.Component{
     this.setState({wechatCallbackCode:code}, ()=>{
       let userinfoSession = this.getUserInfoSession();
       if(userinfoSession){
-        this.setState({userInfo: JSON.parse(userinfoSession)})
+        let userinfoSessionObj = JSON.parse(userinfoSession)
+        this.setState({userInfo:userinfoSessionObj})
+        this.getImg({openId: userinfoSessionObj.openid})
+      } else {
+        this.getOpenId(code, (openId) => {
+          console.log('....')
+          this.getImg({openId:openId})
+        });
       }
-      this.getOpenId(code);
+
 
       WX.wxSign(wxUrl, (err, res)=>{
         if(err){
@@ -100,6 +98,10 @@ class Album extends React.Component{
     });
   }
 
+  /**
+   * 已获取openid的情况下 直接从sessionStorage中获取
+   * @return {[type]} [description]
+   */
   getUserInfoSession() {
     let userinfo = sessionStorage.getItem('userinfo.binlin.site');
     return userinfo;
@@ -112,11 +114,12 @@ class Album extends React.Component{
   /**
    * 通过code获取openId和token
    */
-  getOpenId(code) {
+  getOpenId(code, callback) {
     WX.getOpenidByCode({'code':code}, (err, res) => {
       let resParse = JSON.parse(res)
       let token = resParse.access_token;
       let openId = resParse.openid;
+      callback(openId)
       this.getUserinfoByToken(token, openId)
     })
   }
@@ -143,6 +146,20 @@ class Album extends React.Component{
     let Rand = Math.random();
     let num = Min + Math.floor(Rand * Range); //舍去
     return num;
+  }
+
+  /**
+   * 获取图片
+   */
+  getImg(option){
+    API_Upload.getimg(option, (err, res) => {
+      if(err) {
+        console.log(err)
+        return;
+      }
+
+      this.setState({photoCollection: res})
+    })
   }
 
   render(){
@@ -189,7 +206,7 @@ class Album extends React.Component{
     return (
       <DocumentTitle title='大冰梨相册'>
         <div>
-          <Navicon style={naviconStyle}>
+          <Navicon style={naviconStyle} headimgurl={userInfo.headimgurl}>
             <div className="container body-bg">
               <Helmet>
                   <html className="body-bg"></html>

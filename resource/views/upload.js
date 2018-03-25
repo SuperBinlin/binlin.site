@@ -31,7 +31,8 @@ class Upload extends React.Component{
       imgBase:[],                       // img base64存储 用于预览
       labeList:[],                      // 标签列表展示数据
       beSelectCity:'',                  // 被选中的标签 
-      hiddenId:''                       // label所对应的id
+      hiddenId:'',                      // label所对应的id
+      userInfo:{}
     }
 
     this._notificationSystem = null;
@@ -41,11 +42,26 @@ class Upload extends React.Component{
 
   componentWillMount() {
     /**
+     * 获取userInfo
+     */
+    let userInfo = sessionStorage.getItem('userinfo.binlin.site');
+
+    this.setState({
+      userInfo: JSON.parse(userInfo)
+    });
+  }
+
+  componentDidMount() {
+
+    this._notificationSystem = this.refs.notificationSystem;
+
+    /**
      * 获取label标签
      * @param  {[type]} (err,res [description]
      * @return {[type]}          [description]
      */
-    API_Location.getLocation((err,res) => {
+    console.log(this.state.userInfo)
+    API_Location.getLocation({openId:this.state.userInfo.openid}, (err,res) => {
       if(err){
         this.notify({
           title:'Tip',
@@ -59,10 +75,6 @@ class Upload extends React.Component{
         this.setState({hiddenId: res._id})
       }
     })
-  }
-
-  componentDidMount() {
-    this._notificationSystem = this.refs.notificationSystem;
   }
 
   /**
@@ -99,6 +111,7 @@ class Upload extends React.Component{
     let uploadFileFormData = new FormData(),
         uploadPermission = true;
 
+    uploadFileFormData.append('openId',this.state.userInfo.openid);
 
     /**
      * label 非空判断
@@ -134,6 +147,8 @@ class Upload extends React.Component{
       //STEP TWO
       let labelOpt = {};
       labelOpt.location = _this.state.labeList;
+      labelOpt.openId = _this.state.userInfo.openid;
+
       if(_this.state.hiddenId !== '') {
         labelOpt.id = _this.state.hiddenId;
       }

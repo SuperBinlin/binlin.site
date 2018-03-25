@@ -12,9 +12,14 @@ import * as API from './api/api';
 import 'whatwg-fetch';
 
 export default {
-  getLocation (callback) {
+  getLocation (data, callback) {
     fetch(API.GETLOCATION, {
-      method: 'GET'
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'openId':data.openId
+      },
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(arr){
@@ -36,7 +41,8 @@ export default {
     fetch(API.SETLOCATION, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'openId':data.openId
       },
       method:'POST',
       body:JSON.stringify(data)
