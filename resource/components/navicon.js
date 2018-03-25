@@ -97,14 +97,14 @@ class Nacicon extends React.Component{
               <br/>
               <br/>
               <li className={loginBtnShow}>
-                <Link to='upload/'>
+                <Link to='upload'>
                   <a className="sign-button button-small">
                     上传照片
                   </a>
                 </Link>
               </li>
               <li className={loginBtnHide}>
-                <Link to='login/'>
+                <Link to='login'>
                   <a className="sign-button button-small">
                     登 录
                   </a>

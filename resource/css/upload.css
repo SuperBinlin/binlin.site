@@ -219,7 +219,7 @@
 }
 
 #uploader .statusBar {
-    height: 63px;
+    height: 110px;
     border-top: 1px solid #dadada;
     padding: 0 20px;
     line-height: 63px;
@@ -254,13 +254,11 @@
 }
 
 #uploader .statusBar .info {
-    display: inline-block;
     font-size: 14px;
     color: #666666;
 }
 
 #uploader .statusBar .btns {
-    position: absolute;
     top: 10px;
     right: 20px;
     line-height: 40px;
@@ -273,7 +271,7 @@
     padding: 0 18px;
     display: inline-block;
     border-radius: 3px;
-    margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer;
     font-size: 14px;
     float: left;
