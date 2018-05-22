@@ -25,7 +25,7 @@ class Resume extends React.Component{
 		window.scroll(0,0);
 		html2canvas(document.body).then((canvas) => {
 			var imgData = canvas.toDataURL('image/jpeg');
-			this.saveFile(imgData, 'test')
+			this.saveFile(imgData, '高级前端开发工程师-张斌')
 		});
 	}
 
