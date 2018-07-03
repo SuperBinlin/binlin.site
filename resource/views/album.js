@@ -67,16 +67,15 @@ class Album extends React.Component{
           return;
         }
 
+        sessionStorage.setItem('wechatToken.binlin.site', res.token);
         wx.config({
           debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-          appId: res.appId, // 必填，公众号的唯一标识
-          timestamp: res.timestamp, // 必填，生成签名的时间戳
-          nonceStr: res.nonceStr, // 必填，生成签名的随机串
-          signature: res.signature,// 必填，签名，见附录1
-          jsApiList: ['chooseImage','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          appId: res.config.appId, // 必填，公众号的唯一标识
+          timestamp: res.config.timestamp, // 必填，生成签名的时间戳
+          nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
+          signature: res.config.signature,// 必填，签名，见附录1
+          jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         })
-
-        console.log(res)
 
         wx.ready(() => {
           wx.onMenuShareAppMessage({
@@ -119,6 +118,7 @@ class Album extends React.Component{
       let resParse = JSON.parse(res)
       let token = resParse.access_token;
       let openId = resParse.openid;
+
       callback(openId)
       this.getUserinfoByToken(token, openId)
     })
@@ -157,7 +157,7 @@ class Album extends React.Component{
         console.log(err)
         return;
       }
-
+      
       this.setState({photoCollection: res})
     })
   }

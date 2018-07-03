@@ -13,6 +13,7 @@ import 'whatwg-fetch';
 
 export default {
   wxSign (url, callback) {
+    console.log(url)
     fetch(API.wxSign+"?wxurl="+url, {
       method: 'GET'
     }).then((res)=>{
@@ -89,8 +90,38 @@ export default {
         'mes': err
       })
     });
+  },
+
+  uploadImageFromWechatToQiniu(option, callback){
+    fetch(API.getwximage, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(option)
+    }).then((res)=>{
+      if (res.ok){
+        res.json().then(function(res){
+          let resParse = JSON.parse(res)
+          if(resParse.errcode){
+            callback({
+              'msg': resParse.errmsg
+            })
+            return;
+          }
+          callback(null, resParse)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err)=>{
+      callback({
+        'mes': err
+      })
+    });
   }
-
-
 
 }

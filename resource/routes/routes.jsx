@@ -13,6 +13,7 @@ import NotFound from "../views/404.js";
 import Resume from "../views/resume.js";
 import Login from "../views/albumLogin.js";
 import Upload from "../views/upload.js";
+import Wechatupload from "../views/wechatupload.js";
 import Album from "../views/album.js";
 import Photoshow from "../views/photoshow.js";
 
@@ -25,6 +26,7 @@ class Routes extends Component{
           <Route path="resume" component={Resume} />
           <Route path="login(/:isreg)" component={Login} />
           <Route path="upload" component={Upload} />
+          <Route path="wechatupload" component={Wechatupload} />
           <Route path="album" component={Album}/>
           <Route path="photo" component={Photoshow} />
           <Route path="*" component={NotFound} />

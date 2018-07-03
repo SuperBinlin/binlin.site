@@ -97,7 +97,7 @@ class Nacicon extends React.Component{
               <br/>
               <br/>
               <li className={loginBtnShow}>
-                <Link to='upload'>
+                <Link to='wechatupload'>
                   <a className="sign-button button-small">
                     上传照片
                   </a>
