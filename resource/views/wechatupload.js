@@ -340,7 +340,7 @@ class Wechatupload extends React.Component{
        */
       WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
         let deb = JSON.stringify(res);
-        this.setState({deb:deb})
+        _this.setState({deb:deb})
         if(err) {
           console.log(err);
           _this.notify({
