@@ -103,6 +103,7 @@ export default {
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(res){
+          console.log(res)
           let resParse = JSON.parse(res)
           if(resParse.errcode){
             callback({
