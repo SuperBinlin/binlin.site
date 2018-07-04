@@ -338,7 +338,7 @@ class Wechatupload extends React.Component{
       /**
        * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
        */
-      WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
+      WX.uploadImageFromWechatToQiniu(option, (res)=>{
         let deb = JSON.stringify(res);
         _this.setState({deb:deb});
         // if(err) {
