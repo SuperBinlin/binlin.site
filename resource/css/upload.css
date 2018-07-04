@@ -157,7 +157,7 @@
     height: 130px;
     /*background: url(../images/bg.png) no-repeat;*/
     text-align: center;
-    margin: 0 5px 20px 0;
+    margin: 0 5px 5px 0;
     position: relative;
     display: inline;
     float: left;
@@ -283,7 +283,6 @@
     line-height: 150px;
     vertical-align: middle;
     overflow: hidden;
-    width: 150px;
     height: 150px;
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;

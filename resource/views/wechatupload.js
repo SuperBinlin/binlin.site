@@ -96,14 +96,6 @@ class Wechatupload extends React.Component{
     this.resetState(et);
   }
 
-  addImg(e){                           // 继续添加
-    let et = e.target.files;
-    this.resetState(et);
-    let storeFiles = _.union(this.state.filesArr,et);  // 合并state与新添加的file对象
-    console.log(storeFiles);
-    this.setState({filesArr: storeFiles});
-  }
-
   /**
    * 点击开始上传时 有2步与后台交互：1、见图片以及选中的label传给后台 2、将现有的label增加到后台
    * @return {[type]} [description]
@@ -282,6 +274,21 @@ class Wechatupload extends React.Component{
     });
   }
 
+  addImg(){     
+    let currentImg = this.state.imgBase;
+    let existAlbumLength = 9 - currentImg.length;
+    wx.chooseImage({
+      count: existAlbumLength, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: (res) => {
+        let localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+        let finalImgBase = currentImg.concat(localIds);
+        this.setState({imgBase:finalImgBase});
+      }
+    });
+  }
+
   uploadToWx(localIds){
     return new Promise(function(resolve, reject){
       wx.uploadImage({
@@ -433,15 +440,10 @@ class Wechatupload extends React.Component{
           </div>
 
           <div className="statusBar">
-            <div className="info">选中{imgBase.number}张图片</div>
+            <div className="info">选中{imgBase.length}张图片</div>
             <div className="btns">
               <div className="webuploader-container">
-                <div className="webuploader-pick fl">继续添加</div>
-                <div className="file-wp-status">
-                  <label className="file-labels">
-                    <input type="file" className="webuploader-element-invisible" multiple="multiple" accept="image/jpg,image/jpeg,image/png" onChange={ (e)=>this.addImg(e) }/>
-                  </label>
-                </div>
+                <div className="webuploader-pick fl" onClick={ (e)=>this.addImg() }>继续添加</div>
                 <div className="uploadBtn state-ready fl" onClick={ (e)=>this.uploadImgToWechat() }>开始上传</div>
               </div>
             </div>
