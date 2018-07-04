@@ -35,7 +35,8 @@ class Wechatupload extends React.Component{
       beSelectCity:'',                  // 被选中的标签 
       hiddenId:'',                      // label所对应的id
       userInfo:{},
-      serveIdArr:[]                     // 微信服务器端ID
+      serveIdArr:[],                    // 微信服务器端ID
+      deb:'tttttt'
     }
 
     this._notificationSystem = null;
@@ -327,38 +328,38 @@ class Wechatupload extends React.Component{
       console.log(serveIdArr)
       _this.setState({serveIdArr});
 
-      setTimeout(()=>{
-        let option = {
-          'token':token,
-          'mediaArr':serveIdArr,
-          'openId':_this.state.userInfo.openid,
-          'city':city,
-        }
-        /**
-         * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
-         */
-        WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
-          let deb = JSON.stringify(res);
-          this.setState({deb})
-          if(err) {
-            console.log(err);
-            _this.notify({
-              title:'Tip',
-              message:'上传失败',
-              level:'error'
-            })
-            return;
-          }
 
+      let option = {
+        'token':token,
+        'mediaArr':serveIdArr,
+        'openId':_this.state.userInfo.openid,
+        'city':city,
+      }
+      /**
+       * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
+       */
+      WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
+        let deb = JSON.stringify(res);
+        this.setState({deb:deb})
+        if(err) {
+          console.log(err);
           _this.notify({
             title:'Tip',
-            message:res.msg,
-            level:'info'
+            message:'上传失败',
+            level:'error'
           })
+          return;
+        }
 
-          _this.initData();
+        _this.notify({
+          title:'Tip',
+          message:res.msg,
+          level:'info'
         })
-      }, 0) 
+
+        _this.initData();
+      })
+
 
     }
 
@@ -390,7 +391,7 @@ class Wechatupload extends React.Component{
   }
 
   render(){
-    let {deb,imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
+    let {deb, imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
     /**
      * 引入classnames库 帮助控制多个className
      * @type {[type]}
