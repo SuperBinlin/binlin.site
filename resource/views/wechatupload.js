@@ -303,7 +303,7 @@ class Wechatupload extends React.Component{
   }
 
   uploadImgToWechat(){
-    async function getServeArr(_this, city, callback){
+    async function getServeArr(_this, city){
       let labelOpt = {};
       labelOpt.location = _this.state.labeList;
       labelOpt.openId = _this.state.userInfo.openid;
@@ -313,7 +313,8 @@ class Wechatupload extends React.Component{
       }
       
       API_Location.setLocation (labelOpt, (err, res)=>{
-        console.log(res)
+        let deb = JSON.stringify(res);
+        _this.setState({deb:deb});
       })
 
 
@@ -335,8 +336,31 @@ class Wechatupload extends React.Component{
         'openId':_this.state.userInfo.openid,
         'city':city,
       }
+      /**
+       * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
+       */
+      WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
+        
+        if(err) {
+          console.log(err);
+          _this.notify({
+            title:'Tip',
+            message:'上传失败',
+            level:'error'
+          })
+          return;
+        }
 
-      callback(option);
+        _this.notify({
+          title:'Tip',
+          message:res.msg,
+          level:'info'
+        })
+
+        _this.initData();
+      })
+
+
     }
 
     let uploadPermission = true, city;
@@ -363,34 +387,7 @@ class Wechatupload extends React.Component{
     })
     : '';
 
-    if(uploadPermission){
-      getServeArr(this, city, (option)=>{
-        /**
-         * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
-         */
-        WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
-          _this.initData();
-          let deb = JSON.stringify(res);
-          if(err) {
-            console.log(err);
-            this.notify({
-              title:'Tip',
-              message:'上传失败',
-              level:'error'
-            })
-            return;
-          }
-          this.setState({deb:deb});
-          this.notify({
-            title:'Tip',
-            message:res.msg,
-            level:'info'
-          })
-
-          this.initData();
-        })
-      });   
-    }
+    uploadPermission ? getServeArr(this, city) : '';   
   }
 
   render(){
