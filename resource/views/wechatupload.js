@@ -338,7 +338,8 @@ class Wechatupload extends React.Component{
          * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
          */
         WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
-          if(err){
+          window.alert(JSON.stringify(res));
+          if(err) {
             console.log(err);
             _this.notify({
               title:'Tip',
