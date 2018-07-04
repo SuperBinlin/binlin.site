@@ -102,20 +102,19 @@ export default {
       body:JSON.stringify(option)
     }).then((res)=>{
       if (res.ok){
-        // res.json().then(function(res){
-        //   console.log(res)
-        //   let resParse = JSON.parse(res)
-        //   if(resParse.errcode){
-        //     callback({
-        //       'msg': resParse.errmsg
-        //     })
-        //     return;
-        //   }
-        //   callback(null, resParse)
-        // })
         res.json().then(function(res){
-          callback(res)
+          let resParse = JSON.parse(res)
+          // if(resParse.errcode){
+          //   callback({
+          //     'msg': resParse.errmsg
+          //   })
+          //   return;
+          // }
+          callback(null, resParse)
         })
+        // res.json().then(function(res){
+        //   callback(res)
+        // })
 
       }else{
         callback({
