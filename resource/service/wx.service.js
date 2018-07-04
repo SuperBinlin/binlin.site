@@ -101,23 +101,25 @@ export default {
       method: 'POST',
       body:JSON.stringify(option)
     }).then((res)=>{
-      if (res.ok){
-        res.json().then(function(res){
-          console.log(res)
-          let resParse = JSON.parse(res)
-          if(resParse.errcode){
-            callback({
-              'msg': resParse.errmsg
-            })
-            return;
-          }
-          callback(null, resParse)
-        })
-      }else{
-        callback({
-          'msg':'返回错误'
-        })
-      }
+
+      callback(res)
+      // if (res.ok){
+      //   res.json().then(function(res){
+      //     console.log(res)
+      //     let resParse = JSON.parse(res)
+      //     if(resParse.errcode){
+      //       callback({
+      //         'msg': resParse.errmsg
+      //       })
+      //       return;
+      //     }
+      //     callback(null, resParse)
+      //   })
+      // }else{
+      //   callback({
+      //     'msg':'返回错误'
+      //   })
+      // }
     }).catch((err)=>{
       callback({
         'mes': err
