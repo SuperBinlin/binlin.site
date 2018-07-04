@@ -7,13 +7,13 @@
 .ivu-tag {
     display: inline-block;
     height: 25px;
-    line-height: 25px;
+    line-height: 17px;
     margin: 2px 4px 2px 0;
-    padding: 2px;
+    padding: 3px;
     border: 1px solid #e3e8ee;
     border-radius: 3px;
     background: #f7f7f7;
-    font-size: 12px;
+    font-size: 13px;
     vertical-align: middle;
     opacity: 1;
     overflow: hidden;
@@ -61,6 +61,7 @@
     outline: 0;
 }
 .ivu-btn {
+    height:26px;
     display: inline-block;
     margin-bottom: 0;
     font-weight: 400;
