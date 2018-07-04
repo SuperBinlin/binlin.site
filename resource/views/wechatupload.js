@@ -313,8 +313,7 @@ class Wechatupload extends React.Component{
       }
       
       API_Location.setLocation (labelOpt, (err, res)=>{
-        let deb = JSON.stringify(res);
-        _this.setState({deb:deb});
+        console.log(res)
       })
 
 
@@ -340,24 +339,25 @@ class Wechatupload extends React.Component{
        * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
        */
       WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
-        
-        if(err) {
-          console.log(err);
-          _this.notify({
-            title:'Tip',
-            message:'上传失败',
-            level:'error'
-          })
-          return;
-        }
+        let deb = JSON.stringify(res);
+        _this.setState({deb:deb});
+        // if(err) {
+        //   console.log(err);
+        //   _this.notify({
+        //     title:'Tip',
+        //     message:'上传失败',
+        //     level:'error'
+        //   })
+        //   return;
+        // }
 
-        _this.notify({
-          title:'Tip',
-          message:res.msg,
-          level:'info'
-        })
+        // _this.notify({
+        //   title:'Tip',
+        //   message:res.msg,
+        //   level:'info'
+        // })
 
-        _this.initData();
+        // _this.initData();
       })
 
 
