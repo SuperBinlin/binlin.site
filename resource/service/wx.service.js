@@ -103,13 +103,12 @@ export default {
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(res){
-          // if(resParse.errcode){
-          //   callback({
-          //     'msg': resParse.errmsg
-          //   })
-          //   return;
-          // }
-          callback(null, res)
+          if(res.status){
+            callback(null, res)  
+          } else {
+            callback({msg:res.msg})
+          }
+          
         })
         // res.json().then(function(res){
         //   callback(res)
