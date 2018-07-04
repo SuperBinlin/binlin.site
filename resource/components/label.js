@@ -75,7 +75,7 @@ class Label extends React.Component{
           }
 
           {
-            true ? 
+            fillcity ? 
               <div className="ivu-tag ivu-tag-closable">
                 <input ref={this.addCityFocus} className="fill-city" type="text" onBlur={this._addCity}/>
               </div>
