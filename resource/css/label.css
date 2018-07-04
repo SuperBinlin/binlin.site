@@ -6,10 +6,10 @@
 }
 .ivu-tag {
     display: inline-block;
-    height: 22px;
-    line-height: 22px;
+    height: 25px;
+    line-height: 25px;
     margin: 2px 4px 2px 0;
-    padding: 0 8px;
+    padding: 2px;
     border: 1px solid #e3e8ee;
     border-radius: 3px;
     background: #f7f7f7;
