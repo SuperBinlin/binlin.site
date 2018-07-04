@@ -347,14 +347,16 @@ class Wechatupload extends React.Component{
             })
             return;
           }
-          
+
           _this.notify({
             title:'Tip',
             message:res.msg,
             level:'info'
           })
+
+          _this.initData();
         })
-      }, 1000) 
+      }, 0) 
 
     }
 
@@ -406,11 +408,6 @@ class Wechatupload extends React.Component{
       <div className="container-fluid">
         <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
         <input type="hidden" value={hiddenId} />
-        {
-          serveIdArr.map(function(obj, index){
-            return <p key={index}>{obj}</p>
-          })
-        }
         <div className="wu-example" id="uploader">
           <div className={uploadWp}>
             <div className="placeholder">
