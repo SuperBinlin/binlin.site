@@ -338,7 +338,8 @@ class Wechatupload extends React.Component{
          * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
          */
         WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
-          window.alert(JSON.stringify(res));
+          let deb = JSON.stringify(res);
+          this.setState({deb})
           if(err) {
             console.log(err);
             _this.notify({
@@ -389,7 +390,7 @@ class Wechatupload extends React.Component{
   }
 
   render(){
-    let {imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
+    let {deb,imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
     /**
      * 引入classnames库 帮助控制多个className
      * @type {[type]}
@@ -438,7 +439,7 @@ class Wechatupload extends React.Component{
           </div>
 
           <div className="statusBar">
-            <div className="info">选中{imgBase.length}张图片</div>
+            <div className="info">选中{imgBase.length}张图片{deb}</div>
             <div className="btns">
               <div className="webuploader-container">
                 <div className="webuploader-pick fl" onClick={ (e)=>this.addImg() }>继续添加</div>
