@@ -45,7 +45,7 @@ class Album extends React.Component{
     this.setState({'wxUrl':location.href.split('#')[0]});
 
     let code = this.props.location.query.code;
-    let id = this.props.location.query.idCollect;
+    let id = this.props.location.query.id;
 
     /**
      * TODO

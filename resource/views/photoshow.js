@@ -52,10 +52,6 @@ class Photoshow extends React.Component{
     });
 
     let city = this.props.location.query.city;
-    let _id = this.props.location.query._id;
-    let openId = userInfo.openid;
-
-    let idCollect = _id + '-' + openId;
 
     console.log(city, _id)
 
@@ -75,6 +71,10 @@ class Photoshow extends React.Component{
     })
 
     wx.ready(() => {
+      let _id = this.props.location.query._id;
+      let openId = userInfo.openid;
+      let idCollect = _id + '-' + openId;
+      
       wx.onMenuShareAppMessage({
         title: '冰梨相册', // 分享标题
         desc: '第一次分享哦', // 分享描述
