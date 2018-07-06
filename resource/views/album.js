@@ -45,6 +45,18 @@ class Album extends React.Component{
     this.setState({'wxUrl':location.href.split('#')[0]});
 
     let code = this.props.location.query.code;
+    let id = this.props.location.query.idCollect;
+
+    /**
+     * TODO
+     * debugger please delete when release
+     */
+    
+    this.setState({
+      code,
+      id
+    })
+
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
 
     this.setState({wechatCallbackCode:code}, ()=>{
@@ -75,23 +87,6 @@ class Album extends React.Component{
           nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
           signature: res.config.signature,// 必填，签名，见附录1
           jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        })
-
-        wx.ready(() => {
-          wx.onMenuShareAppMessage({
-            title: '冰梨相册', // 分享标题
-            desc: '第一次分享哦', // 分享描述
-            link: 'http://binlin.site/album', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://album.binlin.site/0.042686455814229696.jpg', // 分享图标
-            type: 'link', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () { 
-                console.log("分享成功")
-            },
-            cancel: function () { 
-                console.log("分享失败")
-            }
-          });
         })
       })
     });
@@ -157,13 +152,13 @@ class Album extends React.Component{
         console.log(err)
         return;
       }
-      
+
       this.setState({photoCollection: res})
     })
   }
 
   render(){
-    let { photoCollection, masonryOptions, wxUrl, userInfo } = this.state;
+    let { photoCollection, masonryOptions, wxUrl, userInfo, code, id } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -195,7 +190,7 @@ class Album extends React.Component{
           <img src={element.img[num].src} />
           <div className="shadow">
             <p className="current-city">{element.city}</p>
-            <Link to='photo' query={{city: element.city}}>
+            <Link to='photo' query={{city: element.city,_id:element._id}}>
               <span className="view-more">view more</span>
             </Link>
           </div>
@@ -220,7 +215,7 @@ class Album extends React.Component{
                     <span></span>
                     <span></span>
                   </a>
-                  <span className="name">{userInfo.nickname}</span>
+                  <span className="name">{userInfo.nickname}{code}{id}</span>
                   <span className="text">Photography</span>
                 </div>
               </header>
