@@ -217,7 +217,7 @@ class Album extends React.Component{
                   </a>
                   <span className="name">{userInfo.nickname}{id}</span>
                   <span className="text">Photography</span>
-                  <p style="color:#fff">wxUrl</p>
+                  <p style="color:#fff">{wxUrl}</p>
                 </div>
               </header>
               <Masonry
