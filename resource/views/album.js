@@ -215,7 +215,7 @@ class Album extends React.Component{
                     <span></span>
                     <span></span>
                   </a>
-                  <span className="name">{userInfo.nickname}{code}{id}</span>
+                  <span className="name">{userInfo.nickname}{id}</span>
                   <span className="text">Photography</span>
                 </div>
               </header>
