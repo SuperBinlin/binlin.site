@@ -42,60 +42,66 @@ class Photoshow extends React.Component{
   }
 
   componentWillMount(){
+    
+
+  }
+
+  componentDidMount() {
+
     /**
      * 获取userInfo
      */
     let userInfo = sessionStorage.getItem('userinfo.binlin.site');
 
+    let city = this.props.location.query.city;
+    let _id = this.props.location.query._id;
+    
     this.setState({
       userInfo: JSON.parse(userInfo)
-    });
-
-  }
-
-  componentDidMount() {
-    
-    let city = this.props.location.query.city;
-    /**
+    }, function(){
+      /**
      * idCollect为分享放到分享链接上的参数 _id为相册id openId为分享相册的用户id
      * @type {[type]}
      */
-    let _id = this.props.location.query._id;
-    let openId = this.state.userInfo.openid;
-    let idCollect = _id + '-' + openId;
+      let openId = this.state.userInfo.openid;
+      let idCollect = _id + '-' + openId;
 
-    API_Upload.getimg({'city':city}, (err, res) => {
-      if(err) {
-        console.log(err)
-        return;
-      }
-      this.setState({
-        photoCollection: res,
-        photoSwipe:{
-          items:res[0].img,
-          options:{}
-        },
-        currentCity:res[0].pinyin
-      })
-    })
-
-    wx.ready(() => {
-
-      wx.onMenuShareAppMessage({
-        title: '冰梨相册', // 分享标题
-        desc: '第一次分享哦', // 分享描述
-        link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa266785ae98ca648&redirect_uri=http://binlin.site/album?id='+idCollect+'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: 'http://album.binlin.site/0.042686455814229696.jpg', // 分享图标
-        type: 'link', // 分享类型,music、video或link，不填默认为link
-        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        success: function () { 
-            console.log("分享成功")
-        },
-        cancel: function () { 
-            console.log("分享失败")
+      API_Upload.getimg({'city':city}, (err, res) => {
+        if(err) {
+          console.log(err)
+          return;
         }
+        this.setState({
+          photoCollection: res,
+          photoSwipe:{
+            items:res[0].img,
+            options:{}
+          },
+          currentCity:res[0].pinyin
+        })
       });
-    })
+
+
+      wx.ready(() => {
+
+        wx.onMenuShareAppMessage({
+          title: '冰梨相册', // 分享标题
+          desc: '第一次分享哦', // 分享描述
+          link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa266785ae98ca648&redirect_uri=http://binlin.site/album?id='+idCollect+'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: 'http://album.binlin.site/0.042686455814229696.jpg', // 分享图标
+          type: 'link', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          success: function () { 
+              console.log("分享成功")
+          },
+          cancel: function () { 
+              console.log("分享失败")
+          }
+        });
+      })
+
+    });
+
   }
 
   closePhotoswipe = () => {
