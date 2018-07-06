@@ -51,9 +51,18 @@ class Photoshow extends React.Component{
       userInfo: JSON.parse(userInfo)
     });
 
-    let city = this.props.location.query.city;
+  }
 
-    console.log(city, _id)
+  componentDidMount() {
+    
+    let city = this.props.location.query.city;
+    /**
+     * idCollect为分享放到分享链接上的参数 _id为相册id openId为分享相册的用户id
+     * @type {[type]}
+     */
+    let _id = this.props.location.query._id;
+    let openId = this.state.userInfo.openid;
+    let idCollect = _id + '-' + openId;
 
     API_Upload.getimg({'city':city}, (err, res) => {
       if(err) {
@@ -71,10 +80,7 @@ class Photoshow extends React.Component{
     })
 
     wx.ready(() => {
-      let _id = this.props.location.query._id;
-      let openId = userInfo.openid;
-      let idCollect = _id + '-' + openId;
-      
+
       wx.onMenuShareAppMessage({
         title: '冰梨相册', // 分享标题
         desc: '第一次分享哦', // 分享描述
