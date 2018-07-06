@@ -46,7 +46,7 @@ class Album extends React.Component{
 
     let code = this.props.location.query.code;
     let id = this.props.location.query.id;
-
+    console.log(id)
     /**
      * TODO
      * debugger please delete when release

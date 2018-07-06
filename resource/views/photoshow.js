@@ -63,7 +63,7 @@ class Photoshow extends React.Component{
      * idCollect为分享放到分享链接上的参数 _id为相册id openId为分享相册的用户id
      * @type {[type]}
      */
-      let openId = JSON.stringify(this.state.userInfo);
+      let openId = this.state.userInfo.openid;
       let idCollect = _id + '-' + openId;
 
       API_Upload.getimg({'city':city}, (err, res) => {
