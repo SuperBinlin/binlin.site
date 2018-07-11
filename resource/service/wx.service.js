@@ -35,7 +35,12 @@ export default {
 
   saveWxUser (user, callback) {
     fetch(API.userWx, {
-      method: 'POST'
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(user)
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(arr){
