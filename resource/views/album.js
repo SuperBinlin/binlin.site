@@ -46,7 +46,15 @@ class Album extends React.Component{
 
     let code = this.props.location.query.code;
     let id = this.props.location.query.id;
-    console.log(id)
+
+    /**
+     * true说明是从分享接口进入
+     */
+    if(id){
+      let idSplit = id.split('-');
+      let shareAlbumId = idSplit[0];
+      let shareUserOpenId = idSplit[1];
+    }
     /**
      * TODO
      * debugger please delete when release
@@ -128,6 +136,9 @@ class Album extends React.Component{
         return;
       }
       this.setState({userInfo: res})
+      WX.saveWxUser(res, (res)=>{
+        console.log('注册成功');
+      })
       sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(res));
       console.log(this.userInfo)
     })

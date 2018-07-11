@@ -23,3 +23,5 @@ export const getOpenidByCode = '/api/getOpenidByCode';
 export const getUserinfoByToken = '/api/getUserinfoByToken';
 
 export const getwximage = '/api/getwximage';
+
+export const userWx = '/api/wxregister';

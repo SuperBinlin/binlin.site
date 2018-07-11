@@ -13,9 +13,29 @@ import 'whatwg-fetch';
 
 export default {
   wxSign (url, callback) {
-    console.log(url)
     fetch(API.wxSign+"?wxurl="+url, {
       method: 'GET'
+    }).then((res)=>{
+      if (res.ok){
+        res.json().then(function(arr){
+          console.log(arr)
+          callback(null, arr)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err)=>{
+      callback({
+        'mes': err
+      })
+    });
+  },
+
+  saveWxUser (user, callback) {
+    fetch(API.userWx, {
+      method: 'POST'
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(arr){
