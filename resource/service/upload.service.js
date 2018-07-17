@@ -49,6 +49,10 @@ export default {
 
   shareto(option, callback) {
     fetch(API.SHARETO, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
       body: JSON.stringify(option)
     }).then((res) => {
