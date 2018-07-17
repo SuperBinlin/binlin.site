@@ -64,7 +64,7 @@ class Photoshow extends React.Component{
      * @type {[type]}
      */
       let openId = this.state.userInfo.openid;
-      let idCollect = _id + '-' + openId;
+      let idCollect = _id + '@@' + openId;
 
       API_Upload.getimg({'city':city}, (err, res) => {
         if(err) {

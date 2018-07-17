@@ -51,7 +51,7 @@ class Album extends React.Component{
      * true说明是从分享接口进入
      */
     if(id){
-      let idSplit = id.split('-');
+      let idSplit = id.split('@@');
       let shareAlbumId = idSplit[0];
       let shareUserOpenId = idSplit[1];
 
@@ -71,6 +71,7 @@ class Album extends React.Component{
         })
 
       })
+
     }
     /**
      * TODO
