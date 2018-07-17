@@ -54,6 +54,23 @@ class Album extends React.Component{
       let idSplit = id.split('-');
       let shareAlbumId = idSplit[0];
       let shareUserOpenId = idSplit[1];
+
+      API_Upload.shareto({
+        "openId": shareUserOpenId,
+        "albumId":shareAlbumId
+      }, function(err, res){
+        if(err){
+          console.log(err);
+          return;
+        }
+
+        this.notify({
+          title:'Tip',
+          message:'分享成功',
+          level:'success'
+        })
+
+      })
     }
     /**
      * TODO
@@ -75,7 +92,6 @@ class Album extends React.Component{
         this.getImg({openId: userinfoSessionObj.openid})
       } else {
         this.getOpenId(code, (openId) => {
-          console.log('....')
           this.getImg({openId:openId})
         });
       }

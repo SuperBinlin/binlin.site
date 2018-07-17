@@ -47,6 +47,25 @@ export default {
     })
   },
 
+  shareto(option, callback) {
+    fetch(API.SHARETO, {
+      method: 'POST',
+      body: option
+    }).then((res) => {
+      if (res.ok){
+        res.json().then(function(arr){
+          callback(null,arr);
+        })
+      }else{
+        callback({
+          'msg':res.msg
+        })
+      }
+    }).catch((err) => {
+      callback(err)
+    })
+  },
+
   getimg (conditions, callback){
     fetch(API.GETIMG, {
       headers: {

@@ -18,10 +18,12 @@ export const GETCONFIRMCODE = '/api/getconfirm';
 export const REGISTER = '/api/register';
 export const LOGIN = '/api/login';
 
-export const wxSign = '/api/getsign';
-export const getOpenidByCode = '/api/getOpenidByCode';
-export const getUserinfoByToken = '/api/getUserinfoByToken';
+export const WXSIGN = '/api/getsign';
+export const GETOPENIDBYCODE = '/api/getOpenidByCode';
+export const GETUSERINFOBYTOKEN = '/api/getUserinfoByToken';
 
-export const getwximage = '/api/getwximage';
+export const GETWXIMAGE = '/api/getwximage';
 
-export const userWx = '/api/wxregister';
+export const SHARETO = '/api/shareTo';
+
+export const UESRWX = '/api/wxregister';

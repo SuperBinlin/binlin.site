@@ -13,7 +13,7 @@ import 'whatwg-fetch';
 
 export default {
   wxSign (url, callback) {
-    fetch(API.wxSign+"?wxurl="+url, {
+    fetch(API.WXSIGN+"?wxurl="+url, {
       method: 'GET'
     }).then((res)=>{
       if (res.ok){
@@ -34,7 +34,7 @@ export default {
   },
 
   saveWxUser (user, callback) {
-    fetch(API.userWx, {
+    fetch(API.UESRWX, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -60,7 +60,7 @@ export default {
   },
 
   getOpenidByCode(code, callback){
-    fetch(API.getOpenidByCode, {
+    fetch(API.GETOPENIDBYCODE, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ export default {
   },
 
   getUserinfoByToken(option, callback){
-    fetch(API.getUserinfoByToken, {
+    fetch(API.GETUSERINFOBYTOKEN, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ export default {
   },
 
   uploadImageFromWechatToQiniu(option, callback){
-    fetch(API.getwximage, {
+    fetch(API.GETWXIMAGE, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
