@@ -50,7 +50,7 @@ export default {
   shareto(option, callback) {
     fetch(API.SHARETO, {
       method: 'POST',
-      body: option
+      body: JSON.stringify(option)
     }).then((res) => {
       if (res.ok){
         res.json().then(function(arr){
