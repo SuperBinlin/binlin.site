@@ -45,34 +45,7 @@ class Album extends React.Component{
     this.setState({'wxUrl':location.href.split('#')[0]});
 
     let code = this.props.location.query.code;
-    let id = this.props.location.query.id;
 
-    /**
-     * true说明是从分享接口进入
-     */
-    if(id){
-      let idSplit = id.split('@@');
-      let shareAlbumId = idSplit[0];
-      let shareUserOpenId = idSplit[1];
-
-      API_Upload.shareto({
-        "openId": shareUserOpenId,
-        "albumId":shareAlbumId
-      }, function(err, res){
-        if(err){
-          console.log(err);
-          return;
-        }
-
-        this.notify({
-          title:'Tip',
-          message:'分享成功',
-          level:'success'
-        })
-
-      })
-
-    }
     /**
      * TODO
      * debugger please delete when release
@@ -88,13 +61,18 @@ class Album extends React.Component{
     this.setState({wechatCallbackCode:code}, ()=>{
       let userinfoSession = this.getUserInfoSession();
       if(userinfoSession){
-        let userinfoSessionObj = JSON.parse(userinfoSession)
-        this.setState({userInfo:userinfoSessionObj})
-        this.getImg({openId: userinfoSessionObj.openid})
+
+        let userinfoSessionObj = JSON.parse(userinfoSession);
+        this.setState({userInfo:userinfoSessionObj});
+        this.getImg({openId: userinfoSessionObj.openid});
+        this.shareToFn(userinfoSessionObj.openid);
       } else {
+
         this.getOpenId(code, (openId) => {
           this.getImg({openId:openId})
+          this.shareToFn(openId);
         });
+
       }
 
 
@@ -115,6 +93,40 @@ class Album extends React.Component{
         })
       })
     });
+  }
+
+  /**
+   * 分享链接点击进来后 从url上获取相册ID 然后获取点击人的openId 进行关联
+   * @param  {[type]} openId [description]
+   * @return {[type]}        [description]
+   */
+  shareToFn(openId){
+    let id = this.props.location.query.id;
+    /**
+     * true说明是从分享接口进入
+     */
+    if(id){
+      let idSplit = id.split('@@');
+      let shareAlbumId = idSplit[0];
+      //let shareUserOpenId = idSplit[1];
+
+      API_Upload.shareto({
+        "openId": openId,
+        "albumId":shareAlbumId
+      }, function(err, res){
+        if(err){
+          console.log(err);
+          return;
+        }
+
+        this.notify({
+          title:'Tip',
+          message:'分享成功',
+          level:'success'
+        })
+
+      })
+    }
   }
 
   /**
