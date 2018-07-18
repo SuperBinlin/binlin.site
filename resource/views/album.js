@@ -188,8 +188,7 @@ class Album extends React.Component{
         return;
       }
 
-      sessionStorage.setItem('album.binlin.site', JSON.stringify(res));
-      this.setState({photoCollection: res});
+      this.setState({photoCollection: res.selfalbum});
     })
   }
 
