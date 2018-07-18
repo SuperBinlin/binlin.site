@@ -31,7 +31,6 @@ class Album extends React.Component{
         transitionDuration: 500
       },
       wechatCallbackCode:'',
-      wxUrl:'',
       userInfo:{}
     }
   }
@@ -41,8 +40,6 @@ class Album extends React.Component{
   }
 
   componentWillMount(){
-
-    this.setState({'wxUrl':location.href.split('#')[0]});
 
     let code = this.props.location.query.code;
 
@@ -98,24 +95,32 @@ class Album extends React.Component{
     if(id){
       let idSplit = id.split('@@');
       let shareAlbumId = idSplit[0];
-      //let shareUserOpenId = idSplit[1];
+      let shareUserOpenId = idSplit[1];
 
-      API_Upload.shareto({
-        "openId": openId,
-        "albumId":shareAlbumId
-      }, function(err, res){
-        if(err){
-          console.log(err);
-          return;
-        }
+      /**
+       * 自己点链接不添加shareTo
+       * @param  {[type]} openId !             [description]
+       * @return {[type]}        [description]
+       */
+      if(openId != shareUserOpenId) {
 
-        this.notify({
-          title:'Tip',
-          message:'分享成功',
-          level:'success'
+        API_Upload.shareto({
+          "openId": openId,
+          "albumId":shareAlbumId
+        }, function(err, res){
+          if(err){
+            console.log(err);
+            return;
+          }
+
+          this.notify({
+            title:'Tip',
+            message:'分享成功',
+            level:'success'
+          })
         })
 
-      })
+      }
     }
   }
 
@@ -188,7 +193,7 @@ class Album extends React.Component{
   }
 
   render(){
-    let { photoCollection, masonryOptions, wxUrl, userInfo } = this.state;
+    let { photoCollection, masonryOptions, userInfo } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -247,7 +252,6 @@ class Album extends React.Component{
                   </a>
                   <span className="name">{userInfo.nickname}</span>
                   <span className="text">Photography</span>
-                  <p>{wxUrl}</p>
                 </div>
               </header>
               <Masonry
