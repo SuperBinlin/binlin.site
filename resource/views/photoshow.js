@@ -77,7 +77,8 @@ class Photoshow extends React.Component{
           items: currentCityAlbum.img,
           options: {}
         },
-        currentCity: currentCityAlbum.pinyin
+        currentCity: currentCityAlbum.pinyin,
+        photoCollection: _.cloneDeep(currentCityAlbum)
       })
 
       // API_Upload.getimg({'city':city}, (err, res) => {
@@ -142,8 +143,8 @@ class Photoshow extends React.Component{
   }
 
   render(){
-    let { masonryOptions, photoSwipe, isphotoSwipeOpen, currentCity} = this.state;
-    let childElements = photoSwipe.items.map((element, index) => {
+    let {photoCollection, masonryOptions, photoSwipe, isphotoSwipeOpen, currentCity} = this.state;
+    let childElements = photoCollection.img.map((element, index) => {
      return (
         <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index} onClick={()=>{this.showPhotoswipe(index)}}>
           <div className="img-wp">
