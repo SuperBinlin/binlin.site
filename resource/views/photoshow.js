@@ -52,6 +52,8 @@ class Photoshow extends React.Component{
      * 获取userInfo
      */
     let userInfo = sessionStorage.getItem('userinfo.binlin.site');
+    let currentAlbum = sessionStorage.getItem('album.binlin.site');
+    let currentAlbumArr = JSON.parse(currentAlbum);
 
     let city = this.props.location.query.city;
     let _id = this.props.location.query._id;
@@ -66,20 +68,32 @@ class Photoshow extends React.Component{
       let openId = this.state.userInfo.openid;
       let idCollect = _id + '@@' + openId;
 
-      API_Upload.getimg({'city':city}, (err, res) => {
-        if(err) {
-          console.log(err)
-          return;
-        }
-        this.setState({
-          photoCollection: res,
-          photoSwipe:{
-            items:res[0].img,
-            options:{}
-          },
-          currentCity:res[0].pinyin
-        })
+      let currentCityAlbum = _.find(currentAlbumArr, (obj)=>{
+        return obj.city = city;
       });
+
+      this.setState({
+        photoSwipe:{
+          items: currentCityAlbum.img,
+          options: {}
+        },
+        currentCity: currentCityAlbum.pinyin
+      })
+
+      // API_Upload.getimg({'city':city}, (err, res) => {
+      //   if(err) {
+      //     console.log(err)
+      //     return;
+      //   }
+      //   this.setState({
+      //     photoCollection: res,
+      //     photoSwipe:{
+      //       items:res[0].img,
+      //       options:{}
+      //     },
+      //     currentCity:res[0].pinyin
+      //   })
+      // });
 
 
       wx.ready(() => {
@@ -128,8 +142,8 @@ class Photoshow extends React.Component{
   }
 
   render(){
-    let {photoCollection, masonryOptions, photoSwipe, isphotoSwipeOpen, currentCity} = this.state;
-    let childElements = photoCollection[0].img.map((element, index) => {
+    let { masonryOptions, photoSwipe, isphotoSwipeOpen, currentCity} = this.state;
+    let childElements = photoSwipe.item.map((element, index) => {
      return (
         <div className="image-element-class col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index} onClick={()=>{this.showPhotoswipe(index)}}>
           <div className="img-wp">

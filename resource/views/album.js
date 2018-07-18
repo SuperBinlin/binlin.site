@@ -163,8 +163,8 @@ class Album extends React.Component{
       WX.saveWxUser(res, (res)=>{
         console.log('注册成功');
       })
+
       sessionStorage.setItem('userinfo.binlin.site', JSON.stringify(res));
-      console.log(this.userInfo)
     })
   }
 
@@ -188,7 +188,8 @@ class Album extends React.Component{
         return;
       }
 
-      this.setState({photoCollection: res})
+      sessionStorage.setItem('album.binlin.site', JSON.stringify(res));
+      this.setState({photoCollection: res});
     })
   }
 
