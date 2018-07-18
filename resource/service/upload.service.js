@@ -91,5 +91,28 @@ export default {
     }).catch((err) => {
       callback(err)
     })
+  },
+
+  getimgbyalbumid (conditions, callback){
+    fetch(API.GETIMGBYALBUMID, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(conditions)
+    }).then((res) => {
+      if (res.ok){
+        res.json().then(function(arr){
+          callback(null, arr)
+        })
+      }else{
+        callback({
+          'msg':'返回错误'
+        })
+      }
+    }).catch((err) => {
+      callback(err)
+    })
   }
 }
