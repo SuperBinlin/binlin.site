@@ -66,7 +66,7 @@ class Photoshow extends React.Component{
       let openId = this.state.userInfo.openid;
       let idCollect = _id + '@@' + openId;
 
-      API_Upload.getimgbyalbumid({'_id':_id}, (err, res) => {
+      API_Upload.getimgbyalbumid({'albumId':_id}, (err, res) => {
         if(err) {
           console.log(err)
           return;
