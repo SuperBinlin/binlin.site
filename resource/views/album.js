@@ -46,16 +46,6 @@ class Album extends React.Component{
 
     let code = this.props.location.query.code;
 
-    /**
-     * TODO
-     * debugger please delete when release
-     */
-    
-    this.setState({
-      code,
-      id
-    })
-
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
 
     this.setState({wechatCallbackCode:code}, ()=>{
@@ -198,7 +188,7 @@ class Album extends React.Component{
   }
 
   render(){
-    let { photoCollection, masonryOptions, wxUrl, userInfo, code, id } = this.state;
+    let { photoCollection, masonryOptions, wxUrl, userInfo } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -255,7 +245,7 @@ class Album extends React.Component{
                     <span></span>
                     <span></span>
                   </a>
-                  <span className="name">{userInfo.nickname}{id}</span>
+                  <span className="name">{userInfo.nickname}</span>
                   <span className="text">Photography</span>
                   <p>{wxUrl}</p>
                 </div>
