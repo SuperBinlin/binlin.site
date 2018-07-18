@@ -72,13 +72,14 @@ class Photoshow extends React.Component{
         return obj.city = city;
       });
       console.log(currentCityAlbum)
+      let photoCollection = _.cloneDeep(currentCityAlbum);
       this.setState({
         photoSwipe:{
           items: currentCityAlbum.img,
           options: {}
         },
         currentCity: currentCityAlbum.pinyin,
-        photoCollection: _.cloneDeep(currentCityAlbum)
+        photoCollection: photoCollection
       })
 
       // API_Upload.getimg({'city':city}, (err, res) => {
