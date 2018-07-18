@@ -71,7 +71,7 @@ class Photoshow extends React.Component{
       let currentCityAlbum = _.find(currentAlbumArr, (obj)=>{
         return obj.city = city;
       });
-
+      console.log(currentCityAlbum)
       this.setState({
         photoSwipe:{
           items: currentCityAlbum.img,
