@@ -28,6 +28,17 @@ header{
   transition: opacity .4s ease-in-out,filter .4s ease-in-out;
 }
 
+.image-element-class-album .share-headimg{
+  position: absolute;
+  z-index:10000;
+  width:35px!important;
+  height:35px!important;
+  border-radius: 50%;
+  top:5px;
+  left:20px;
+  border:1px solid #fff;
+}
+
 .image-element-class-album .current-city{
   height:20px;
 }
@@ -169,6 +180,9 @@ header{
 }
 
 @media (max-width: 768px) {
+  header{
+    height:160px;
+  }
   div.col-xs-12{
     width:50%;
   }

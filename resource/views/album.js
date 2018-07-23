@@ -27,6 +27,7 @@ class Album extends React.Component{
     super(props);
     this.state = {
       photoCollection: [],
+      othersCollection: [],
       masonryOptions:{
         transitionDuration: 500
       },
@@ -189,11 +190,12 @@ class Album extends React.Component{
       }
 
       this.setState({photoCollection: res.selfalbum});
+      this.setState({othersCollection: res.othersShare});
     })
   }
 
   render(){
-    let { photoCollection, masonryOptions, userInfo } = this.state;
+    let { photoCollection, othersCollection, masonryOptions, userInfo } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -233,6 +235,37 @@ class Album extends React.Component{
        );
     });
 
+    let otherElements = othersCollection.map((element, index) => {
+      /**
+       * 随机展示当前相册的一张图片，需要知道当前相册的张数，然后获取随机数，展示随机照片
+       * @type {String}
+       */
+      let maxPhotoLength = element.img.length || 0;
+      let num = this.randomNum(0,maxPhotoLength);
+
+      /**
+       * 版本差异导致LINK带params的方式有所区别
+       * example: <Link to="/property/:propId" params={{ propId: "123"}} ></Link>
+       * <Link to={{pathname: '/photo/'+element.city}}>
+       *  <span className="view-more">view more</span>
+       * </Link>
+       * 获取params:this.props.params.city
+       * 获取query:this.props.location.query.city
+       */
+      return (
+        <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+          <img src={element.img[num].src} />
+          <img src={element.belongTo[0].headimgurl} className="share-headimg" />
+          <div className="shadow">
+            <p className="current-city">{element.city}</p>
+            <Link to='photo' query={{city: element.city,_id:element._id}}>
+              <span className="view-more">view more</span>
+            </Link>
+          </div>
+        </div>
+       );
+    });
+
     return (
       <DocumentTitle title='大冰梨相册'>
         <div>
@@ -254,6 +287,17 @@ class Album extends React.Component{
                   <span className="text">Photography</span>
                 </div>
               </header>
+
+              <Masonry
+                  className={'my-gallery-class row'} // default ''
+                  elementType={'div'} // default 'div'
+                  options={masonryOptions} // default {}
+                  disableImagesLoaded={false} // default false
+                  updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+              >
+                  {otherElements}
+              </Masonry>
+
               <Masonry
                   className={'my-gallery-class row'} // default ''
                   elementType={'div'} // default 'div'
