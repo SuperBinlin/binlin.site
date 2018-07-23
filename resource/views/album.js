@@ -52,13 +52,14 @@ class Album extends React.Component{
 
         let userinfoSessionObj = JSON.parse(userinfoSession);
         this.setState({userInfo:userinfoSessionObj});
-        this.getImg({openId: userinfoSessionObj.openid});
         this.shareToFn(userinfoSessionObj.openid);
+        this.getImg({openId: userinfoSessionObj.openid});
+        
       } else {
 
         this.getOpenId(code, (openId) => {
-          this.getImg({openId:openId})
           this.shareToFn(openId);
+          this.getImg({openId:openId})
         });
 
       }
