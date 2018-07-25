@@ -33,7 +33,8 @@ class Album extends React.Component{
         transitionDuration: 500
       },
       wechatCallbackCode:'',
-      userInfo:{}
+      userInfo:{},
+      constructorArr:[]
     }
   }
 
