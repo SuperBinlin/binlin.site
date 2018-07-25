@@ -14,6 +14,7 @@ import WX from '../service/wx.service.js';
 import { Link } from 'react-router';
 import Navicon from '../components/navicon.js';
 import NotificationSystem from 'react-notification-system';
+import util from '../utils/utils.js';
 
 /**
  * 可以在组建中控制html头部 cooool!
@@ -41,7 +42,7 @@ class Album extends React.Component{
   }
 
   componentWillMount(){
-
+    
     let code = this.props.location.query.code;
 
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
@@ -192,11 +193,121 @@ class Album extends React.Component{
 
       this.setState({photoCollection: res.selfalbum});
       this.setState({othersCollection: res.othersShare});
+
+      this.dealwithDate(res);
     })
+
+  }
+
+  dealwithDate(res){
+    let alldateList = [];
+
+    _.map(res.othersShare, (album) => {
+      let dateothersArray = util.timestampToTime(album.edittime[0]);
+      album.createTime = dateothersArray;
+      alldateList.push(dateothersArray)
+    });
+
+    _.map(res.selfalbum, (selfalbum) => {
+      let dateselfArray = util.timestampToTime(selfalbum.edittime[0]);
+      selfalbum.createTime = dateselfArray;
+      alldateList.push(dateselfArray)
+    });
+
+    alldateList = _.uniq(alldateList).sort(util.compare);
+
+    let optYear = _.cloneDeep(alldateList);
+    let storeYearArr = []
+    _.map(optYear, (date)=>{
+      date = date.toString().substring(0,date.toString().length-4);
+      storeYearArr.push(date)
+    });
+
+    /**
+     * 获取所有年份
+     * @type {[type]}
+     */
+    storeYearArr = _.uniq(storeYearArr).sort(util.compare);
+    
+    console.log(res.othersShare, res.selfalbum)
+
+    /**
+     * 最终形态
+     * [
+     *   {
+     *     '2018':[{
+     *       'MonthDate':'7月1日',
+     *       'album':{}
+     *     }]
+     *   }
+     * ]
+     */
+    let constructorArr = [];
+
+    /**
+     * 构造数据
+     */
+    _.map(storeYearArr, (year)=>{
+      let constructorObj = {};
+      constructorObj['year'] = year;
+      constructorObj['data'] = [];
+      constructorArr.push(constructorObj)
+    })
+
+    console.log(constructorArr)
+
+    /**
+     * 遍历所有日期，插入到对应年份
+     */
+    _.map(alldateList, (date)=>{
+      let year = date.toString().substring(0,date.toString().length-4);
+
+      if(_.indexOf(storeYearArr, year) > -1){
+        _.map(constructorArr, (obj)=>{
+          if(obj.year == year){
+            let ctObj = {};
+            ctObj['date'] = date;
+            ctObj['othersShare'] = [];
+            ctObj['selfalbum'] = []
+            obj.data.push(ctObj);
+          }
+        })
+      }
+    });
+
+    _.map(res.othersShare, (othersShare) => {
+      let year = othersShare.createTime.toString().substring(0,othersShare.createTime.toString().length-4);
+      _.map(constructorArr, (obj) => {
+        if(obj.year == year) {
+          _.map(obj.data, (dateArr)=>{
+            if(dateArr.date == othersShare.createTime){
+              dateArr.othersShare.push(othersShare);
+            }
+          })
+        }
+      })
+    });
+
+    _.map(res.selfalbum, (selfalbum) => {
+      let year = selfalbum.createTime.toString().substring(0,selfalbum.createTime.toString().length-4);
+      _.map(constructorArr, (obj) => {
+        if(obj.year == year) {
+          _.map(obj.data, (dateArr)=>{
+            if(dateArr.date == selfalbum.createTime){
+              dateArr.selfalbum.push(selfalbum);
+            }
+          })
+        }
+      })
+    });
+
+    console.log(constructorArr);
+
+    this.setState({constructorArr:constructorArr})
   }
 
   render(){
-    let { photoCollection, othersCollection, masonryOptions, userInfo } = this.state;
+    let { photoCollection, othersCollection, masonryOptions, userInfo, constructorArr } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -288,6 +399,75 @@ class Album extends React.Component{
                   <span className="text">Photography</span>
                 </div>
               </header>
+
+              {
+                constructorArr.map((constructorItem, index) => {
+                  let currentDate = new Date;
+                  let currentyear = currentDate.getFullYear(); 
+                  if(constructorItem.year == currentyear){
+                    constructorItem.year = '';
+                  }
+                  return <div>
+                    <p className="year-theme">{constructorItem.year}</p>
+                      {
+                        constructorItem.data.map((dateArr, index) => {
+                          let currentMonth = dateArr.date.toString().substring(4,6);
+                          let currentDate = dateArr.date.toString().substring(6,8);
+                          console.log(currentMonth, currentDate)
+                          return <div>
+                            <div className="month-year">
+                              <span className="current-date">{currentDate}</span><span className="current-month"> {currentMonth}月</span>
+                            </div>
+                            <Masonry
+                                className={'my-gallery-class row'} // default ''
+                                elementType={'div'} // default 'div'
+                                options={masonryOptions} // default {}
+                                disableImagesLoaded={false} // default false
+                                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                            >
+                              {
+                                dateArr.othersShare.map((othersShare, index) => {
+
+                                  let maxPhotoLength = othersShare.img.length || 0;
+                                  let num = 1;
+
+                                  return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+                                            <img src={othersShare.img[num].src} />
+                                            <img src={othersShare.belongTo[0].headimgurl} className="share-headimg" />
+                                            <div className="shadow">
+                                              <p className="current-city">{othersShare.city}</p>
+                                              <Link to='photo' query={{city: othersShare.city,_id:othersShare._id}}>
+                                                <span className="view-more">view more</span>
+                                              </Link>
+                                            </div>
+                                        </div>
+                                })
+                              }
+                              {
+                                dateArr.selfalbum.map((selfalbum, index) => {
+
+                                  let maxPhotoLength = selfalbum.img.length || 0;
+                                  let num = 1;
+
+                                  return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+                                            <img src={selfalbum.img[num].src} />
+                                            <img src={selfalbum.belongTo[0].headimgurl} className="share-headimg" />
+                                            <div className="shadow">
+                                              <p className="current-city">{selfalbum.city}</p>
+                                              <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
+                                                <span className="view-more">view more</span>
+                                              </Link>
+                                            </div>
+                                        </div>
+                                })
+                              }
+                            </Masonry>
+                          </div>
+                        })
+                      }
+                  </div>
+                })
+              }
 
               <Masonry
                   className={'my-gallery-class row'} // default ''

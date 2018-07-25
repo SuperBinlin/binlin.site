@@ -1,6 +1,23 @@
 header{
   height:210px;
 }
+
+.month-year{
+  margin-bottom: 5px;
+}
+
+.year-theme, .current-date, .current-month{
+  color:#adadad;
+}
+
+.current-date{
+  font-size: 20px;
+}
+
+.current-month{
+  font-size: 12px;
+}
+
 .image-element-class{
   margin-bottom: 20px;
   position: relative;

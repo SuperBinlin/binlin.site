@@ -48,5 +48,27 @@ export default {
     var Rand = Math.random();
     var num = Min + Math.round(Rand * Range); //四舍五入
     return num;
-  }  
+  },  
+
+  /**
+   * 数组从小到大排序
+   * @param  {[type]} arr [description]
+   * @return {[type]}     [description]
+   */
+  compare(val1,val2){
+    return val2 - val1;
+  },
+
+  /**
+   * 时间戳转日期
+   * @param  {[type]} timestamp [description]
+   * @return {[type]}           [description]
+   */
+  timestampToTime(timestamp) {
+    var date = new Date(timestamp),//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    Y = date.getFullYear(),
+    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1),
+    D = date.getDate() + ' ';
+    return parseInt(Y.toString()+M.toString()+D.toString());
+  }
 }
