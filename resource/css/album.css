@@ -76,10 +76,6 @@ header{
   font-size:1.4rem;
 }*/
 
-.image-element-class-album:hover .shadow{
-  opacity: 0.5;
-}
-
 .img-wp{
   overflow: hidden;
 }
