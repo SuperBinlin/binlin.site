@@ -393,7 +393,6 @@ class Album extends React.Component{
 
                                   return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
                                             <img src={selfalbum.img[num].src} />
-                                            <img src={selfalbum.belongTo[0].headimgurl} className="share-headimg" />
                                             <div className="shadow">
                                               <p className="current-city">{selfalbum.city}</p>
                                               <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
