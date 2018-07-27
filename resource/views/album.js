@@ -374,14 +374,14 @@ class Album extends React.Component{
                                   let num = 1;
 
                                   return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
-                                            <img src={othersShare.img[num].src} />
-                                            <img src={othersShare.belongTo[0].headimgurl} className="share-headimg" />
-                                            <div className="shadow">
-                                              <p className="current-city">{othersShare.city}</p>
-                                              <Link to='photo' query={{city: othersShare.city,_id:othersShare._id}}>
-                                                <span className="view-more">view more</span>
-                                              </Link>
-                                            </div>
+                                            <Link to='photo' query={{city: othersShare.city,_id:othersShare._id}}>
+                                              <img src={othersShare.img[num].src} />
+                                              <img src={othersShare.belongTo[0].headimgurl} className="share-headimg" />
+                                              <div className="shadow">
+                                                <p className="current-city">{othersShare.city}</p>
+                                                  <span className="view-more">view more</span>
+                                              </div>
+                                            </Link>
                                         </div>
                                 })
                               }
@@ -391,15 +391,15 @@ class Album extends React.Component{
                                   let maxPhotoLength = selfalbum.img.length || 0;
                                   let num = 1;
 
-                                  return <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
-                                            <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+                                  return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+                                            <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
                                               <img src={selfalbum.img[num].src} />
                                               <div className="shadow">
                                                 <p className="current-city">{selfalbum.city}</p>
                                                   <span className="view-more">view more</span>
                                               </div>
-                                            </div>
-                                          </Link>
+                                            </Link>
+                                        </div>
                                 })
                               }
                             </Masonry>
