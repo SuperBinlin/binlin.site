@@ -322,7 +322,7 @@ class Album extends React.Component{
     return (
       <DocumentTitle title='大冰梨相册'>
         <div>
-          <Navicon style={naviconStyle} headimgurl={userInfo.headimgurl}>
+          
             <div className="container body-bg">
               <Helmet>
                   <html className="body-bg"></html>
@@ -411,7 +411,7 @@ class Album extends React.Component{
               }
 
             </div>
-          </Navicon>
+
           <NotificationSystem ref="notificationSystem" style={false} />
         </div>
       </DocumentTitle>
