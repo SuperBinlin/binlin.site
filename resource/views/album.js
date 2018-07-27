@@ -389,7 +389,7 @@ class Album extends React.Component{
                                 dateArr.selfalbum.map((selfalbum, index) => {
 
                                   let maxPhotoLength = selfalbum.img.length || 0;
-                                  let num = 1;
+                                  let num = this.randomNum(0, maxPhotoLength);
 
                                   return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
                                             <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
