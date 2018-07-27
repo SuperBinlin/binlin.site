@@ -391,15 +391,15 @@ class Album extends React.Component{
                                   let maxPhotoLength = selfalbum.img.length || 0;
                                   let num = 1;
 
-                                  return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
-                                            <img src={selfalbum.img[num].src} />
-                                            <div className="shadow">
-                                              <p className="current-city">{selfalbum.city}</p>
-                                              <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
-                                                <span className="view-more">view more</span>
-                                              </Link>
+                                  return <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
+                                            <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
+                                              <img src={selfalbum.img[num].src} />
+                                              <div className="shadow">
+                                                <p className="current-city">{selfalbum.city}</p>
+                                                  <span className="view-more">view more</span>
+                                              </div>
                                             </div>
-                                        </div>
+                                          </Link>
                                 })
                               }
                             </Masonry>
