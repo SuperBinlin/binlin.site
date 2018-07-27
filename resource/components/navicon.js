@@ -24,7 +24,7 @@ class Nacicon extends React.Component{
   }
 
   hideMenu(e){
-    e.stopPropagation();
+    //e.stopPropagation();
     this.setState({
       navIsopen:false
     })
