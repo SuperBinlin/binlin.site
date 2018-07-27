@@ -85,6 +85,7 @@ input,button,select,textarea{outline:none}
 
 .menu-wrap{
   position: absolute;
+  -webkit-overflow-scrolling: touch;
   top:0px;
   bottom:0px;
   left:0px;
