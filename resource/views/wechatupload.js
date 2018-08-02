@@ -226,6 +226,7 @@ class Wechatupload extends React.Component{
    * @return {[type]}   [description]
    */
   _selectCity = (i) => {
+
     let labeList = this.state.labeList;
     let beSelectCity;
     _.map(labeList, (list, index)=>{
@@ -255,7 +256,11 @@ class Wechatupload extends React.Component{
     labeList.push({'city':e.target.value})
     this.setState({
       labeList:labeList
-    })
+    });
+    /**
+     * 添加完label后，直接选中此label
+     */
+    this._selectCity(labeList.length-1)
   }
 
   /**

@@ -15,6 +15,9 @@ import { Link } from 'react-router';
 import Navicon from '../components/navicon.js';
 import NotificationSystem from 'react-notification-system';
 import util from '../utils/utils.js';
+import '../css/introjs.css';
+import '../css/introjs-nassim.css';
+import { Steps, Hints } from 'intro.js-react';
 
 /**
  * 可以在组建中控制html头部 cooool!
@@ -34,12 +37,25 @@ class Album extends React.Component{
       },
       wechatCallbackCode:'',
       userInfo:{},
-      constructorArr:[]
+      constructorArr:[],
+      steps: [
+        // {
+        //   element: '.nav-button__open',
+        //   intro: '点此展开菜单',
+        // },
+        // {
+        //   element: '.text',
+        //   intro: 'World step',
+        // },
+      ],
+      stepsEnabled: false,
+      initialStep: 0,
     }
   }
 
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
+    this.toggleSteps();
   }
 
   componentWillMount(){
@@ -80,7 +96,7 @@ class Album extends React.Component{
           timestamp: res.config.timestamp, // 必填，生成签名的时间戳
           nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
           signature: res.config.signature,// 必填，签名，见附录1
-          jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         })
       })
     });
@@ -220,7 +236,9 @@ class Album extends React.Component{
     let optYear = _.cloneDeep(alldateList);
     let storeYearArr = []
     _.map(optYear, (date)=>{
-      date = date.toString().substring(0,date.toString().length-4);
+      console.log(date)
+      date = date.toString().substring(0,date.toString().length-3);
+      console.log(date)
       storeYearArr.push(date)
     });
 
@@ -261,7 +279,7 @@ class Album extends React.Component{
      * 遍历所有日期，插入到对应年份
      */
     _.map(alldateList, (date)=>{
-      let year = date.toString().substring(0,date.toString().length-4);
+      let year = date.toString().substring(0,date.toString().length-3);
 
       if(_.indexOf(storeYearArr, year) > -1){
         _.map(constructorArr, (obj)=>{
@@ -277,7 +295,7 @@ class Album extends React.Component{
     });
 
     _.map(res.othersShare, (othersShare) => {
-      let year = othersShare.createTime.toString().substring(0,othersShare.createTime.toString().length-4);
+      let year = othersShare.createTime.toString().substring(0,othersShare.createTime.toString().length-3);
       _.map(constructorArr, (obj) => {
         if(obj.year == year) {
           _.map(obj.data, (dateArr)=>{
@@ -290,7 +308,7 @@ class Album extends React.Component{
     });
 
     _.map(res.selfalbum, (selfalbum) => {
-      let year = selfalbum.createTime.toString().substring(0,selfalbum.createTime.toString().length-4);
+      let year = selfalbum.createTime.toString().substring(0,selfalbum.createTime.toString().length-3);
       _.map(constructorArr, (obj) => {
         if(obj.year == year) {
           _.map(obj.data, (dateArr)=>{
@@ -307,8 +325,16 @@ class Album extends React.Component{
     this.setState({constructorArr:constructorArr})
   }
 
+  onExit() {
+    this.setState({ stepsEnabled: false });
+  }
+
+  toggleSteps() {
+    this.setState(prevState => ({ stepsEnabled: !prevState.stepsEnabled }));
+  }
+
   render(){
-    let { photoCollection, othersCollection, masonryOptions, userInfo, constructorArr } = this.state;
+    let { photoCollection, othersCollection, masonryOptions, userInfo, constructorArr, steps, stepsEnabled, initialStep } = this.state;
     /**
      * navicon component style
      * @type {Object}
@@ -322,6 +348,12 @@ class Album extends React.Component{
     return (
       <DocumentTitle title='大冰梨相册'>
         <div>
+          <Steps
+            enabled={stepsEnabled}
+            steps={steps}
+            initialStep={initialStep}
+            onExit={()=>{this.onExit}}
+          />
           <Navicon style={naviconStyle} headimgurl={userInfo.headimgurl}>
             <div className="container body-bg">
               <Helmet>
@@ -370,8 +402,8 @@ class Album extends React.Component{
                               {
                                 dateArr.othersShare.map((othersShare, index) => {
 
-                                  let maxPhotoLength = othersShare.img.length || 0;
-                                  let num = 1;
+                                  let maxPhotoLength = selfalbum.img.length || 0;
+                                  let num = this.randomNum(0, maxPhotoLength);
 
                                   return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
                                             <Link to='photo' query={{city: othersShare.city,_id:othersShare._id}}>
@@ -385,6 +417,14 @@ class Album extends React.Component{
                                         </div>
                                 })
                               }
+                              </Masonry>
+                              <Masonry
+                                className={'my-gallery-class row'} // default ''
+                                elementType={'div'} // default 'div'
+                                options={masonryOptions} // default {}
+                                disableImagesLoaded={false} // default false
+                                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                              >
                               {
                                 dateArr.selfalbum.map((selfalbum, index) => {
 

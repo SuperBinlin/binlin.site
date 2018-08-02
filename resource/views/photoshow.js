@@ -99,6 +99,16 @@ class Photoshow extends React.Component{
                 console.log("分享失败")
             }
           });
+
+          wx.onMenuShareTimeline({
+            title: '我的相册-'+res[0].city, // 分享标题
+            link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa266785ae98ca648&redirect_uri=http://binlin.site/album?id='+idCollect+'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect',  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: res[0].img[num].src, // 分享图标
+            success: function () {
+              console.log('done')
+            }
+          });
+
         })
       });
 
