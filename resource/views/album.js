@@ -279,7 +279,7 @@ class Album extends React.Component{
      * 遍历所有日期，插入到对应年份
      */
     _.map(alldateList, (date)=>{
-      let year = date.toString().substring(0,date.toString().length-3);
+      let year = date.toString().substring(0,date.toString().length-4);
 
       if(_.indexOf(storeYearArr, year) > -1){
         _.map(constructorArr, (obj)=>{
@@ -295,7 +295,7 @@ class Album extends React.Component{
     });
 
     _.map(res.othersShare, (othersShare) => {
-      let year = othersShare.createTime.toString().substring(0,othersShare.createTime.toString().length-3);
+      let year = othersShare.createTime.toString().substring(0,othersShare.createTime.toString().length-4);
       _.map(constructorArr, (obj) => {
         if(obj.year == year) {
           _.map(obj.data, (dateArr)=>{
