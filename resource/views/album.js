@@ -402,7 +402,7 @@ class Album extends React.Component{
                               {
                                 dateArr.othersShare.map((othersShare, index) => {
 
-                                  let maxPhotoLength = selfalbum.img.length || 0;
+                                  let maxPhotoLength = othersShare.img.length || 0;
                                   let num = this.randomNum(0, maxPhotoLength);
 
                                   return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>

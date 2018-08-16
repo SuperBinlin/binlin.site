@@ -15,6 +15,7 @@ import Login from "../views/albumLogin.js";
 import Upload from "../views/upload.js";
 import Wechatupload from "../views/wechatupload.js";
 import Album from "../views/album.js";
+import ShareLink from "../views/shareLink.js";
 import Photoshow from "../views/photoshow.js";
 
 
@@ -29,6 +30,7 @@ class Routes extends Component{
           <Route path="wechatupload" component={Wechatupload} />
           <Route path="album" component={Album}/>
           <Route path="photo" component={Photoshow} />
+          <Route path="shareLink" component={ShareLink} />
           <Route path="*" component={NotFound} />
         </Router>
       );

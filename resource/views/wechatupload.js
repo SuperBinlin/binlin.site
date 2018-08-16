@@ -36,6 +36,7 @@ class Wechatupload extends React.Component{
       hiddenId:'',                      // label所对应的id
       userInfo:{},
       serveIdArr:[],                    // 微信服务器端ID
+      albumDec:''
     }
 
     this._notificationSystem = null;
@@ -52,6 +53,25 @@ class Wechatupload extends React.Component{
     this.setState({
       userInfo: JSON.parse(userInfo)
     });
+
+    let wxUrl = encodeURIComponent(location.href.split('#')[0]);
+
+    WX.wxSign(wxUrl, (err, res)=>{
+      if(err){
+        console.log(err);
+        return;
+      }
+
+      sessionStorage.setItem('wechatToken.binlin.site', res.token);
+      wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: res.config.appId, // 必填，公众号的唯一标识
+        timestamp: res.config.timestamp, // 必填，生成签名的时间戳
+        nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
+        signature: res.config.signature,// 必填，签名，见附录1
+        jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      })
+    })
   }
 
   componentDidMount() {
@@ -184,6 +204,7 @@ class Wechatupload extends React.Component{
         number:0,                      
         size:0                         
       },
+      albumDec:''
     })
   }
 
@@ -268,6 +289,7 @@ class Wechatupload extends React.Component{
    * @return {[type]} [description]
    */
   chooseImgWechat(){
+    console.log(111111)
     wx.chooseImage({
       count: 9, // 默认9
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -275,8 +297,15 @@ class Wechatupload extends React.Component{
       success: (res) => {
         let localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
         this.setState({imgBase:localIds})
+      },
+      fail: (err) => {
+        let debugStr = JSON.stringify(err);
+        this.setState({
+          debugStr:debugStr
+        })
       }
     });
+
   }
 
   addImg(){     
@@ -338,6 +367,7 @@ class Wechatupload extends React.Component{
         'mediaArr':serveIdArr,
         'openId':_this.state.userInfo.openid,
         'city':city,
+        'albumDec':_this.state.albumDec
       }
       /**
        * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
@@ -393,8 +423,17 @@ class Wechatupload extends React.Component{
     uploadPermission ? getServeArr(this, city) : '';   
   }
 
+  /**
+   * 获取相册描述
+   */
+  getAlbumDec = (e) => {
+    this.setState({
+      albumDec: e.target.value
+    })
+  }
+
   render(){
-    let {imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
+    let {debugStr, imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
     /**
      * 引入classnames库 帮助控制多个className
      * @type {[type]}
@@ -411,48 +450,49 @@ class Wechatupload extends React.Component{
     });
     
     return (
-      <div className="container-fluid">
-        <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
-        <input type="hidden" value={hiddenId} />
-        <div className="wu-example" id="uploader">
-          <div className={uploadWp}>
-            <div className="placeholder">
-              <div className="webuploader-container">
-                <div className="webuploader-pick">
-                  点击选择图片
-                </div>
+      <div>
+        <div className="container-fluid">
+          <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
+          <input type="hidden" value={hiddenId} />
+          <div className="wu-example" id="uploader">
+            <div className={uploadWp}>
+              <div className="placeholder">
+                <div className="webuploader-container">
+                  <div className="webuploader-pick">
+                    点击选择图片
+                  </div>
                   <div className="file-wp">
                     <label className="file-label" onClick={ (e)=>this.chooseImgWechat() }></label>
                   </div>
-              </div>
-              <div className="filelist">
+                  <button onClick={ (e)=>this.chooseImgWechat() }>test android</button>
+                </div>
+                <div className="filelist">
 
+                </div>
               </div>
+
             </div>
 
-          </div>
-
-          <div className={showWp}>
-            <ul className="filelist">
-              {
-                imgBase.map(function(obj, index) {
-                  return <Photo key={index} src={obj}></Photo>
-                })
-              }
-            </ul>
-          </div>
-
-          <div className="statusBar">
-            <div className="info">选中{imgBase.length}张图片</div>
-            <div className="btns">
-              <div className="webuploader-container">
-                <div className="webuploader-pick fl" onClick={ (e)=>this.addImg() }>继续添加</div>
-                <div className="uploadBtn state-ready fl" onClick={ (e)=>this.uploadImgToWechat() }>开始上传</div>
-              </div>
+            <div className={showWp}>
+              <ul className="filelist">
+                {
+                  imgBase.map(function(obj, index) {
+                    return <Photo key={index} src={obj}></Photo>
+                  })
+                }
+              </ul>
+            </div>
+            <p>debugStr:{debugStr}</p>
+            <div className="statusBar">
+              <textarea placeholder="描述下你的相册吧..." className="decAlbum" onBlur={this.getAlbumDec}></textarea>
             </div>
           </div>
+          <NotificationSystem ref="notificationSystem" />
         </div>
-        <NotificationSystem ref="notificationSystem" />
+        <div className="btns-wrap">
+          <div className="uploadBtn state-ready fr" onClick={ (e)=>this.uploadImgToWechat() }>开始上传</div>
+          <div className="webuploader-pick fr" onClick={ (e)=>this.addImg() }>继续添加</div>
+        </div>
       </div>
     );
   }
