@@ -55,11 +55,8 @@ class Album extends React.Component{
 
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
-    this.toggleSteps();
-  }
+    // this.toggleSteps();
 
-  componentWillMount(){
-    
     let code = this.props.location.query.code;
 
     let wxUrl = encodeURIComponent(location.href.split('#')[0]);
@@ -99,7 +96,11 @@ class Album extends React.Component{
           jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         })
       })
-    });
+    });    
+  }
+
+  componentWillMount(){
+    
   }
 
   /**
