@@ -308,7 +308,7 @@ class Album extends React.Component{
     });
 
     _.map(res.selfalbum, (selfalbum) => {
-      let year = selfalbum.createTime.toString().substring(0,selfalbum.createTime.toString().length-3);
+      let year = selfalbum.createTime.toString().substring(0,selfalbum.createTime.toString().length-4);
       _.map(constructorArr, (obj) => {
         if(obj.year == year) {
           _.map(obj.data, (dateArr)=>{
