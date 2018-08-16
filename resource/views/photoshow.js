@@ -49,23 +49,23 @@ class Photoshow extends React.Component{
 
   componentDidMount() {
 
-    let wxUrl = encodeURIComponent(location.href.split('#')[0]);
-    WX.wxSign(wxUrl, (err, ress)=>{
-      if(err){
-        console.log(err);
-        return;
-      }
+    // let wxUrl = encodeURIComponent(location.href.split('#')[0]);
+    // WX.wxSign(wxUrl, (err, ress)=>{
+    //   if(err){
+    //     console.log(err);
+    //     return;
+    //   }
 
-      sessionStorage.setItem('wechatToken.binlin.site', ress.token);
-      wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: ress.config.appId, // 必填，公众号的唯一标识
-        timestamp: ress.config.timestamp, // 必填，生成签名的时间戳
-        nonceStr: ress.config.nonceStr, // 必填，生成签名的随机串
-        signature: ress.config.signature,// 必填，签名，见附录1
-        jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-      })
-    })
+    //   sessionStorage.setItem('wechatToken.binlin.site', ress.token);
+    //   wx.config({
+    //     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    //     appId: ress.config.appId, // 必填，公众号的唯一标识
+    //     timestamp: ress.config.timestamp, // 必填，生成签名的时间戳
+    //     nonceStr: ress.config.nonceStr, // 必填，生成签名的随机串
+    //     signature: ress.config.signature,// 必填，签名，见附录1
+    //     jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    //   })
+    // })
     /**
      * 获取userInfo
      */
