@@ -299,10 +299,7 @@ class Wechatupload extends React.Component{
         this.setState({imgBase:localIds})
       },
       fail: (err) => {
-        let debugStr = JSON.stringify(err);
-        this.setState({
-          debugStr:debugStr
-        })
+        
       }
     });
 
@@ -433,7 +430,7 @@ class Wechatupload extends React.Component{
   }
 
   render(){
-    let {debugStr, imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
+    let {imgBase, serveIdArr, fileInfo, labeList, beSelectCity, hiddenId} = this.state;
     /**
      * 引入classnames库 帮助控制多个className
      * @type {[type]}
@@ -464,7 +461,6 @@ class Wechatupload extends React.Component{
                   <div className="file-wp">
                     <label className="file-label" onClick={ (e)=>this.chooseImgWechat() }></label>
                   </div>
-                  <button onClick={ (e)=>this.chooseImgWechat() }>test android</button>
                 </div>
                 <div className="filelist">
 
@@ -482,7 +478,7 @@ class Wechatupload extends React.Component{
                 }
               </ul>
             </div>
-            <p>debugStr:{debugStr}</p>
+
             <div className="statusBar">
               <textarea placeholder="描述下你的相册吧..." className="decAlbum" onBlur={this.getAlbumDec}></textarea>
             </div>
