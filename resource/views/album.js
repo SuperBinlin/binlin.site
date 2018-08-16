@@ -224,7 +224,7 @@ class Album extends React.Component{
       album.createTime = dateothersArray;
       alldateList.push(dateothersArray)
     });
-
+    console.log()
     _.map(res.selfalbum, (selfalbum) => {
       let dateselfArray = util.timestampToTime(selfalbum.edittime[0]);
       selfalbum.createTime = dateselfArray;
@@ -237,7 +237,7 @@ class Album extends React.Component{
     let storeYearArr = []
     _.map(optYear, (date)=>{
       console.log(date)
-      date = date.toString().substring(0,date.toString().length-3);
+      date = date.toString().substring(0,date.toString().length-4);
       console.log(date)
       storeYearArr.push(date)
     });
