@@ -408,6 +408,7 @@ class Wechatupload extends React.Component{
        * 将获取到的serveId传回后端 在后端通过serveId直接传到七牛
        */
       WX.uploadImageFromWechatToQiniu(option, (err, res)=>{
+        _this._notificationSystem.removeNotification('uploading')
 
         if(err) {
           console.log(err);
@@ -455,7 +456,17 @@ class Wechatupload extends React.Component{
     })
     : '';
 
-    uploadPermission ? getServeArr(this, city) : '';   
+    if(uploadPermission){
+      this.notify({
+        title:'Tip',
+        message:'正在上传中...',
+        level:'success',
+        autoDismiss:0,
+        uid:'uploading'
+      });
+
+      getServeArr(this, city)
+    }
   }
 
   /**
