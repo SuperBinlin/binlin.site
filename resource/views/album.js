@@ -141,7 +141,8 @@ class Album extends React.Component{
             //   level:'success'
             // })
           })
-
+        } else {
+          resolve()
         }
       } else {
         resolve();
