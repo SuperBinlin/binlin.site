@@ -30,6 +30,10 @@ class Nacicon extends React.Component{
     })
   }
 
+  uploadImg(){
+    this.props._uploadImg();
+  }
+
   render(){
     /**
      * navIsopen 控制 是否展示隐藏menu
@@ -81,11 +85,12 @@ class Nacicon extends React.Component{
     return (
       <div>
         <div className="navicon" style={this.props.style}>
-          <button className="nav-button__open js-nav-mobile-open" onClick={(e)=>this.showMenu(e)}>
-            <span className="nav-button__line"></span>
-            <span className="nav-button__line"></span>
-            <span className="nav-button__line"></span>
-          </button>
+
+          <div className="quick-option">
+            <i className="fa fa-list fa-2x fff" onClick={()=>this.showMenu()}></i>
+            <i className="fa fa-camera-retro fa-2x fff" onClick={()=>this.uploadImg()}></i> 
+          </div>
+
           <nav className={nav}>
             <span className="nav-mobile__logo">
               BINLIN ALBUM

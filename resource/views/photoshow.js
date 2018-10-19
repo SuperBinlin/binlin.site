@@ -43,32 +43,15 @@ class Photoshow extends React.Component{
   }
 
   componentWillMount(){
-    
 
   }
 
   componentDidMount() {
 
-    // let wxUrl = encodeURIComponent(location.href.split('#')[0]);
-    // WX.wxSign(wxUrl, (err, ress)=>{
-    //   if(err){
-    //     console.log(err);
-    //     return;
-    //   }
-
-    //   sessionStorage.setItem('wechatToken.binlin.site', ress.token);
-    //   wx.config({
-    //     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    //     appId: ress.config.appId, // 必填，公众号的唯一标识
-    //     timestamp: ress.config.timestamp, // 必填，生成签名的时间戳
-    //     nonceStr: ress.config.nonceStr, // 必填，生成签名的随机串
-    //     signature: ress.config.signature,// 必填，签名，见附录1
-    //     jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    //   })
-    // })
     /**
      * 获取userInfo
      */
+    
     let userInfo = sessionStorage.getItem('userinfo.binlin.site');
 
     let city = this.props.location.query.city;
@@ -101,32 +84,50 @@ class Photoshow extends React.Component{
         let maxPhotoLength = res[0].img.length || 0;
         let num = this.randomNum(0,maxPhotoLength);
 
-        wx.ready(() => {
+        let wxUrl = encodeURIComponent(location.href.split('#')[0]);
+        WX.wxSign(wxUrl, (err, ress)=>{
+          if(err){
+            console.log(err);
+            return;
+          }
 
-          wx.onMenuShareAppMessage({
-            title: res[0].city, // 分享标题
-            desc: '大冰梨相册冰住我的瞬间', // 分享描述
-            link: 'http://binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: res[0].img[num].src, // 分享图标
-            type: 'link', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () { 
-                console.log("分享成功")
-            },
-            cancel: function () { 
-                console.log("分享失败")
-            }
-          });
+          sessionStorage.setItem('wechatToken.binlin.site', ress.token);
+          wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: ress.config.appId, // 必填，公众号的唯一标识
+            timestamp: ress.config.timestamp, // 必填，生成签名的时间戳
+            nonceStr: ress.config.nonceStr, // 必填，生成签名的随机串
+            signature: ress.config.signature,// 必填，签名，见附录1
+            jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          })
 
-          wx.onMenuShareTimeline({
-            title: '我的相册-'+res[0].city, // 分享标题
-            link: 'http://binlin.site/shareLink?id='+idCollect,  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: res[0].img[num].src, // 分享图标
-            success: function () {
-              console.log('done')
-            }
-          });
+          wx.ready(() => {
 
+            wx.onMenuShareAppMessage({
+              title: res[0].city, // 分享标题
+              desc: '大冰梨相册冰住我的瞬间', // 分享描述
+              link: 'http://natapp.binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              imgUrl: res[0].img[num].src, // 分享图标
+              type: 'link', // 分享类型,music、video或link，不填默认为link
+              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+              success: function () { 
+                  console.log("分享成功")
+              },
+              cancel: function () { 
+                  console.log("分享失败")
+              }
+            });
+
+            wx.onMenuShareTimeline({
+              title: '我的相册-'+res[0].city, // 分享标题
+              link: 'http://natapp.binlin.site/shareLink?id='+idCollect,  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              imgUrl: res[0].img[num].src, // 分享图标
+              success: function () {
+                console.log('done')
+              }
+            });
+
+          })
         })
         
 

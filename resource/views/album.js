@@ -18,6 +18,7 @@ import util from '../utils/utils.js';
 import '../css/introjs.css';
 import '../css/introjs-nassim.css';
 import { Steps, Hints } from 'intro.js-react';
+import { browserHistory } from 'react-router'
 
 /**
  * 可以在组建中控制html头部 cooool!
@@ -59,48 +60,47 @@ class Album extends React.Component{
 
     let code = this.props.location.query.code;
 
-    let wxUrl = encodeURIComponent(location.href.split('#')[0]);
-
     this.setState({wechatCallbackCode:code}, ()=>{
       let userinfoSession = this.getUserInfoSession();
       if(userinfoSession){
 
         let userinfoSessionObj = JSON.parse(userinfoSession);
         this.setState({userInfo:userinfoSessionObj});
-        this.shareToFn(userinfoSessionObj.openid);
-        this.getImg({openId: userinfoSessionObj.openid});
+        this.shareToFn(userinfoSessionObj.openid).then(()=>{
+          this.getImg({openId: userinfoSessionObj.openid});
+        });
         
       } else {
 
         this.getOpenId(code, (openId) => {
-          this.shareToFn(openId);
-          this.getImg({openId:openId})
+          this.shareToFn(openId).then(()=>{
+            this.getImg({openId:openId})
+          });
         });
 
       }
 
-
-      WX.wxSign(wxUrl, (err, res)=>{
-        if(err){
-          console.log(err);
-          return;
-        }
-
-        sessionStorage.setItem('wechatToken.binlin.site', res.token);
-        wx.config({
-          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-          appId: res.config.appId, // 必填，公众号的唯一标识
-          timestamp: res.config.timestamp, // 必填，生成签名的时间戳
-          nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
-          signature: res.config.signature,// 必填，签名，见附录1
-          jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        })
-      })
     });    
   }
 
   componentWillMount(){
-    
+    let wxUrl = encodeURIComponent(location.href.split('#')[0]);
+    WX.wxSign(wxUrl, (err, res)=>{
+      if(err){
+        console.log(err);
+        return;
+      }
+
+      sessionStorage.setItem('wechatToken.binlin.site', res.token);
+      wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: res.config.appId, // 必填，公众号的唯一标识
+        timestamp: res.config.timestamp, // 必填，生成签名的时间戳
+        nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
+        signature: res.config.signature,// 必填，签名，见附录1
+        jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      })
+    })
   }
 
   /**
@@ -109,40 +109,44 @@ class Album extends React.Component{
    * @return {[type]}        [description]
    */
   shareToFn(openId){
-    let id = this.props.location.query.id;
-    /**
-     * true说明是从分享接口进入
-     */
-    if(id){
-      let idSplit = id.split('@@');
-      let shareAlbumId = idSplit[0];
-      let shareUserOpenId = idSplit[1];
-
+    return new Promise((resolve, reject) => {
+      let id = this.props.location.query.id;
       /**
-       * 自己点链接不添加shareTo
-       * @param  {[type]} openId !             [description]
-       * @return {[type]}        [description]
+       * true说明是从分享接口进入
        */
-      if(openId != shareUserOpenId) {
+      if(id){
+        let idSplit = id.split('@@');
+        let shareAlbumId = idSplit[0];
+        let shareUserOpenId = idSplit[1];
 
-        API_Upload.shareto({
-          "openId": openId,
-          "albumId":shareAlbumId
-        }, function(err, res){
-          if(err){
-            console.log(err);
-            return;
-          }
+        /**
+         * 自己点链接不添加shareTo
+         * @param  {[type]} openId !             [description]
+         * @return {[type]}        [description]
+         */
+        if(openId != shareUserOpenId) {
 
-          this.notify({
-            title:'Tip',
-            message:'分享成功',
-            level:'success'
+          API_Upload.shareto({
+            "openId": openId,
+            "albumId":shareAlbumId
+          }, function(err, res){
+            if(err){
+              console.log(err);
+              return;
+            }
+            resolve()
+            // this.notify({
+            //   title:'Tip',
+            //   message:'分享成功',
+            //   level:'success'
+            // })
           })
-        })
 
+        }
+      } else {
+        resolve();
       }
-    }
+    })
   }
 
   /**
@@ -334,6 +338,31 @@ class Album extends React.Component{
     this.setState(prevState => ({ stepsEnabled: !prevState.stepsEnabled }));
   }
 
+  _uploadImg() {
+    wx.chooseImage({
+      count: 9, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: (res) => {
+        let localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+        // let req = {
+        //   pathname: "/wechatupload",
+        //   query: {
+        //     data: 'aa'
+        //   }
+        // };
+        console.log(localIds)
+        let localIdsStr = localIds.join('-');
+        let path = `/wechatupload?localid=${localIdsStr}`;
+        browserHistory.push(path)
+        // this.setState({imgBase:localIds})
+      },
+      fail: (err) => {
+        
+      }
+    });
+  }
+
   render(){
     let { photoCollection, othersCollection, masonryOptions, userInfo, constructorArr, steps, stepsEnabled, initialStep } = this.state;
     /**
@@ -343,7 +372,7 @@ class Album extends React.Component{
     const naviconStyle= {
       position:'absolute',
       top:'20px',
-      right:'20px'
+      right:'4px'
     }
 
     return (
@@ -355,7 +384,7 @@ class Album extends React.Component{
             initialStep={initialStep}
             onExit={()=>{this.onExit}}
           />
-          <Navicon style={naviconStyle} headimgurl={userInfo.headimgurl}>
+          <Navicon style={naviconStyle} headimgurl={userInfo.headimgurl} _uploadImg={this._uploadImg}>
             <div className="container body-bg">
               <Helmet>
                   <html className="body-bg"></html>

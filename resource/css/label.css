@@ -1,9 +1,11 @@
 .example-case {
     padding: 13px 10px;
-    position: fixed;
+    /*position: fixed;*/
     top: 0px;
-    z-index: 99999999;
+    z-index: 1;
     background: #fff;
+    max-height: 113px;
+    overflow-y: auto
 }
 .ivu-tag, .ivu-tag a, .ivu-tag a:hover {
     color: #657180;

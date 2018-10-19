@@ -44,11 +44,19 @@ class Wechatupload extends React.Component{
   }
 
 
-  componentWillMount() {    
+  componentWillMount() {
     /**
      * 获取userInfo
      */
     let userInfo = sessionStorage.getItem('userinfo.binlin.site');
+
+    if(this.props.location.query.localid){
+      let localIds = this.props.location.query.localid.split('-'); 
+      this.setState({
+        imgBase:localIds
+      }); 
+    }
+    
 
     this.setState({
       userInfo: JSON.parse(userInfo)
@@ -71,6 +79,25 @@ class Wechatupload extends React.Component{
         signature: res.config.signature,// 必填，签名，见附录1
         jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       })
+
+      wx.ready(() => {
+
+          wx.onMenuShareAppMessage({
+            title: '嘿嘿嘿', // 分享标题
+            desc: '大冰梨相册冰住我的瞬间', // 分享描述
+            link: 'http://natapp.binlin.site/shareLink', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://album.binlin.site/test0.0076168086381858124.png', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () { 
+                console.log("分享成功")
+            },
+            cancel: function () { 
+                console.log("分享失败")
+            }
+          });
+
+        })
     })
   }
 
@@ -289,7 +316,6 @@ class Wechatupload extends React.Component{
    * @return {[type]} [description]
    */
   chooseImgWechat(){
-    console.log(111111)
     wx.chooseImage({
       count: 9, // 默认9
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -305,11 +331,15 @@ class Wechatupload extends React.Component{
 
   }
 
-  addImg(){     
+  addImg(){  
     let currentImg = this.state.imgBase;
     let existAlbumLength = 9 - currentImg.length;
+
+    /**
+     * 每次添加都可以添加9张图片
+     */
     wx.chooseImage({
-      count: existAlbumLength, // 默认9
+      count: 9, // 默认9
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: (res) => {
@@ -324,7 +354,7 @@ class Wechatupload extends React.Component{
     return new Promise(function(resolve, reject){
       wx.uploadImage({
         localId: localIds, // 需要上传的图片的本地ID，由chooseImage接口获得
-        isShowProgressTips: 1, // 默认为1，显示进度提示
+        isShowProgressTips: 0, // 默认为1，显示进度提示
         success: (res) => {
           resolve(res.serverId);
         }

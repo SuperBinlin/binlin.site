@@ -4,7 +4,7 @@ input,button,select,textarea{outline:none}
   z-index:100001;
 }
 .nav-button__open {
-  display: inline-block;
+  display: block;
   vertical-align: top;
   overflow: hidden;
   width: 24px;
@@ -153,9 +153,20 @@ input,button,select,textarea{outline:none}
   display: none;
 }
 
+.fff{
+  color:#b3b3bc;
+  font-size: 25px!important;
+  margin-top:5px;
+  display: block;
+}
 
-
-
+.quick-option{
+  position: relative;
+  top: 200px;
+  padding: 3px 5px 8px 5px;
+  border: 1px solid #b3b3bc;
+  border-radius: 5px;
+}
 
 
 

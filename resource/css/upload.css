@@ -2,10 +2,14 @@
     padding:0px!important;
 }
 
+.notifications-wrapper{
+    z-index: 10000;
+}
+
 .wu-example {
     position: relative;
-    padding: 45px 15px 15px;
-    top: 85px;
+    padding: 15px 15px 15px;
+    /*top: 85px;*/
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
     border-color: #e5e5e5 #eee #fff;
     border-style: solid;
@@ -314,22 +318,22 @@
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #cfcfcf;
+    color:#cfcfcf;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #cfcfcf;
+   color:#cfcfcf;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #cfcfcf;
+   color:#cfcfcf;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #cfcfcf;
+   color:#cfcfcf;
 }
 
 #uploader .filelist li p.imgWrap {
     position: relative;
     z-index: 2;
-    line-height: 150px;
+    line-height: 110px;
     vertical-align: middle;
     overflow: hidden;
     height: 150px;

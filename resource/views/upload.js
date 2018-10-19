@@ -13,6 +13,7 @@ import Photo from '../components/photo.js';
 import Label from '../components/label.js';
 import API_Location from '../service/location.service.js';
 import API_Upload from '../service/upload.service.js';
+import Notifications, {notify} from 'react-notify-toast';
 /**
  * https://github.com/igorprado/react-notification-system
  */
@@ -52,7 +53,7 @@ class Upload extends React.Component{
   }
 
   componentDidMount() {
-
+    notify.show('Toasty!');
     this._notificationSystem = this.refs.notificationSystem;
 
     /**
