@@ -186,6 +186,13 @@ class Wechatupload extends React.Component{
     uploadPermission ?
     
     (function(_this){
+      this.notify({
+        title:'Tip',
+        message:'正在上传中...',
+        level:'info',
+        autoDismiss:0,
+        uid:'uploading'
+      })
       //STEP TWO
       let labelOpt = {};
       labelOpt.location = _this.state.labeList;
@@ -200,6 +207,7 @@ class Wechatupload extends React.Component{
       })
       //STEP ONE
       API_Upload.uploadtoqiniu(uploadFileFormData, (err, res)=>{
+        _this._notificationSystem.removeNotification('uploading')
         if(err){
           console.error(err);
           _this.notify({
