@@ -186,7 +186,7 @@ class Wechatupload extends React.Component{
     uploadPermission ?
     
     (function(_this){
-      this.notify({
+      _this.notify({
         title:'Tip',
         message:'正在上传中...',
         level:'info',
