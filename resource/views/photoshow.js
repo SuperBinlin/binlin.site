@@ -93,7 +93,7 @@ class Photoshow extends React.Component{
 
           sessionStorage.setItem('wechatToken.binlin.site', ress.token);
           wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: ress.config.appId, // 必填，公众号的唯一标识
             timestamp: ress.config.timestamp, // 必填，生成签名的时间戳
             nonceStr: ress.config.nonceStr, // 必填，生成签名的随机串
@@ -106,7 +106,7 @@ class Photoshow extends React.Component{
             wx.onMenuShareAppMessage({
               title: res[0].city, // 分享标题
               desc: '大冰梨相册冰住我的瞬间', // 分享描述
-              link: 'http://natapp.binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              link: 'http://binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
               imgUrl: res[0].img[num].src, // 分享图标
               type: 'link', // 分享类型,music、video或link，不填默认为link
               dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -120,7 +120,7 @@ class Photoshow extends React.Component{
 
             wx.onMenuShareTimeline({
               title: '我的相册-'+res[0].city, // 分享标题
-              link: 'http://natapp.binlin.site/shareLink?id='+idCollect,  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              link: 'http://binlin.site/shareLink?id='+idCollect,  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
               imgUrl: res[0].img[num].src, // 分享图标
               success: function () {
                 console.log('done')
