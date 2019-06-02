@@ -33,7 +33,7 @@ class Resume extends React.Component{
 		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
 		save_link.href = data;
 		save_link.download = filename;
-		
+
 		var event = document.createEvent('MouseEvents');
 		event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 		save_link.dispatchEvent(event);
@@ -181,6 +181,23 @@ class Resume extends React.Component{
 						<h3 className="top-title">Projects</h3>
 						<span className="line"></span>
 						<div className="container projects">
+              <div className="row">
+                <div className="col-sm-4">
+                  <a className="project-item" href="http://47.110.74.151/" target="_blank">
+                    <img src="./images/logo/logo.svg" /> WinETHFree
+                  </a>
+                </div>
+                <div className="col-sm-4">
+                  <a className="project-item" href="https://x.zhihuiya.com/" target="_blank">
+                    <img src="./images/logo/course-logo.png" />
+                  </a>
+                </div>
+                <div className="col-sm-4">
+                  <a className="project-item" href="http://analytics.patsnap.cn/" target="_blank">
+                    <img src="./images/logo/database.png" />
+                  </a>
+                </div>
+              </div>
 							<div className="row">
 								<div className="col-sm-4">
 									<a className="project-item" href="http://trademark.patsnap.cn/" target="_blank">
