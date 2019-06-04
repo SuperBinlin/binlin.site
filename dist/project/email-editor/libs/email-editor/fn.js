@@ -133,7 +133,7 @@ define(function(require, exports, module) {
 				$("#common-tr-" + idNum).find('.light').html(latest);
 			});
 		}
-		
+
 		// thisTrId.find('.light').html(latest);
 
 		// console.log(light)
@@ -148,11 +148,11 @@ define(function(require, exports, module) {
 	}
 
 	function selectColor(obj){
-		$.fn.getHexBackgroundColor = function() { 
-		var rgb = $(this).css('background-color'); 
+		$.fn.getHexBackgroundColor = function() {
+		var rgb = $(this).css('background-color');
 		 rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-		function hex(x) {return ("0" + parseInt(x).toString(16)).slice(-2);} 
-		return rgb= "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]); 
+		function hex(x) {return ("0" + parseInt(x).toString(16)).slice(-2);}
+		return rgb= "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 		};
 		var thisColor = obj.getHexBackgroundColor();
 		//console.log(thisColor);
@@ -190,7 +190,7 @@ define(function(require, exports, module) {
 			$.each(clickSort,function(){
 				navLi.eq(this).trigger('click');
 			});
-			$(".common-box").eq(0).find('.headpicOne').focus().val('http://7q59gj.com1.z0.glb.clouddn.com/j2_03.png').trigger('change');
+			$(".common-box").eq(0).find('.headpicOne').focus().val('http://img.binlin.site/j2_03.png').trigger('change');
 			$(".common-box").eq(1).find('.paddings').val('10').blur();
 			$(".common-box").eq(1).find('.txtareaWhite').trigger('click');
 			$(".common-box").eq(2).find('.txtareaOnly').focus().val('随着市场竞争的日益激烈，国内专利侵权诉讼的案件也逐年增多，越来越多的企业主动出击活被动卷入到技术的竞争中，大家都希望能借助专利制度占据行业的制高点。').trigger('change');
@@ -200,7 +200,7 @@ define(function(require, exports, module) {
 			$(".common-box").eq(4).find('.paddings').val('15').blur();
 			$(".common-box").eq(5).find('.txtareaOnly').val('本次课程就围绕专利侵权的主体概念，行为方式，抗辩自由，应对策略等几个最基础也是最重要的方面展开论述，同时辅以大量真实案例帮助理解。').trigger('change');
 			$(".common-box").eq(6).find('.txtareaOnly').val('#是不是对本课程期待已久？快快看过来吧！#').trigger('change').blur();
-			$(".common-box").eq(7).find('.imgOutUrl').val('http://7q59gj.com1.z0.glb.clouddn.com/i4.png').trigger('change');
+			$(".common-box").eq(7).find('.imgOutUrl').val('http://img.binlin.site/i4.png').trigger('change');
 			$(".common-box").eq(8).find('.btnImagesUrl').val('点此立即观看').blur();
 			$(".common-box").eq(9).find('.paddings').val('30').blur();
 			$(".common-box").eq(10).find('.paddings').val('10').blur();
@@ -216,7 +216,7 @@ define(function(require, exports, module) {
 			$.each(clickSort,function(){
 				navLi.eq(this).trigger('click');
 			});
-			$(".common-box").eq(0).find('.headpicOne').val("http://7q59gj.com1.z0.glb.clouddn.com/v4_03.png").trigger('change');
+			$(".common-box").eq(0).find('.headpicOne').val("http://img.binlin.site/v4_03.png").trigger('change');
 			$(".common-box").eq(1).find('.paddings').val('10').blur();
 			$(".common-box").eq(1).find('.txtareaWhite').trigger('click');
 			$(".common-box").eq(2).find('.txtareaOnly').focus().val('请选择信任邮件图片，这样才能保证邮件已最好的效果呈现给您哦！').trigger('change');
@@ -226,11 +226,11 @@ define(function(require, exports, module) {
 			$(".common-box").eq(4).find('.paddings').val('15').blur();
 			$(".common-box").eq(5).find('.subtitle').val("#【当前申请人】#").trigger("change").blur();
 			$(".common-box").eq(6).find('.txtareaOnly').val("ANC：当前申请人支持中文检索，你们有默默在用这个功能了吗？").trigger("change");
-			$(".common-box").eq(7).find('.imgOutUrl').val("http://7q59gj.com1.z0.glb.clouddn.com/v4_07.png").trigger("change");
+			$(".common-box").eq(7).find('.imgOutUrl').val("http://img.binlin.site/v4_07.png").trigger("change");
 			$(".common-box").eq(8).find('.paddings').val('15').blur();
-			$(".common-box").eq(9).find('.subtitle').val("#【官网链接】#").trigger("change").blur();	
-			$(".common-box").eq(10).find('.txtareaOnly').focus().val('新加入美国，德国， EPO，挪威，WIPO欧洲外观的官网链接（我们的高级检索分析版的用户可以尽享的哦）').trigger('change');	
-			$(".common-box").eq(11).find('.imgOutUrl').val("http://7q59gj.com1.z0.glb.clouddn.com/v4_10.png").trigger("change");
+			$(".common-box").eq(9).find('.subtitle').val("#【官网链接】#").trigger("change").blur();
+			$(".common-box").eq(10).find('.txtareaOnly').focus().val('新加入美国，德国， EPO，挪威，WIPO欧洲外观的官网链接（我们的高级检索分析版的用户可以尽享的哦）').trigger('change');
+			$(".common-box").eq(11).find('.imgOutUrl').val("http://img.binlin.site/v4_10.png").trigger("change");
 			$(".common-box").eq(12).find('.paddings').val('35').blur();
 			$(".common-box").eq(13).find('.paddings').val('15').blur();
 			$(".common-box").eq(13).find('.txtareaWhite').trigger('click');
@@ -246,7 +246,7 @@ define(function(require, exports, module) {
 				navLi.eq(this).trigger('click');
 			});
 
-			$(".common-box").eq(0).find('.headpicOne').val("http://7q59gj.com1.z0.glb.clouddn.com/m1_03.png").trigger('change');
+			$(".common-box").eq(0).find('.headpicOne').val("http://img.binlin.site/m1_03.png").trigger('change');
 			$(".common-box").eq(1).find('.paddings').val('10').blur();
 			$(".common-box").eq(1).find('.txtareaWhite').trigger('click');
 			$(".common-box").eq(2).find('.txtareaOnly').focus().val('孔子曰：知己知彼，百战不殆。对于IPR来说，专利预警就是企业工作的核心战略。那么，#专利预警的价值何在？如何规划专利预警工作？如何保障专利预警效果？#').trigger('change').blur();

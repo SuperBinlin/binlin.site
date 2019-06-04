@@ -57,7 +57,7 @@ define(function(require, exports, module) {
 		var txtareaView = "<td style='padding:10px 25px;background:#f8f7f6' class='colOne' width='50%'><p class='articleView light articleBr' style='font-size:15px;padding-left:10px;margin:0'></p></td><td style='padding:10px 25px;background:#f8f7f6' class='colTwoView' align='center' valign='middle'><a class='imagesLinkView' target='_blank'><img class='imagesView'></a></td>";
 		var listView = "<td style='padding:10px 25px;background:#f8f7f6' colspan='2'></td>";
 		var linkToView = "<td style='padding:10px 25px;background:#f8f7f6' colspan='2'><a class='links linkstxt' target='_blank' style='padding-left:10px;color:#337ab7;text-decoration:underline;font-size:15px;'></a></td>";
-		var contactStyle = "<td style='color:#626262;background:#e5e5e5;padding-left:70px;padding-top:35px;padding-bottom:35px' width='60%'><img src='http://img-link.qiniudn.com/phone.png' style='margin: 0px 15px 0 0;vertical-align: text-bottom;'>400-694-4481<p style='font-size:12px;color:#626262;margin:15px 0 0 0;padding:0;'>微博：http://weibo.com/patsnap</p><p style='font-size:12px;color:#626262;margin:0;padding:0;'>官网：www.patsnap.com</p><p style='font-size:12px;color:#626262;margin:10px 0 0 0;padding:0;'>最后感谢您长期以来对PatSnap的支持与帮助，</p><p style='font-size:12px;color:#626262;margin:0;padding:0;'>我们会竭尽所能的提供更好的服务</p><p style='font-size:12px;color:#626262;margin:0;padding:0;'>PatSnap智慧芽信息科技有限公司</p></td><td style='background:#e5e5e5;padding:35px 35px 35px 0' align='right' width='40%'><img src='http://img-link.qiniudn.com/dimension.png'><p style='color: rgb(98, 98, 98); font-size: 14px;'>扫一扫，关注我们</p></td>";
+		var contactStyle = "<td style='color:#626262;background:#e5e5e5;padding-left:70px;padding-top:35px;padding-bottom:35px' width='60%'><img src='http://img.binlin.site/phone.png' style='margin: 0px 15px 0 0;vertical-align: text-bottom;'>400-694-4481<p style='font-size:12px;color:#626262;margin:15px 0 0 0;padding:0;'>微博：http://weibo.com/patsnap</p><p style='font-size:12px;color:#626262;margin:0;padding:0;'>官网：www.patsnap.com</p><p style='font-size:12px;color:#626262;margin:10px 0 0 0;padding:0;'>最后感谢您长期以来对PatSnap的支持与帮助，</p><p style='font-size:12px;color:#626262;margin:0;padding:0;'>我们会竭尽所能的提供更好的服务</p><p style='font-size:12px;color:#626262;margin:0;padding:0;'>PatSnap智慧芽信息科技有限公司</p></td><td style='background:#e5e5e5;padding:35px 35px 35px 0' align='right' width='40%'><img src='http://img.binlin.site/dimension.png'><p style='color: rgb(98, 98, 98); font-size: 14px;'>扫一扫，关注我们</p></td>";
 		var paddings = "<td style='padding:0px 25px;background:#f8f7f6' colspan='2'><div class='paddingsDiv'></div></td>";
 		var lineHeightView = "";
 		var html = "<td style='padding:10px 25px;background:#f8f7f6' colspan='2' class='html'></td>";
@@ -261,7 +261,7 @@ define(function(require, exports, module) {
 			fn.selectColor($this);
 		});
 	};
-	
+
 	addDom.prototype.chageStyle = function(){//选择模板样式
 		this.documents.on("change",".selectModel",function(){
 			var $this = $(this);
@@ -273,11 +273,11 @@ define(function(require, exports, module) {
 		this.documents.on("mouseover",".common-box",function(){
 			var thisId = $(this).attr("id");
 			fn.addCorrespond(thisId);
-		});	
+		});
 		this.documents.on("mouseout",".common-box",function(){
 			var thisId = $(this).attr("id");
 			fn.delCorrespond(thisId);
-		});	
+		});
 	};
 	addDom.prototype.exports = function(){
 		this.documents.on("click",".btn-success",function(){

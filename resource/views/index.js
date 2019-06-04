@@ -20,7 +20,7 @@ class Resume extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      
+
     }
   }
 
@@ -28,23 +28,23 @@ class Resume extends React.Component{
     let animateArr = ["flash","bounce","shake","tada","swing","wobble","pulse","flip","flipInX","flipInY","fadeIn","fadeInUp","fadeInDown","fadeInLeft","fadeInRight","fadeInUpBig","fadeInDownBig","fadeInLeftBig","fadeInRightBig","bounceIn","bounceInDown","bounceInUp","bounceInLeft","bouneInRight","rotateIn","rotateInDownLeft","rotateInDownRight","rotateInUpLeft","rotateInUpRight","rollIn"];
     let animateEle = animateArr[util.randomNumBoth(0,30)];
     $('.nav-link').textillate(
-      { 
-        in: { effect: animateEle } 
+      {
+        in: { effect: animateEle }
       }
     );
     $('.binlin-site-h1').textillate(
-      { 
-        in: { effect: animateEle } 
+      {
+        in: { effect: animateEle }
       }
     );
     $('.binlin-site-h4').textillate(
-      { 
-        in: { effect: animateEle } 
+      {
+        in: { effect: animateEle }
       }
     );
     $('.footer-copy').textillate(
-      { 
-        in: { effect: animateEle } 
+      {
+        in: { effect: animateEle }
       }
     );
   }
@@ -54,7 +54,7 @@ class Resume extends React.Component{
       <div className="container-fluid">
         <div className="row">
           <div className="cover-wp">
-            
+
           </div>
           <div className="wrap-wp">
             <nav className="nav nav-split">
@@ -62,7 +62,7 @@ class Resume extends React.Component{
                 <a className="nav-link nav-link-work active">HOME</a>
                 <a className="nav-link nav-link-work" href="http://www.jianshu.com/u/b096d6016afc" target="_blank">BLOG</a>
                 <a className="nav-link nav-link-journal" href="https://github.com/SuperBinlin" target="_blank">GITHUB</a>
-                <a className="nav-link nav-link-journal" href="/album" target="_blank">ALBUM</a>
+                <a className="nav-link nav-link-journal" href="https://gitee.com/binlin" target="_blank">GITEE</a>
                 <a className="nav-link nav-link-studio" href="/resume" target="_blank">ABOUT ME</a>
               </div>
             </nav>

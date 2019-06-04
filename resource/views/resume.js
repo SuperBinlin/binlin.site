@@ -52,7 +52,7 @@ class Resume extends React.Component{
 			</div>
 			<div className="header-top">
 				<h2>张斌</h2>
-				<small>web前端开发工程师</small>
+				<small>前端开发工程师</small>
 			</div>
 			<div className="about">
 				<div className="container">
@@ -107,18 +107,23 @@ class Resume extends React.Component{
 						<span className="devide-line">
 						</span>
 						<label className="bag"></label>
-						<div className="exp-devide-grid-right">
-							<h5>lodestone(2016/9~至今)</h5>
-							<small>前端架构师</small>
+						<div className="exp-devide-grid-left">
+							<h5>Tenthpin(2016/12~至今)</h5>
+							<small>资深前端开发工程师</small>
 							<p>为了追求更高的技术境界,我选择来到上海,出于各种因素的考虑,进入这家瑞士外资的公司,成为了前端leader,负责前端技术选型,搭建PC端以及混合App的前端框架,在帮助组员成长的同时,不断自主学习</p>
 						</div>
+            <div className="exp-devide-grid-right">
+							<h5>卡说信息科技公司(2016/2~2016/12)</h5>
+							<small>资深前端开发工程师</small>
+							<p>在这家公司，深感到达了一个技术瓶颈，为后续去上海发展垫定了基础</p>
+						</div>
 						<div className="exp-devide-grid-left">
-							<h5>智慧芽信息科技有限公司(2014/10~2016/8)</h5>
-							<small>web前端开发工程师</small>
+							<h5>智慧芽信息科技有限公司(2014/10~2016/2)</h5>
+							<small>前端开发工程师</small>
 							<p>前端进阶,为了寻求更多突破,来到这家前端大牛聚集地的公司,进入我技术的转折点,从使用seajs、requirejs开始,进行模块化开发,用juicer作为模板引擎实现数据和视图模型的分离(初尝MVC),慢慢接触npm管理包,到后来接触angular、react、vue并最终决定使用vue+webpack来构建前端架构,开始重构公司项目的代码,不断成长的同时,也庆幸从很多良师益友身上,铸就了我至今扔不断学习的品质</p>
 						</div>
 						<div className="exp-devide-grid-right">
-							<h5>江苏中科梦兰信息科技有限公司(2013/1~2014/9)</h5>
+							<h5>江苏中科梦兰信息科技有限公司(2013/1~2014/10)</h5>
 							<small>web前端开发工程师</small>
 							<p>入门前端,主要工作是一些静态页面的开发,和一些比较炫酷的动态效果的开发,主要用html+css+jquery</p>
 						</div>
@@ -146,28 +151,28 @@ class Resume extends React.Component{
 								<div className="skill-grid">
 									<div className="circle" id="circles-3"></div>
 									<h3>HTML/CSS</h3>
-									<p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,非常熟悉less、sass,常用库css库:bootstrap、pure、mui</p>
+									<p>能手写符合w3c标准的代码,有较多移动端经验,熟悉响应式布局,css3,熟悉less、sass,并且能用flex布局。常用库css库:bootstrap、pure、mui、ant design</p>
 								</div>
 							</div>
 							<div className="col-md-3 skill-column">
 								<div className="skill-grid">
 									<div className="circle" id="circles-1"></div>
 									<h3>JAVASCRIPT</h3>
-									<p>es5、es6、typescript、vue、react、angular、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、reactNative、node、express</p>
+									<p>es5、es6、typescript、vue、react、angular、jquery、zepto、lodash、underscoreJs、requireJs、seaJs、node、express</p>
 								</div>
 							</div>
 							<div className="col-md-3 skill-column">
 								<div className="skill-grid">
 									<div className="circle" id="circles-2"></div>
 									<h3>前端工程</h3>
-									<p>webpack、gulp、npm、git</p>
+									<p>webpack、gulp、npm、git、nginx</p>
 								</div>
 							</div>
 							<div className="col-md-3 skill-column">
 								<div className="skill-grid">
 									<div className="circle" id="circles-4"></div>
 									<h3>移动端</h3>
-									<p>ionic2、cordova、reactNative、weex、weux</p>
+									<p>ionic2、cordova、小程序、react native、weex、weux</p>
 								</div>
 							</div>
 							<div className="clearfix"></div>
@@ -181,71 +186,239 @@ class Resume extends React.Component{
 						<h3 className="top-title">Projects</h3>
 						<span className="line"></span>
 						<div className="container projects">
+            <div className="row">
+              <div className="col-sm-4">
+                <a className="project-item" href="http://www.larkai.net/" target="_blank">
+                  <div className="tit-wp">
+                    <img src="./images/logo/YQLOGO450.png" /> 云雀AI 官网
+                  </div>
+                  <div className="backtip">
+                    <ul className="tip-list">
+                      <li>近一年主要开发的项目</li>
+                    </ul>
+                  </div>
+                </a>
+              </div>
+              <div className="col-sm-4">
+                <a className="project-item" href="http://www.larkai.net:8088/zhangbin/321" target="_blank">
+                  <div className="tit-wp">
+                    <img src="./images/logo/YQLOGO450.png" /> 云雀AI pc端
+                  </div>
+                  <div className="backtip">
+                    <ul className="tip-list">
+                      <li>vue2,pc端主要运用场景是嵌入到第三方BI系统中</li>
+                    </ul>
+                  </div>
+                </a>
+              </div>
+              <div className="col-sm-4">
+                <a className="project-item" href="http://larkai.net:8080/login" target="_blank">
+                  <div className="tit-wp">
+                    <img src="./images/logo/YQLOGO450.png" /> 云雀AI 管理端
+                  </div>
+                  <div className="backtip">
+                    <ul className="tip-list">
+                      <li>vue2+iview</li>
+                      <li>测试账号 zhangbin 321</li>
+                    </ul>
+                  </div>
+                </a>
+              </div>
+            </div>
+
               <div className="row">
                 <div className="col-sm-4">
-                  <a className="project-item" href="http://47.110.74.151/" target="_blank">
-                    <img src="./images/logo/logo.svg" /> WinETHFree
+                  <a className="project-item" href="https://www.pgyer.com/55v4" target="_blank">
+                    <div className="tit-wp">
+                      <img src="./images/logo/YQLOGO450.png" /> 云雀AI IOS
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'55px','right':'6px'}}>
+                        <li>ionic2+cordova</li>
+                        <li>测试账号 zhangbin 321</li>
+                      </ul>
+                    </div>
                   </a>
                 </div>
                 <div className="col-sm-4">
-                  <a className="project-item" href="https://x.zhihuiya.com/" target="_blank">
-                    <img src="./images/logo/course-logo.png" />
+                  <a className="project-item" href="https://www.pgyer.com/jhpZ" target="_blank">
+                    <div className="tit-wp">
+                      <img src="./images/logo/YQLOGO450.png" /> 云雀AI Android
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'55px','right':'6px'}}>
+                        <li>ionic2+cordova</li>
+                        <li>测试账号 zhangbin 321</li>
+                      </ul>
+                    </div>
                   </a>
                 </div>
                 <div className="col-sm-4">
-                  <a className="project-item" href="http://analytics.patsnap.cn/" target="_blank">
-                    <img src="./images/logo/database.png" />
+                  <a className="project-item xrcode" target="_blank">
+                    <div className="tit-wp">
+                      <img style={{maxHeight:'110px'}} src="./images/logo/gh_9f55b551f7b4_430.jpg" /> 云雀AI 小程序
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list">
+                        <li>To B产品 账号没配置过的话 扫了码也体验不了:)</li>
+                      </ul>
+                    </div>
                   </a>
                 </div>
               </div>
+
+              <div className="row">
+                <div className="col-sm-4">
+                  <a className="project-item" href="https://ccytxny.cn/app.php/NA==" target="_blank">
+                    <div className="tit-wp">
+                      <img style={{maxHeight:'50px'}} src="./images/logo/logoabout.png" /> 趣淘商城 IOS
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'50px','right':'6px'}}>
+                        <li>ionic3+cordova</li>
+                        <li>测试账号 zhangbin 654321ab</li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+                <div className="col-sm-4">
+                  <a className="project-item" href="https://ccytxny.cn/app.php/Mw==" target="_blank">
+                    <div className="tit-wp">
+                      <img style={{maxHeight:'50px'}} src="./images/logo/logoabout.png" /> 趣淘商城 Android
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'50px','right':'6px'}}>
+                        <li>ionic3+cordova</li>
+                        <li>测试账号 zhangbin 654321ab</li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+                <div className="col-sm-4">
+                  <a className="project-item" href="http://47.110.74.151/" target="_blank">
+                    <div className="tit-wp">
+                      <img src="./images/logo/logo.svg" /> WinETHFree
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>智能合约有漏洞,一打开就会被攻击..所以目前后端服务停了..</li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
 							<div className="row">
 								<div className="col-sm-4">
 									<a className="project-item" href="http://trademark.patsnap.cn/" target="_blank">
-										<img src="./images/logo/logo-cn.png" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/logo-cn.png" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>让我受益匪浅的一个项目...可惜现在已经下线了...</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 								<div className="col-sm-4">
 									<a className="project-item" href="https://x.zhihuiya.com/" target="_blank">
-										<img src="./images/logo/course-logo.png" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/course-logo.png" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>这个项目由我开始，现在应该迭代了几十个版本了</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 								<div className="col-sm-4">
 									<a className="project-item" href="http://analytics.patsnap.cn/" target="_blank">
-										<img src="./images/logo/database.png" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/database.png" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>智慧芽核心项目，emmm...里面应该有我不少代码</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 							</div>
 							<div className="row">
 								<div className="col-sm-4">
 									<a className="project-item" href="http://www.patsnap.com/" target="_blank">
-										<img src="./images/logo/logo_patsnap.png" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/logo_patsnap.png" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>智慧芽三个版本的官网由我开发</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 								<div className="col-sm-4">
 									<a className="project-item" href="/album" target="_blank">
-										<img src="./images/logo/binlinsite.jpg" />
+                    <div className="tit-wp">
+										  <img style={{maxHeight:'110px'}} src="./images/logo/qrcode_for_gh_e63f98115b5a_430.jpg" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>我的公众号，在线相册(react+node)</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 								<div className="col-sm-4">
 									<a className="project-item" href="http://ranking.patsnap.com/" target="_blank">
-										<img src="./images/logo/ranking.png" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/ranking.png" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>Ranking patsnap</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 							</div>
 							<div className="row">
 								<div className="col-sm-4">
 									<a className="project-item" href="/project/email-editor/app/email-editor.html" target="_blank">
-										<img src="./images/logo/mail.png" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/mail.png" /> 邮件模板生成工具
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'48px'}}>
+                        <li>这个工具能完美生成可贴入邮件的html</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 								<div className="col-sm-4">
 									<a className="project-item" href="/project/snake/snake.html" target="_blank">
-										<img src="./images/logo/timg.jpeg" />
+                    <div className="tit-wp">
+										  <img src="./images/logo/timg.jpeg" /> 贪吃蛇
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'70px'}}>
+                        <li>写的一个游戏</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 								<div className="col-sm-4">
 									<a className="project-item" href="http://binlin.site:8088/" target="_blank">
-										<img src="./images/mp.jpg" />
+                    <div className="tit-wp">
+										  <img src="./images/mp.jpg" />
+                    </div>
+                    <div className="backtip">
+                      <ul className="tip-list" style={{'top':'60px'}}>
+                        <li>现在公司早期的一个项目</li>
+                      </ul>
+                    </div>
 									</a>
 								</div>
 							</div>
