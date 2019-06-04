@@ -233,8 +233,9 @@ class Resume extends React.Component{
                       <img src="./images/logo/YQLOGO450.png" /> 云雀AI IOS
                     </div>
                     <div className="backtip">
-                      <ul className="tip-list" style={{'top':'55px','right':'6px'}}>
+                      <ul className="tip-list" style={{'top':'55px','right':'-5px','width':'140px'}}>
                         <li>ionic2+cordova</li>
+                        <li>安装密码:yunque</li>
                         <li>测试账号 zhangbin 321</li>
                       </ul>
                     </div>
@@ -246,8 +247,9 @@ class Resume extends React.Component{
                       <img src="./images/logo/YQLOGO450.png" /> 云雀AI Android
                     </div>
                     <div className="backtip">
-                      <ul className="tip-list" style={{'top':'55px','right':'6px'}}>
+                      <ul className="tip-list" style={{'top':'55px','right':'-5px','width':'140px'}}>
                         <li>ionic2+cordova</li>
+                        <li>安装密码:yunque</li>
                         <li>测试账号 zhangbin 321</li>
                       </ul>
                     </div>
