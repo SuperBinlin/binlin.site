@@ -360,7 +360,7 @@ class Resume extends React.Component{
 									</a>
 								</div>
 								<div className="col-sm-4">
-									<a className="project-item" href="/album" target="_blank">
+									<a className="project-item" target="_blank">
                     <div className="tit-wp">
 										  <img style={{maxHeight:'110px'}} src="./images/logo/qrcode_for_gh_e63f98115b5a_430.jpg" />
                     </div>
