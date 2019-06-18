@@ -7,14 +7,19 @@
 
 import * as API from './api/api';
 /**
- * 在此不引用 移动端会报fetch 
+ * 在此不引用 移动端会报fetch
  */
 import 'whatwg-fetch';
 
 export default {
   wxSign (url, callback) {
-    fetch(API.WXSIGN+"?wxurl="+url, {
-      method: 'GET'
+    fetch(API.WXSIGN, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(url)
     }).then((res)=>{
       if (res.ok){
         res.json().then(function(arr){
@@ -129,11 +134,11 @@ export default {
       if (res.ok){
         res.json().then(function(res){
           if(res.status){
-            callback(null, res)  
+            callback(null, res)
           } else {
             callback({msg:res.msg})
           }
-          
+
         })
         // res.json().then(function(res){
         //   callback(res)

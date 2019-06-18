@@ -43,7 +43,18 @@ class Photoshow extends React.Component{
   }
 
   componentWillMount(){
+    let u = navigator.userAgent;
+    let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
+    const _not_first_invite = sessionStorage.getItem('photo_not_first_invite');
+    if ( !_not_first_invite && isiOS) {
+      sessionStorage.setItem('photo_not_first_invite', '1');
+      window.location.reload();
+    }
+  }
+
+  componentWillUnmount(){
+    sessionStorage.removeItem('photo_not_first_invite');
   }
 
   componentDidMount() {
@@ -51,12 +62,14 @@ class Photoshow extends React.Component{
     /**
      * 获取userInfo
      */
-    
+
     let userInfo = sessionStorage.getItem('userinfo.binlin.site');
 
     let city = this.props.location.query.city;
     let _id = this.props.location.query._id;
-    
+    let u = navigator.userAgent;
+    let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
     this.setState({
       userInfo: JSON.parse(userInfo)
     }, function(){
@@ -84,8 +97,14 @@ class Photoshow extends React.Component{
         let maxPhotoLength = res[0].img.length || 0;
         let num = this.randomNum(0,maxPhotoLength);
 
-        let wxUrl = encodeURIComponent(location.href.split('#')[0]);
-        WX.wxSign(wxUrl, (err, ress)=>{
+        let wxUrl = location.href.split('#')[0];
+        // if(isiOS){
+        //   wxUrl = sessionStorage.getItem('wxRealUrl')
+        // } else {
+        //   wxUrl = location.href.split('#')[0];
+        // }
+
+        WX.wxSign({wxUrl:wxUrl}, (err, ress)=>{
           if(err){
             console.log(err);
             return;
@@ -106,21 +125,22 @@ class Photoshow extends React.Component{
             wx.onMenuShareAppMessage({
               title: res[0].city, // 分享标题
               desc: '大冰梨相册冰住我的瞬间', // 分享描述
-              link: 'http://binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              //link: 'http://binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              link:'http://binlin.natapp1.cc/shareLink?id='+idCollect,
               imgUrl: res[0].img[num].src, // 分享图标
               type: 'link', // 分享类型,music、video或link，不填默认为link
               dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-              success: function () { 
+              success: function () {
                   console.log("分享成功")
               },
-              cancel: function () { 
+              cancel: function () {
                   console.log("分享失败")
               }
             });
 
             wx.onMenuShareTimeline({
               title: '我的相册-'+res[0].city, // 分享标题
-              link: 'http://binlin.site/shareLink?id='+idCollect,  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              link: 'http://binlin.natapp1.cc/shareLink?id='+idCollect,  // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
               imgUrl: res[0].img[num].src, // 分享图标
               success: function () {
                 console.log('done')
@@ -128,8 +148,13 @@ class Photoshow extends React.Component{
             });
 
           })
+
+          wx.error(function(res){
+              window.location.href = location.href;
+              //alert(JSON.stringify(res))// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+          });
+
         })
-        
 
       });
 
@@ -216,4 +241,3 @@ class Photoshow extends React.Component{
 };
 
 export default Photoshow;
-

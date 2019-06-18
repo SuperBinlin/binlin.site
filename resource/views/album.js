@@ -69,7 +69,7 @@ class Album extends React.Component{
         this.shareToFn(userinfoSessionObj.openid).then(()=>{
           this.getImg({openId: userinfoSessionObj.openid});
         });
-        
+
       } else {
 
         this.getOpenId(code, (openId) => {
@@ -80,12 +80,12 @@ class Album extends React.Component{
 
       }
 
-    });    
-  }
+    });
 
-  componentWillMount(){
-    let wxUrl = encodeURIComponent(location.href.split('#')[0]);
-    WX.wxSign(wxUrl, (err, res)=>{
+    let wxUrl = location.href.split('#')[0];
+    
+    sessionStorage.setItem('wxRealUrl', wxUrl);
+    WX.wxSign({wxUrl:wxUrl}, (err, res)=>{
       if(err){
         console.log(err);
         return;
@@ -93,14 +93,52 @@ class Album extends React.Component{
 
       sessionStorage.setItem('wechatToken.binlin.site', res.token);
       wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: res.config.appId, // 必填，公众号的唯一标识
         timestamp: res.config.timestamp, // 必填，生成签名的时间戳
         nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
         signature: res.config.signature,// 必填，签名，见附录1
         jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       })
+
+      wx.ready(() => {
+
+        wx.onMenuShareAppMessage({
+          title: 'test！！！', // 分享标题
+          desc: '大冰梨相册冰住我的瞬间', // 分享描述
+          //link: 'http://binlin.site/shareLink?id='+idCollect, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          link:'http://binlin.natapp1.cc',
+          imgUrl: 'http://album.binlin.site/homepage.png', // 分享图标
+          type: 'link', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          success: function () {
+              console.log("分享成功")
+          },
+          cancel: function () {
+              console.log("分享失败")
+          }
+        });
+
+      })
+
+      wx.error(function(res){
+          alert(JSON.stringify(res))// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+      });
     })
+  }
+
+  componentWillMount(){
+    let u = navigator.userAgent;
+    let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    const _not_first_invite = sessionStorage.getItem('album_not_first_invite');
+    if ( !_not_first_invite && isiOS) {
+      sessionStorage.setItem('album_not_first_invite', '1');
+      window.location.reload();
+    }
+  }
+
+  componentWillUnmount(){
+    sessionStorage.removeItem('album_not_first_invite');
   }
 
   /**
@@ -134,6 +172,7 @@ class Album extends React.Component{
               console.log(err);
               return;
             }
+            // window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa266785ae98ca648&redirect_uri=http://natapp.binlin.site/album&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
             resolve()
             // this.notify({
             //   title:'Tip',
@@ -178,7 +217,7 @@ class Album extends React.Component{
   }
 
   /**
-   * 通过token 获取用户信息 
+   * 通过token 获取用户信息
    */
   getUserinfoByToken(token, openid) {
     WX.getUserinfoByToken({'access_token':token, 'openid':openid}, (err, res) => {
@@ -230,7 +269,7 @@ class Album extends React.Component{
       album.createTime = dateothersArray;
       alldateList.push(dateothersArray)
     });
-    console.log()
+
     _.map(res.selfalbum, (selfalbum) => {
       let dateselfArray = util.timestampToTime(selfalbum.edittime[0]);
       selfalbum.createTime = dateselfArray;
@@ -253,7 +292,7 @@ class Album extends React.Component{
      * @type {[type]}
      */
     storeYearArr = _.uniq(storeYearArr).sort(util.compare);
-    
+
     console.log(res.othersShare, res.selfalbum)
 
     /**
@@ -359,7 +398,7 @@ class Album extends React.Component{
         // this.setState({imgBase:localIds})
       },
       fail: (err) => {
-        
+
       }
     });
   }
@@ -407,7 +446,7 @@ class Album extends React.Component{
               {
                 constructorArr.map((constructorItem, index) => {
                   let currentDate = new Date;
-                  let currentyear = currentDate.getFullYear(); 
+                  let currentyear = currentDate.getFullYear();
                   if(constructorItem.year == currentyear){
                     constructorItem.year = '';
                   }
@@ -463,7 +502,7 @@ class Album extends React.Component{
                                   let num = this.randomNum(0, maxPhotoLength);
 
                                   return <div className="image-element-class image-element-class-album col-lg-3 col-md-4 col-sm-6 col-xs-12" key={index}>
-                                            <Link to='photo' query={{city: selfalbum.city,_id:selfalbum._id}}>
+                                            <Link to='photo' query={{city: encodeURIComponent(selfalbum.city),_id:selfalbum._id}}>
                                               <img src={selfalbum.img[num].src} />
                                               <div className="shadow">
                                                 <p className="current-city">{selfalbum.city}</p>
