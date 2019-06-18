@@ -249,7 +249,7 @@ class Album extends React.Component{
   getImg(option){
     API_Upload.getimg(option, (err, res) => {
       if(err) {
-        console.log(err)
+        console.log(err);
         return;
       }
 
