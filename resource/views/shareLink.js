@@ -23,7 +23,6 @@ class ShareLink extends React.Component{
 
   componentWillMount(){
     let id = this.props.location.query.id;
-    console.log(id)
     // if(id){
     //   window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa266785ae98ca648&redirect_uri=http://binlin.natapp1.cc/album?id='+id+'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
     // } else {
