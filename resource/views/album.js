@@ -58,32 +58,8 @@ class Album extends React.Component{
     this._notificationSystem = this.refs.notificationSystem;
     // this.toggleSteps();
 
-    let code = this.props.location.query.code;
-
-    this.setState({wechatCallbackCode:code}, ()=>{
-      let userinfoSession = this.getUserInfoSession();
-      if(userinfoSession){
-
-        let userinfoSessionObj = JSON.parse(userinfoSession);
-        this.setState({userInfo:userinfoSessionObj});
-        this.shareToFn(userinfoSessionObj.openid).then(()=>{
-          this.getImg({openId: userinfoSessionObj.openid});
-        });
-
-      } else {
-
-        this.getOpenId(code, (openId) => {
-          this.shareToFn(openId).then(()=>{
-            this.getImg({openId:openId})
-          });
-        });
-
-      }
-
-    });
-
     let wxUrl = location.href.split('#')[0];
-    
+
     sessionStorage.setItem('wxRealUrl', wxUrl);
     WX.wxSign({wxUrl:wxUrl}, (err, res)=>{
       if(err){
@@ -134,6 +110,30 @@ class Album extends React.Component{
     if ( !_not_first_invite && isiOS) {
       sessionStorage.setItem('album_not_first_invite', '1');
       window.location.reload();
+    } else {
+      let code = this.props.location.query.code;
+
+      this.setState({wechatCallbackCode:code}, ()=>{
+        let userinfoSession = this.getUserInfoSession();
+        if(userinfoSession){
+
+          let userinfoSessionObj = JSON.parse(userinfoSession);
+          this.setState({userInfo:userinfoSessionObj});
+          this.shareToFn(userinfoSessionObj.openid).then(()=>{
+            this.getImg({openId: userinfoSessionObj.openid});
+          });
+
+        } else {
+
+          this.getOpenId(code, (openId) => {
+            this.shareToFn(openId).then(()=>{
+              this.getImg({openId:openId})
+            });
+          });
+
+        }
+
+      });
     }
   }
 
