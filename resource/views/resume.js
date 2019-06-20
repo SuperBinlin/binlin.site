@@ -268,47 +268,49 @@ class Resume extends React.Component{
                   </a>
                 </div>
               </div>
-
-              // <div className="row">
-              //   <div className="col-sm-4">
-              //     <a className="project-item" href="https://ccytxny.cn/app.php/NA==" target="_blank">
-              //       <div className="tit-wp">
-              //         <img style={{maxHeight:'50px'}} src="./images/logo/logoabout.png" /> 趣淘商城 IOS
-              //       </div>
-              //       <div className="backtip">
-              //         <ul className="tip-list" style={{'top':'50px','right':'6px'}}>
-              //           <li>ionic3+cordova</li>
-              //           <li>测试账号 zhangbin 654321ab</li>
-              //         </ul>
-              //       </div>
-              //     </a>
-              //   </div>
-              //   <div className="col-sm-4">
-              //     <a className="project-item" href="https://ccytxny.cn/app.php/Mw==" target="_blank">
-              //       <div className="tit-wp">
-              //         <img style={{maxHeight:'50px'}} src="./images/logo/logoabout.png" /> 趣淘商城 Android
-              //       </div>
-              //       <div className="backtip">
-              //         <ul className="tip-list" style={{'top':'50px','right':'6px'}}>
-              //           <li>ionic3+cordova</li>
-              //           <li>测试账号 zhangbin 654321ab</li>
-              //         </ul>
-              //       </div>
-              //     </a>
-              //   </div>
-              //   <div className="col-sm-4">
-              //     <a className="project-item" href="http://47.110.74.151/" target="_blank">
-              //       <div className="tit-wp">
-              //         <img src="./images/logo/logo.svg" /> WinETHFree
-              //       </div>
-              //       <div className="backtip">
-              //         <ul className="tip-list" style={{'top':'48px'}}>
-              //           <li>智能合约有漏洞,一打开就会被攻击..所以目前后端服务停了..</li>
-              //         </ul>
-              //       </div>
-              //     </a>
-              //   </div>
-              // </div>
+              
+              {/*
+                <div className="row">
+                  <div className="col-sm-4">
+                    <a className="project-item" href="https://ccytxny.cn/app.php/NA==" target="_blank">
+                      <div className="tit-wp">
+                        <img style={{maxHeight:'50px'}} src="./images/logo/logoabout.png" /> 趣淘商城 IOS
+                      </div>
+                      <div className="backtip">
+                        <ul className="tip-list" style={{'top':'50px','right':'6px'}}>
+                          <li>ionic3+cordova</li>
+                          <li>测试账号 zhangbin 654321ab</li>
+                        </ul>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="col-sm-4">
+                    <a className="project-item" href="https://ccytxny.cn/app.php/Mw==" target="_blank">
+                      <div className="tit-wp">
+                        <img style={{maxHeight:'50px'}} src="./images/logo/logoabout.png" /> 趣淘商城 Android
+                      </div>
+                      <div className="backtip">
+                        <ul className="tip-list" style={{'top':'50px','right':'6px'}}>
+                          <li>ionic3+cordova</li>
+                          <li>测试账号 zhangbin 654321ab</li>
+                        </ul>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="col-sm-4">
+                    <a className="project-item" href="http://47.110.74.151/" target="_blank">
+                      <div className="tit-wp">
+                        <img src="./images/logo/logo.svg" /> WinETHFree
+                      </div>
+                      <div className="backtip">
+                        <ul className="tip-list" style={{'top':'48px'}}>
+                          <li>智能合约有漏洞,一打开就会被攻击..所以目前后端服务停了..</li>
+                        </ul>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              */}
 
 							<div className="row">
 								<div className="col-sm-4">
