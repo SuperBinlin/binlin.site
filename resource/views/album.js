@@ -17,7 +17,6 @@ import NotificationSystem from 'react-notification-system';
 import util from '../utils/utils.js';
 import '../css/introjs.css';
 import '../css/introjs-nassim.css';
-import { Steps, Hints } from 'intro.js-react';
 import { browserHistory } from 'react-router'
 
 /**
@@ -418,12 +417,6 @@ class Album extends React.Component{
     return (
       <DocumentTitle title='大冰梨相册'>
         <div>
-          <Steps
-            enabled={stepsEnabled}
-            steps={steps}
-            initialStep={initialStep}
-            onExit={()=>{this.onExit}}
-          />
           <Navicon style={naviconStyle} headimgurl={userInfo.headimgurl} _uploadImg={this._uploadImg}>
             <div className="container body-bg">
               <Helmet>

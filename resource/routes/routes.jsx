@@ -17,6 +17,7 @@ import Wechatupload from "../views/wechatupload.js";
 import Album from "../views/album.js";
 import ShareLink from "../views/shareLink.js";
 import Photoshow from "../views/photoshow.js";
+import Pptxgenjs from "../views/pptxgenjs.js";
 
 
 class Routes extends Component{
@@ -31,6 +32,7 @@ class Routes extends Component{
           <Route path="album" component={Album}/>
           <Route path="photo" component={Photoshow} />
           <Route path="shareLink" component={ShareLink} />
+          <Route path="pptxgenjs" component={Pptxgenjs} />
           <Route path="*" component={NotFound} />
         </Router>
       );

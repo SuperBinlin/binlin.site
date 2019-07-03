@@ -108,7 +108,8 @@ header{
 }
 
 .body-bg{
-  background: #000
+  background: #000;
+  min-height:100vh;
 }
 
 .bg-ooo{
