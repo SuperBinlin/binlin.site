@@ -32,7 +32,7 @@ class Wechatupload extends React.Component{
       },
       imgBase:[],                       // img base64存储 用于预览
       labeList:[],                      // 标签列表展示数据
-      beSelectCity:'',                  // 被选中的标签 
+      beSelectCity:'',                  // 被选中的标签
       hiddenId:'',                      // label所对应的id
       userInfo:{},
       serveIdArr:[],                    // 微信服务器端ID
@@ -43,28 +43,39 @@ class Wechatupload extends React.Component{
     //this._selectCity = this._selectCity.bind(this)
   }
 
+  componentWillUnmount(){
+    sessionStorage.removeItem('upload_not_first_invite');
+  }
 
   componentWillMount() {
+    // let u = navigator.userAgent;
+    // let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    //
+    // const _not_first_invite = sessionStorage.getItem('upload_not_first_invite');
+    // if ( !_not_first_invite) {
+    //   sessionStorage.setItem('upload_not_first_invite', '1');
+    //   window.location.reload();
+    // }
     /**
      * 获取userInfo
      */
     let userInfo = sessionStorage.getItem('userinfo.binlin.site');
 
     if(this.props.location.query.localid){
-      let localIds = this.props.location.query.localid.split('-'); 
+      let localIds = this.props.location.query.localid.split('-');
       this.setState({
         imgBase:localIds
-      }); 
+      });
     }
-    
+
 
     this.setState({
       userInfo: JSON.parse(userInfo)
     });
 
-    let wxUrl = encodeURIComponent(location.href.split('#')[0]);
+    let wxUrl = location.href.split('#')[0];
 
-    WX.wxSign(wxUrl, (err, res)=>{
+    WX.wxSign({wxUrl:wxUrl}, (err, res)=>{
       if(err){
         console.log(err);
         return;
@@ -72,7 +83,7 @@ class Wechatupload extends React.Component{
 
       sessionStorage.setItem('wechatToken.binlin.site', res.token);
       wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: res.config.appId, // 必填，公众号的唯一标识
         timestamp: res.config.timestamp, // 必填，生成签名的时间戳
         nonceStr: res.config.nonceStr, // 必填，生成签名的随机串
@@ -89,10 +100,10 @@ class Wechatupload extends React.Component{
             imgUrl: 'http://album.binlin.site/test0.0076168086381858124.png', // 分享图标
             type: 'link', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () { 
+            success: function () {
                 console.log("分享成功")
             },
-            cancel: function () { 
+            cancel: function () {
                 console.log("分享失败")
             }
           });
@@ -159,7 +170,7 @@ class Wechatupload extends React.Component{
      * label 非空判断
      * @type {[type]}
      */
-    this.state.beSelectCity == '' ? 
+    this.state.beSelectCity == '' ?
     this.notify({
       title:'Tip',
       message:'请选择一个标签',
@@ -170,7 +181,7 @@ class Wechatupload extends React.Component{
     })
     : uploadFileFormData.append('city',this.state.beSelectCity);
 
-    this.state.filesArr.length == 0 ? 
+    this.state.filesArr.length == 0 ?
     this.notify({
       title:'Tip',
       message:'请至少选择一张图片',
@@ -179,12 +190,12 @@ class Wechatupload extends React.Component{
         uploadPermission =false;
       }
     })
-    : _.map(this.state.filesArr, (file)=>{                     //上传多文件时 
+    : _.map(this.state.filesArr, (file)=>{                     //上传多文件时
         uploadFileFormData.append('file',file)
       });
 
     uploadPermission ?
-    
+
     (function(_this){
       _this.notify({
         title:'Tip',
@@ -201,7 +212,7 @@ class Wechatupload extends React.Component{
       if(_this.state.hiddenId !== '') {
         labelOpt.id = _this.state.hiddenId;
       }
-      
+
       API_Location.setLocation (labelOpt, (err, res)=>{
         console.log(res)
       })
@@ -224,7 +235,7 @@ class Wechatupload extends React.Component{
           level:'info'
         })
         _this.initData();
-      }) 
+      })
 
     }(this))
     : '';
@@ -234,10 +245,10 @@ class Wechatupload extends React.Component{
   initData(){
     this.setState({
       imgBase:[],
-      filesArr: [],                    
-      fileInfo:{                       
-        number:0,                      
-        size:0                         
+      filesArr: [],
+      fileInfo:{
+        number:0,
+        size:0
       },
       albumDec:''
     })
@@ -251,7 +262,7 @@ class Wechatupload extends React.Component{
   */
   resetState(et){                                           // 重写filesArr
     let fileInfo = {
-      number:0,                       
+      number:0,
       size:this.state.fileInfo.size
     }
 
@@ -297,7 +308,7 @@ class Wechatupload extends React.Component{
     this.setState({
       labeList:labeList,                                    // setState触发render渲染
       beSelectCity:beSelectCity
-    })                                   
+    })
   }
 
   /**
@@ -306,7 +317,7 @@ class Wechatupload extends React.Component{
    * @return {[type]}   [description]
    */
   _addCity = (e) => {
-    let labeList = this.state.labeList; 
+    let labeList = this.state.labeList;
     let label = e.target.value;
     label == "" ? '' :
     labeList.push({'city':e.target.value})
@@ -333,13 +344,13 @@ class Wechatupload extends React.Component{
         this.setState({imgBase:localIds})
       },
       fail: (err) => {
-        
+
       }
     });
 
   }
 
-  addImg(){  
+  addImg(){
     let currentImg = this.state.imgBase;
     let existAlbumLength = 9 - currentImg.length;
 
@@ -379,7 +390,7 @@ class Wechatupload extends React.Component{
       if(_this.state.hiddenId !== '') {
         labelOpt.id = _this.state.hiddenId;
       }
-      
+
       API_Location.setLocation (labelOpt, (err, res)=>{
         console.log(res)
       })
@@ -434,7 +445,7 @@ class Wechatupload extends React.Component{
 
     let uploadPermission = true, city;
 
-    this.state.beSelectCity == '' ? 
+    this.state.beSelectCity == '' ?
     this.notify({
       title:'Tip',
       message:'请选择一个标签',
@@ -494,7 +505,7 @@ class Wechatupload extends React.Component{
       'filled': true,
       'placeholder-hide': this.state.imgBase.length == 0             // 有图片时 展示图片预览
     });
-    
+
     return (
       <div>
         <div className="container-fluid">

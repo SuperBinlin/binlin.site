@@ -14,6 +14,7 @@ import Label from '../components/label.js';
 import API_Location from '../service/location.service.js';
 import API_Upload from '../service/upload.service.js';
 import Notifications, {notify} from 'react-notify-toast';
+import WX from '../service/wx.service.js';
 /**
  * https://github.com/igorprado/react-notification-system
  */
@@ -31,7 +32,7 @@ class Upload extends React.Component{
       },
       imgBase:[],                       // img base64存储 用于预览
       labeList:[],                      // 标签列表展示数据
-      beSelectCity:'',                  // 被选中的标签 
+      beSelectCity:'',                  // 被选中的标签
       hiddenId:'',                      // label所对应的id
       userInfo:{}
     }
@@ -118,7 +119,7 @@ class Upload extends React.Component{
      * label 非空判断
      * @type {[type]}
      */
-    this.state.beSelectCity == '' ? 
+    this.state.beSelectCity == '' ?
     this.notify({
       title:'Tip',
       message:'请选择一个标签',
@@ -129,7 +130,7 @@ class Upload extends React.Component{
     })
     : uploadFileFormData.append('city',this.state.beSelectCity);
 
-    this.state.filesArr.length == 0 ? 
+    this.state.filesArr.length == 0 ?
     this.notify({
       title:'Tip',
       message:'请至少选择一张图片',
@@ -138,12 +139,12 @@ class Upload extends React.Component{
         uploadPermission =false;
       }
     })
-    : _.map(this.state.filesArr, (file)=>{                     //上传多文件时 
+    : _.map(this.state.filesArr, (file)=>{                     //上传多文件时
         uploadFileFormData.append('file',file)
       });
 
     uploadPermission ?
-    
+
     (function(_this){
       //STEP TWO
       let labelOpt = {};
@@ -153,7 +154,7 @@ class Upload extends React.Component{
       if(_this.state.hiddenId !== '') {
         labelOpt.id = _this.state.hiddenId;
       }
-      
+
       API_Location.setLocation (labelOpt, (err, res)=>{
         console.log(res)
       })
@@ -175,7 +176,7 @@ class Upload extends React.Component{
           level:'info'
         })
         _this.initData();
-      }) 
+      })
 
     }(this))
     : '';
@@ -185,10 +186,10 @@ class Upload extends React.Component{
   initData(){
     this.setState({
       imgBase:[],
-      filesArr: [],                    
-      fileInfo:{                       
-        number:0,                      
-        size:0                         
+      filesArr: [],
+      fileInfo:{
+        number:0,
+        size:0
       },
     })
   }
@@ -202,7 +203,7 @@ class Upload extends React.Component{
   */
   resetState(et){                                           // 重写filesArr
     let fileInfo = {
-      number:0,                       
+      number:0,
       size:this.state.fileInfo.size
     }
 
@@ -247,7 +248,7 @@ class Upload extends React.Component{
     this.setState({
       labeList:labeList,                                    // setState触发render渲染
       beSelectCity:beSelectCity
-    })                                   
+    })
   }
 
   /**
@@ -256,7 +257,7 @@ class Upload extends React.Component{
    * @return {[type]}   [description]
    */
   _addCity = (e) => {
-    let labeList = this.state.labeList; 
+    let labeList = this.state.labeList;
     let label = e.target.value;
     label == "" ? '' :
     labeList.push({'city':e.target.value})
@@ -282,7 +283,7 @@ class Upload extends React.Component{
       'filled': true,
       'placeholder-hide': this.state.filesArr.length == 0             // 有图片时 展示图片预览
     });
-    
+
     return (
       <div className="container-fluid">
         <Label labelList={labeList} _selectCity={this._selectCity} _addCity={this._addCity}></Label>
@@ -339,4 +340,3 @@ class Upload extends React.Component{
 };
 
 export default Upload;
-
