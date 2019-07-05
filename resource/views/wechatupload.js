@@ -90,6 +90,7 @@ class Wechatupload extends React.Component{
         signature: res.config.signature,// 必填，签名，见附录1
         jsApiList: ['chooseImage','uploadImage','onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       })
+      
 
       wx.ready(() => {
 
