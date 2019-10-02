@@ -63,7 +63,7 @@ class Resume extends React.Component{
                 <a className="nav-link nav-link-work" href="http://www.jianshu.com/u/b096d6016afc" target="_blank">BLOG</a>
                 <a className="nav-link nav-link-journal" href="https://github.com/SuperBinlin" target="_blank">GITHUB</a>
                 <a className="nav-link nav-link-journal" href="https://gitee.com/binlin" target="_blank">GITEE</a>
-                <a className="nav-link nav-link-studio" href="/resume" target="_blank">ABOUT ME</a>
+                {/*<a className="nav-link nav-link-studio" href="/resume" target="_blank">ABOUT ME</a>*/} 
               </div>
             </nav>
             <div className="binlin-site">
