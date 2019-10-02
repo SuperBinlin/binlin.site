@@ -25,7 +25,7 @@ class Routes extends Component{
       return (
         <Router history={browserHistory}>
           <Route path="/" component={Index}></Route>
-          <Route path="resume" component={Resume} />
+          {/*<Route path="resume" component={Resume} />*/}
           <Route path="login(/:isreg)" component={Login} />
           <Route path="upload" component={Upload} />
           <Route path="wechatupload" component={Wechatupload} />
